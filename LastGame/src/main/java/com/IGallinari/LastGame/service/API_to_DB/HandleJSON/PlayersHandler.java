@@ -1,11 +1,8 @@
-package com.IGallinari.LastGame.service.API_to_DB.populateDB;
+package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 
 import com.IGallinari.LastGame.entity.Player;
-import com.IGallinari.LastGame.entity.Team;
 import com.IGallinari.LastGame.repository.PlayerRepository;
 import com.fasterxml.jackson.databind.JsonNode;
-
-import java.sql.Time;
 import java.time.LocalDate;
 
 public class PlayersHandler {

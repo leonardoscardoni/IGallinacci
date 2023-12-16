@@ -1,6 +1,6 @@
 package com.IGallinari.LastGame.service.API_to_DB;
 
-import com.IGallinari.LastGame.service.API_to_DB.populateDB.*;
+import com.IGallinari.LastGame.service.API_to_DB.HandleJSON.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 public class RedirectJSON {

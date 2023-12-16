@@ -1,4 +1,4 @@
-package com.IGallinari.LastGame.service.API_to_DB.populateDB;
+package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 
 import com.IGallinari.LastGame.entity.StatsPlayer;
 import com.IGallinari.LastGame.repository.GameRepository;

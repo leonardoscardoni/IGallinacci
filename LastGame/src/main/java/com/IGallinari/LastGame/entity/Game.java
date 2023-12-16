@@ -2,6 +2,7 @@ package com.IGallinari.LastGame.entity;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -18,7 +19,7 @@ public class Game {
 
     private LocalDate gameDate;
 
-    private Time startTime;
+    private LocalTime startTime;
 
     private int stage;
 
@@ -35,6 +36,4 @@ public class Game {
     @ManyToOne
     @JoinColumn(name = "id_home")
     private Team homeTeam;
-
-    // getters and setters
 }

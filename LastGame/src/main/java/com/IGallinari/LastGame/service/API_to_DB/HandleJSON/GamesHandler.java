@@ -1,4 +1,4 @@
-package com.IGallinari.LastGame.service.API_to_DB.populateDB;
+package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 
 import com.IGallinari.LastGame.entity.Arena;
 import com.IGallinari.LastGame.entity.Game;
@@ -11,12 +11,15 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class GamesHandler {
 
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+
     private TeamRepository teamRepository;
     private ArenaRepository arenaRepository;
 
@@ -40,8 +43,16 @@ public class GamesHandler {
             String dateString = gameNode.get("date").get("start").asText();
             Game game = new Game();
             game.setId(gameNode.get("id").asInt());
-            game.setGameDate(LocalDate.parse(dateString.substring(0, 10), formatter));
-            game.setStartTime(Time.valueOf(dateString.substring(11, 19)));
+            LocalDate gameDate = LocalDate.parse(dateString.substring(0, 10), dateFormatter);
+            LocalTime startTime = LocalTime.parse(dateString.substring(11, 19), timeFormatter);
+            startTime.plusHours(1);
+            LocalTime midNight = LocalTime.of(00,00,00);
+            int timeComparison = startTime.compareTo(midNight);
+            if (timeComparison >= 0) {
+                gameDate.plusDays(1);
+            }
+            game.setGameDate(gameDate);
+            game.setStartTime(startTime);
             game.setStage(gameNode.get("stage").asInt());
             game.setTotPeriods(gameNode.get("periods").get("total").asInt());
             game.setArena(arenaRepository.findBynameArena(gameNode.get("arena").get("name").asText()));
