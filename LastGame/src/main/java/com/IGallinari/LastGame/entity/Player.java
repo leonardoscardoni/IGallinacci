@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -19,7 +19,7 @@ public class Player {
 
     private String lastname;
 
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
     private String country;
 
@@ -37,7 +37,7 @@ public class Player {
 
     private int jersey;
 
-    private int isActive;
+    private boolean isActive;
 
     private String pos;
 }

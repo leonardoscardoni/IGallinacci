@@ -1,7 +1,7 @@
 package com.IGallinari.LastGame.entity;
 
-import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -16,7 +16,7 @@ public class Game {
     @Id
     private int id;
 
-    private Date gameDate;
+    private LocalDate gameDate;
 
     private Time startTime;
 
