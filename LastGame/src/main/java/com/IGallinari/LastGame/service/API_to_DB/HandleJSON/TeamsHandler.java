@@ -4,23 +4,25 @@ import com.IGallinari.LastGame.entity.Team;
 import com.IGallinari.LastGame.repository.TeamRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 
-public class TeamsHandler {
+public class TeamsHandler implements Handler{
 
     private TeamRepository teamRepository;
+
+    @Override
     public void handle(JsonNode jsonNode) {
         JsonNode teamsNode = jsonNode.get("response").get(0);
 
         for (JsonNode teamNode : teamsNode) {
             Team team = new Team();
             team.setId(teamNode.get("id").asInt());
-            team.setName(teamNode.get("name").asText());
-            team.setNickname(teamNode.get("nickname").asText());
-            team.setCode(teamNode.get("code").asText());
-            team.setCity(teamNode.get("city").asText());
-            team.setLogo(teamNode.get("logo").asText());
+            team.setName(teamNode.get("name").asText(null));
+            team.setNickname(teamNode.get("nickname").asText(null));
+            team.setCode(teamNode.get("code").asText(null));
+            team.setCity(teamNode.get("city").asText(null));
+            team.setLogo(teamNode.get("logo").asText(null));
             team.setAllstar(teamNode.get("allStar").asBoolean());
-            team.setConference(teamNode.get("leagues").get("standard").get("conference").asText());
-            team.setDivision(teamNode.get("leagues").get("standard").get("division").asText());
+            team.setConference(teamNode.get("leagues").get("standard").get("conference").asText(null));
+            team.setDivision(teamNode.get("leagues").get("standard").get("division").asText(null));
             teamRepository.save(team);
         }
     }

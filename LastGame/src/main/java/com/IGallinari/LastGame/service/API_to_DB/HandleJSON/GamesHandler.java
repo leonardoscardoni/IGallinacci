@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class GamesHandler {
+public class GamesHandler implements Handler {
 
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -27,6 +27,7 @@ public class GamesHandler {
 
     private StatsGameRepository statsGameRepository;
 
+    @Override
     public void handle(JsonNode jsonNode) {
         JsonNode gamesNode = jsonNode.get("response").get(0);
 
@@ -34,28 +35,32 @@ public class GamesHandler {
             if(!arenaRepository.existsBynameArena(gameNode.get("arena").get("name").asText())) {
                 Arena arena = new Arena();
                 arena.setNameArena(gameNode.get("arena").get("name").asText());
-                arena.setCity(gameNode.get("arena").get("city").asText());
-                arena.setState(gameNode.get("arena").get("state").asText());
-                arena.setCountry(gameNode.get("arena").get("country").asText());
+                arena.setCity(gameNode.get("arena").get("city").asText(null));
+                arena.setState(gameNode.get("arena").get("state").asText(null));
+                arena.setCountry(gameNode.get("arena").get("country").asText(null));
                 arenaRepository.save(arena);
             }
 
-            String dateString = gameNode.get("date").get("start").asText();
+            String dateString = gameNode.get("date").get("start").asText(null);
+            LocalDate gameDate = null;
+            LocalTime startTime = null;
             Game game = new Game();
             game.setId(gameNode.get("id").asInt());
-            LocalDate gameDate = LocalDate.parse(dateString.substring(0, 10), dateFormatter);
-            LocalTime startTime = LocalTime.parse(dateString.substring(11, 19), timeFormatter);
-            startTime.plusHours(1);
-            LocalTime midNight = LocalTime.of(00,00,00);
-            int timeComparison = startTime.compareTo(midNight);
-            if (timeComparison >= 0) {
-                gameDate.plusDays(1);
+            if(dateString!=null) {
+                gameDate = LocalDate.parse(dateString.substring(0, 10), dateFormatter);
+                startTime = LocalTime.parse(dateString.substring(11, 19), timeFormatter);
+                startTime.plusHours(1);
+                LocalTime midNight = LocalTime.of(00, 00, 00);
+                int timeComparison = startTime.compareTo(midNight);
+                if (timeComparison >= 0) {
+                    gameDate.plusDays(1);
+                }
             }
             game.setGameDate(gameDate);
             game.setStartTime(startTime);
-            game.setStage(gameNode.get("stage").asInt());
-            game.setTotPeriods(gameNode.get("periods").get("total").asInt());
-            game.setArena(arenaRepository.findBynameArena(gameNode.get("arena").get("name").asText()));
+            game.setStage(gameNode.get("stage").asInt(0));
+            game.setTotPeriods(asInteger(gameNode.get("periods").get("total")));
+            game.setArena(arenaRepository.findBynameArena(gameNode.get("arena").get("name").asText(null)));
             game.setVisitorTeam(teamRepository.findById(gameNode.get("teams").get("visitors").get("id").asInt()));
             game.setHomeTeam(teamRepository.findById(gameNode.get("teams").get("home").get("id").asInt()));
             gameRepository.save(game);
@@ -63,23 +68,23 @@ public class GamesHandler {
             StatsGame statsGameVisitor = new StatsGame();
             statsGameVisitor.setTeam(teamRepository.findById(gameNode.get("teams").get("visitors").get("id").asInt()));
             statsGameVisitor.setGame(gameRepository.findById(gameNode.get("id").asInt()));
-            statsGameVisitor.setWin(gameNode.get("scores").get("visitors").get("win").asInt());
-            statsGameVisitor.setLose(gameNode.get("scores").get("visitors").get("loss").asInt());
-            statsGameVisitor.setSeriesWin(gameNode.get("scores").get("visitors").get("series").get("win").asInt());
-            statsGameVisitor.setSeriesLose(gameNode.get("scores").get("visitors").get("series").get("loss").asInt());
+            statsGameVisitor.setWin(asInteger(gameNode.get("scores").get("visitors").get("win")));
+            statsGameVisitor.setLose(asInteger(gameNode.get("scores").get("visitors").get("loss")));
+            statsGameVisitor.setSeriesWin(asInteger(gameNode.get("scores").get("visitors").get("series").get("win")));
+            statsGameVisitor.setSeriesLose(asInteger(gameNode.get("scores").get("visitors").get("series").get("loss")));
             statsGameVisitor.setPointsPeriod(gameNode.get("scores").get("visitors").get("linescore").asText());
-            statsGameVisitor.setPoints(gameNode.get("scores").get("visitors").get("points").asInt());
+            statsGameVisitor.setPoints(asInteger(gameNode.get("scores").get("visitors").get("points")));
             statsGameRepository.save(statsGameVisitor);
 
             StatsGame statsGameHome = new StatsGame();
             statsGameHome.setTeam(teamRepository.findById(gameNode.get("teams").get("visitors").get("id").asInt()));
             statsGameHome.setGame(gameRepository.findById(gameNode.get("id").asInt()));
-            statsGameHome.setWin(gameNode.get("scores").get("home").get("win").asInt());
-            statsGameHome.setLose(gameNode.get("scores").get("home").get("loss").asInt());
-            statsGameHome.setSeriesWin(gameNode.get("scores").get("home").get("series").get("win").asInt());
-            statsGameHome.setSeriesLose(gameNode.get("scores").get("home").get("series").get("loss").asInt());
+            statsGameHome.setWin(asInteger(gameNode.get("scores").get("home").get("win")));
+            statsGameHome.setLose(asInteger(gameNode.get("scores").get("home").get("loss")));
+            statsGameHome.setSeriesWin(asInteger(gameNode.get("scores").get("home").get("series").get("win")));
+            statsGameHome.setSeriesLose(asInteger(gameNode.get("scores").get("home").get("series").get("loss")));
             statsGameHome.setPointsPeriod(gameNode.get("scores").get("home").get("linescore").asText());
-            statsGameHome.setPoints(gameNode.get("scores").get("home").get("points").asInt());
+            statsGameHome.setPoints(asInteger(gameNode.get("scores").get("home").get("points")));
             statsGameRepository.save(statsGameHome);
         }
     }

@@ -5,12 +5,13 @@ import com.IGallinari.LastGame.repository.StatsTeamRepository;
 import com.IGallinari.LastGame.repository.TeamRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 
-public class TeamsStatisticsHandler {
+public class TeamsStatisticsHandler implements Handler{
 
     private TeamRepository teamRepository;
 
     private StatsTeamRepository statsTeamRepository;
 
+    @Override
     public void handle(JsonNode jsonNode) {
         JsonNode parametersNode = jsonNode.get("parameters").get(0);
         JsonNode teamStatisticsNode = jsonNode.get("response").get(0);
@@ -18,32 +19,32 @@ public class TeamsStatisticsHandler {
         StatsTeam statsTeam = new StatsTeam();
         statsTeam.setSeason(parametersNode.get("season").asInt());
         statsTeam.setTeam(teamRepository.findById(parametersNode.get("id").asInt()));
-        statsTeam.setGame(teamStatisticsNode.get("games").asInt());
-        statsTeam.setFastBreakPoints(teamStatisticsNode.get("fastBreakPoints").asInt());
-        statsTeam.setPointsInPaint(teamStatisticsNode.get("pointsInPaint").asInt());
-        statsTeam.setBiggestLead(teamStatisticsNode.get("biggestLead").asInt());
-        statsTeam.setSecondChancePoints(teamStatisticsNode.get("secondChancePoints").asInt());
-        statsTeam.setPointsOffTurnovers(teamStatisticsNode.get("pointsOffTurnovers").asInt());
-        statsTeam.setLongestRun(teamStatisticsNode.get("longestRun").asInt());
-        statsTeam.setPoints(teamStatisticsNode.get("points").asInt());
-        statsTeam.setFgm(teamStatisticsNode.get("fgm").asInt());
-        statsTeam.setFga(teamStatisticsNode.get("fga").asInt());
-        statsTeam.setFgp(Float.parseFloat(teamStatisticsNode.get("fgp").asText()));
-        statsTeam.setFtm(teamStatisticsNode.get("ftm").asInt());
-        statsTeam.setFta(teamStatisticsNode.get("fta").asInt());
-        statsTeam.setFtp(Float.parseFloat(teamStatisticsNode.get("ftp").asText()));
-        statsTeam.setTpm(teamStatisticsNode.get("tpm").asInt());
-        statsTeam.setTpa(teamStatisticsNode.get("tpa").asInt());
-        statsTeam.setTpp(Float.parseFloat(teamStatisticsNode.get("tpp").asText()));
-        statsTeam.setOffReb(teamStatisticsNode.get("offReb").asInt());
-        statsTeam.setDefReb(teamStatisticsNode.get("defReb").asInt());
-        statsTeam.setTotReb(teamStatisticsNode.get("totReb").asInt());
-        statsTeam.setAssists(teamStatisticsNode.get("assists").asInt());
-        statsTeam.setPFouls(teamStatisticsNode.get("pFouls").asInt());
-        statsTeam.setSteals(teamStatisticsNode.get("steals").asInt());
-        statsTeam.setTurnovers(teamStatisticsNode.get("turnovers").asInt());
-        statsTeam.setBlocks(teamStatisticsNode.get("blocks").asInt());
-        statsTeam.setPlusMinus(teamStatisticsNode.get("plusMinus").asInt());
+        statsTeam.setGame(asInteger(teamStatisticsNode.get("games")));
+        statsTeam.setFastBreakPoints(asInteger(teamStatisticsNode.get("fastBreakPoints")));
+        statsTeam.setPointsInPaint(asInteger(teamStatisticsNode.get("pointsInPaint")));
+        statsTeam.setBiggestLead(asInteger(teamStatisticsNode.get("biggestLead")));
+        statsTeam.setSecondChancePoints(asInteger(teamStatisticsNode.get("secondChancePoints")));
+        statsTeam.setPointsOffTurnovers(asInteger(teamStatisticsNode.get("pointsOffTurnovers")));
+        statsTeam.setLongestRun(asInteger(teamStatisticsNode.get("longestRun")));
+        statsTeam.setPoints(asInteger(teamStatisticsNode.get("points")));
+        statsTeam.setFgm(asInteger(teamStatisticsNode.get("fgm")));
+        statsTeam.setFga(asInteger(teamStatisticsNode.get("fga")));
+        statsTeam.setFgp(asFloat(teamStatisticsNode.get("fgp")));
+        statsTeam.setFtm(asInteger(teamStatisticsNode.get("ftm")));
+        statsTeam.setFta(asInteger(teamStatisticsNode.get("fta")));
+        statsTeam.setFtp(asFloat(teamStatisticsNode.get("ftp")));
+        statsTeam.setTpm(asInteger(teamStatisticsNode.get("tpm")));
+        statsTeam.setTpa(asInteger(teamStatisticsNode.get("tpa")));
+        statsTeam.setTpp(asFloat(teamStatisticsNode.get("tpp")));
+        statsTeam.setOffReb(asInteger(teamStatisticsNode.get("offReb")));
+        statsTeam.setDefReb(asInteger(teamStatisticsNode.get("defReb")));
+        statsTeam.setTotReb(asInteger(teamStatisticsNode.get("totReb")));
+        statsTeam.setAssists(asInteger(teamStatisticsNode.get("assists")));
+        statsTeam.setPFouls(asInteger(teamStatisticsNode.get("pFouls")));
+        statsTeam.setSteals(asInteger(teamStatisticsNode.get("steals")));
+        statsTeam.setTurnovers(asInteger(teamStatisticsNode.get("turnovers")));
+        statsTeam.setBlocks(asInteger(teamStatisticsNode.get("blocks")));
+        statsTeam.setPlusMinus(asInteger(teamStatisticsNode.get("plusMinus")));
         statsTeamRepository.save(statsTeam);
     }
 }

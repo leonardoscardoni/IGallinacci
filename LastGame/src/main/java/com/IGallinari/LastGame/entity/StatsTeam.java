@@ -11,32 +11,87 @@ public class StatsTeam {
     @EmbeddedId
     private IdStatsTeam statsTeamId;
 
-    private int game;
-    private int fastBreakPoints;
-    private int pointsInPaint;
-    private int biggestLead;
-    private int secondChancePoints;
-    private int pointsOffTurnovers;
-    private int longestRun;
-    private int points;
-    private int fgm;
-    private int fga;
+    private Integer game;
+
+    private Integer fastBreakPoints;
+
+    private Integer pointsInPaint;
+
+    private Integer biggestLead;
+
+    private Integer secondChancePoints;
+
+    private Integer pointsOffTurnovers;
+
+    private Integer longestRun;
+
+    private Integer points;
+
+    private Integer fgm;
+
+    private Integer fga;
+
     private Float fgp;
-    private int ftm;
-    private int fta;
+
+    private Integer ftm;
+
+    private Integer fta;
+
     private Float ftp;
-    private int tpm;
-    private int tpa;
+
+    private Integer tpm;
+
+    private Integer tpa;
+
     private Float tpp;
-    private int offReb;
-    private int defReb;
-    private int totReb;
-    private int assists;
-    private int pFouls;
-    private int steals;
-    private int turnovers;
-    private int blocks;
-    private int plusMinus;
+
+    private Integer offReb;
+
+    private Integer defReb;
+
+    private Integer totReb;
+
+    private Integer assists;
+
+    private Integer pFouls;
+
+    private Integer steals;
+
+    private Integer turnovers;
+
+    private Integer blocks;
+
+    private Integer plusMinus;
+
+    private Integer rankConference;
+
+    private Integer winConference;
+
+    private Integer lossConference;
+
+    private Integer rankDivision;
+
+    private Integer winDivision;
+
+    private Integer lossDivision;
+
+    private Integer winHome;
+
+    private Integer winAway;
+
+    private float winPerc;
+
+    private Integer lossHome;
+
+    private Integer lossAway;
+
+    private float lossPerc;
+
+    private Integer gamesBehind;
+
+    private Integer streak;
+
+    private boolean winStreak;
 
     @ManyToOne
     @JoinColumn(name = "idTeam", insertable = false, updatable = false)

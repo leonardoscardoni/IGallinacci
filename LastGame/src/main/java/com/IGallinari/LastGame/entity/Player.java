@@ -23,9 +23,9 @@ public class Player {
 
     private String country;
 
-    private int startYear;
+    private Integer startYear;
 
-    private int pro;
+    private Integer pro;
 
     private float heigth;
 
@@ -35,7 +35,7 @@ public class Player {
 
     private String affiliation;
 
-    private int jersey;
+    private Integer jersey;
 
     private boolean isActive;
 

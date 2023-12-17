@@ -7,7 +7,7 @@ import com.IGallinari.LastGame.repository.StatsPlayerRepository;
 import com.IGallinari.LastGame.repository.TeamRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 
-public class PlayersStatisticsHandler {
+public class PlayersStatisticsHandler implements Handler{
     private GameRepository gameRepository;
 
     private TeamRepository teamRepository;
@@ -16,6 +16,7 @@ public class PlayersStatisticsHandler {
 
     private StatsPlayerRepository statsPlayerRepository;
 
+    @Override
     public void handle(JsonNode jsonNode) {
         JsonNode playersStatisticsNode = jsonNode.get("response").get(0);
 
@@ -24,27 +25,27 @@ public class PlayersStatisticsHandler {
             statsPlayer.setGame(gameRepository.findById(playerStatisticsNode.get("game").get("id").asInt()));
             statsPlayer.setTeam(teamRepository.findById(playerStatisticsNode.get("team").get("id").asInt()));
             statsPlayer.setPlayer(playerRepository.findById(playerStatisticsNode.get("player").get("id").asInt()));
-            statsPlayer.setPoints(playerStatisticsNode.get("points").asInt());
+            statsPlayer.setPoints(asInteger(playerStatisticsNode.get("points")));
             statsPlayer.setPos(playerStatisticsNode.get("pos").asText());
-            statsPlayer.setMin(Float.parseFloat(playerStatisticsNode.get("min").asText()));//
-            statsPlayer.setFgm(playerStatisticsNode.get("fgm").asInt());
-            statsPlayer.setFga(playerStatisticsNode.get("fga").asInt());
-            statsPlayer.setFgp(Float.parseFloat(playerStatisticsNode.get("fgp").asText()));
-            statsPlayer.setFtm(playerStatisticsNode.get("ftm").asInt());
-            statsPlayer.setFta(playerStatisticsNode.get("fta").asInt());
-            statsPlayer.setFtp(Float.parseFloat(playerStatisticsNode.get("ftp").asText()));
-            statsPlayer.setTpm(playerStatisticsNode.get("tpm").asInt());
-            statsPlayer.setTpa(playerStatisticsNode.get("tpa").asInt());
-            statsPlayer.setTpp(Float.parseFloat(playerStatisticsNode.get("tpp").asText()));
-            statsPlayer.setOffReb(playerStatisticsNode.get("offReb").asInt());
-            statsPlayer.setDefReb(playerStatisticsNode.get("defReb").asInt());
-            statsPlayer.setTotReb(playerStatisticsNode.get("totReb").asInt());
-            statsPlayer.setAssists(playerStatisticsNode.get("assists").asInt());
-            statsPlayer.setPFouls(playerStatisticsNode.get("pFouls").asInt());
-            statsPlayer.setSteals(playerStatisticsNode.get("steals").asInt());
-            statsPlayer.setTurnovers(playerStatisticsNode.get("turnovers").asInt());
-            statsPlayer.setBlocks(playerStatisticsNode.get("blocks").asInt());
-            statsPlayer.setPlusMinus(playerStatisticsNode.get("plusMinus").asInt());
+            statsPlayer.setMin(asInteger(playerStatisticsNode.get("min")));
+            statsPlayer.setFgm(asInteger(playerStatisticsNode.get("fgm")));
+            statsPlayer.setFga(asInteger(playerStatisticsNode.get("fga")));
+            statsPlayer.setFgp(asFloat(playerStatisticsNode.get("fgp")));
+            statsPlayer.setFtm(asInteger(playerStatisticsNode.get("ftm")));
+            statsPlayer.setFta(asInteger(playerStatisticsNode.get("fta")));
+            statsPlayer.setFtp(asFloat(playerStatisticsNode.get("ftp")));
+            statsPlayer.setTpm(asInteger(playerStatisticsNode.get("tpm")));
+            statsPlayer.setTpa(asInteger(playerStatisticsNode.get("tpa")));
+            statsPlayer.setTpp(asFloat(playerStatisticsNode.get("tpp")));
+            statsPlayer.setOffReb(asInteger(playerStatisticsNode.get("offReb")));
+            statsPlayer.setDefReb(asInteger(playerStatisticsNode.get("defReb")));
+            statsPlayer.setTotReb(asInteger(playerStatisticsNode.get("totReb")));
+            statsPlayer.setAssists(asInteger(playerStatisticsNode.get("assists")));
+            statsPlayer.setPFouls(asInteger(playerStatisticsNode.get("pFouls")));
+            statsPlayer.setSteals(asInteger(playerStatisticsNode.get("steals")));
+            statsPlayer.setTurnovers(asInteger(playerStatisticsNode.get("turnovers")));
+            statsPlayer.setBlocks(asInteger(playerStatisticsNode.get("blocks")));
+            statsPlayer.setPlusMinus(asInteger(playerStatisticsNode.get("plusMinus")));//Controlla cosa restituisce il json
             statsPlayerRepository.save(statsPlayer);
         }
     }

@@ -206,18 +206,7 @@ CREATE TABLE `statsteam` (
   `steals` smallint(5) UNSIGNED DEFAULT NULL,
   `turnovers` smallint(5) UNSIGNED DEFAULT NULL,
   `blocks` smallint(5) UNSIGNED DEFAULT NULL,
-  `plusMinus` smallint(6) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `standing`
---
-
-CREATE TABLE `standing` (
-  `season` smallint(5) UNSIGNED NOT NULL,
-  `idTeam` int(11) NOT NULL,
+  `plusMinus` smallint(6) DEFAULT NULL,
   `rankConference` smallint(5) DEFAULT NULL,
   `winConference` smallint(5) DEFAULT NULL,
   `lossConference` smallint(5) DEFAULT NULL,
@@ -233,7 +222,7 @@ CREATE TABLE `standing` (
   `gamesBehind` smallint(5) DEFAULT NULL,
   `streak` smallint(5) DEFAULT NULL,
   `winStreak` tinyint(1) DEFAULT NULL
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -292,13 +281,7 @@ ALTER TABLE `statsteam`
   ADD KEY `fk_statsTeam_team` (`idTeam`);
 
 --
--- Indici per le tabelle `standing`
---
-ALTER TABLE `standing`
-  ADD PRIMARY KEY (`idTeam`,`season`),
-   ADD KEY `fk_standing_team` (`idTeam`);
---
--- Limiti per le tabelle scaricate
+-- Limiti per le tabelle
 --
 
 --
@@ -329,12 +312,6 @@ ALTER TABLE `statsplayer`
 --
 ALTER TABLE `statsteam`
   ADD CONSTRAINT `fk_statsTeam_team` FOREIGN KEY (`idTeam`) REFERENCES `team` (`id`);
-
---
--- Limiti per la tabella `standing`
---
-ALTER TABLE `standing`
-  ADD CONSTRAINT `fk_standing_team` FOREIGN KEY (`idTeam`) REFERENCES `team` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

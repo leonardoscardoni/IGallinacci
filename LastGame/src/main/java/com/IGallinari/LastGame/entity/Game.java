@@ -21,9 +21,9 @@ public class Game {
 
     private LocalTime startTime;
 
-    private int stage;
+    private Integer stage;
 
-    private int totPeriods;
+    private Integer totPeriods;
 
     @ManyToOne
     @JoinColumn(name = "nameArena")

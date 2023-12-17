@@ -5,28 +5,30 @@ import com.IGallinari.LastGame.repository.PlayerRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import java.time.LocalDate;
 
-public class PlayersHandler {
+public class PlayersHandler implements Handler{
 
     private PlayerRepository playerRepository;
+
+    @Override
     public void handle(JsonNode jsonNode) {
         JsonNode playersNode = jsonNode.get("response").get(0);
 
         for (JsonNode playerNode : playersNode) {
             Player player = new Player();
             player.setId(playerNode.get("id").asInt());
-            player.setFirstname(playerNode.get("firstname").asText());
-            player.setLastname(playerNode.get("lastname").asText());
-            player.setDateOfBirth(LocalDate.parse(playerNode.get("birth").get("date").asText()));
+            player.setFirstname(playerNode.get("firstname").asText(null));
+            player.setLastname(playerNode.get("lastname").asText(null));
+            player.setDateOfBirth(LocalDate.parse(playerNode.get("birth").get("date").asText(null)));
             player.setCountry(playerNode.get("birth").get("country").asText());
-            player.setStartYear(playerNode.get("nba").get("start").asInt());
-            player.setPro(playerNode.get("nba").get("pro").asInt());
-            player.setHeigth(Float.parseFloat(playerNode.get("height").get("meters").asText()));
-            player.setWeight(Float.parseFloat(playerNode.get("weight").get("kilograms").asText()));
+            player.setStartYear(asInteger(playerNode.get("nba").get("start")));
+            player.setPro(asInteger(playerNode.get("nba").get("pro")));
+            player.setHeigth(asFloat(playerNode.get("height").get("meters")));
+            player.setWeight(asFloat(playerNode.get("weight").get("kilograms")));
             player.setCollege(playerNode.get("college").asText());
             player.setAffiliation(playerNode.get("affiliation").asText());
-            player.setJersey(playerNode.get("leagues").get("standard").get("jersey").asInt());
+            player.setJersey(asInteger(playerNode.get("leagues").get("standard").get("jersey")));
             player.setActive(playerNode.get("leagues").get("standard").get("active").asBoolean());
-            player.setPos(playerNode.get("leagues").get("standard").get("pos").asText());
+            player.setPos(playerNode.get("leagues").get("standard").get("pos").asText(null));
             playerRepository.save(player);
         }
     }

@@ -1,40 +1,40 @@
 package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 
-import com.IGallinari.LastGame.entity.Standing;
-import com.IGallinari.LastGame.repository.StandingRepository;
+import com.IGallinari.LastGame.entity.StatsTeam;
+import com.IGallinari.LastGame.repository.StatsTeamRepository;
 import com.IGallinari.LastGame.repository.TeamRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 
-import java.time.LocalDate;
-
-public class StandingsHandler {
+public class StandingsHandler implements Handler{
 
     private TeamRepository teamRepository;
 
-    private StandingRepository standingRepository;
+    private StatsTeamRepository statsTeamRepository;
+
+    @Override
     public void handle(JsonNode jsonNode) {
         JsonNode standingsNode = jsonNode.get("response").get(0);
 
         for (JsonNode standingNode : standingsNode) {
-            Standing standing = new Standing();
-            standing.setSeason(standingNode.get("season").asInt());
-            standing.setTeam(teamRepository.findById(standingNode.get("team").get("id").asInt()));
-            standing.setRankConference(standingNode.get("conference").get("rankConference").asInt());
-            standing.setWinConference(standingNode.get("conference").get("winConference").asInt());
-            standing.setLossConference(standingNode.get("conference").get("lossDivision").asInt());
-            standing.setRankDivision(standingNode.get("division").get("rankDivision").asInt());
-            standing.setWinDivision(standingNode.get("division").get("winDivision").asInt());
-            standing.setLossDivision(standingNode.get("division").get("lossDivision").asInt());
-            standing.setWinHome(standingNode.get("win").get("home").asInt());
-            standing.setWinAway(standingNode.get("win").get("away").asInt());
-            standing.setWinPerc(standingNode.get("win").get("percentage").asInt());
-            standing.setLossHome(standingNode.get("loss").get("home").asInt());
-            standing.setLossAway(standingNode.get("loss").get("away").asInt());
-            standing.setLossPerc(standingNode.get("loss").get("percentage").asInt());
-            standing.setGamesBehind(standingNode.get("gamesBehind").asInt());
-            standing.setStreak(standingNode.get("streak").asInt());
-            standing.setWinStreak(standingNode.get("winStreak").asBoolean());
-            standingRepository.save(standing);
+            StatsTeam statsTeam = new StatsTeam();
+            statsTeam.setSeason(standingNode.get("season").asInt());
+            statsTeam.setTeam(teamRepository.findById(standingNode.get("team").get("id").asInt()));
+            statsTeam.setRankConference(asInteger(standingNode.get("conference").get("rankConference")));
+            statsTeam.setWinConference(asInteger(standingNode.get("conference").get("winConference")));
+            statsTeam.setLossConference(asInteger(standingNode.get("conference").get("lossDivision")));
+            statsTeam.setRankDivision(asInteger(standingNode.get("division").get("rankDivision")));
+            statsTeam.setWinDivision(asInteger(standingNode.get("division").get("winDivision")));
+            statsTeam.setLossDivision(asInteger(standingNode.get("division").get("lossDivision")));
+            statsTeam.setWinHome(asInteger(standingNode.get("win").get("home")));
+            statsTeam.setWinAway(asInteger(standingNode.get("win").get("away")));
+            statsTeam.setWinPerc(asInteger(standingNode.get("win").get("percentage")));
+            statsTeam.setLossHome(asInteger(standingNode.get("loss").get("home")));
+            statsTeam.setLossAway(asInteger(standingNode.get("loss").get("away")));
+            statsTeam.setLossPerc(asInteger(standingNode.get("loss").get("percentage")));
+            statsTeam.setGamesBehind(asInteger(standingNode.get("gamesBehind")));
+            statsTeam.setStreak(asInteger(standingNode.get("streak")));
+            statsTeam.setWinStreak(standingNode.get("winStreak").asBoolean());
+            statsTeamRepository.save(statsTeam);
         }
     }
 }

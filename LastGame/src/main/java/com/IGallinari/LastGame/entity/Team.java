@@ -14,18 +14,11 @@ public class Team {
     private int id;
 
     private String name;
-
     private String nickname;
-
     private String code;
-
     private String city;
-
     private String logo;
-
     private boolean allstar;
-
     private String conference;
-
     private String division;
 }
