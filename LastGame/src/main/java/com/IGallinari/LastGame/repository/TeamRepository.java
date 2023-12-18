@@ -2,6 +2,7 @@ package com.IGallinari.LastGame.repository;
 
 import com.IGallinari.LastGame.entity.Team;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,5 +14,6 @@ public interface TeamRepository extends JpaRepository<Team,Integer> {
 
     Team findById(int id);
 
-
+    @Query("SELECT t.id FROM Team t")
+    List<Integer> findAllIds();
 }

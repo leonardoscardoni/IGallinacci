@@ -13,13 +13,6 @@ public class ApiCaller {
     private static final String baseURL = "https://v2.nba.api-sports.io/";
 
     private static final HttpClient httpClient = HttpClient.newHttpClient();
-    private final String endpoint;
-    private final Map<String, String> params;
-
-    public ApiCaller(String endpoint, Map<String, String> params) {
-        this.endpoint = endpoint;
-        this.params = params;
-    }
 
     private String makeApiCall(URI uri) throws Exception {
         // Build the HTTP request with headers
@@ -35,7 +28,7 @@ public class ApiCaller {
         return response.body();
     }
 
-    public String makeApiCall() {
+    public String callApi(String endpoint, Map<String, String> params) {
         // Build the URI with query parameters
         String paramString = params.entrySet().stream()
                 .map(entry -> entry.getKey() + "=" + entry.getValue())

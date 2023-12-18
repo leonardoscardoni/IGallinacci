@@ -1,8 +1,8 @@
 package com.IGallinari.LastGame.repository;
 
 import com.IGallinari.LastGame.entity.Game;
-import com.IGallinari.LastGame.entity.Team;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,4 +13,10 @@ public interface GameRepository extends JpaRepository<Game,Integer> {
     List<Game> findAll();
 
     Game findById(int id);
+
+    @Query(value = "SELECT DISTINCT YEAR(game_date) FROM game GROUP BY YEAR(game_date)", nativeQuery = true)
+    List<Integer> findDistinctYears();
+
+    @Query(value = "SELECT DISTINCT g.id FROM game AS g GROUP BY g.id", nativeQuery = true)
+    List<Integer> findDistinctIdTeams();
 }
