@@ -1,8 +1,6 @@
 package com.IGallinari.LastGame.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -12,8 +10,11 @@ import java.time.LocalDate;
 public class Player {
 
     @Id
-    @Column(name = "idPlayer")
     private int id;
+
+    @ManyToOne
+    @JoinColumn(name = "idTeam", insertable = false, updatable = false)
+    private Team team;
 
     private String firstname;
 
@@ -40,4 +41,5 @@ public class Player {
     private boolean isActive;
 
     private String pos;
+
 }

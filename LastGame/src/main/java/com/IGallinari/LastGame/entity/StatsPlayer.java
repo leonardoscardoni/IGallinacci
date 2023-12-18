@@ -67,6 +67,4 @@ public class StatsPlayer {
     @ManyToOne
     @JoinColumn(name = "idGame", insertable = false, updatable = false)
     private Game game;
-
-    // Altri campi e metodi, se necessario
 }

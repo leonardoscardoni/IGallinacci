@@ -82,6 +82,7 @@ CREATE TABLE `team` (
 
 CREATE TABLE `player` (
   `id` int(11) NOT NULL,
+  `idTeam` int(11) NOT NULL,
   `firstname` varchar(255) DEFAULT NULL,
   `lastname` varchar(255) DEFAULT NULL,
   `dateOfBirth` date DEFAULT NULL,
@@ -255,7 +256,8 @@ ALTER TABLE `team`
 -- Indici per le tabelle `player`
 --
 ALTER TABLE `player`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_player_team` (`idTeam`);
 
 --
 -- Indici per le tabelle `statsgame`
@@ -291,6 +293,12 @@ ALTER TABLE `game`
   ADD CONSTRAINT `fk_arena` FOREIGN KEY (`nameArena`) REFERENCES `arena` (`nameArena`),
   ADD CONSTRAINT `fk_home_team` FOREIGN KEY (`id_home`) REFERENCES `team` (`id`),
   ADD CONSTRAINT `fk_visitor_team` FOREIGN KEY (`id_visitor`) REFERENCES `team` (`id`);
+
+--
+-- Limiti per la tabella `player`
+--
+ALTER TABLE `player`
+  ADD CONSTRAINT `fk_player_team` FOREIGN KEY (`idTeam`) REFERENCES `team` (`id`);
 
 --
 -- Limiti per la tabella `statsgame`

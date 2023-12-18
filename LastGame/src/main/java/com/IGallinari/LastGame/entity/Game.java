@@ -17,6 +17,8 @@ public class Game {
     @Id
     private int id;
 
+    private Integer season;
+
     private LocalDate gameDate;
 
     private LocalTime startTime;

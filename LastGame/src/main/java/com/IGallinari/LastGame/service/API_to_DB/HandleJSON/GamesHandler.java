@@ -46,6 +46,7 @@ public class GamesHandler implements Handler {
             LocalTime startTime = null;
             Game game = new Game();
             game.setId(gameNode.get("id").asInt());
+            game.setSeason(asInteger(gameNode.get("season")));
             if(dateString!=null) {
                 gameDate = LocalDate.parse(dateString.substring(0, 10), dateFormatter);
                 startTime = LocalTime.parse(dateString.substring(11, 19), timeFormatter);

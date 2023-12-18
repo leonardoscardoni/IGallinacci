@@ -14,6 +14,6 @@ public interface TeamRepository extends JpaRepository<Team,Integer> {
 
     Team findById(int id);
 
-    @Query("SELECT t.id FROM Team t")
+    @Query(value = "SELECT DISTINCT t.id FROM Team t", nativeQuery = true)
     List<Integer> findAllIds();
 }

@@ -3,8 +3,8 @@ package com.IGallinari.LastGame.service.API_to_DB;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
-import com.IGallinari.LastGame.repository.GameRepository;
-import com.IGallinari.LastGame.repository.TeamRepository;
+
+import com.IGallinari.LastGame.repository.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.util.List;
@@ -18,6 +18,14 @@ public class PopulateDB {
     private GameRepository gameRepository;
 
     private TeamRepository teamRepository;
+
+    private PlayerRepository playerRepository;
+
+    private StatsPlayerRepository statsPlayerRepository;
+
+    private StatsTeamRepository statsTeamRepository;
+
+    private StatsGameRepository statsGameRepository;
 
     public void PopulateDB() throws JsonProcessingException {
 
@@ -53,9 +61,9 @@ public class PopulateDB {
             }
         }
         List<Integer> allIdTeams = gameRepository.findDistinctIdTeams();
-        List<Integer> idTeamsInDB = teamRepository.findAllIds();
+        List<Integer> idTeamsInDB = playerRepository.findDistinctTeamIds();
         List<Integer> idTeamsNeed = new ArrayList<>(allIdTeams);
-        yearsNeed.removeAll(idTeamsInDB);
+        idTeamsNeed.removeAll(idTeamsInDB);
         if (!idTeamsNeed.isEmpty()) {
             for (Integer season : seasons) {
                 for (Integer idTeam : idTeamsNeed) {
@@ -72,6 +80,60 @@ public class PopulateDB {
                 }
             }
         }
-
+        for (Integer season : seasons) {
+            idTeamsInDB = statsPlayerRepository.findDistinctTeamIds(season);
+            idTeamsNeed = new ArrayList<>(allIdTeams);
+            idTeamsNeed.removeAll(idTeamsInDB);
+            if (!idTeamsNeed.isEmpty()) {
+                for (Integer idTeam : idTeamsNeed) {
+                    params = Map.ofEntries(
+                            Map.entry("season", season.toString()),
+                            Map.entry("team", idTeam.toString()));
+                    try {
+                        String response = apiCaller.callApi("players/statistics", params);//120 chiamate
+                        redirectJSON.manageJSON(response);
+                        TimeUnit.MINUTES.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        for (Integer season : seasons) {
+            idTeamsInDB = statsTeamRepository.findDistinctTeamIds(season);
+            idTeamsNeed = new ArrayList<>(allIdTeams);
+            idTeamsNeed.removeAll(idTeamsInDB);
+            if (!idTeamsNeed.isEmpty()) {
+                for (Integer idTeam : idTeamsNeed) {
+                    params = Map.ofEntries(
+                            Map.entry("season", season.toString()),
+                            Map.entry("team", idTeam.toString()));
+                    try {
+                        String response = apiCaller.callApi("/teams/statistics", params);//120 chiamate
+                        redirectJSON.manageJSON(response);
+                        TimeUnit.MINUTES.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        List<Integer> allIdGames = gameRepository.findAllIds();
+        List<Integer> idGamesInDB = statsGameRepository.findAllIds();
+        List<Integer> idGameNeed = new ArrayList<>(allIdGames);
+        idGameNeed.removeAll(idGamesInDB);
+        if(!idGameNeed.isEmpty()) {
+            for (Integer idGame : idGameNeed) {
+                params = Map.of("id", idGame.toString());
+                try {
+                    String response = apiCaller.callApi("/teams/statistics", params);
+                    redirectJSON.manageJSON(response);
+                    TimeUnit.MINUTES.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }
+
