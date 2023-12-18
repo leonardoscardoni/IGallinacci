@@ -47,6 +47,7 @@ CREATE TABLE `arena` (
 
 CREATE TABLE `game` (
   `id` int(11) NOT NULL,
+  `season` smallint(5) UNSIGNED NOT NULL,
   `gameDate` date DEFAULT NULL,
   `startTime` time DEFAULT NULL,
   `stage` tinyint(4) DEFAULT NULL,
