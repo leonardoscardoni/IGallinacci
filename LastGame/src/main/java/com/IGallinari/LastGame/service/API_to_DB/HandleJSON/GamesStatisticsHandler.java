@@ -34,7 +34,7 @@ public class GamesStatisticsHandler implements Handler{
             statsGame.setFgm(asInteger(gameStatisticsNode.get("fgm")));
             statsGame.setFga(asInteger(gameStatisticsNode.get("fga")));
             statsGame.setFgp(asFloat(gameStatisticsNode.get("fgp")));
-            statsGame.setFtm(gameStatisticsNode.get("ftm").asInt());
+            statsGame.setFtm(asInteger(gameStatisticsNode.get("ftm")));
             statsGame.setFta(asInteger(gameStatisticsNode.get("fta")));
             statsGame.setFtp(asFloat(gameStatisticsNode.get("ftp")));
             statsGame.setTpm(asInteger(gameStatisticsNode.get("tpm")));
@@ -49,7 +49,7 @@ public class GamesStatisticsHandler implements Handler{
             statsGame.setTurnovers(asInteger(gameStatisticsNode.get("turnovers")));
             statsGame.setBlocks(asInteger(gameStatisticsNode.get("blocks")));
             statsGame.setPlusMinus(asInteger(gameStatisticsNode.get("plusMinus")));
-            statsGame.setMin(gameStatisticsNode.get("min").asText());
+            statsGame.setMin(gameStatisticsNode.get("min").asText(null));
             statsGameRepository.save(statsGame);
         }
     }

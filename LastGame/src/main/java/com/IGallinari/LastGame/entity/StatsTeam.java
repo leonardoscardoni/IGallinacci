@@ -11,7 +11,7 @@ public class StatsTeam {
     @EmbeddedId
     private IdStatsTeam statsTeamId;
 
-    private Integer game;
+    private Integer games;
 
     private Integer fastBreakPoints;
 

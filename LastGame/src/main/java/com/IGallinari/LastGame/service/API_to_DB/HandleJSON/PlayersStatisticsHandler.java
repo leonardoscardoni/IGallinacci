@@ -26,7 +26,7 @@ public class PlayersStatisticsHandler implements Handler{
             statsPlayer.setTeam(teamRepository.findById(playerStatisticsNode.get("team").get("id").asInt()));
             statsPlayer.setPlayer(playerRepository.findById(playerStatisticsNode.get("player").get("id").asInt()));
             statsPlayer.setPoints(asInteger(playerStatisticsNode.get("points")));
-            statsPlayer.setPos(playerStatisticsNode.get("pos").asText());
+            statsPlayer.setPos(playerStatisticsNode.get("pos").asText(null));
             statsPlayer.setMin(asInteger(playerStatisticsNode.get("min")));
             statsPlayer.setFgm(asInteger(playerStatisticsNode.get("fgm")));
             statsPlayer.setFga(asInteger(playerStatisticsNode.get("fga")));
@@ -45,7 +45,7 @@ public class PlayersStatisticsHandler implements Handler{
             statsPlayer.setSteals(asInteger(playerStatisticsNode.get("steals")));
             statsPlayer.setTurnovers(asInteger(playerStatisticsNode.get("turnovers")));
             statsPlayer.setBlocks(asInteger(playerStatisticsNode.get("blocks")));
-            statsPlayer.setPlusMinus(asInteger(playerStatisticsNode.get("plusMinus")));//Controlla cosa restituisce il json
+            statsPlayer.setPlusMinus(asInteger(playerStatisticsNode.get("plusMinus")));
             statsPlayerRepository.save(statsPlayer);
         }
     }

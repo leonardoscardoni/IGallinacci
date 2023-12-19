@@ -1,5 +1,6 @@
 package com.IGallinari.LastGame.service.API_to_DB;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
@@ -118,7 +119,8 @@ public class PopulateDB {
                 }
             }
         }
-        List<Integer> allIdGames = gameRepository.findAllIds();
+        LocalDate todayDate = LocalDate.now();
+        List<Integer> allIdGames = gameRepository.findAllIdsBeforeDate(todayDate);
         List<Integer> idGamesInDB = statsGameRepository.findAllIds();
         List<Integer> idGameNeed = new ArrayList<>(allIdGames);
         idGameNeed.removeAll(idGamesInDB);

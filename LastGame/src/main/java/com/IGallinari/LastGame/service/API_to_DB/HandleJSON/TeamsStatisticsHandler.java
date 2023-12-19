@@ -19,7 +19,7 @@ public class TeamsStatisticsHandler implements Handler{
         StatsTeam statsTeam = new StatsTeam();
         statsTeam.setSeason(parametersNode.get("season").asInt());
         statsTeam.setTeam(teamRepository.findById(parametersNode.get("id").asInt()));
-        statsTeam.setGame(asInteger(teamStatisticsNode.get("games")));
+        statsTeam.setGames(asInteger(teamStatisticsNode.get("games")));
         statsTeam.setFastBreakPoints(asInteger(teamStatisticsNode.get("fastBreakPoints")));
         statsTeam.setPointsInPaint(asInteger(teamStatisticsNode.get("pointsInPaint")));
         statsTeam.setBiggestLead(asInteger(teamStatisticsNode.get("biggestLead")));

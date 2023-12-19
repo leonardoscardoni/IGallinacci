@@ -8,7 +8,7 @@ public class RedirectJSON {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public boolean manageJSON(String jsonString) throws JsonProcessingException {
+    public void manageJSON(String jsonString) throws JsonProcessingException {
         JsonNode jsonNode = objectMapper.readTree(jsonString);
         String endpoint = jsonNode.get("get").asText();
 
@@ -16,33 +16,41 @@ public class RedirectJSON {
             case "games/":
                 GamesHandler gamesHandler = new GamesHandler();
                 gamesHandler.handle(jsonNode);
-                return true;
+                System.out.println("JSON redirected successfully to GamesHandeler");
+                break;
             case "games/statistics":
                 GamesStatisticsHandler gamesStatisticsHandler = new GamesStatisticsHandler();
                 gamesStatisticsHandler.handle(jsonNode);
-                return true;
+                System.out.println("JSON redirected successfully to GamesStatisticsHandler");
+                break;
             case "players/":
                 PlayersHandler playersHandler = new PlayersHandler();
                 playersHandler.handle(jsonNode);
-                return true;
+                System.out.println("JSON redirected successfully to PlayersHandler");
+                break;
             case "players/statistics":
                 PlayersStatisticsHandler playersStatisticsHandler = new PlayersStatisticsHandler();
                 playersStatisticsHandler.handle(jsonNode);
-                return true;
+                System.out.println("JSON redirected successfully to PlayersStatisticsHandler");
+                break;
             case "teams/":
                 TeamsHandler teamsHandler = new TeamsHandler();
                 teamsHandler.handle(jsonNode);
-                return true;
+                System.out.println("JSON redirected successfully to TeamsHandler");
+                break;
             case "teams/statistics":
                 TeamsStatisticsHandler teamsStatisticsHandler = new TeamsStatisticsHandler();
                 teamsStatisticsHandler.handle(jsonNode);
-                return true;
+                System.out.println("JSON redirected successfully to TeamsStatisticsHandler");
+                break;
             case "standings/":
                 StandingsHandler standingsHandler = new StandingsHandler();
                 standingsHandler.handle(jsonNode);
-                return true;
+                System.out.println("JSON redirected successfully to StandingsHandler");
+                break;
             default:
-                return false;
+                System.out.println("JSON NOT redirected to any Handeler!!! ENDPOINT: "+endpoint);
+                break;
         }
     }
 }

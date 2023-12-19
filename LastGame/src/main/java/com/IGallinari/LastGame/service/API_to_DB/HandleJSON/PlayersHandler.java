@@ -24,13 +24,13 @@ public class PlayersHandler implements Handler{
             player.setFirstname(playerNode.get("firstname").asText(null));
             player.setLastname(playerNode.get("lastname").asText(null));
             player.setDateOfBirth(LocalDate.parse(playerNode.get("birth").get("date").asText(null)));
-            player.setCountry(playerNode.get("birth").get("country").asText());
+            player.setCountry(playerNode.get("birth").get("country").asText(null));
             player.setStartYear(asInteger(playerNode.get("nba").get("start")));
             player.setPro(asInteger(playerNode.get("nba").get("pro")));
             player.setHeigth(asFloat(playerNode.get("height").get("meters")));
             player.setWeight(asFloat(playerNode.get("weight").get("kilograms")));
-            player.setCollege(playerNode.get("college").asText());
-            player.setAffiliation(playerNode.get("affiliation").asText());
+            player.setCollege(playerNode.get("college").asText(null));
+            player.setAffiliation(playerNode.get("affiliation").asText(null));
             player.setJersey(asInteger(playerNode.get("leagues").get("standard").get("jersey")));
             player.setActive(playerNode.get("leagues").get("standard").get("active").asBoolean());
             player.setPos(playerNode.get("leagues").get("standard").get("pos").asText(null));

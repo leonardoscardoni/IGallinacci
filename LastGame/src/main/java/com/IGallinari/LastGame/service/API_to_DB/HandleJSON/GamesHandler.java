@@ -9,7 +9,6 @@ import com.IGallinari.LastGame.repository.StatsGameRepository;
 import com.IGallinari.LastGame.repository.TeamRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -17,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 public class GamesHandler implements Handler {
 
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+    private DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
 
     private TeamRepository teamRepository;
@@ -50,18 +49,20 @@ public class GamesHandler implements Handler {
             if(dateString!=null) {
                 gameDate = LocalDate.parse(dateString.substring(0, 10), dateFormatter);
                 startTime = LocalTime.parse(dateString.substring(11, 19), timeFormatter);
-                startTime.plusHours(1);
+                LocalTime newStartTime = startTime.plusHours(1);
                 LocalTime midNight = LocalTime.of(00, 00, 00);
-                int timeComparison = startTime.compareTo(midNight);
-                if (timeComparison >= 0) {
-                    gameDate.plusDays(1);
+                LocalTime almostMidNight = LocalTime.of(23, 59, 59);
+                int oldTimeComparison = startTime.compareTo(almostMidNight);
+                int newTimeComparison = newStartTime.compareTo(midNight);
+                if (oldTimeComparison <= 0 && newTimeComparison >= 0) {//controllo se il dato preso è prima di almostMidNight e che newStartTime + 1 ora sia dopo midNight
+                    gameDate=gameDate.plusDays(1);
                 }
             }
             game.setGameDate(gameDate);
             game.setStartTime(startTime);
-            game.setStage(gameNode.get("stage").asInt(0));
+            game.setStage(asInteger(gameNode.get("stage")));
             game.setTotPeriods(asInteger(gameNode.get("periods").get("total")));
-            game.setArena(arenaRepository.findBynameArena(gameNode.get("arena").get("name").asText(null)));
+            game.setArena(arenaRepository.findBynameArena(gameNode.get("arena").get("name").asText()));
             game.setVisitorTeam(teamRepository.findById(gameNode.get("teams").get("visitors").get("id").asInt()));
             game.setHomeTeam(teamRepository.findById(gameNode.get("teams").get("home").get("id").asInt()));
             gameRepository.save(game);
@@ -73,7 +74,7 @@ public class GamesHandler implements Handler {
             statsGameVisitor.setLose(asInteger(gameNode.get("scores").get("visitors").get("loss")));
             statsGameVisitor.setSeriesWin(asInteger(gameNode.get("scores").get("visitors").get("series").get("win")));
             statsGameVisitor.setSeriesLose(asInteger(gameNode.get("scores").get("visitors").get("series").get("loss")));
-            statsGameVisitor.setPointsPeriod(gameNode.get("scores").get("visitors").get("linescore").asText());
+            statsGameVisitor.setPointsPeriod(gameNode.get("scores").get("visitors").get("linescore").asText(null));
             statsGameVisitor.setPoints(asInteger(gameNode.get("scores").get("visitors").get("points")));
             statsGameRepository.save(statsGameVisitor);
 
@@ -84,7 +85,7 @@ public class GamesHandler implements Handler {
             statsGameHome.setLose(asInteger(gameNode.get("scores").get("home").get("loss")));
             statsGameHome.setSeriesWin(asInteger(gameNode.get("scores").get("home").get("series").get("win")));
             statsGameHome.setSeriesLose(asInteger(gameNode.get("scores").get("home").get("series").get("loss")));
-            statsGameHome.setPointsPeriod(gameNode.get("scores").get("home").get("linescore").asText());
+            statsGameHome.setPointsPeriod(gameNode.get("scores").get("home").get("linescore").asText(null));
             statsGameHome.setPoints(asInteger(gameNode.get("scores").get("home").get("points")));
             statsGameRepository.save(statsGameHome);
         }
