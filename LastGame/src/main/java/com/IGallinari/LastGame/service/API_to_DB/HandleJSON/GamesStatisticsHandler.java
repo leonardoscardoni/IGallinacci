@@ -5,9 +5,11 @@ import com.IGallinari.LastGame.repository.GameRepository;
 import com.IGallinari.LastGame.repository.StatsGameRepository;
 import com.IGallinari.LastGame.repository.TeamRepository;
 import com.fasterxml.jackson.databind.JsonNode;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-
+@Service
+@AllArgsConstructor
 public class GamesStatisticsHandler implements Handler{
 
     private GameRepository gameRepository;

@@ -7,10 +7,17 @@ import java.util.concurrent.TimeUnit;
 
 import com.IGallinari.LastGame.repository.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import jakarta.annotation.PostConstruct;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 
+@Component
+@AllArgsConstructor
 public class PopulateDB {
     private ApiCaller apiCaller;
 
@@ -28,10 +35,11 @@ public class PopulateDB {
 
     private StatsGameRepository statsGameRepository;
 
-    public void PopulateDB() throws JsonProcessingException {
-
+    @PostConstruct
+    public void init() throws JsonProcessingException {
         Map<String, String> params;
-        if(teamRepository.findAll().isEmpty()) {//check if the team is empty
+        System.out.println("Start of database population");
+        if(teamRepository.count() ==0 ) {//check if the team is empty
             //prepare the call for the /teams endpoint
             params = Map.of("league", "standard");
             try {
@@ -42,7 +50,7 @@ public class PopulateDB {
                 e.printStackTrace();
             }
         }
-        //pepare the call for the /games endpoint
+        //prepare the call for the /games endpoint
         List<Integer> yearsInDB= gameRepository.findDistinctYears();
         List<Integer> seasons = Arrays.asList(2022, 2023);
         List<Integer> yearsNeed = new ArrayList<>(seasons);

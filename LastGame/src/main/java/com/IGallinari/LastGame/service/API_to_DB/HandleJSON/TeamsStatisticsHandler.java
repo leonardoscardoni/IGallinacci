@@ -4,7 +4,11 @@ import com.IGallinari.LastGame.entity.StatsTeam;
 import com.IGallinari.LastGame.repository.StatsTeamRepository;
 import com.IGallinari.LastGame.repository.TeamRepository;
 import com.fasterxml.jackson.databind.JsonNode;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
+@AllArgsConstructor
 public class TeamsStatisticsHandler implements Handler{
 
     private TeamRepository teamRepository;

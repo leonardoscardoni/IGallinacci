@@ -3,7 +3,11 @@ package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 import com.IGallinari.LastGame.entity.Team;
 import com.IGallinari.LastGame.repository.TeamRepository;
 import com.fasterxml.jackson.databind.JsonNode;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
+@AllArgsConstructor
 public class TeamsHandler implements Handler{
 
     private TeamRepository teamRepository;

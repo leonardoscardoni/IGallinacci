@@ -183,7 +183,7 @@ CREATE TABLE `statsplayer` (
 CREATE TABLE `statsteam` (
   `idTeam` int(11) NOT NULL,
   `season` smallint(5) UNSIGNED NOT NULL,
-  `game` smallint(5) UNSIGNED DEFAULT NULL,
+  `games` smallint(5) UNSIGNED DEFAULT NULL,
   `fastBreakPoints` smallint(5) UNSIGNED DEFAULT NULL,
   `pointsInPaint` smallint(5) UNSIGNED DEFAULT NULL,
   `biggestLead` smallint(5) UNSIGNED DEFAULT NULL,

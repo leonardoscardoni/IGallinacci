@@ -4,8 +4,13 @@ import com.IGallinari.LastGame.entity.Player;
 import com.IGallinari.LastGame.repository.PlayerRepository;
 import com.IGallinari.LastGame.repository.TeamRepository;
 import com.fasterxml.jackson.databind.JsonNode;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 
+@Service
+@AllArgsConstructor
 public class PlayersHandler implements Handler{
 
     private PlayerRepository playerRepository;
