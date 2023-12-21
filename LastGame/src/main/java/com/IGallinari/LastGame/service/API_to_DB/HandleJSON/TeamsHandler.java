@@ -28,6 +28,7 @@ public class TeamsHandler implements Handler{
             team.setConference(teamNode.get("leagues").get("standard").get("conference").asText(null));
             team.setDivision(teamNode.get("leagues").get("standard").get("division").asText(null));
             teamRepository.save(team);
+            System.out.println("Object Team team saved in the DB");
         }
     }
 }

@@ -39,6 +39,7 @@ public class StandingsHandler implements Handler{
             statsTeam.setStreak(asInteger(standingNode.get("streak")));
             statsTeam.setWinStreak(standingNode.get("winStreak").asBoolean());
             statsTeamRepository.save(statsTeam);
+            System.out.println("Object StatTeam statsTeam saved in the DB");
         }
     }
 }

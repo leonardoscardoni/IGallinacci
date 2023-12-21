@@ -37,31 +37,40 @@ public class PopulateDB {
 
     @PostConstruct
     public void init() throws JsonProcessingException {
+        int totCall=0;
+        int call=0;
         Map<String, String> params;
         System.out.println("Start of database population");
         if(teamRepository.count() ==0 ) {//check if the team is empty
+            System.out.println("Preparing the call for the /teams endpoint");
             //prepare the call for the /teams endpoint
             params = Map.of("league", "standard");
             try {
                 String response = apiCaller.callApi("teams", params);//1 chiamata
+                call+=1;
                 redirectJSON.manageJSON(response);
                 TimeUnit.MINUTES.sleep(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+        totCall+=call;
+        System.out.println("there were made "+call+" calls, total calls"+totCall);
+        call=0;
         //prepare the call for the /games endpoint
         List<Integer> yearsInDB= gameRepository.findDistinctYears();
         List<Integer> seasons = Arrays.asList(2022, 2023);
         List<Integer> yearsNeed = new ArrayList<>(seasons);
         yearsNeed.removeAll(yearsInDB);
         if (!yearsNeed.isEmpty()) {
+            System.out.println("Preparing the call/s for the /games endpoint");
             for (Integer season : yearsNeed) {
                 params = Map.ofEntries(
                         Map.entry("league", "standard"),
                         Map.entry("seasons", season.toString()));
                 try {
                     String response = apiCaller.callApi("games", params);//2 chiamate
+                    call+=1;
                     redirectJSON.manageJSON(response);
                     TimeUnit.MINUTES.sleep(1);
                 } catch (InterruptedException e) {
@@ -69,11 +78,15 @@ public class PopulateDB {
                 }
             }
         }
+        totCall+=call;
+        System.out.println("there were made "+call+" calls, total calls"+totCall);
+        call=0;
         List<Integer> allIdTeams = gameRepository.findDistinctIdTeams();
         List<Integer> idTeamsInDB = playerRepository.findDistinctTeamIds();
         List<Integer> idTeamsNeed = new ArrayList<>(allIdTeams);
         idTeamsNeed.removeAll(idTeamsInDB);
         if (!idTeamsNeed.isEmpty()) {
+            System.out.println("Preparing the call/s for the /players endpoint");
             for (Integer season : seasons) {
                 for (Integer idTeam : idTeamsNeed) {
                     params = Map.ofEntries(
@@ -81,6 +94,7 @@ public class PopulateDB {
                             Map.entry("team", idTeam.toString()));
                     try {
                         String response = apiCaller.callApi("players", params);//120 chiamate
+                        call+=1;
                         redirectJSON.manageJSON(response);
                         TimeUnit.MINUTES.sleep(1);
                     } catch (InterruptedException e) {
@@ -89,17 +103,22 @@ public class PopulateDB {
                 }
             }
         }
+        totCall+=call;
+        System.out.println("there were made "+call+" calls, total calls"+totCall);
+        call=0;
         for (Integer season : seasons) {
             idTeamsInDB = statsPlayerRepository.findDistinctTeamIds(season);
             idTeamsNeed = new ArrayList<>(allIdTeams);
             idTeamsNeed.removeAll(idTeamsInDB);
             if (!idTeamsNeed.isEmpty()) {
+                System.out.println("Preparing the call/s for the /players/statistics endpoint");
                 for (Integer idTeam : idTeamsNeed) {
                     params = Map.ofEntries(
                             Map.entry("season", season.toString()),
                             Map.entry("team", idTeam.toString()));
                     try {
                         String response = apiCaller.callApi("players/statistics", params);//120 chiamate
+                        call+=1;
                         redirectJSON.manageJSON(response);
                         TimeUnit.MINUTES.sleep(1);
                     } catch (InterruptedException e) {
@@ -108,17 +127,22 @@ public class PopulateDB {
                 }
             }
         }
+        totCall+=call;
+        System.out.println("there were made "+call+" calls, total calls"+totCall);
+        call=0;
         for (Integer season : seasons) {
             idTeamsInDB = statsTeamRepository.findDistinctTeamIds(season);
             idTeamsNeed = new ArrayList<>(allIdTeams);
             idTeamsNeed.removeAll(idTeamsInDB);
             if (!idTeamsNeed.isEmpty()) {
+                System.out.println("Preparing the call/s for the /teams/statistics endpoint");
                 for (Integer idTeam : idTeamsNeed) {
                     params = Map.ofEntries(
                             Map.entry("season", season.toString()),
                             Map.entry("team", idTeam.toString()));
                     try {
-                        String response = apiCaller.callApi("/teams/statistics", params);//120 chiamate
+                        String response = apiCaller.callApi("teams/statistics", params);//120 chiamate
+                        call+=1;
                         redirectJSON.manageJSON(response);
                         TimeUnit.MINUTES.sleep(1);
                     } catch (InterruptedException e) {
@@ -127,6 +151,9 @@ public class PopulateDB {
                 }
             }
         }
+        totCall+=call;
+        System.out.println("there were made "+call+" calls, total calls"+totCall);
+        call=0;
         LocalDate todayDate = LocalDate.now();
         List<Integer> allIdGames = gameRepository.findAllIdsBeforeDate(todayDate);
         List<Integer> idGamesInDB = statsGameRepository.findAllIds();
@@ -137,6 +164,7 @@ public class PopulateDB {
                 params = Map.of("id", idGame.toString());
                 try {
                     String response = apiCaller.callApi("/teams/statistics", params);
+                    call+=1;
                     redirectJSON.manageJSON(response);
                     TimeUnit.MINUTES.sleep(1);
                 } catch (InterruptedException e) {
@@ -144,6 +172,8 @@ public class PopulateDB {
                 }
             }
         }
+        totCall+=call;
+        System.out.println("there were made "+call+" calls, total calls"+totCall);
     }
 }
 

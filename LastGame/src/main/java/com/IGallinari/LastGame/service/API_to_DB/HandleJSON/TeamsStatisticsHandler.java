@@ -50,5 +50,6 @@ public class TeamsStatisticsHandler implements Handler{
         statsTeam.setBlocks(asInteger(teamStatisticsNode.get("blocks")));
         statsTeam.setPlusMinus(asInteger(teamStatisticsNode.get("plusMinus")));
         statsTeamRepository.save(statsTeam);
+        System.out.println("Object StatTeam statsTeam saved in the DB");
     }
 }

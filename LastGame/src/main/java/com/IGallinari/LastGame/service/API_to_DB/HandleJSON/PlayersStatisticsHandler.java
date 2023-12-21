@@ -51,6 +51,7 @@ public class PlayersStatisticsHandler implements Handler{
             statsPlayer.setBlocks(asInteger(playerStatisticsNode.get("blocks")));
             statsPlayer.setPlusMinus(asInteger(playerStatisticsNode.get("plusMinus")));
             statsPlayerRepository.save(statsPlayer);
+            System.out.println("Object StatsPlayer statsPlayer saved in the DB");
         }
     }
 }

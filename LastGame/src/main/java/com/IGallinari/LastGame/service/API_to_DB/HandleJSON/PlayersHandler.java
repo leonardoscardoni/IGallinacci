@@ -40,6 +40,7 @@ public class PlayersHandler implements Handler{
             player.setActive(playerNode.get("leagues").get("standard").get("active").asBoolean());
             player.setPos(playerNode.get("leagues").get("standard").get("pos").asText(null));
             playerRepository.save(player);
+            System.out.println("Object Player player saved in the DB");
         }
     }
 }

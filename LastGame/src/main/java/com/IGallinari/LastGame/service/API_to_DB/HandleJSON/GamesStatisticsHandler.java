@@ -53,6 +53,7 @@ public class GamesStatisticsHandler implements Handler{
             statsGame.setPlusMinus(asInteger(gameStatisticsNode.get("plusMinus")));
             statsGame.setMin(gameStatisticsNode.get("min").asText(null));
             statsGameRepository.save(statsGame);
+            System.out.println("Object StatsGame statsGame saved in the DB");
         }
     }
 }

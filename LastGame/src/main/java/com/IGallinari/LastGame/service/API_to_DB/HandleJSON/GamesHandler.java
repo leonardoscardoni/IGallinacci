@@ -42,6 +42,7 @@ public class GamesHandler implements Handler {
                 arena.setState(gameNode.get("arena").get("state").asText(null));
                 arena.setCountry(gameNode.get("arena").get("country").asText(null));
                 arenaRepository.save(arena);
+                System.out.println("Object Arena arena saved in the DB");
             }
 
             String dateString = gameNode.get("date").get("start").asText(null);
@@ -70,6 +71,7 @@ public class GamesHandler implements Handler {
             game.setVisitorTeam(teamRepository.findById(gameNode.get("teams").get("visitors").get("id").asInt()));
             game.setHomeTeam(teamRepository.findById(gameNode.get("teams").get("home").get("id").asInt()));
             gameRepository.save(game);
+            System.out.println("Object Game game saved in the DB");
 
             StatsGame statsGameVisitor = new StatsGame();
             statsGameVisitor.setTeam(teamRepository.findById(gameNode.get("teams").get("visitors").get("id").asInt()));
@@ -81,6 +83,7 @@ public class GamesHandler implements Handler {
             statsGameVisitor.setPointsPeriod(gameNode.get("scores").get("visitors").get("linescore").asText(null));
             statsGameVisitor.setPoints(asInteger(gameNode.get("scores").get("visitors").get("points")));
             statsGameRepository.save(statsGameVisitor);
+            System.out.println("Object StatsGame statsGameVisitor saved in the DB");
 
             StatsGame statsGameHome = new StatsGame();
             statsGameHome.setTeam(teamRepository.findById(gameNode.get("teams").get("visitors").get("id").asInt()));
@@ -92,6 +95,7 @@ public class GamesHandler implements Handler {
             statsGameHome.setPointsPeriod(gameNode.get("scores").get("home").get("linescore").asText(null));
             statsGameHome.setPoints(asInteger(gameNode.get("scores").get("home").get("points")));
             statsGameRepository.save(statsGameHome);
+            System.out.println("Object StatsGame statsGameHome saved in the DB");
         }
     }
 }
