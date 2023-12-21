@@ -17,27 +17,27 @@ public class HandlerManager {
 
 
     public Handler getHandler(String endpoint) {
-
+        System.out.println(endpoint);
         switch (endpoint) {
-            case "games":
+            case "games/":
                 System.out.println("Json redirected to the GamesHandeler");
                 return gamesHandler;
             case "games/statistics":
                 System.out.println("Json redirected to the GamesStatiscticHandeler");
                 return gamesStatisticsHandler;
-            case "players":
+            case "players/":
                 System.out.println("Json redirected to the PlayersHandeler");
                 return playersHandler;
-            case "players/statistics":
+            case "players/statistics/":
                 System.out.println("Json redirected to the PlayersStatiscticHandeler");
                 return playersStatisticsHandler;
-            case "teams":
+            case "teams/":
                 System.out.println("Json redirected to the TeamsHandeler");
                 return teamsHandler;
             case "teams/statistics":
                 System.out.println("Json redirected to the TeamsStatiscticHandeler");
                 return teamsStatisticsHandler;
-            case "standings":
+            case "standings/":
                 System.out.println("Json redirected to the StandingsHandeler");
                 return standingsHandler;
             default:

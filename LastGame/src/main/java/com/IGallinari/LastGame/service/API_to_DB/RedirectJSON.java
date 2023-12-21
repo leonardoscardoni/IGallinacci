@@ -20,8 +20,8 @@ public class RedirectJSON {
     public void manageJSON(String jsonString) throws JsonProcessingException {
         JsonNode jsonNode = objectMapper.readTree(jsonString);
         String endpoint = jsonNode.get("get").asText();
-        Handler handler=handlerManager.getHandler(endpoint);
         if(jsonNode.get("errors").isEmpty()) {
+            Handler handler=handlerManager.getHandler(endpoint);
             handler.handle(jsonNode);
         }else{
             System.out.println(jsonNode.get("errors"));
