@@ -57,5 +57,16 @@ export class CalendarioPartiteComponent implements AfterViewInit {
     // Imposta la posizione di scorrimento
     element.scrollLeft = desiredScrollPosition;
   }
+
+scrollAmount = 200; // Regola la quantità di scorrimento
+
+scroll(direction: number) {
+  const currentScrollLeft = this.carouselContent.nativeElement.scrollLeft;
+  const newScrollLeft = currentScrollLeft + direction * this.scrollAmount;
+  this.carouselContent.nativeElement.scrollTo({
+    left: newScrollLeft,
+    behavior: 'smooth'
+  });
+}
   
 }

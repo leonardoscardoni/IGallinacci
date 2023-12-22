@@ -1,35 +1,41 @@
-<div class="flex items-center justify-center">
-
-  <div class="carousel-container w-[60%]">
-    <div class="carousel-content flex gap-4 overflow-scroll hide-scrollbar prova" #carouselContent>
-      <div class="flex gap-5">
-        <div (click)="handleDateClick(day.date)" *ngFor="let day of getDaysArray(startDate, endDate)" class="bg-red-600 px-5 py2 flex flex-col items-center">
-          <div>{{ day.dayOfMonth }} </div>
-          <div>{{ day.dayOfWeek }}</div>
-      </div>
+<section class="pt-10">
+  <div class="flex items-center justify-center border-y border-[#E5CFB5] px-20 py-8 bg-white/5 gap-12">
+    <div (click)="scroll(-1)" class="py-3 px-5 cursor-pointer"><img src="/assets/arrow-prev-small-svgrepo-com.svg" class="w-12" alt="">
     </div>
+    <div class="carousel-container w-[60%]">
+      <div class="carousel-content flex gap-4 overflow-scroll hide-scrollbar prova" #carouselContent>
+        <div class="flex gap-5">
+          <div (click)="handleDateClick(day.date)" *ngFor="let day of getDaysArray(startDate, endDate)" class=" hover:rounded-xl px-5 py-2 flex flex-col gap-2 items-center hover:bg-[#E5CFB5] hover:text-black cursor-pointer">
+            <p class="text-4xl font-bold">{{ day.dayOfMonth }} </p>
+            <p class="font-inter">{{ day.dayOfWeek }}</p>
+        </div>
+      </div>
+      </div>
+  
+    </div>
+    <div (click)="scroll(1)" class="py-3 px-5 cursor-pointer"><img src="/assets/arrow-next-small-svgrepo-com.svg" class="w-12" alt="">
     </div>
 
   </div>
-</div>
-
-
-  <div class="w-full py-24 px-40 flex flex-col gap-3 text-black">
-    <div *ngFor="let i of a" class="flex w-full">
-      <div class="bg-bianco w-[85%] h-28  flex rounded-l-xl">
-          <div class="w-2/5 h-full text-4xl flex items-center uppercase px-10 gap-5">
-            <img src="/assets/s-l1200.webp" class="w-10" alt="">
-            <p>{{i.match.squadra1.name}}</p>
-          </div>
-          <div class="w-1/5 h-full flex items-end justify-center text-2xl font-inter font-extralight pb-6">VS</div>
-          <div class="w-2/5 h-full text-4xl flex items-center gap-6 uppercase px-10">
-            <img src="/assets/s-l1200.webp" class="w-10" alt="">
-            {{i.match.squadra2.name}}
-          </div>
-      </div>
-      <div class="w-[15%] flex justify-center items-center rounded-r-xl bg-arancio">
-        <p class="text-4xl ">1:30</p>
+  
+  
+    <div class="w-full py-24 px-40 flex flex-col gap-3 text-black">
+      <div *ngFor="let i of a" class="flex w-full">
+        <div class="bg-bianco w-[85%] h-28  flex rounded-l-xl">
+            <div class="w-2/5 h-full text-4xl flex items-center uppercase px-10 gap-5">
+              <img src="/assets/s-l1200.webp" class="w-10" alt="">
+              <p>{{i.match.squadra1.name}}</p>
+            </div>
+            <div class="w-1/5 h-full flex items-end justify-center text-2xl font-inter font-extralight pb-6">VS</div>
+            <div class="w-2/5 h-full text-4xl flex items-center gap-6 uppercase px-10">
+              <img src="/assets/s-l1200.webp" class="w-10" alt="">
+              {{i.match.squadra2.name}}
+            </div>
+        </div>
+        <div class="w-[15%] flex justify-center items-center rounded-r-xl bg-arancio">
+          <p class="text-4xl ">1:30</p>
+        </div>
       </div>
     </div>
-  </div>
+</section>
   
