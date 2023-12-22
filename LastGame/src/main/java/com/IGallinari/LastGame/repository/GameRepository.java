@@ -25,6 +25,5 @@ public interface GameRepository extends JpaRepository<Game,Integer> {
     @Query(value = "SELECT g.id FROM Game g WHERE g.gameDate < :inputDate", nativeQuery = true)
     List<Integer> findAllIdsBeforeDate(@Param("inputDate") LocalDate inputDate);
 
-    /*@Query(value = "SELECT g.id FROM Game g WHERE g.gameDate < :inputDate", nativeQuery = true)
-    List<Integer> findAllIdsBeforeDate(@Param("inputDate") LocalDate inputDate);*/
+    List<Game> findGameByGameDate(LocalDate inputDate);
 }
