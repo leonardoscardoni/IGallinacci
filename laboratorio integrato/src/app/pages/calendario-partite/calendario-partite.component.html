@@ -1,0 +1,35 @@
+<div class="flex items-center justify-center">
+
+  <div class="carousel-container w-[60%]">
+    <div class="carousel-content flex gap-4 overflow-scroll hide-scrollbar prova" #carouselContent>
+      <div class="flex gap-5">
+        <div (click)="handleDateClick(day.date)" *ngFor="let day of getDaysArray(startDate, endDate)" class="bg-red-600 px-5 py2 flex flex-col items-center">
+          <div>{{ day.dayOfMonth }} </div>
+          <div>{{ day.dayOfWeek }}</div>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</div>
+
+
+  <div class="w-full py-24 px-40 flex flex-col gap-3 text-black">
+    <div *ngFor="let i of a" class="flex w-full">
+      <div class="bg-bianco w-[85%] h-28  flex rounded-l-xl">
+          <div class="w-2/5 h-full text-4xl flex items-center uppercase px-10 gap-5">
+            <img src="/assets/s-l1200.webp" class="w-10" alt="">
+            <p>{{i.match.squadra1.name}}</p>
+          </div>
+          <div class="w-1/5 h-full flex items-end justify-center text-2xl font-inter font-extralight pb-6">VS</div>
+          <div class="w-2/5 h-full text-4xl flex items-center gap-6 uppercase px-10">
+            <img src="/assets/s-l1200.webp" class="w-10" alt="">
+            {{i.match.squadra2.name}}
+          </div>
+      </div>
+      <div class="w-[15%] flex justify-center items-center rounded-r-xl bg-arancio">
+        <p class="text-4xl ">1:30</p>
+      </div>
+    </div>
+  </div>
+  
