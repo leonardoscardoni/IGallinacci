@@ -15,8 +15,4 @@ public class GameService {
     private GameRepository gameRepository;
 
 
-    public List<Game> getGamesHome(){
-        LocalDate inputDate = LocalDate.of(2023,12,19);
-        return gameRepository.findGameByGameDate(inputDate);
-    }
 }

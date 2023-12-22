@@ -1,4 +1,4 @@
-USE `nba_stats`;
+USE `nbastat`;
 --
 -- Dump dei dati per la tabella `arena`
 --

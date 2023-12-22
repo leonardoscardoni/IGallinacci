@@ -15,8 +15,9 @@ public class TeamsHandler implements Handler{
     @Override
     public void handle(JsonNode jsonNode) {
         JsonNode teamsNode = jsonNode.get("response").get(0);
+        System.out.println(teamsNode);
 
-        for (JsonNode teamNode : teamsNode) {\
+        for (JsonNode teamNode : teamsNode) {
             Team team = new Team();
             team.setId(asInteger(teamNode.get("id")));
             team.setName(teamNode.get("name").asText(null));
