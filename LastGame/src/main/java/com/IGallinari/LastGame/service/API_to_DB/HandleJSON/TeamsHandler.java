@@ -21,8 +21,7 @@ public class TeamsHandler implements Handler{
     @Override
     public void handle(JsonNode jsonNode) {
         ArrayNode teamsNode = (ArrayNode) jsonNode.get("response");
-        System.out.println(teamsNode);/*
-        for (JsonNode teamNode : teamsArrayNode) {
+        for (JsonNode teamNode : teamsNode) {
                 Team team = new Team();
                 team.setId(asInteger(teamNode.get("id")));
                 team.setName(teamNode.get("name").asText(null));
@@ -35,7 +34,7 @@ public class TeamsHandler implements Handler{
                 team.setDivision(teamNode.get("leagues").get("standard").get("division").asText(null));
                 teamRepository.save(team);
                 System.out.println("Object Team team saved in the DB");
-        }*/
+        }
     }
 }
 
