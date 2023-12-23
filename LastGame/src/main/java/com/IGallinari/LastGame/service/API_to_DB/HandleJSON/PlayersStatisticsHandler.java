@@ -22,7 +22,7 @@ public class PlayersStatisticsHandler implements Handler{
 
     @Override
     public void handle(JsonNode jsonNode) {
-        JsonNode playersStatisticsNode = jsonNode.get("response").get(0);
+        JsonNode [] playersStatisticsNode = new JsonNode[]{jsonNode.get("response").get(0)};
 
         for (JsonNode playerStatisticsNode : playersStatisticsNode) {
             StatsPlayer statsPlayer = new StatsPlayer();

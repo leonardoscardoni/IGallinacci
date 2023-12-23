@@ -32,7 +32,7 @@ public class GamesHandler implements Handler {
 
     @Override
     public void handle(JsonNode jsonNode) {
-        JsonNode gamesNode = jsonNode.get("response").get(0);
+        JsonNode [] gamesNode = new JsonNode[]{jsonNode.get("response").get(0)};
 
         for (JsonNode gameNode : gamesNode) {
             if(!arenaRepository.existsBynameArena(gameNode.get("arena").get("name").asText())) {

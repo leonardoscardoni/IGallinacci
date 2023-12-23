@@ -20,7 +20,7 @@ public class PlayersHandler implements Handler{
     @Override
     public void handle(JsonNode jsonNode) {
         JsonNode paramsNode = jsonNode.get("parameters").get(0);
-        JsonNode playersNode = jsonNode.get("response").get(0);
+        JsonNode [] playersNode = new JsonNode[]{jsonNode.get("response").get(0)};
 
         for (JsonNode playerNode : playersNode) {
             Player player = new Player();

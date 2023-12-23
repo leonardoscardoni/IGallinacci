@@ -17,7 +17,7 @@ public class StandingsHandler implements Handler{
 
     @Override
     public void handle(JsonNode jsonNode) {
-        JsonNode standingsNode = jsonNode.get("response").get(0);
+        JsonNode [] standingsNode = new JsonNode[]{jsonNode.get("response").get(0)};
 
         for (JsonNode standingNode : standingsNode) {
             StatsTeam statsTeam = new StatsTeam();

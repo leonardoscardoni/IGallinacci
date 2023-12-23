@@ -41,7 +41,7 @@ public class PopulateDB {
         int call=0;
         Map<String, String> params;
         System.out.println("Start of database population");
-        if(teamRepository.count() ==0 ) {//check if the team is empty
+        if(teamRepository.count() <60 ) {//check if the team is full
             System.out.println("Preparing the call for the /teams endpoint");
             //prepare the call for the /teams endpoint
             params = Map.of("league", "standard");
@@ -55,7 +55,7 @@ public class PopulateDB {
             }
         }
         totCall+=call;
-        System.out.println("there were made "+call+" calls, total calls"+totCall);
+        System.out.println("there were made "+call+" calls, total calls "+totCall);
         call=0;
         //prepare the call for the /games endpoint
         List<Integer> yearsInDB= gameRepository.findDistinctYears();
@@ -79,7 +79,7 @@ public class PopulateDB {
             }
         }
         totCall+=call;
-        System.out.println("there were made "+call+" calls, total calls"+totCall);
+        System.out.println("there were made "+call+" calls, total calls "+totCall);
         call=0;
         List<Integer> allIdTeams = gameRepository.findDistinctIdTeams();
         List<Integer> idTeamsInDB = playerRepository.findDistinctTeamIds();
@@ -104,7 +104,7 @@ public class PopulateDB {
             }
         }
         totCall+=call;
-        System.out.println("there were made "+call+" calls, total calls"+totCall);
+        System.out.println("there were made "+call+" calls, total calls "+totCall);
         call=0;
         for (Integer season : seasons) {
             idTeamsInDB = statsPlayerRepository.findDistinctTeamIds(season);
@@ -128,7 +128,7 @@ public class PopulateDB {
             }
         }
         totCall+=call;
-        System.out.println("there were made "+call+" calls, total calls"+totCall);
+        System.out.println("there were made "+call+" calls, total calls "+totCall);
         call=0;
         for (Integer season : seasons) {
             idTeamsInDB = statsTeamRepository.findDistinctTeamIds(season);
@@ -173,7 +173,7 @@ public class PopulateDB {
             }
         }
         totCall+=call;
-        System.out.println("there were made "+call+" calls, total calls"+totCall);
+        System.out.println("there were made "+call+" calls, total calls "+totCall);
     }
 }
 
