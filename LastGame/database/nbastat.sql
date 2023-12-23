@@ -48,8 +48,8 @@ CREATE TABLE `arena` (
 CREATE TABLE `game` (
   `id` int(11) NOT NULL,
   `season` smallint(5) UNSIGNED NOT NULL,
-  `gameDate` date DEFAULT NULL,
-  `startTime` time DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `time` time DEFAULT NULL,
   `stage` tinyint(4) DEFAULT NULL,
   `totPeriods` tinyint(4) DEFAULT NULL,
   `nameArena` varchar(255) DEFAULT NULL,

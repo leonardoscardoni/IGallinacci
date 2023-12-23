@@ -15,7 +15,7 @@ public interface StatsGameRepository extends JpaRepository<StatsGame,Integer> {
 
     StatsGame findByTeamAndGame(Team team, Game game);
 
-    List<StatsGame> findStatsGameByGameGameDate(LocalDate inputDate);
+    List<StatsGame> findStatsGameByDate(LocalDate inputDate);
 
     @Query(value = "SELECT DISTINCT sg.idGame FROM Statsgame sg", nativeQuery = true)
     List<Integer> findAllIds();

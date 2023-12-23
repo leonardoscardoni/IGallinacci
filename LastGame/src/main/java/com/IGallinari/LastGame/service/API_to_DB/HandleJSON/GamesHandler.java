@@ -46,25 +46,25 @@ public class GamesHandler implements Handler {
             }
 
             String dateString = gameNode.get("date").get("start").asText(null);
-            LocalDate gameDate = null;
-            LocalTime startTime = null;
+            LocalDate date = null;
+            LocalTime time = null;
             Game game = new Game();
             game.setId(gameNode.get("id").asInt());
             game.setSeason(asInteger(gameNode.get("season")));
             if(dateString!=null) {
-                gameDate = LocalDate.parse(dateString.substring(0, 10), dateFormatter);
-                startTime = LocalTime.parse(dateString.substring(11, 19), timeFormatter);
-                LocalTime newStartTime = startTime.plusHours(1);
+                date = LocalDate.parse(dateString.substring(0, 10), dateFormatter);
+                time = LocalTime.parse(dateString.substring(11, 19), timeFormatter);
+                LocalTime newTime = time.plusHours(1);
                 LocalTime midNight = LocalTime.of(00, 00, 00);
                 LocalTime almostMidNight = LocalTime.of(23, 59, 59);
-                int oldTimeComparison = startTime.compareTo(almostMidNight);
-                int newTimeComparison = newStartTime.compareTo(midNight);
-                if (oldTimeComparison <= 0 && newTimeComparison >= 0) {//controllo se il dato preso è prima di almostMidNight e che newStartTime + 1 ora sia dopo midNight
-                    gameDate=gameDate.plusDays(1);
+                int oldTimeComparison = time.compareTo(almostMidNight);
+                int newTimeComparison = newTime.compareTo(midNight);
+                if (oldTimeComparison <= 0 && newTimeComparison >= 0) {//controllo se il dato preso è prima di almostMidNight e che newTime + 1 ora sia dopo midNight
+                    date=date.plusDays(1);
                 }
             }
-            game.setDate(gameDate);
-            game.setTime(startTime);
+            game.setDate(date);
+            game.setTime(time);
             game.setStage(asInteger(gameNode.get("stage")));
             game.setTotperiods(asInteger(gameNode.get("periods").get("total")));
             game.setArena(arenaRepository.findByName(gameNode.get("arena").get("name").asText()));
