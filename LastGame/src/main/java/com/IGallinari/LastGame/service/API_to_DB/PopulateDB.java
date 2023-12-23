@@ -85,7 +85,7 @@ public class PopulateDB {
         totCall+=call;
         System.out.println("there were made "+call+" calls, total calls "+totCall);
         call=0;
-        List<Integer> allIdTeams = gameRepository.findDistinctIdTeams();
+        List<Integer> allIdTeams = teamRepository.findAllIds();
         List<Integer> idTeamsInDB = playerRepository.findDistinctTeamIds();
         List<Integer> idTeamsNeed = new ArrayList<>(allIdTeams);
         idTeamsNeed.removeAll(idTeamsInDB);
