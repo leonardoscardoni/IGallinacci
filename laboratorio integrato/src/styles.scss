@@ -1,0 +1,76 @@
+$arancio:#E98A15;
+$bianco:#E5CFB5;
+$nero:#130B02;
+
+
+@font-face {
+    font-family: 'MioFont';
+    src: url('/assets/Antonio/Antonio-VariableFont_wght.ttf') format('woff');
+}
+@font-face {
+    font-family: 'inter';
+    src: url('/assets/Inter/Inter-VariableFont_slnt\,wght.ttf') format('woff');
+}
+
+body , .linea{
+    background-color: $nero;
+    background-image: url('./assets/Rough-bg.png');
+    background-size: contain;
+    background-attachment: fixed;
+    color:$bianco;
+    font-family: MioFont;
+}
+
+.font-inter{
+    font-family: inter;
+}
+
+.bg-arancio{
+    background-color:$arancio;
+}
+.bg-bianco{
+    background-color:$bianco;
+}
+.color-arancio{
+    color: $arancio;
+}
+.color-white{
+    color: $bianco;
+}
+.border-arancio{
+    border-color: $arancio;
+}
+
+h1{
+    font-family: MioFont;
+}
+span{
+    color: $arancio;
+}
+
+/* Classe per nascondere le barre di scorrimento */
+.hide-scrollbar {
+    scrollbar-width: none; /* Per Firefox */
+    -ms-overflow-style: none; /* Per Internet Explorer e Microsoft Edge */
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none; /* Per WebKit (Chrome, Safari) */
+  }
+  
+h2{
+    font-size: 1.5rem!important;
+}
+
+
+@media screen and (min-width: 768px) {
+    h2 {
+        font-size:2.5rem!important;
+    }
+  }
+
+
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
