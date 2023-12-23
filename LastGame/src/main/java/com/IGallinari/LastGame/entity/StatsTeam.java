@@ -94,7 +94,7 @@ public class StatsTeam {
     private boolean winStreak;
 
     @ManyToOne
-    @JoinColumn(name = "idTeam")
+    @JoinColumn(name = "idTeam", insertable = false, updatable = false)
     private Team team;
 
     @Column(name = "season", insertable = false, updatable = false)
