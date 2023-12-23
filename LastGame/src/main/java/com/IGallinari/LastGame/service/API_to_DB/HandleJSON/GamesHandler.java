@@ -36,9 +36,9 @@ public class GamesHandler implements Handler {
         ArrayNode gamesNode = (ArrayNode) jsonNode.get("response");
 
         for (JsonNode gameNode : gamesNode) {
-            if(!arenaRepository.existsByNameArena(gameNode.get("arena").get("name").asText())) {
+            if(!arenaRepository.existsByName(gameNode.get("arena").get("name").asText())) {
                 Arena arena = new Arena();
-                arena.setNameArena(gameNode.get("arena").get("name").asText());
+                arena.setName(gameNode.get("arena").get("name").asText());
                 arena.setCity(gameNode.get("arena").get("city").asText(null));
                 arena.setState(gameNode.get("arena").get("state").asText(null));
                 arena.setCountry(gameNode.get("arena").get("country").asText(null));
@@ -68,7 +68,7 @@ public class GamesHandler implements Handler {
             game.setStartTime(startTime);
             game.setStage(asInteger(gameNode.get("stage")));
             game.setTotPeriods(asInteger(gameNode.get("periods").get("total")));
-            game.setArena(arenaRepository.findByNameArena(gameNode.get("arena").get("name").asText()));
+            game.setArena(arenaRepository.findByName(gameNode.get("arena").get("name").asText()));
             game.setVisitorTeam(teamRepository.findById(gameNode.get("teams").get("visitors").get("id").asInt()));
             game.setHomeTeam(teamRepository.findById(gameNode.get("teams").get("home").get("id").asInt()));
             gameRepository.save(game);
