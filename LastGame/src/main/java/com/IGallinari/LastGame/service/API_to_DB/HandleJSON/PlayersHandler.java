@@ -25,6 +25,7 @@ public class PlayersHandler implements Handler{
 
         for (JsonNode playerNode : playersNode) {
             Player player = new Player();
+            System.out.println("Adding: "+playerNode.get("firstname").asText(null)+" "+playerNode.get("lastname").asText(null));
             player.setId(playerNode.get("id").asInt());
             player.setTeam(teamRepository.findById(paramsNode.get("team").asInt()));
             player.setFirstname(playerNode.get("firstname").asText(null));
