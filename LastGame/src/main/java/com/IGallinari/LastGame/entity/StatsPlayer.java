@@ -57,14 +57,14 @@ public class StatsPlayer {
     private Integer plusMinus;
 
     @ManyToOne
-    @JoinColumn(name = "idPlayer")
+    @JoinColumn(name = "idPlayer", insertable = false, updatable = false)
     private Player player;
 
     @ManyToOne
-    @JoinColumn(name = "idTeam")
+    @JoinColumn(name = "idTeam", insertable = false, updatable = false)
     private Team team;
 
     @ManyToOne
-    @JoinColumn(name = "idGame")
+    @JoinColumn(name = "idGame", insertable = false, updatable = false)
     private Game game;
 }
