@@ -4,8 +4,11 @@ import com.IGallinari.LastGame.entity.Team;
 import com.IGallinari.LastGame.repository.TeamRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 
 @Service
 @AllArgsConstructor
@@ -15,9 +18,8 @@ public class TeamsHandler implements Handler{
 
     @Override
     public void handle(JsonNode jsonNode) {
-        ArrayNode teamsNode = (ArrayNode) jsonNode.get("response").get(0);
+        ObjectNode teamsNode = (ObjectNode) jsonNode.get("response").get(0);
         System.out.println(teamsNode);
-        if (teamsNode.isArray()) {
             for (JsonNode teamNode : teamsNode) {
                 Team team = new Team();
                 team.setId(asInteger(teamNode.get("id")));
@@ -32,8 +34,6 @@ public class TeamsHandler implements Handler{
                 teamRepository.save(team);
                 System.out.println("Object Team team saved in the DB");
             }
-        } else {
-            System.out.println("Object Team team saved in the DB");
         }
     }
 }
