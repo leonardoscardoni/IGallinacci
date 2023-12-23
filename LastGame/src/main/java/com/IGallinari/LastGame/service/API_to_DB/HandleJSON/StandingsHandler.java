@@ -36,10 +36,10 @@ public class StandingsHandler implements Handler{
             statsTeam.setLossDivision(asInteger(standingNode.get("division").get("lossDivision")));
             statsTeam.setWinHome(asInteger(standingNode.get("win").get("home")));
             statsTeam.setWinAway(asInteger(standingNode.get("win").get("away")));
-            statsTeam.setWinPerc(asInteger(standingNode.get("win").get("percentage")));
+            statsTeam.setWinPerc(asFloat(standingNode.get("win").get("percentage")));
             statsTeam.setLossHome(asInteger(standingNode.get("loss").get("home")));
             statsTeam.setLossAway(asInteger(standingNode.get("loss").get("away")));
-            statsTeam.setLossPerc(asInteger(standingNode.get("loss").get("percentage")));
+            statsTeam.setLossPerc(asFloat(standingNode.get("loss").get("percentage")));
             statsTeam.setGamesBehind(asInteger(standingNode.get("gamesBehind")));
             statsTeam.setStreak(asInteger(standingNode.get("streak")));
             statsTeam.setWinStreak(standingNode.get("winStreak").asBoolean());
