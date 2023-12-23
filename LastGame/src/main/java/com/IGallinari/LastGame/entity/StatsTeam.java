@@ -97,7 +97,7 @@ public class StatsTeam {
     @JoinColumn(name = "idTeam")
     private Team team;
 
-    @Column(name = "season")
+    @Column(name = "season", insertable = false, updatable = false)
     private int season;
 
 }
