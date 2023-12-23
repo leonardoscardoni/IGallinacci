@@ -10,7 +10,6 @@ import lombok.Data;
 public class Team {
 
     @Id
-    @Column(name = "idTeam")
     private int id;
 
     private String name;
