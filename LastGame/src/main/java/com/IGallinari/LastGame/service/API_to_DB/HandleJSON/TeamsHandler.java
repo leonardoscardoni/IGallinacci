@@ -6,8 +6,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @AllArgsConstructor
 public class TeamsHandler implements Handler{
@@ -16,8 +14,8 @@ public class TeamsHandler implements Handler{
 
     @Override
     public void handle(JsonNode jsonNode) {
-        List<JsonNode> teamsNode = (List<JsonNode>) jsonNode.get("response").get(0);
-        System.out.println(teamsNode);
+        JsonNode teamsNode = jsonNode.get("response").get(0);
+        System.out.println(jsonNode.get("response"));
 
         for (JsonNode teamNode : teamsNode) {
             Team team = new Team();
