@@ -33,7 +33,7 @@ public class PlayersHandler implements Handler{
             player.setCountry(playerNode.get("birth").get("country").asText(null));
             player.setStartYear(asInteger(playerNode.get("nba").get("start")));
             player.setPro(asInteger(playerNode.get("nba").get("pro")));
-            player.setHeigth(asFloat(playerNode.get("height").get("meters")));
+            player.setHeight(asFloat(playerNode.get("height").get("meters")));
             player.setWeight(asFloat(playerNode.get("weight").get("kilograms")));
             player.setCollege(playerNode.get("college").asText(null));
             player.setAffiliation(playerNode.get("affiliation").asText(null));

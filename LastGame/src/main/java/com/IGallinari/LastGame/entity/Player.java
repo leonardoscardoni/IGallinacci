@@ -28,7 +28,7 @@ public class Player {
 
     private Integer pro;
 
-    private Float heigth;
+    private Float height;
 
     private Float weight;
 
