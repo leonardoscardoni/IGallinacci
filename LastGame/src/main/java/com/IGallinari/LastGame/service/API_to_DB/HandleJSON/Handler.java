@@ -1,6 +1,7 @@
 package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface Handler {
     void handle(JsonNode jsonNode);

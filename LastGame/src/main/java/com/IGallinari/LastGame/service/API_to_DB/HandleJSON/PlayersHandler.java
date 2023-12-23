@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 
@@ -19,6 +20,7 @@ public class PlayersHandler implements Handler{
     private TeamRepository teamRepository;
 
     @Override
+    @Transactional
     public void handle(JsonNode jsonNode) {
         JsonNode paramsNode = jsonNode.get("parameters");
         ArrayNode playersNode = (ArrayNode) jsonNode.get("response");

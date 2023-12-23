@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
@@ -23,6 +24,7 @@ public class PlayersStatisticsHandler implements Handler{
     private StatsPlayerRepository statsPlayerRepository;
 
     @Override
+    @Transactional
     public void handle(JsonNode jsonNode) {
         ArrayNode playersStatisticsNode = (ArrayNode) jsonNode.get("response");
 

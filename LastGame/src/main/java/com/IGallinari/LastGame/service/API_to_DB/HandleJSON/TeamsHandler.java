@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,6 +20,7 @@ public class TeamsHandler implements Handler{
     private TeamRepository teamRepository;
 
     @Override
+    @Transactional
     public void handle(JsonNode jsonNode) {
         ArrayNode teamsNode = (ArrayNode) jsonNode.get("response");
         for (JsonNode teamNode : teamsNode) {
