@@ -22,6 +22,7 @@ public class TeamsHandler implements Handler{
     public void handle(JsonNode jsonNode) {
         JsonNode teamsNode =  jsonNode.get("response").get(0);
         ArrayNode teamsArrayNode = (ArrayNode) teamsNode;
+        System.out.println(teamsArrayNode);
         for (JsonNode teamNode : teamsArrayNode) {
                 Team team = new Team();
                 team.setId(asInteger(teamNode.get("id")));
