@@ -1,34 +1,39 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { HeaderComponent } from './header/header.component';
-import { HomePageComponent } from './pages/home-page/home-page.component';
-import { DettaglioPartitaComponent } from './pages/dettaglio-partita/dettaglio-partita.component';
-import { PerTeComponent } from './per-te/per-te.component';
-import { TodayMatchesComponent } from './today-matches/today-matches.component';
-import { FooterComponent } from './footer/footer.component';
-import { CalendarioPartiteComponent } from './pages/calendario-partite/calendario-partite.component';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { NavbarComponent } from "./components/navbar/navbar.component";
+import { HeaderComponent } from "./components/header/header.component";
+import { HomePageComponent } from "./pages/home-page/home-page.component";
+import { DettaglioPartitaComponent } from "./pages/dettaglio-partita/dettaglio-partita-giocata.component";
+import { PerTeComponent } from "./components/per-te/per-te.component";
+import { TodayMatchesComponent } from "./components/today-matches/today-matches.component";
+import { FooterComponent } from "./components/footer/footer.component";
+import { CalendarioPartiteComponent } from "./pages/calendario-partite/calendario-partite.component";
+import { HeaderDettaglioPartitaComponent } from "./components/header-dettaglio-partita/header-dettaglio-partita.component";
+import { QuartersDettaglioPartitaComponent } from "./components/quarters-dettaglio-partita/quarters-dettaglio-partita.component";
+import { TitoloSezioneComponent } from "./components/titolo-sezione/titolo-sezione.component";
+import { statisticheDettaglioPartitaComponent } from "./components/statistiche-dettaglio-partita/statistiche-dettaglio-partita.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    HeaderComponent,
-    HomePageComponent,
-    DettaglioPartitaComponent,
-    PerTeComponent,
-    TodayMatchesComponent,
-    FooterComponent,
-    CalendarioPartiteComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        NavbarComponent,
+        HeaderComponent,
+        HomePageComponent,
+        DettaglioPartitaComponent,
+        PerTeComponent,
+        TodayMatchesComponent,
+        FooterComponent,
+        CalendarioPartiteComponent,
+        HeaderDettaglioPartitaComponent,
+        TitoloSezioneComponent,
+        QuartersDettaglioPartitaComponent,
+        statisticheDettaglioPartitaComponent,
+    ],
+    imports: [BrowserModule, AppRoutingModule],
+    providers: [],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,0 +1,33 @@
+<app-titolo-sezione [numero]="'02'" [titolo]="'Statistiche'" [spiegazione]="'Lorem ipsum dolor sit amet consectetur. Velit urna vitae scelerisque nullam sed metus dictum pulvinar.'" [spanSpiegazione]="'Consectetur volutpat turpis nec congue.'"/>
+
+<div class="container grid grid-cols-12 gap-24">
+        <div class="col-start-2 col-span-10">
+            <div class="flex justify-between">
+                <ng-container *ngFor="let tipoDato of a">
+                    <div class="w-[30%]">
+                        <div class="p-2 rounded-t-xl bg-arancio text-lg color-nero text-center">{{tipoDato.titolo.toUpperCase()}}</div>
+
+                        <div class="flex flex-wrap p-5 rounded-b-xl bg-bianco text-xl color-nero text-center">
+
+                            <div class="flex w-full">
+                                <img src="{{tipoDato.squadre[0].logo}}" alt="" class="w-2/12">
+                                <p class="w-10/12 text-base text-end">{{tipoDato.squadre[0].nome.toUpperCase()}}</p>
+                            </div>
+                            <div class="w-full mt-2">
+                                <p class="font-inter font-black text-7xl">{{tipoDato.squadre[0].dato}}</p>
+                            </div>
+                            
+                            <div class="w-full mt-2">
+                                <p class="font-inter font-black text-7xl">{{tipoDato.squadre[1].dato}}</p>
+                            </div>
+                            <div class="flex w-full">
+                                <img src="{{tipoDato.squadre[1].logo}}" alt="" class="w-2/12">
+                                <p class="w-10/12 text-base text-end">{{tipoDato.squadre[1].nome.toUpperCase()}}</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+</div>
