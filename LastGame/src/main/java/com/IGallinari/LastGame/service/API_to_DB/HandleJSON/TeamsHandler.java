@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
 
 @Service
 @AllArgsConstructor
@@ -19,8 +21,10 @@ public class TeamsHandler implements Handler{
     @Override
     public void handle(JsonNode jsonNode) {
         ObjectNode teamsNode = (ObjectNode) jsonNode.get("response").get(0);
-        System.out.println(teamsNode);
-            for (JsonNode teamNode : teamsNode) {
+        Iterator<Map.Entry<String, JsonNode>> teamsIterator = teamsNode.fields();
+        while (teamsIterator.hasNext()) {
+            Map.Entry<String, JsonNode> entry = teamsIterator.next();
+            JsonNode teamNode = entry.getValue();
                 Team team = new Team();
                 team.setId(asInteger(teamNode.get("id")));
                 team.setName(teamNode.get("name").asText(null));
@@ -35,5 +39,5 @@ public class TeamsHandler implements Handler{
                 System.out.println("Object Team team saved in the DB");
             }
         }
-    }
 }
+
