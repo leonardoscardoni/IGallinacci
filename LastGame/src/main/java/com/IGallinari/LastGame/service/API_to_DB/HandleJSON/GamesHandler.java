@@ -10,7 +10,6 @@ import com.IGallinari.LastGame.repository.TeamRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -64,10 +63,10 @@ public class GamesHandler implements Handler {
                     gameDate=gameDate.plusDays(1);
                 }
             }
-            game.setGameDate(gameDate);
-            game.setStartTime(startTime);
+            game.setDate(gameDate);
+            game.setTime(startTime);
             game.setStage(asInteger(gameNode.get("stage")));
-            game.setTotPeriods(asInteger(gameNode.get("periods").get("total")));
+            game.setTotperiods(asInteger(gameNode.get("periods").get("total")));
             game.setArena(arenaRepository.findByName(gameNode.get("arena").get("name").asText()));
             game.setVisitorTeam(teamRepository.findById(gameNode.get("teams").get("visitors").get("id").asInt()));
             game.setHomeTeam(teamRepository.findById(gameNode.get("teams").get("home").get("id").asInt()));
