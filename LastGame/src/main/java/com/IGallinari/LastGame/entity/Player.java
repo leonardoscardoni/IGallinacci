@@ -12,7 +12,7 @@ public class Player {
     @Id
     private int id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idTeam",insertable = false, nullable = false)
     private Team team;
 
