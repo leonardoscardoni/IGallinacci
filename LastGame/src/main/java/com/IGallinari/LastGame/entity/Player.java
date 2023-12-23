@@ -13,7 +13,7 @@ public class Player {
     private int id;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idTeam",referencedColumnName = "id",insertable = false, nullable = false)
+    @JoinColumn(name = "idTeam",referencedColumnName = "id", nullable = false)
     private Team team;
 
     private String firstname;
