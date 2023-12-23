@@ -20,11 +20,9 @@ public class TeamsHandler implements Handler{
 
     @Override
     public void handle(JsonNode jsonNode) {
-        ObjectNode teamsNode = (ObjectNode) jsonNode.get("response").get(0);
-        Iterator<Map.Entry<String, JsonNode>> teamsIterator = teamsNode.fields();
-        while (teamsIterator.hasNext()) {
-            Map.Entry<String, JsonNode> entry = teamsIterator.next();
-            JsonNode teamNode = entry.getValue();
+        JsonNode teamsNode =  jsonNode.get("response").get(0);
+        ArrayNode teamsArrayNode = (ArrayNode) teamsNode;
+        for (JsonNode teamNode : teamsArrayNode) {
                 Team team = new Team();
                 team.setId(asInteger(teamNode.get("id")));
                 team.setName(teamNode.get("name").asText(null));
