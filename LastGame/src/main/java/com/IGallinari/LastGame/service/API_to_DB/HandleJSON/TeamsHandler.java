@@ -3,6 +3,7 @@ package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 import com.IGallinari.LastGame.entity.Team;
 import com.IGallinari.LastGame.repository.TeamRepository;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ public class TeamsHandler implements Handler{
 
     @Override
     public void handle(JsonNode jsonNode) {
-        JsonNode [] teamsNode  = new JsonNode[]{jsonNode.get("response").get(0)};
+        ArrayNode teamsNode  = (ArrayNode) jsonNode.get("response").get(0);
         System.out.println(teamsNode);
 
         for (JsonNode teamNode : teamsNode) {

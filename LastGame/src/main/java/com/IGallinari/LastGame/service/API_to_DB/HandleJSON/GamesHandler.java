@@ -8,6 +8,7 @@ import com.IGallinari.LastGame.repository.GameRepository;
 import com.IGallinari.LastGame.repository.StatsGameRepository;
 import com.IGallinari.LastGame.repository.TeamRepository;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class GamesHandler implements Handler {
 
     @Override
     public void handle(JsonNode jsonNode) {
-        JsonNode [] gamesNode = new JsonNode[]{jsonNode.get("response").get(0)};
+        ArrayNode gamesNode = (ArrayNode) jsonNode.get("response").get(0);
 
         for (JsonNode gameNode : gamesNode) {
             if(!arenaRepository.existsBynameArena(gameNode.get("arena").get("name").asText())) {

@@ -5,6 +5,7 @@ import com.IGallinari.LastGame.repository.GameRepository;
 import com.IGallinari.LastGame.repository.StatsGameRepository;
 import com.IGallinari.LastGame.repository.TeamRepository;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class GamesStatisticsHandler implements Handler{
     @Override
     public void handle(JsonNode jsonNode) {
         JsonNode parametersNode = jsonNode.get("parameters").get(0);
-        JsonNode [] gamesStatisticsNode = new JsonNode[]{jsonNode.get("response").get(0)};
+        ArrayNode gamesStatisticsNode = (ArrayNode) jsonNode.get("response").get(0);
 
         for (JsonNode gameStatisticsNode : gamesStatisticsNode) {
             StatsGame statsGame = new StatsGame();
