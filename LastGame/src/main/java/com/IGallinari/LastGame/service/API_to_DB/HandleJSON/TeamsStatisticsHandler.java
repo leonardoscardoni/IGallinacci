@@ -1,5 +1,6 @@
 package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 
+import com.IGallinari.LastGame.entity.IdStatsTeam;
 import com.IGallinari.LastGame.entity.StatsTeam;
 import com.IGallinari.LastGame.repository.StatsTeamRepository;
 import com.IGallinari.LastGame.repository.TeamRepository;
@@ -21,8 +22,10 @@ public class TeamsStatisticsHandler implements Handler{
         JsonNode teamStatisticsNode = jsonNode.get("response");
         
         StatsTeam statsTeam = new StatsTeam();
-        statsTeam.setSeason(parametersNode.get("season").asInt());
-        statsTeam.setTeam(teamRepository.findById(parametersNode.get("id").asInt()));
+        IdStatsTeam idStatsTeam = new IdStatsTeam();
+        idStatsTeam.setTeamId(parametersNode.get("id").asInt());
+        idStatsTeam.setSeason(parametersNode.get("season").asInt());
+        statsTeam.setStatsTeamId(idStatsTeam);
         statsTeam.setGames(asInteger(teamStatisticsNode.get("games")));
         statsTeam.setFastBreakPoints(asInteger(teamStatisticsNode.get("fastBreakPoints")));
         statsTeam.setPointsInPaint(asInteger(teamStatisticsNode.get("pointsInPaint")));

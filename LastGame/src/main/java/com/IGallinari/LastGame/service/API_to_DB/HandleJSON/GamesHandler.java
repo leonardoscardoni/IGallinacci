@@ -2,6 +2,7 @@ package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 
 import com.IGallinari.LastGame.entity.Arena;
 import com.IGallinari.LastGame.entity.Game;
+import com.IGallinari.LastGame.entity.IdStatsGame;
 import com.IGallinari.LastGame.entity.StatsGame;
 import com.IGallinari.LastGame.repository.ArenaRepository;
 import com.IGallinari.LastGame.repository.GameRepository;
@@ -74,8 +75,11 @@ public class GamesHandler implements Handler {
             System.out.println("Object Game game saved in the DB");
 
             StatsGame statsGameVisitor = new StatsGame();
-            statsGameVisitor.setTeam(teamRepository.findById(gameNode.get("teams").get("visitors").get("id").asInt()));
-            statsGameVisitor.setGame(gameRepository.findById(gameNode.get("id").asInt()));
+            IdStatsGame idStatsGameVisitor = new IdStatsGame();
+
+            idStatsGameVisitor.setTeamId(gameNode.get("teams").get("visitors").get("id").asInt());
+            idStatsGameVisitor.setGameId(gameNode.get("id").asInt());
+            statsGameVisitor.setStatsGameId(idStatsGameVisitor);
             statsGameVisitor.setWin(asInteger(gameNode.get("scores").get("visitors").get("win")));
             statsGameVisitor.setLose(asInteger(gameNode.get("scores").get("visitors").get("loss")));
             statsGameVisitor.setSeriesWin(asInteger(gameNode.get("scores").get("visitors").get("series").get("win")));
@@ -86,8 +90,11 @@ public class GamesHandler implements Handler {
             System.out.println("Object StatsGame statsGameVisitor saved in the DB");
 
             StatsGame statsGameHome = new StatsGame();
-            statsGameHome.setTeam(teamRepository.findById(gameNode.get("teams").get("home").get("id").asInt()));
-            statsGameHome.setGame(gameRepository.findById(gameNode.get("id").asInt()));
+            IdStatsGame idStatsGameHome = new IdStatsGame();
+
+            idStatsGameHome.setTeamId(gameNode.get("teams").get("home").get("id").asInt());
+            idStatsGameHome.setGameId(gameNode.get("id").asInt());
+            statsGameHome.setStatsGameId(idStatsGameHome);
             statsGameHome.setWin(asInteger(gameNode.get("scores").get("home").get("win")));
             statsGameHome.setLose(asInteger(gameNode.get("scores").get("home").get("loss")));
             statsGameHome.setSeriesWin(asInteger(gameNode.get("scores").get("home").get("series").get("win")));

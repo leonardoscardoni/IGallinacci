@@ -1,5 +1,6 @@
 package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 
+import com.IGallinari.LastGame.entity.IdStatsPlayer;
 import com.IGallinari.LastGame.entity.StatsPlayer;
 import com.IGallinari.LastGame.repository.GameRepository;
 import com.IGallinari.LastGame.repository.PlayerRepository;
@@ -27,9 +28,11 @@ public class PlayersStatisticsHandler implements Handler{
 
         for (JsonNode playerStatisticsNode : playersStatisticsNode) {
             StatsPlayer statsPlayer = new StatsPlayer();
-            statsPlayer.setGame(gameRepository.findById(playerStatisticsNode.get("game").get("id").asInt()));
-            statsPlayer.setTeam(teamRepository.findById(playerStatisticsNode.get("team").get("id").asInt()));
-            statsPlayer.setPlayer(playerRepository.findById(playerStatisticsNode.get("player").get("id").asInt()));
+            IdStatsPlayer idStatsPlayer = new IdStatsPlayer();
+            statsPlayer.setStatsPlayerId(idStatsPlayer);
+            idStatsPlayer.setPlayerId(playerStatisticsNode.get("player").get("id").asInt());
+            idStatsPlayer.setGameId(playerStatisticsNode.get("game").get("id").asInt());
+            idStatsPlayer.setTeamId(playerStatisticsNode.get("team").get("id").asInt());
             statsPlayer.setPoints(asInteger(playerStatisticsNode.get("points")));
             statsPlayer.setPos(playerStatisticsNode.get("pos").asText(null));
             statsPlayer.setMin(asInteger(playerStatisticsNode.get("min")));
