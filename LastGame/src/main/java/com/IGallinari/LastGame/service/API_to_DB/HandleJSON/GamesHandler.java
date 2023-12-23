@@ -18,10 +18,8 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 @Service
+@AllArgsConstructor
 public class GamesHandler implements Handler {
-
-    private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     private TeamRepository teamRepository;
 
@@ -33,10 +31,12 @@ public class GamesHandler implements Handler {
 
     @Override
     public void handle(JsonNode jsonNode) {
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         ArrayNode gamesNode = (ArrayNode) jsonNode.get("response");
 
         for (JsonNode gameNode : gamesNode) {
-            if(arenaRepository.count()==0 || !arenaRepository.existsBynameArena(gameNode.get("arena").get("name").asText())) {
+            if(!arenaRepository.existsBynameArena(gameNode.get("arena").get("name").asText())) {
                 Arena arena = new Arena();
                 arena.setNameArena(gameNode.get("arena").get("name").asText());
                 arena.setCity(gameNode.get("arena").get("city").asText(null));
