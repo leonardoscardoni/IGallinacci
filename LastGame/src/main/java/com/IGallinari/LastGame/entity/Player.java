@@ -28,9 +28,9 @@ public class Player {
 
     private Integer pro;
 
-    private float heigth;
+    private Float heigth;
 
-    private float weight;
+    private Float weight;
 
     private String college;
 
