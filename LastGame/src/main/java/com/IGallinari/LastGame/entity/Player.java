@@ -13,7 +13,7 @@ public class Player {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "idTeam", insertable = false, updatable = false)
+    @JoinColumn(name = "idTeam")
     private Team team;
 
     private String firstname;
