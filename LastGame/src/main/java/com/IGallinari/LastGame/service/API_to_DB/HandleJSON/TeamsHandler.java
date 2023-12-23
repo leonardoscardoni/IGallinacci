@@ -20,7 +20,7 @@ public class TeamsHandler implements Handler{
 
     @Override
     public void handle(JsonNode jsonNode) {
-        ObjectNode teamsNode = (ObjectNode) jsonNode.get("response").get(0);
+        ArrayNode teamsNode = (ArrayNode) jsonNode.get("response");
         System.out.println(teamsNode);/*
         for (JsonNode teamNode : teamsArrayNode) {
                 Team team = new Team();
