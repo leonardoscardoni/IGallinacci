@@ -86,7 +86,7 @@ public class GamesHandler implements Handler {
             System.out.println("Object StatsGame statsGameVisitor saved in the DB");
 
             StatsGame statsGameHome = new StatsGame();
-            statsGameHome.setTeam(teamRepository.findById(gameNode.get("teams").get("visitors").get("id").asInt()));
+            statsGameHome.setTeam(teamRepository.findById(gameNode.get("teams").get("home").get("id").asInt()));
             statsGameHome.setGame(gameRepository.findById(gameNode.get("id").asInt()));
             statsGameHome.setWin(asInteger(gameNode.get("scores").get("home").get("win")));
             statsGameHome.setLose(asInteger(gameNode.get("scores").get("home").get("loss")));
