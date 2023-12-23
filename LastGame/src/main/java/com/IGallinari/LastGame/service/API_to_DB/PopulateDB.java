@@ -53,6 +53,8 @@ public class PopulateDB {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        }else {
+            System.out.println("All teams have already been added");
         }
         totCall+=call;
         System.out.println("there were made "+call+" calls, total calls "+totCall);
@@ -77,6 +79,8 @@ public class PopulateDB {
                     e.printStackTrace();
                 }
             }
+        }else {
+            System.out.println("All games have already been added");
         }
         totCall+=call;
         System.out.println("there were made "+call+" calls, total calls "+totCall);
@@ -103,6 +107,9 @@ public class PopulateDB {
                 }
             }
         }
+        else {
+            System.out.println("All players have already been added");
+        }
         totCall+=call;
         System.out.println("there were made "+call+" calls, total calls "+totCall);
         call=0;
@@ -125,6 +132,8 @@ public class PopulateDB {
                         e.printStackTrace();
                     }
                 }
+            } else {
+                System.out.println("All player statistics, of the season: "+season+", have already been added");
             }
         }
         totCall+=call;
@@ -149,7 +158,10 @@ public class PopulateDB {
                         e.printStackTrace();
                     }
                 }
+            }else {
+                System.out.println("All team statistics, of the season: "+season+", have already been added");
             }
+
         }
         totCall+=call;
         System.out.println("there were made "+call+" calls, total calls"+totCall);
@@ -171,6 +183,9 @@ public class PopulateDB {
                     e.printStackTrace();
                 }
             }
+        }
+        else {
+            System.out.println("All game statistics have already been added");
         }
         totCall+=call;
         System.out.println("there were made "+call+" calls, total calls "+totCall);

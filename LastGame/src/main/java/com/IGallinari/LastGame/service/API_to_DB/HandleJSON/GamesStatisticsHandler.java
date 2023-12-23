@@ -21,8 +21,8 @@ public class GamesStatisticsHandler implements Handler{
 
     @Override
     public void handle(JsonNode jsonNode) {
-        JsonNode parametersNode = jsonNode.get("parameters").get(0);
-        ArrayNode gamesStatisticsNode = (ArrayNode) jsonNode.get("response").get(0);
+        JsonNode parametersNode = jsonNode.get("parameters");
+        ArrayNode gamesStatisticsNode = (ArrayNode) jsonNode.get("response");
 
         for (JsonNode gameStatisticsNode : gamesStatisticsNode) {
             StatsGame statsGame = new StatsGame();

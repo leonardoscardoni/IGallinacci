@@ -17,8 +17,8 @@ public class TeamsStatisticsHandler implements Handler{
 
     @Override
     public void handle(JsonNode jsonNode) {
-        JsonNode parametersNode = jsonNode.get("parameters").get(0);
-        JsonNode teamStatisticsNode = jsonNode.get("response").get(0);
+        JsonNode parametersNode = jsonNode.get("parameters");
+        JsonNode teamStatisticsNode = jsonNode.get("response");
         
         StatsTeam statsTeam = new StatsTeam();
         statsTeam.setSeason(parametersNode.get("season").asInt());
