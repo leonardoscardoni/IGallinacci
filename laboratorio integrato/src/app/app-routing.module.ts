@@ -3,11 +3,13 @@ import { RouterModule, Routes } from "@angular/router";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { DettaglioPartitaComponent } from "./pages/dettaglio-partita/dettaglio-partita-giocata.component";
 import { CalendarioPartiteComponent } from "./pages/calendario-partite/calendario-partite.component";
+import { DettaglioTeamComponent } from "./pages/dettaglio-team/dettaglio-team.component";
 
 const routes: Routes = [
     { path: "home", component: HomePageComponent },
     { path: "dett", component: DettaglioPartitaComponent },
     { path: "calendario-partite", component: CalendarioPartiteComponent },
+    { path: "dettaglio-team", component: DettaglioTeamComponent },
     { path: "", redirectTo: "home", pathMatch: "full" },
 ];
 

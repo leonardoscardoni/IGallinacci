@@ -15,6 +15,8 @@ import { HeaderDettaglioPartitaComponent } from "./components/header-dettaglio-p
 import { QuartersDettaglioPartitaComponent } from "./components/quarters-dettaglio-partita/quarters-dettaglio-partita.component";
 import { TitoloSezioneComponent } from "./components/titolo-sezione/titolo-sezione.component";
 import { statisticheDettaglioPartitaComponent } from "./components/statistiche-dettaglio-partita/statistiche-dettaglio-partita.component";
+import { DettaglioTeamComponent } from './pages/dettaglio-team/dettaglio-team.component';
+import { HeaderDettaglioTeamComponent } from './components/header-dettaglio-team/header-dettaglio-team.component';
 
 @NgModule({
     declarations: [
@@ -31,6 +33,8 @@ import { statisticheDettaglioPartitaComponent } from "./components/statistiche-d
         TitoloSezioneComponent,
         QuartersDettaglioPartitaComponent,
         statisticheDettaglioPartitaComponent,
+        DettaglioTeamComponent,
+        HeaderDettaglioTeamComponent,
     ],
     imports: [BrowserModule, AppRoutingModule],
     providers: [],
