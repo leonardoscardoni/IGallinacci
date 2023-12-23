@@ -69,7 +69,7 @@ public class PopulateDB {
             for (Integer season : yearsNeed) {
                 params = Map.ofEntries(
                         Map.entry("league", "standard"),
-                        Map.entry("seasons", season.toString()));
+                        Map.entry("season", season.toString()));
                 try {
                     String response = apiCaller.callApi("games", params);//2 chiamate
                     call+=1;
