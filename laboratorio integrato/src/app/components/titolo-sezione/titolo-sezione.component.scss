@@ -1,0 +1,10 @@
+@import '../../../styles.scss';
+
+h3 {
+    .numero {
+        -webkit-text-stroke-width: 1px; 
+        -webkit-text-stroke-color: $bianco;
+        font-variation-settings: "ital" 1;
+        font-synthesis: none;
+    }
+}

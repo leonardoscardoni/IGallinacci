@@ -1,0 +1,11 @@
+<app-titolo-sezione [numero]="'02'" [titolo]="'Statistiche'" [spiegazione]="'Lorem ipsum dolor sit amet consectetur. Velit urna vitae scelerisque nullam sed metus dictum pulvinar.'" [spanSpiegazione]="'Consectetur volutpat turpis nec congue.'"/>
+
+<div class="container grid grid-cols-12 gap-24">
+        <div class="col-start-2 col-span-11">
+            <div class="flex gap-4 justify-center">
+                <ng-container *ngFor="let tipoDato of a">
+                    <div class="w-1/3 p-3 rounded-t-xl bg-arancio text-xl color-nero text-center">{{tipoDato.titolo.toUpperCase()}}</div>
+                </ng-container>
+            </div>
+        </div>
+</div>

@@ -12,6 +12,9 @@ import { TodayMatchesComponent } from "./components/today-matches/today-matches.
 import { FooterComponent } from "./components/footer/footer.component";
 import { CalendarioPartiteComponent } from "./pages/calendario-partite/calendario-partite.component";
 import { HeaderDettaglioPartitaComponent } from "./components/header-dettaglio-partita/header-dettaglio-partita.component";
+import { QuartersDettaglioPartitaComponent } from "./components/quarters-dettaglio-partita/quarters-dettaglio-partita.component";
+import { TitoloSezioneComponent } from "./components/titolo-sezione/titolo-sezione.component";
+import { statisticheDettaglioPartitaComponent } from "./components/statistiche-dettaglio-partita/statistiche-dettaglio-partita.component";
 
 @NgModule({
     declarations: [
@@ -25,6 +28,9 @@ import { HeaderDettaglioPartitaComponent } from "./components/header-dettaglio-p
         FooterComponent,
         CalendarioPartiteComponent,
         HeaderDettaglioPartitaComponent,
+        TitoloSezioneComponent,
+        QuartersDettaglioPartitaComponent,
+        statisticheDettaglioPartitaComponent,
     ],
     imports: [BrowserModule, AppRoutingModule],
     providers: [],
