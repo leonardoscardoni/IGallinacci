@@ -17,6 +17,6 @@ public class StastsGameService {
 
     public List<StatsGame> getGamesHome(){
         LocalDate inputDate = LocalDate.of(2023,12,19);
-        return statsGameRepository.findStatsGameByDate(inputDate);
+        return statsGameRepository.findStatsGameByGameDate(inputDate);
     }
 }
