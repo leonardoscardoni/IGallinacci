@@ -20,7 +20,6 @@ public class TeamsHandler implements Handler{
     private TeamRepository teamRepository;
 
     @Override
-    @Transactional
     public void handle(JsonNode jsonNode) {
         ArrayNode teamsNode = (ArrayNode) jsonNode.get("response");
         for (JsonNode teamNode : teamsNode) {

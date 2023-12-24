@@ -31,7 +31,6 @@ public class GamesHandler implements Handler {
     private StatsGameRepository statsGameRepository;
 
     @Override
-    @Transactional
     public void handle(JsonNode jsonNode) {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");

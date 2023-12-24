@@ -22,7 +22,6 @@ public class GamesStatisticsHandler implements Handler{
     private StatsGameRepository statsGameRepository;
 
     @Override
-    @Transactional
     public void handle(JsonNode jsonNode) {
         JsonNode parametersNode = jsonNode.get("parameters");
         ArrayNode gamesStatisticsNode = (ArrayNode) jsonNode.get("response");

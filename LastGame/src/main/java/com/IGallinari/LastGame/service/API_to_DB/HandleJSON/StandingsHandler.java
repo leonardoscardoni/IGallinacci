@@ -20,7 +20,6 @@ public class StandingsHandler implements Handler{
     private StatsTeamRepository statsTeamRepository;
 
     @Override
-    @Transactional
     public void handle(JsonNode jsonNode) {
         ArrayNode standingsNode = (ArrayNode) jsonNode.get("response");
 

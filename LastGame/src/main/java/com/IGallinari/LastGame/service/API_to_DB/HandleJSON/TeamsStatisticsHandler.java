@@ -18,7 +18,6 @@ public class TeamsStatisticsHandler implements Handler{
     private StatsTeamRepository statsTeamRepository;
 
     @Override
-    @Transactional
     public void handle(JsonNode jsonNode) {
         JsonNode parametersNode = jsonNode.get("parameters");
         JsonNode teamStatisticsNode = jsonNode.get("response");
