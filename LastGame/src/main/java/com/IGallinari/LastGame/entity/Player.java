@@ -12,10 +12,6 @@ public class Player {
     @Id
     private int id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idTeam",referencedColumnName = "id", nullable = false)
-    private Team team;
-
     private String firstname;
 
     private String lastname;
