@@ -37,20 +37,20 @@ public class PlayersHandler implements Handler{
             playerTeam.setIdPlayerTeam(idPlayerTeam);
             playerTeamRepository.save(playerTeam);
             player.setId(playerNode.get("id").asInt());
-            player.setFirstname(playerNode.get("firstname").asText(null));
-            player.setLastname(playerNode.get("lastname").asText(null));
+            player.setFirstname(asString(playerNode.get("firstname")));
+            player.setLastname(asString(playerNode.get("lastname")));
             System.out.println("Saving player, id: "+player.getId()+", name: "+player.getFirstname()+", lastname: "+player.getLastname());
             player.setDateOfBirth(asLocalDate(playerNode.get("birth").get("date")));
-            player.setCountry(playerNode.get("birth").get("country").asText(null));
+            player.setCountry(asString(playerNode.get("birth").get("country")));
             player.setStartYear(asInteger(playerNode.get("nba").get("start")));
             player.setPro(asInteger(playerNode.get("nba").get("pro")));
             player.setHeight(asFloat(playerNode.get("height").get("meters")));
             player.setWeight(asFloat(playerNode.get("weight").get("kilograms")));
-            player.setCollege(playerNode.get("college").asText(null));
-            player.setAffiliation(playerNode.get("affiliation").asText(null));
+            player.setCollege(asString(playerNode.get("college")));
+            player.setAffiliation(asString(playerNode.get("affiliation")));
             player.setJersey(asInteger(playerNode.get("leagues").get("standard").get("jersey")));
             player.setActive(playerNode.get("leagues").get("standard").get("active").asBoolean());
-            player.setPos(playerNode.get("leagues").get("standard").get("pos").asText(null));
+            player.setPos(asString(playerNode.get("leagues").get("standard").get("pos")));
             playerRepository.save(player);
             System.out.println("Object Player player saved in the DB");
         }

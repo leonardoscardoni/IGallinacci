@@ -56,7 +56,7 @@ public class GamesStatisticsHandler implements Handler{
             statsGame.setTurnovers(asInteger(gameStatisticsNode.get("turnovers")));
             statsGame.setBlocks(asInteger(gameStatisticsNode.get("blocks")));
             statsGame.setPlusMinus(asInteger(gameStatisticsNode.get("plusMinus")));
-            statsGame.setMin(gameStatisticsNode.get("min").asText(null));
+            statsGame.setMin(asString(gameStatisticsNode.get("min")));
             statsGameRepository.save(statsGame);
             System.out.println("Object StatsGame statsGame saved in the DB");
         }

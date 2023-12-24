@@ -35,7 +35,7 @@ public class PlayersStatisticsHandler implements Handler{
             idStatsPlayer.setGameId(playerStatisticsNode.get("game").get("id").asInt());
             idStatsPlayer.setTeamId(playerStatisticsNode.get("team").get("id").asInt());
             statsPlayer.setPoints(asInteger(playerStatisticsNode.get("points")));
-            statsPlayer.setPos(playerStatisticsNode.get("pos").asText(null));
+            statsPlayer.setPos(asString(playerStatisticsNode.get("pos")));
             statsPlayer.setMin(asInteger(playerStatisticsNode.get("min")));
             statsPlayer.setFgm(asInteger(playerStatisticsNode.get("fgm")));
             statsPlayer.setFga(asInteger(playerStatisticsNode.get("fga")));

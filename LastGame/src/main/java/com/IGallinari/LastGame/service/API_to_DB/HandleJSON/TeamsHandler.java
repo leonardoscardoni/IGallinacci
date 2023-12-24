@@ -25,14 +25,14 @@ public class TeamsHandler implements Handler{
         for (JsonNode teamNode : teamsNode) {
                 Team team = new Team();
                 team.setId(asInteger(teamNode.get("id")));
-                team.setName(teamNode.get("name").asText(null));
-                team.setNickname(teamNode.get("nickname").asText(null));
-                team.setCode(teamNode.get("code").asText(null));
-                team.setCity(teamNode.get("city").asText(null));
-                team.setLogo(teamNode.get("logo").asText(null));
+                team.setName(asString(teamNode.get("name")));
+                team.setNickname(asString(teamNode.get("nickname")));
+                team.setCode(asString(teamNode.get("code")));
+                team.setCity(asString(teamNode.get("city")));
+                team.setLogo(asString(teamNode.get("logo")));
                 team.setAllstar(teamNode.get("allStar").asBoolean());
-                team.setConference(teamNode.get("leagues").get("standard").get("conference").asText(null));
-                team.setDivision(teamNode.get("leagues").get("standard").get("division").asText(null));
+                team.setConference(asString(teamNode.get("leagues").get("standard").get("conference")));
+                team.setDivision(asString(teamNode.get("leagues").get("standard").get("division")));
                 teamRepository.save(team);
                 System.out.println("Object Team team saved in the DB");
         }
