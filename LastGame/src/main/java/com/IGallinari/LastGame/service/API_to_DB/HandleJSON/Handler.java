@@ -31,4 +31,12 @@ public interface Handler {
             return null;
         }
     }
+
+    default String  asString(JsonNode node) {
+        if (node != null && !node.isNull()) {
+            return node.asText();
+        } else {
+            return null;
+        }
+    }
 }

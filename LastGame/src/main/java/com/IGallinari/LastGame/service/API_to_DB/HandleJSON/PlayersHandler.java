@@ -1,7 +1,10 @@
 package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 
+import com.IGallinari.LastGame.entity.IdPlayerTeam;
 import com.IGallinari.LastGame.entity.Player;
+import com.IGallinari.LastGame.entity.PlayerTeam;
 import com.IGallinari.LastGame.repository.PlayerRepository;
+import com.IGallinari.LastGame.repository.PlayerTeamRepository;
 import com.IGallinari.LastGame.repository.TeamRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -17,7 +20,7 @@ public class PlayersHandler implements Handler{
 
     private PlayerRepository playerRepository;
 
-    private TeamRepository teamRepository;
+    private PlayerTeamRepository playerTeamRepository;
 
     @Override
     @Transactional
@@ -27,8 +30,13 @@ public class PlayersHandler implements Handler{
 
         for (JsonNode playerNode : playersNode) {
             Player player = new Player();
+            PlayerTeam playerTeam = new PlayerTeam();
+            IdPlayerTeam idPlayerTeam = new IdPlayerTeam();
+            idPlayerTeam.setPlayerId(playerNode.get("id").asInt());
+            idPlayerTeam.setTeamId(paramsNode.get("team").asInt());
+            playerTeam.setIdPlayerTeam(idPlayerTeam);
+            playerTeamRepository.save(playerTeam);
             player.setId(playerNode.get("id").asInt());
-            player.setTeam(teamRepository.findById(paramsNode.get("team").asInt()));
             player.setFirstname(playerNode.get("firstname").asText(null));
             player.setLastname(playerNode.get("lastname").asText(null));
             System.out.println("Saving player, id: "+player.getId()+", name: "+player.getFirstname()+", lastname: "+player.getLastname());

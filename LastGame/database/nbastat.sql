@@ -83,7 +83,6 @@ CREATE TABLE `team` (
 
 CREATE TABLE `player` (
   `id` int(11) NOT NULL,
-  `idTeam` int(11) NOT NULL,
   `firstname` varchar(255) DEFAULT NULL,
   `lastname` varchar(255) DEFAULT NULL,
   `dateOfBirth` date DEFAULT NULL,
@@ -97,6 +96,18 @@ CREATE TABLE `player` (
   `jersey` tinyint(4) DEFAULT NULL,
   `isActive` tinyint(1) DEFAULT NULL,
   `pos` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `playerteam`
+--
+
+CREATE TABLE `playerteam` (
+  `idPlayer` int(11) NOT NULL,
+  `idTeam` int(11) NOT NULL,
+  `season` smallint(5) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -261,6 +272,14 @@ ALTER TABLE `player`
   ADD KEY `fk_player_team` (`idTeam`);
 
 --
+-- Indici per le tabelle `playerteam`
+--
+ALTER TABLE `playerteam`
+  ADD PRIMARY KEY (`idPlayer`,`idTeam`,`season`),
+  ADD KEY `fk_playerteam_player` (`idPlayer`),
+  ADD KEY `fk_playerteam_team` (`idTeam`);
+
+--
 -- Indici per le tabelle `statsgame`
 --
 ALTER TABLE `statsgame`
@@ -296,10 +315,11 @@ ALTER TABLE `game`
   ADD CONSTRAINT `fk_visitor_team` FOREIGN KEY (`idVisitor`) REFERENCES `team` (`id`);
 
 --
--- Limiti per la tabella `player`
+-- Limiti per la tabella `playerteam`
 --
-ALTER TABLE `player`
-  ADD CONSTRAINT `fk_player_team` FOREIGN KEY (`idTeam`) REFERENCES `team` (`id`);
+ALTER TABLE `playerteam`
+  ADD CONSTRAINT `fk_playerteam_player` FOREIGN KEY (`idPlayer`) REFERENCES `player` (`id`),
+  ADD CONSTRAINT `fk_playerteam_team` FOREIGN KEY (`idTeam`) REFERENCES `team` (`id`);
 
 --
 -- Limiti per la tabella `statsgame`
