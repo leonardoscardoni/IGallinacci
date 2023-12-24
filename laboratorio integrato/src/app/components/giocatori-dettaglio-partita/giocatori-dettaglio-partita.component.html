@@ -1,0 +1,28 @@
+<div class="container grid grid-cols-12 gap-4 mb-20">
+    <ng-container *ngFor="let squadra of a; index as i">
+        
+        <div class="col-span-3" [style.grid-column-start]="5 + i * 3">
+            <hr class="w-full border-bianco">
+            <div class="py-2 flex justify-center">
+                <img src="{{squadra.logo}}" class="w-[2.5rem] h-[2.5rem] inline" alt="">
+                <p class="text-lg inline ml-3 self-center">{{squadra.nome.toUpperCase()}}</p>
+            </div>
+            <hr class="w-full border-bianco">
+
+            <ng-container *ngFor="let giocatore of squadra.giocatori">
+                <div class="mt-3 p-2 flex justify-between border-bianco border-solid border-[1px] rounded-lg font-inter ">
+                    <div>
+                        <p class="font-extralight text-xs">{{giocatore.ruolo.toUpperCase()}}</p>
+                        <p class="font-light text-base inline">{{giocatore.nome}}</p>
+                        <p class="ml-2 font-thin text-xs inline font-italic">[{{giocatore.numeroMaglia}}]</p>
+                    </div>
+                    <div class="self-center">
+                        <img src="/assets/arrow-right-svgrepo-com.svg" class="w-4" alt="">
+                    </div>
+                </div>
+            </ng-container>
+
+        </div>
+
+    </ng-container>    
+</div>

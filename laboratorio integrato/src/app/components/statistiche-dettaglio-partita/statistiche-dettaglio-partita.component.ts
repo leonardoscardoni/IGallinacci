@@ -4,7 +4,7 @@ import { Component, OnInit } from "@angular/core";
     templateUrl: "./statistiche-dettaglio-partita.component.html",
     styleUrls: ["./statistiche-dettaglio-partita.component.scss"],
 })
-export class statisticheDettaglioPartitaComponent implements OnInit {
+export class StatisticheDettaglioPartitaComponent implements OnInit {
     a = [
         {
             titolo: "Punti da tre",

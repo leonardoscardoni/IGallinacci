@@ -1,0 +1,24 @@
+<div class="container grid grid-cols-12 gap-4">
+    <ng-container *ngIf="quarti">
+        <ng-container *ngFor="let quarto of a.squadre[0].punteggio; index as i">
+            <p 
+              class="color-white text-center text-xl" 
+              [style.grid-column-start]="7 + i" 
+              [style.grid-column-end]="8 + i"
+            >
+              {{quarto.quarter}}
+            </p>
+        </ng-container>
+    </ng-container>
+
+    <ng-container *ngFor="let squadra of a.squadre">
+        <img src="{{squadra.logo}}" class="w-[2.5rem] col-start-5 col-end-6 flex justify-center self-center aspect-square flex-wrap"/>
+        <p class="col-start-6 col-end-7 flex justify-center content-center aspect-square flex-wrap text-2xl">{{squadra.nome}}</p>
+        <ng-container *ngFor="let punteggio of squadra.punteggio; index as i">
+            <div class="bg-bianco flex justify-center content-center aspect-square flex-wrap rounded-xl col-start-{{7+i}} col-end-{{8+i}}">
+                <p class="color-nero font-inter font-black text-xl">{{punteggio.points}}</p>
+            </div>
+        </ng-container>
+    </ng-container>
+
+</div>
