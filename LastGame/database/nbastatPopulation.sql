@@ -20,6 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `nbastat`
 --
+use 'nbastat';
 
 --
 -- Dump dei dati per la tabella `arena`
@@ -80,10 +81,76 @@ INSERT INTO `arena` (`name`, `city`, `state`, `country`) VALUES
 ('Vivint Arena', 'Salt Lake City', 'UT', NULL),
 ('Wells Fargo Center', 'Philadelphia', 'PA', 'USA');
 
+
+--
+-- Dump dei dati per la tabella `team`
+--
+
+INSERT INTO `team` (`id`, `name`, `nickname`, `code`, `city`, `logo`, `allstar`, `conference`, `division`) VALUES
+(1, 'Atlanta Hawks', 'Hawks', 'ATL', 'Atlanta', 'https://upload.wikimedia.org/wikipedia/fr/e/ee/Hawks_2016.png', 0, 'East', 'Southeast'),
+(2, 'Boston Celtics', 'Celtics', 'BOS', 'Boston', 'https://upload.wikimedia.org/wikipedia/fr/thumb/6/65/Celtics_de_Boston_logo.svg/1024px-Celtics_de_Boston_logo.svg.png', 0, 'East', 'Atlantic'),
+(3, 'Brisbane Bullets', 'Bullets', 'BNE', 'Brisbane', 'https://upload.wikimedia.org/wikipedia/fr/thumb/1/1b/Brisbane_Bullets_1992.png/130px-Brisbane_Bullets_1992.png', 0, 'Intl', NULL),
+(4, 'Brooklyn Nets', 'Nets', 'BKN', 'Brooklyn', 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Brooklyn_Nets_newlogo.svg/130px-Brooklyn_Nets_newlogo.svg.png', 0, 'East', 'Atlantic'),
+(5, 'Charlotte Hornets', 'Hornets', 'CHA', 'Charlotte', 'https://upload.wikimedia.org/wikipedia/fr/thumb/f/f3/Hornets_de_Charlotte_logo.svg/1200px-Hornets_de_Charlotte_logo.svg.png', 0, 'East', 'Southeast'),
+(6, 'Chicago Bulls', 'Bulls', 'CHI', 'Chicago', 'https://upload.wikimedia.org/wikipedia/fr/thumb/d/d1/Bulls_de_Chicago_logo.svg/1200px-Bulls_de_Chicago_logo.svg.png', 0, 'East', 'Central'),
+(7, 'Cleveland Cavaliers', 'Cavaliers', 'CLE', 'Cleveland', 'https://upload.wikimedia.org/wikipedia/fr/thumb/0/06/Cavs_de_Cleveland_logo_2017.png/150px-Cavs_de_Cleveland_logo_2017.png', 0, 'East', 'Central'),
+(8, 'Dallas Mavericks', 'Mavericks', 'DAL', 'Dallas', 'https://upload.wikimedia.org/wikipedia/fr/thumb/b/b8/Mavericks_de_Dallas_logo.svg/150px-Mavericks_de_Dallas_logo.svg.png', 0, 'West', 'Southwest'),
+(9, 'Denver Nuggets', 'Nuggets', 'DEN', 'Denver', 'https://upload.wikimedia.org/wikipedia/fr/thumb/3/35/Nuggets_de_Denver_2018.png/180px-Nuggets_de_Denver_2018.png', 0, 'West', 'Northwest'),
+(10, 'Detroit Pistons', 'Pistons', 'DET', 'Detroit', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Logo_of_the_Detroit_Pistons.png/300px-Logo_of_the_Detroit_Pistons.png', 0, 'East', 'Central'),
+(11, 'Golden State Warriors', 'Warriors', 'GSW', 'Golden State', 'https://upload.wikimedia.org/wikipedia/fr/thumb/d/de/Warriors_de_Golden_State_logo.svg/1200px-Warriors_de_Golden_State_logo.svg.png', 0, 'West', 'Pacific'),
+(12, 'Guangzhou Long-Lions', 'Long-Lions', 'GUA', 'Guangzhou', 'https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Guangzhou_Long-Lions_logo.png/220px-Guangzhou_Long-Lions_logo.png', 0, 'Intl', NULL),
+(13, 'Haifa Maccabi Haifa', 'Maccabi Haifa', 'MAC', 'Haifa', 'https://upload.wikimedia.org/wikipedia/en/4/4c/Maccabi_Haifa_B.C_logo.png', 0, 'Intl', NULL),
+(14, 'Houston Rockets', 'Rockets', 'HOU', 'Houston', 'https://upload.wikimedia.org/wikipedia/fr/thumb/d/de/Houston_Rockets_logo_2003.png/330px-Houston_Rockets_logo_2003.png', 0, 'West', 'Southwest'),
+(15, 'Indiana Pacers', 'Pacers', 'IND', 'Indiana', 'https://upload.wikimedia.org/wikipedia/fr/thumb/c/cf/Pacers_de_l%27Indiana_logo.svg/1180px-Pacers_de_l%27Indiana_logo.svg.png', 0, 'East', 'Central'),
+(16, 'LA Clippers', 'Clippers', 'LAC', 'LA', 'https://upload.wikimedia.org/wikipedia/fr/d/d6/Los_Angeles_Clippers_logo_2010.png', 0, 'West', 'Pacific'),
+(17, 'Los Angeles Lakers', 'Lakers', 'LAL', 'Los Angeles', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Los_Angeles_Lakers_logo.svg/220px-Los_Angeles_Lakers_logo.svg.png', 0, 'West', 'Pacific'),
+(18, 'Melbourne United', 'United', 'MEL', 'Melbourne', 'https://upload.wikimedia.org/wikipedia/en/thumb/1/1b/Melbourne_United_logo.svg/220px-Melbourne_United_logo.svg.png', 0, 'Intl', NULL),
+(19, 'Memphis Grizzlies', 'Grizzlies', 'MEM', 'Memphis', 'https://upload.wikimedia.org/wikipedia/en/thumb/f/f1/Memphis_Grizzlies.svg/1200px-Memphis_Grizzlies.svg.png', 0, 'West', 'Southwest'),
+(20, 'Miami Heat', 'Heat', 'MIA', 'Miami', 'https://upload.wikimedia.org/wikipedia/fr/thumb/1/1c/Miami_Heat_-_Logo.svg/1200px-Miami_Heat_-_Logo.svg.png', 0, 'East', 'Southeast'),
+(21, 'Milwaukee Bucks', 'Bucks', 'MIL', 'Milwaukee', 'https://upload.wikimedia.org/wikipedia/fr/3/34/Bucks2015.png', 0, 'East', 'Central'),
+(22, 'Minnesota Timberwolves', 'Timberwolves', 'MIN', 'Minnesota', 'https://upload.wikimedia.org/wikipedia/fr/thumb/d/d9/Timberwolves_du_Minnesota_logo_2017.png/200px-Timberwolves_du_Minnesota_logo_2017.png', 0, 'West', 'Northwest'),
+(23, 'New Orleans Pelicans', 'Pelicans', 'NOP', 'New Orleans', 'https://upload.wikimedia.org/wikipedia/fr/thumb/2/21/New_Orleans_Pelicans.png/200px-New_Orleans_Pelicans.png', 0, 'West', 'Southwest'),
+(24, 'New York Knicks', 'Knicks', 'NYK', 'New York', 'https://upload.wikimedia.org/wikipedia/fr/3/34/Knicks_de_NY.png', 0, 'East', 'Atlantic'),
+(25, 'Oklahoma City Thunder', 'Thunder', 'OKC', 'Oklahoma City', 'https://upload.wikimedia.org/wikipedia/fr/thumb/4/4f/Thunder_d%27Oklahoma_City_logo.svg/1200px-Thunder_d%27Oklahoma_City_logo.svg.png', 0, 'West', 'Northwest'),
+(26, 'Orlando Magic', 'Magic', 'ORL', 'Orlando', 'https://upload.wikimedia.org/wikipedia/fr/b/bd/Orlando_Magic_logo_2010.png', 0, 'East', 'Southeast'),
+(27, 'Philadelphia 76ers', '76ers', 'PHI', 'Philadelphia', 'https://upload.wikimedia.org/wikipedia/fr/4/48/76ers_2016.png', 0, 'East', 'Atlantic'),
+(28, 'Phoenix Suns', 'Suns', 'PHX', 'Phoenix', 'https://upload.wikimedia.org/wikipedia/fr/5/56/Phoenix_Suns_2013.png', 0, 'West', 'Pacific'),
+(29, 'Portland Trail Blazers', 'Trail Blazers', 'POR', 'Portland', 'https://upload.wikimedia.org/wikipedia/en/thumb/2/21/Portland_Trail_Blazers_logo.svg/1200px-Portland_Trail_Blazers_logo.svg.png', 0, 'West', 'Northwest'),
+(30, 'Sacramento Kings', 'Kings', 'SAC', 'Sacramento', 'https://upload.wikimedia.org/wikipedia/fr/thumb/9/95/Kings_de_Sacramento_logo.svg/1200px-Kings_de_Sacramento_logo.svg.png', 0, 'West', 'Pacific'),
+(31, 'San Antonio Spurs', 'Spurs', 'SAS', 'San Antonio', 'https://upload.wikimedia.org/wikipedia/fr/0/0e/San_Antonio_Spurs_2018.png', 0, 'West', 'Southwest'),
+(32, 'Shanghai Sharks', 'Sharks', 'SDS', 'Shanghai', 'https://upload.wikimedia.org/wikipedia/fr/thumb/f/f3/Shangaisharks.jpg/130px-Shangaisharks.jpg', 0, 'Intl', NULL),
+(33, 'Sydney Kings', 'Kings', 'SYD', 'Sydney', 'https://upload.wikimedia.org/wikipedia/fr/thumb/c/c4/Sydney_Kings.jpg/220px-Sydney_Kings.jpg', 0, 'Intl', NULL),
+(34, 'Team Team Durant', 'Team Durant', 'DRT', 'Team', NULL, 1, 'East', 'East'),
+(35, 'Team LeBron', 'Team LeBron', 'LBN', 'Team', NULL, 1, 'West', 'West'),
+(36, 'Away Team Wilbon', 'Team Wilbon', 'WLB', 'Away', NULL, 1, 'East', 'East'),
+(37, 'Home Team Stephen A', 'Team Stephen A', 'SAS', 'Home', NULL, 1, 'East', 'East'),
+(38, 'Toronto Raptors', 'Raptors', 'TOR', 'Toronto', 'https://upload.wikimedia.org/wikipedia/fr/8/89/Raptors2015.png', 0, 'East', 'Atlantic'),
+(39, 'USA USA', 'USA', 'USA', 'USA', NULL, 1, 'East', 'East'),
+(40, 'Utah Jazz', 'Jazz', 'UTA', 'Utah', 'https://upload.wikimedia.org/wikipedia/fr/3/3b/Jazz_de_l%27Utah_logo.png', 0, 'West', 'Northwest'),
+(41, 'Washington Wizards', 'Wizards', 'WAS', 'Washington', 'https://upload.wikimedia.org/wikipedia/fr/archive/d/d6/20161212034849%21Wizards2015.png', 0, 'East', 'Southeast'),
+(42, 'World World', 'World', 'WLD', 'World', NULL, 1, 'East', 'East'),
+(83, '', 'Paschoalotto/Bauru', 'BAU', 'Bauru', NULL, 0, 'Internatio', NULL),
+(84, '', 'Fenerbahce Sports Club', 'FEN', 'Istanbul', NULL, 0, 'Internatio', NULL),
+(85, '', 'Olimpia Milano', 'MLN', 'Milano', NULL, 0, 'Internatio', NULL),
+(86, 'Real Madrid Real Madrid', 'Real Madrid', 'RMD', 'Real Madrid', NULL, 0, 'Intl', NULL),
+(87, 'Rio de Janeiro Flamengo', 'Flamengo', 'FLA', 'Rio de Janeiro', NULL, 0, 'Intl', NULL),
+(88, 'Barcelona FC Barcelona', 'FC Barcelona', 'FCB', 'Barcelona', NULL, 0, 'Intl', NULL),
+(89, 'Buenos Aires San Lorenzo', 'San Lorenzo', 'SLA', 'Buenos Aires', NULL, 0, 'Intl', NULL),
+(90, 'Adelaide 36ers', '36ers', 'ADL', 'Adelaide', NULL, 0, 'Intl', NULL),
+(91, 'Beijing Ducks', 'Ducks', 'BJD', 'Beijing', NULL, 0, 'Intl', NULL),
+(92, 'New Zealand Breakers', 'Breakers', 'NZB', 'New Zealand', NULL, 0, 'Intl', NULL),
+(93, 'Perth Wildcats', 'Wildcats', 'PER', 'Perth', NULL, 0, 'Intl', NULL),
+(99, 'Franca Franca', 'Franca', 'FRA', 'Franca', NULL, 0, 'Intl', NULL),
+(104, 'Utah Blue', 'Jazz', 'UTB', 'Utah', NULL, 0, 'West', 'Northwest'),
+(105, 'Utah White', 'Jazz', 'UTW', 'Utah', NULL, 0, 'West', 'Northwest'),
+(165, 'Ra\'anana Maccabi Ra\'anana', 'Maccabi Ra\'anana', 'MRA', 'Ra\'anana', NULL, 0, 'Intl', NULL),
+(166, 'Cairns Taipans', 'Taipans', 'CNS', NULL, NULL, 0, 'Intl', NULL),
+(168, 'New Zealand Breakers', 'Breakers', 'BNZ', 'Auckland', NULL, 0, NULL, NULL),
+(169, 'Flamengo', 'Flamengo', '', NULL, NULL, 0, NULL, NULL);
+
 --
 -- Dump dei dati per la tabella `game`
 --
-
 INSERT INTO `game` (`id`, `season`, `date`, `time`, `stage`, `totPeriods`, `nameArena`, `idvisitor`, `idhome`) VALUES
 (10980, 2022, '2022-10-01', '10:00:00', 1, 4, 'Saitama Super Arena', 11, 41),
 (10981, 2022, '2022-10-02', '02:00:00', 1, 4, 'Climate Pledge Arena', 165, 16),
@@ -7717,72 +7784,6 @@ INSERT INTO `statsgame` (`idTeam`, `idGame`, `win`, `lose`, `seriesWin`, `series
 (168, 12497, 0, 0, 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 66, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (168, 12523, 0, 0, 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 94, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (169, 12542, 0, 0, 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 76, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-
---
--- Dump dei dati per la tabella `team`
---
-
-INSERT INTO `team` (`id`, `name`, `nickname`, `code`, `city`, `logo`, `allstar`, `conference`, `division`) VALUES
-(1, 'Atlanta Hawks', 'Hawks', 'ATL', 'Atlanta', 'https://upload.wikimedia.org/wikipedia/fr/e/ee/Hawks_2016.png', 0, 'East', 'Southeast'),
-(2, 'Boston Celtics', 'Celtics', 'BOS', 'Boston', 'https://upload.wikimedia.org/wikipedia/fr/thumb/6/65/Celtics_de_Boston_logo.svg/1024px-Celtics_de_Boston_logo.svg.png', 0, 'East', 'Atlantic'),
-(3, 'Brisbane Bullets', 'Bullets', 'BNE', 'Brisbane', 'https://upload.wikimedia.org/wikipedia/fr/thumb/1/1b/Brisbane_Bullets_1992.png/130px-Brisbane_Bullets_1992.png', 0, 'Intl', NULL),
-(4, 'Brooklyn Nets', 'Nets', 'BKN', 'Brooklyn', 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Brooklyn_Nets_newlogo.svg/130px-Brooklyn_Nets_newlogo.svg.png', 0, 'East', 'Atlantic'),
-(5, 'Charlotte Hornets', 'Hornets', 'CHA', 'Charlotte', 'https://upload.wikimedia.org/wikipedia/fr/thumb/f/f3/Hornets_de_Charlotte_logo.svg/1200px-Hornets_de_Charlotte_logo.svg.png', 0, 'East', 'Southeast'),
-(6, 'Chicago Bulls', 'Bulls', 'CHI', 'Chicago', 'https://upload.wikimedia.org/wikipedia/fr/thumb/d/d1/Bulls_de_Chicago_logo.svg/1200px-Bulls_de_Chicago_logo.svg.png', 0, 'East', 'Central'),
-(7, 'Cleveland Cavaliers', 'Cavaliers', 'CLE', 'Cleveland', 'https://upload.wikimedia.org/wikipedia/fr/thumb/0/06/Cavs_de_Cleveland_logo_2017.png/150px-Cavs_de_Cleveland_logo_2017.png', 0, 'East', 'Central'),
-(8, 'Dallas Mavericks', 'Mavericks', 'DAL', 'Dallas', 'https://upload.wikimedia.org/wikipedia/fr/thumb/b/b8/Mavericks_de_Dallas_logo.svg/150px-Mavericks_de_Dallas_logo.svg.png', 0, 'West', 'Southwest'),
-(9, 'Denver Nuggets', 'Nuggets', 'DEN', 'Denver', 'https://upload.wikimedia.org/wikipedia/fr/thumb/3/35/Nuggets_de_Denver_2018.png/180px-Nuggets_de_Denver_2018.png', 0, 'West', 'Northwest'),
-(10, 'Detroit Pistons', 'Pistons', 'DET', 'Detroit', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Logo_of_the_Detroit_Pistons.png/300px-Logo_of_the_Detroit_Pistons.png', 0, 'East', 'Central'),
-(11, 'Golden State Warriors', 'Warriors', 'GSW', 'Golden State', 'https://upload.wikimedia.org/wikipedia/fr/thumb/d/de/Warriors_de_Golden_State_logo.svg/1200px-Warriors_de_Golden_State_logo.svg.png', 0, 'West', 'Pacific'),
-(12, 'Guangzhou Long-Lions', 'Long-Lions', 'GUA', 'Guangzhou', 'https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Guangzhou_Long-Lions_logo.png/220px-Guangzhou_Long-Lions_logo.png', 0, 'Intl', NULL),
-(13, 'Haifa Maccabi Haifa', 'Maccabi Haifa', 'MAC', 'Haifa', 'https://upload.wikimedia.org/wikipedia/en/4/4c/Maccabi_Haifa_B.C_logo.png', 0, 'Intl', NULL),
-(14, 'Houston Rockets', 'Rockets', 'HOU', 'Houston', 'https://upload.wikimedia.org/wikipedia/fr/thumb/d/de/Houston_Rockets_logo_2003.png/330px-Houston_Rockets_logo_2003.png', 0, 'West', 'Southwest'),
-(15, 'Indiana Pacers', 'Pacers', 'IND', 'Indiana', 'https://upload.wikimedia.org/wikipedia/fr/thumb/c/cf/Pacers_de_l%27Indiana_logo.svg/1180px-Pacers_de_l%27Indiana_logo.svg.png', 0, 'East', 'Central'),
-(16, 'LA Clippers', 'Clippers', 'LAC', 'LA', 'https://upload.wikimedia.org/wikipedia/fr/d/d6/Los_Angeles_Clippers_logo_2010.png', 0, 'West', 'Pacific'),
-(17, 'Los Angeles Lakers', 'Lakers', 'LAL', 'Los Angeles', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Los_Angeles_Lakers_logo.svg/220px-Los_Angeles_Lakers_logo.svg.png', 0, 'West', 'Pacific'),
-(18, 'Melbourne United', 'United', 'MEL', 'Melbourne', 'https://upload.wikimedia.org/wikipedia/en/thumb/1/1b/Melbourne_United_logo.svg/220px-Melbourne_United_logo.svg.png', 0, 'Intl', NULL),
-(19, 'Memphis Grizzlies', 'Grizzlies', 'MEM', 'Memphis', 'https://upload.wikimedia.org/wikipedia/en/thumb/f/f1/Memphis_Grizzlies.svg/1200px-Memphis_Grizzlies.svg.png', 0, 'West', 'Southwest'),
-(20, 'Miami Heat', 'Heat', 'MIA', 'Miami', 'https://upload.wikimedia.org/wikipedia/fr/thumb/1/1c/Miami_Heat_-_Logo.svg/1200px-Miami_Heat_-_Logo.svg.png', 0, 'East', 'Southeast'),
-(21, 'Milwaukee Bucks', 'Bucks', 'MIL', 'Milwaukee', 'https://upload.wikimedia.org/wikipedia/fr/3/34/Bucks2015.png', 0, 'East', 'Central'),
-(22, 'Minnesota Timberwolves', 'Timberwolves', 'MIN', 'Minnesota', 'https://upload.wikimedia.org/wikipedia/fr/thumb/d/d9/Timberwolves_du_Minnesota_logo_2017.png/200px-Timberwolves_du_Minnesota_logo_2017.png', 0, 'West', 'Northwest'),
-(23, 'New Orleans Pelicans', 'Pelicans', 'NOP', 'New Orleans', 'https://upload.wikimedia.org/wikipedia/fr/thumb/2/21/New_Orleans_Pelicans.png/200px-New_Orleans_Pelicans.png', 0, 'West', 'Southwest'),
-(24, 'New York Knicks', 'Knicks', 'NYK', 'New York', 'https://upload.wikimedia.org/wikipedia/fr/3/34/Knicks_de_NY.png', 0, 'East', 'Atlantic'),
-(25, 'Oklahoma City Thunder', 'Thunder', 'OKC', 'Oklahoma City', 'https://upload.wikimedia.org/wikipedia/fr/thumb/4/4f/Thunder_d%27Oklahoma_City_logo.svg/1200px-Thunder_d%27Oklahoma_City_logo.svg.png', 0, 'West', 'Northwest'),
-(26, 'Orlando Magic', 'Magic', 'ORL', 'Orlando', 'https://upload.wikimedia.org/wikipedia/fr/b/bd/Orlando_Magic_logo_2010.png', 0, 'East', 'Southeast'),
-(27, 'Philadelphia 76ers', '76ers', 'PHI', 'Philadelphia', 'https://upload.wikimedia.org/wikipedia/fr/4/48/76ers_2016.png', 0, 'East', 'Atlantic'),
-(28, 'Phoenix Suns', 'Suns', 'PHX', 'Phoenix', 'https://upload.wikimedia.org/wikipedia/fr/5/56/Phoenix_Suns_2013.png', 0, 'West', 'Pacific'),
-(29, 'Portland Trail Blazers', 'Trail Blazers', 'POR', 'Portland', 'https://upload.wikimedia.org/wikipedia/en/thumb/2/21/Portland_Trail_Blazers_logo.svg/1200px-Portland_Trail_Blazers_logo.svg.png', 0, 'West', 'Northwest'),
-(30, 'Sacramento Kings', 'Kings', 'SAC', 'Sacramento', 'https://upload.wikimedia.org/wikipedia/fr/thumb/9/95/Kings_de_Sacramento_logo.svg/1200px-Kings_de_Sacramento_logo.svg.png', 0, 'West', 'Pacific'),
-(31, 'San Antonio Spurs', 'Spurs', 'SAS', 'San Antonio', 'https://upload.wikimedia.org/wikipedia/fr/0/0e/San_Antonio_Spurs_2018.png', 0, 'West', 'Southwest'),
-(32, 'Shanghai Sharks', 'Sharks', 'SDS', 'Shanghai', 'https://upload.wikimedia.org/wikipedia/fr/thumb/f/f3/Shangaisharks.jpg/130px-Shangaisharks.jpg', 0, 'Intl', NULL),
-(33, 'Sydney Kings', 'Kings', 'SYD', 'Sydney', 'https://upload.wikimedia.org/wikipedia/fr/thumb/c/c4/Sydney_Kings.jpg/220px-Sydney_Kings.jpg', 0, 'Intl', NULL),
-(34, 'Team Team Durant', 'Team Durant', 'DRT', 'Team', NULL, 1, 'East', 'East'),
-(35, 'Team LeBron', 'Team LeBron', 'LBN', 'Team', NULL, 1, 'West', 'West'),
-(36, 'Away Team Wilbon', 'Team Wilbon', 'WLB', 'Away', NULL, 1, 'East', 'East'),
-(37, 'Home Team Stephen A', 'Team Stephen A', 'SAS', 'Home', NULL, 1, 'East', 'East'),
-(38, 'Toronto Raptors', 'Raptors', 'TOR', 'Toronto', 'https://upload.wikimedia.org/wikipedia/fr/8/89/Raptors2015.png', 0, 'East', 'Atlantic'),
-(39, 'USA USA', 'USA', 'USA', 'USA', NULL, 1, 'East', 'East'),
-(40, 'Utah Jazz', 'Jazz', 'UTA', 'Utah', 'https://upload.wikimedia.org/wikipedia/fr/3/3b/Jazz_de_l%27Utah_logo.png', 0, 'West', 'Northwest'),
-(41, 'Washington Wizards', 'Wizards', 'WAS', 'Washington', 'https://upload.wikimedia.org/wikipedia/fr/archive/d/d6/20161212034849%21Wizards2015.png', 0, 'East', 'Southeast'),
-(42, 'World World', 'World', 'WLD', 'World', NULL, 1, 'East', 'East'),
-(83, '', 'Paschoalotto/Bauru', 'BAU', 'Bauru', NULL, 0, 'Internatio', NULL),
-(84, '', 'Fenerbahce Sports Club', 'FEN', 'Istanbul', NULL, 0, 'Internatio', NULL),
-(85, '', 'Olimpia Milano', 'MLN', 'Milano', NULL, 0, 'Internatio', NULL),
-(86, 'Real Madrid Real Madrid', 'Real Madrid', 'RMD', 'Real Madrid', NULL, 0, 'Intl', NULL),
-(87, 'Rio de Janeiro Flamengo', 'Flamengo', 'FLA', 'Rio de Janeiro', NULL, 0, 'Intl', NULL),
-(88, 'Barcelona FC Barcelona', 'FC Barcelona', 'FCB', 'Barcelona', NULL, 0, 'Intl', NULL),
-(89, 'Buenos Aires San Lorenzo', 'San Lorenzo', 'SLA', 'Buenos Aires', NULL, 0, 'Intl', NULL),
-(90, 'Adelaide 36ers', '36ers', 'ADL', 'Adelaide', NULL, 0, 'Intl', NULL),
-(91, 'Beijing Ducks', 'Ducks', 'BJD', 'Beijing', NULL, 0, 'Intl', NULL),
-(92, 'New Zealand Breakers', 'Breakers', 'NZB', 'New Zealand', NULL, 0, 'Intl', NULL),
-(93, 'Perth Wildcats', 'Wildcats', 'PER', 'Perth', NULL, 0, 'Intl', NULL),
-(99, 'Franca Franca', 'Franca', 'FRA', 'Franca', NULL, 0, 'Intl', NULL),
-(104, 'Utah Blue', 'Jazz', 'UTB', 'Utah', NULL, 0, 'West', 'Northwest'),
-(105, 'Utah White', 'Jazz', 'UTW', 'Utah', NULL, 0, 'West', 'Northwest'),
-(165, 'Ra\'anana Maccabi Ra\'anana', 'Maccabi Ra\'anana', 'MRA', 'Ra\'anana', NULL, 0, 'Intl', NULL),
-(166, 'Cairns Taipans', 'Taipans', 'CNS', NULL, NULL, 0, 'Intl', NULL),
-(168, 'New Zealand Breakers', 'Breakers', 'BNZ', 'Auckland', NULL, 0, NULL, NULL),
-(169, 'Flamengo', 'Flamengo', '', NULL, NULL, 0, NULL, NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

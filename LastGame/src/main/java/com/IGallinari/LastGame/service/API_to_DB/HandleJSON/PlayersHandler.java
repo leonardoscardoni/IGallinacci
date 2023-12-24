@@ -31,7 +31,7 @@ public class PlayersHandler implements Handler{
             player.setTeam(teamRepository.findById(paramsNode.get("team").asInt()));
             player.setFirstname(playerNode.get("firstname").asText(null));
             player.setLastname(playerNode.get("lastname").asText(null));
-            player.setDateOfBirth(LocalDate.parse(playerNode.get("birth").get("date").asText(null)));
+            player.setDateOfBirth(asLocalDate(playerNode.get("birth").get("date")));
             player.setCountry(playerNode.get("birth").get("country").asText(null));
             player.setStartYear(asInteger(playerNode.get("nba").get("start")));
             player.setPro(asInteger(playerNode.get("nba").get("pro")));
