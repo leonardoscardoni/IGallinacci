@@ -16,6 +16,4 @@ public interface PlayerRepository extends JpaRepository<Player,Integer> {
 
     Player findById(int id);
 
-    @Query(value = "SELECT DISTINCT p.idTeam FROM Player as p GROUP BY p.idTeam", nativeQuery = true)
-    List<Integer> findDistinctTeamIds();
 }

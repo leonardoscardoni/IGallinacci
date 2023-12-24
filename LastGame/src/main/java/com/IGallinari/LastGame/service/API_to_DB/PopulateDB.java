@@ -35,6 +35,8 @@ public class PopulateDB {
 
     private StatsGameRepository statsGameRepository;
 
+    private PlayerTeamRepository playerTeamRepository;
+
     @PostConstruct
     public void init() throws JsonProcessingException {
         int totCall=0;
@@ -86,7 +88,7 @@ public class PopulateDB {
         System.out.println("there were made "+call+" calls, total calls "+totCall);
         call=0;
         List<Integer> allIdTeams = teamRepository.findAllIds();
-        List<Integer> idTeamsInDB = playerRepository.findDistinctTeamIds();
+        List<Integer> idTeamsInDB = playerTeamRepository.findDistinctIdTeams();
         List<Integer> idTeamsNeed = new ArrayList<>(allIdTeams);
         idTeamsNeed.removeAll(idTeamsInDB);
         if (!idTeamsNeed.isEmpty()) {
