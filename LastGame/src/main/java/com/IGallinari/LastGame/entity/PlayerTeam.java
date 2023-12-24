@@ -16,4 +16,7 @@ public class PlayerTeam {
     @ManyToOne
     @JoinColumn(name = "idPlayer", insertable = false, updatable = false)
     private Player player;
+
+    @JoinColumn(name = "season", insertable = false, updatable = false)
+    private int season;
 }

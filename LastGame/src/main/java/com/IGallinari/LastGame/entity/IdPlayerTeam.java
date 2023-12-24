@@ -15,5 +15,8 @@ public class IdPlayerTeam implements Serializable {
 
     @Column(name = "idPlayer")
     private int playerId;
+
+    @Column(name = "season")
+    private int season;
 }
 

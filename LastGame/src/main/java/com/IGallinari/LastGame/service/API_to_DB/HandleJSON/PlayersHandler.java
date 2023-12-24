@@ -34,6 +34,7 @@ public class PlayersHandler implements Handler{
             IdPlayerTeam idPlayerTeam = new IdPlayerTeam();
             idPlayerTeam.setPlayerId(playerNode.get("id").asInt());
             idPlayerTeam.setTeamId(paramsNode.get("team").asInt());
+            idPlayerTeam.setSeason(paramsNode.get("season").asInt());
             playerTeam.setIdPlayerTeam(idPlayerTeam);
             playerTeamRepository.save(playerTeam);
             player.setId(playerNode.get("id").asInt());
