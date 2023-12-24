@@ -30,13 +30,6 @@ public class PlayersHandler implements Handler{
 
         for (JsonNode playerNode : playersNode) {
             Player player = new Player();
-            PlayerTeam playerTeam = new PlayerTeam();
-            IdPlayerTeam idPlayerTeam = new IdPlayerTeam();
-            idPlayerTeam.setPlayerId(playerNode.get("id").asInt());
-            idPlayerTeam.setTeamId(paramsNode.get("team").asInt());
-            idPlayerTeam.setSeason(paramsNode.get("season").asInt());
-            playerTeam.setIdPlayerTeam(idPlayerTeam);
-            playerTeamRepository.save(playerTeam);
             player.setId(playerNode.get("id").asInt());
             player.setFirstname(asString(playerNode.get("firstname")));
             player.setLastname(asString(playerNode.get("lastname")));
@@ -53,6 +46,13 @@ public class PlayersHandler implements Handler{
             player.setActive(playerNode.get("leagues").get("standard").get("active").asBoolean());
             player.setPos(asString(playerNode.get("leagues").get("standard").get("pos")));
             playerRepository.save(player);
+            PlayerTeam playerTeam = new PlayerTeam();
+            IdPlayerTeam idPlayerTeam = new IdPlayerTeam();
+            idPlayerTeam.setPlayerId(playerNode.get("id").asInt());
+            idPlayerTeam.setTeamId(paramsNode.get("team").asInt());
+            idPlayerTeam.setSeason(paramsNode.get("season").asInt());
+            playerTeam.setIdPlayerTeam(idPlayerTeam);
+            playerTeamRepository.save(playerTeam);
             System.out.println("Object Player player saved in the DB");
         }
     }
