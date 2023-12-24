@@ -268,8 +268,7 @@ ALTER TABLE `team`
 -- Indici per le tabelle `player`
 --
 ALTER TABLE `player`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_player_team` (`idTeam`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indici per le tabelle `playerteam`
