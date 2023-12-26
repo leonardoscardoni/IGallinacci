@@ -10,18 +10,33 @@ public interface Handler {
 
     default Integer asInteger(JsonNode node) {
         if (node != null && !node.isNull()) {
-            return node.asInt();
-        } else {
-            return null;
+            if (node.isNumber()) {
+                return node.asInt();
+            } else if (node.isTextual()) {
+                try {
+                    return Integer.parseInt(node.textValue());
+                } catch (NumberFormatException e) {
+                    return null;
+                }
+            }
         }
+        return null;
     }
+
 
     default Float asFloat(JsonNode node) {
         if (node != null && !node.isNull()) {
-            return node.floatValue();
-        } else {
-            return null;
+            if (node.isNumber()) {
+                return node.floatValue();
+            } else if (node.isTextual()) {
+                try {
+                    return Float.parseFloat(node.textValue());
+                } catch (NumberFormatException e) {
+                    return null;
+                }
+            }
         }
+        return null;
     }
 
     default LocalDate asLocalDate(JsonNode node) {
