@@ -49,7 +49,7 @@ public interface Handler {
 
     default String  asString(JsonNode node) {
         if (node != null && !node.isNull()) {
-            return node.asText();
+            return node.textValue();
         } else {
             return null;
         }

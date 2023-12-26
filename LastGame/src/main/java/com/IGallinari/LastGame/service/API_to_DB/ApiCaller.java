@@ -12,7 +12,7 @@ import java.util.Map;
 @Service
 public class ApiCaller {
     private static final String RAPIDAPI_HOST = "v2.nba.api-sports.io";
-    private static final String RAPIDAPI_KEY = "694a7898066848fa96b702072f061d8b";
+    private static final String RAPIDAPI_KEY = "-------";
     private static final String baseURL = "https://v2.nba.api-sports.io/";
 
     private static final HttpClient httpClient = HttpClient.newHttpClient();
