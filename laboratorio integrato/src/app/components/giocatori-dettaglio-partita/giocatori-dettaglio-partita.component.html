@@ -1,11 +1,21 @@
 <div class="container grid grid-cols-12 gap-4 mb-20">
     <ng-container *ngFor="let squadra of a; index as i">
         
-        <div class="col-span-3" [style.grid-column-start]="5 + i * 3">
+        <div
+            [ngClass]="{
+                'col-start-3': i === 0,
+                'col-end-7': i === 0,
+                'col-start-7': i === 1,
+                'col-end-11': i === 1,
+                'md:col-start-5': i === 0,
+                'md:col-end-8': i === 0,
+                'md:col-start-8': i === 1,
+                'md:col-end-11': i === 1,
+              }">
             <hr class="w-full border-bianco">
             <div class="py-2 flex justify-center">
-                <img src="{{squadra.logo}}" class="w-[2.5rem] h-[2.5rem] inline" alt="">
-                <p class="text-lg inline ml-3 self-center">{{squadra.nome.toUpperCase()}}</p>
+                <img src="{{squadra.logo}}" class="w-[2rem] h-[2rem] md:w-[2.5rem] md:h-[2.5rem] inline" alt="">
+                <p class="text-base md:text-lg inline ml-3 self-center">{{squadra.nome.toUpperCase()}}</p>
             </div>
             <hr class="w-full border-bianco">
 
@@ -14,7 +24,7 @@
                     <div>
                         <p class="font-extralight text-xs">{{giocatore.ruolo.toUpperCase()}}</p>
                         <p class="font-light text-base inline">{{giocatore.nome}}</p>
-                        <p class="ml-2 font-thin text-xs inline font-italic">[{{giocatore.numeroMaglia}}]</p>
+                        <p class="hidden md:inline ml-2 font-thin text-xs font-italic">[{{giocatore.numeroMaglia}}]</p>
                     </div>
                     <div class="self-center">
                         <img src="/assets/arrow-right-svgrepo-com.svg" class="w-4" alt="">
