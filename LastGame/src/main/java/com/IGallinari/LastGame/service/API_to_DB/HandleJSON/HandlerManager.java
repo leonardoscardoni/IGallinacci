@@ -28,7 +28,7 @@ public class HandlerManager {
             case "players/":
                 System.out.println("Json redirected to the PlayersHandeler");
                 return playersHandler;
-            case "players/statistics/":
+            case "players/statistics":
                 System.out.println("Json redirected to the PlayersStatiscticHandeler");
                 return playersStatisticsHandler;
             case "teams/":
