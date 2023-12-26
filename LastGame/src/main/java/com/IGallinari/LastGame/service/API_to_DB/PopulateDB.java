@@ -88,12 +88,13 @@ public class PopulateDB {
         System.out.println("there were made "+call+" calls, total calls "+totCall);
         call=0;
         List<Integer> allIdTeams = teamRepository.findAllIds();
-        List<Integer> idTeamsInDB = playerTeamRepository.findDistinctIdTeams();
+        List<Integer> idTeamsInDB = new ArrayList<>();
         List<Integer> idTeamsNeed = new ArrayList<>(allIdTeams);
-        idTeamsNeed.removeAll(idTeamsInDB);
         if (!idTeamsNeed.isEmpty()) {
             System.out.println("Preparing the call/s for the /players endpoint");
             for (Integer season : seasons) {
+                idTeamsInDB = playerTeamRepository.findDistinctIdTeams(season);
+                idTeamsNeed.removeAll(idTeamsInDB);
                 for (Integer idTeam : idTeamsNeed) {
                     params = Map.ofEntries(
                             Map.entry("season", season.toString()),
