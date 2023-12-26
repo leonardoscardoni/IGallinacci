@@ -95,7 +95,7 @@ public class PopulateDB {
             for (Integer season : seasons) {
                 idTeamsInDB = playerTeamRepository.findDistinctIdTeams(season);
                 if(season == 2022) {
-                    List<Integer> idTeamsEmpty = new ArrayList<>(List.of(3,12,13,18));
+                    List<Integer> idTeamsEmpty = new ArrayList<>(Arrays.asList(3, 12, 13, 18, 32, 33, 34,35,36,37,39,42,83,84,85,86,87,88,89,91,92,93,99,104,105,166,168,169));
                     idTeamsNeed.removeAll(idTeamsEmpty);
                 }
                 idTeamsNeed.removeAll(idTeamsInDB);
