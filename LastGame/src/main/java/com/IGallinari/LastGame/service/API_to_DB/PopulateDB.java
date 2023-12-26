@@ -96,6 +96,7 @@ public class PopulateDB {
                 idTeamsInDB = playerTeamRepository.findDistinctIdTeams(season);
                 idTeamsNeed.removeAll(idTeamsInDB);
                 for (Integer idTeam : idTeamsNeed) {
+                    System.out.println("idTeam: "+idTeam);
                     params = Map.ofEntries(
                             Map.entry("season", season.toString()),
                             Map.entry("team", idTeam.toString()));

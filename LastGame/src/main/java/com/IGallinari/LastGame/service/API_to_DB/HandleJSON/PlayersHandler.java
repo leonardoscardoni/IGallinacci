@@ -23,7 +23,6 @@ public class PlayersHandler implements Handler{
     private PlayerTeamRepository playerTeamRepository;
 
     @Override
-    @Transactional
     public void handle(JsonNode jsonNode) {
         JsonNode paramsNode = jsonNode.get("parameters");
         ArrayNode playersNode = (ArrayNode) jsonNode.get("response");
