@@ -94,6 +94,9 @@ public class PopulateDB {
             System.out.println("Preparing the call/s for the /players endpoint");
             for (Integer season : seasons) {
                 idTeamsInDB = playerTeamRepository.findDistinctIdTeams(season);
+                idTeamsInDB.add(3);
+                idTeamsNeed.add(12);
+                idTeamsNeed.add(13);
                 idTeamsNeed.removeAll(idTeamsInDB);
                 for (Integer idTeam : idTeamsNeed) {
                     System.out.println("idTeam: "+idTeam);
