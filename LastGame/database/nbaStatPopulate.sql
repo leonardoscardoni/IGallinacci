@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Dic 27, 2023 alle 10:20
+-- Creato il: Dic 27, 2023 alle 11:14
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.4
 
@@ -79,6 +79,72 @@ INSERT INTO `arena` (`name`, `city`, `state`, `country`) VALUES
 ('United Center', 'Chicago', 'IL', 'USA'),
 ('Vivint Arena', 'Salt Lake City', 'UT', NULL),
 ('Wells Fargo Center', 'Philadelphia', 'PA', 'USA');
+
+--
+-- Dump dei dati per la tabella `team`
+--
+
+INSERT INTO `team` (`id`, `name`, `nickname`, `code`, `city`, `logo`, `allstar`, `conference`, `division`) VALUES
+(1, 'Atlanta Hawks', 'Hawks', 'ATL', 'Atlanta', 'https://upload.wikimedia.org/wikipedia/fr/e/ee/Hawks_2016.png', 0, 'East', 'Southeast'),
+(2, 'Boston Celtics', 'Celtics', 'BOS', 'Boston', 'https://upload.wikimedia.org/wikipedia/fr/thumb/6/65/Celtics_de_Boston_logo.svg/1024px-Celtics_de_Boston_logo.svg.png', 0, 'East', 'Atlantic'),
+(3, 'Brisbane Bullets', 'Bullets', 'BNE', 'Brisbane', 'https://upload.wikimedia.org/wikipedia/fr/thumb/1/1b/Brisbane_Bullets_1992.png/130px-Brisbane_Bullets_1992.png', 0, 'Intl', NULL),
+(4, 'Brooklyn Nets', 'Nets', 'BKN', 'Brooklyn', 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Brooklyn_Nets_newlogo.svg/130px-Brooklyn_Nets_newlogo.svg.png', 0, 'East', 'Atlantic'),
+(5, 'Charlotte Hornets', 'Hornets', 'CHA', 'Charlotte', 'https://upload.wikimedia.org/wikipedia/fr/thumb/f/f3/Hornets_de_Charlotte_logo.svg/1200px-Hornets_de_Charlotte_logo.svg.png', 0, 'East', 'Southeast'),
+(6, 'Chicago Bulls', 'Bulls', 'CHI', 'Chicago', 'https://upload.wikimedia.org/wikipedia/fr/thumb/d/d1/Bulls_de_Chicago_logo.svg/1200px-Bulls_de_Chicago_logo.svg.png', 0, 'East', 'Central'),
+(7, 'Cleveland Cavaliers', 'Cavaliers', 'CLE', 'Cleveland', 'https://upload.wikimedia.org/wikipedia/fr/thumb/0/06/Cavs_de_Cleveland_logo_2017.png/150px-Cavs_de_Cleveland_logo_2017.png', 0, 'East', 'Central'),
+(8, 'Dallas Mavericks', 'Mavericks', 'DAL', 'Dallas', 'https://upload.wikimedia.org/wikipedia/fr/thumb/b/b8/Mavericks_de_Dallas_logo.svg/150px-Mavericks_de_Dallas_logo.svg.png', 0, 'West', 'Southwest'),
+(9, 'Denver Nuggets', 'Nuggets', 'DEN', 'Denver', 'https://upload.wikimedia.org/wikipedia/fr/thumb/3/35/Nuggets_de_Denver_2018.png/180px-Nuggets_de_Denver_2018.png', 0, 'West', 'Northwest'),
+(10, 'Detroit Pistons', 'Pistons', 'DET', 'Detroit', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Logo_of_the_Detroit_Pistons.png/300px-Logo_of_the_Detroit_Pistons.png', 0, 'East', 'Central'),
+(11, 'Golden State Warriors', 'Warriors', 'GSW', 'Golden State', 'https://upload.wikimedia.org/wikipedia/fr/thumb/d/de/Warriors_de_Golden_State_logo.svg/1200px-Warriors_de_Golden_State_logo.svg.png', 0, 'West', 'Pacific'),
+(12, 'Guangzhou Long-Lions', 'Long-Lions', 'GUA', 'Guangzhou', 'https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Guangzhou_Long-Lions_logo.png/220px-Guangzhou_Long-Lions_logo.png', 0, 'Intl', NULL),
+(13, 'Haifa Maccabi Haifa', 'Maccabi Haifa', 'MAC', 'Haifa', 'https://upload.wikimedia.org/wikipedia/en/4/4c/Maccabi_Haifa_B.C_logo.png', 0, 'Intl', NULL),
+(14, 'Houston Rockets', 'Rockets', 'HOU', 'Houston', 'https://upload.wikimedia.org/wikipedia/fr/thumb/d/de/Houston_Rockets_logo_2003.png/330px-Houston_Rockets_logo_2003.png', 0, 'West', 'Southwest'),
+(15, 'Indiana Pacers', 'Pacers', 'IND', 'Indiana', 'https://upload.wikimedia.org/wikipedia/fr/thumb/c/cf/Pacers_de_l%27Indiana_logo.svg/1180px-Pacers_de_l%27Indiana_logo.svg.png', 0, 'East', 'Central'),
+(16, 'LA Clippers', 'Clippers', 'LAC', 'LA', 'https://upload.wikimedia.org/wikipedia/fr/d/d6/Los_Angeles_Clippers_logo_2010.png', 0, 'West', 'Pacific'),
+(17, 'Los Angeles Lakers', 'Lakers', 'LAL', 'Los Angeles', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Los_Angeles_Lakers_logo.svg/220px-Los_Angeles_Lakers_logo.svg.png', 0, 'West', 'Pacific'),
+(18, 'Melbourne United', 'United', 'MEL', 'Melbourne', 'https://upload.wikimedia.org/wikipedia/en/thumb/1/1b/Melbourne_United_logo.svg/220px-Melbourne_United_logo.svg.png', 0, 'Intl', NULL),
+(19, 'Memphis Grizzlies', 'Grizzlies', 'MEM', 'Memphis', 'https://upload.wikimedia.org/wikipedia/en/thumb/f/f1/Memphis_Grizzlies.svg/1200px-Memphis_Grizzlies.svg.png', 0, 'West', 'Southwest'),
+(20, 'Miami Heat', 'Heat', 'MIA', 'Miami', 'https://upload.wikimedia.org/wikipedia/fr/thumb/1/1c/Miami_Heat_-_Logo.svg/1200px-Miami_Heat_-_Logo.svg.png', 0, 'East', 'Southeast'),
+(21, 'Milwaukee Bucks', 'Bucks', 'MIL', 'Milwaukee', 'https://upload.wikimedia.org/wikipedia/fr/3/34/Bucks2015.png', 0, 'East', 'Central'),
+(22, 'Minnesota Timberwolves', 'Timberwolves', 'MIN', 'Minnesota', 'https://upload.wikimedia.org/wikipedia/fr/thumb/d/d9/Timberwolves_du_Minnesota_logo_2017.png/200px-Timberwolves_du_Minnesota_logo_2017.png', 0, 'West', 'Northwest'),
+(23, 'New Orleans Pelicans', 'Pelicans', 'NOP', 'New Orleans', 'https://upload.wikimedia.org/wikipedia/fr/thumb/2/21/New_Orleans_Pelicans.png/200px-New_Orleans_Pelicans.png', 0, 'West', 'Southwest'),
+(24, 'New York Knicks', 'Knicks', 'NYK', 'New York', 'https://upload.wikimedia.org/wikipedia/fr/3/34/Knicks_de_NY.png', 0, 'East', 'Atlantic'),
+(25, 'Oklahoma City Thunder', 'Thunder', 'OKC', 'Oklahoma City', 'https://upload.wikimedia.org/wikipedia/fr/thumb/4/4f/Thunder_d%27Oklahoma_City_logo.svg/1200px-Thunder_d%27Oklahoma_City_logo.svg.png', 0, 'West', 'Northwest'),
+(26, 'Orlando Magic', 'Magic', 'ORL', 'Orlando', 'https://upload.wikimedia.org/wikipedia/fr/b/bd/Orlando_Magic_logo_2010.png', 0, 'East', 'Southeast'),
+(27, 'Philadelphia 76ers', '76ers', 'PHI', 'Philadelphia', 'https://upload.wikimedia.org/wikipedia/fr/4/48/76ers_2016.png', 0, 'East', 'Atlantic'),
+(28, 'Phoenix Suns', 'Suns', 'PHX', 'Phoenix', 'https://upload.wikimedia.org/wikipedia/fr/5/56/Phoenix_Suns_2013.png', 0, 'West', 'Pacific'),
+(29, 'Portland Trail Blazers', 'Trail Blazers', 'POR', 'Portland', 'https://upload.wikimedia.org/wikipedia/en/thumb/2/21/Portland_Trail_Blazers_logo.svg/1200px-Portland_Trail_Blazers_logo.svg.png', 0, 'West', 'Northwest'),
+(30, 'Sacramento Kings', 'Kings', 'SAC', 'Sacramento', 'https://upload.wikimedia.org/wikipedia/fr/thumb/9/95/Kings_de_Sacramento_logo.svg/1200px-Kings_de_Sacramento_logo.svg.png', 0, 'West', 'Pacific'),
+(31, 'San Antonio Spurs', 'Spurs', 'SAS', 'San Antonio', 'https://upload.wikimedia.org/wikipedia/fr/0/0e/San_Antonio_Spurs_2018.png', 0, 'West', 'Southwest'),
+(32, 'Shanghai Sharks', 'Sharks', 'SDS', 'Shanghai', 'https://upload.wikimedia.org/wikipedia/fr/thumb/f/f3/Shangaisharks.jpg/130px-Shangaisharks.jpg', 0, 'Intl', NULL),
+(33, 'Sydney Kings', 'Kings', 'SYD', 'Sydney', 'https://upload.wikimedia.org/wikipedia/fr/thumb/c/c4/Sydney_Kings.jpg/220px-Sydney_Kings.jpg', 0, 'Intl', NULL),
+(34, 'Team Team Durant', 'Team Durant', 'DRT', 'Team', NULL, 1, 'East', 'East'),
+(35, 'Team LeBron', 'Team LeBron', 'LBN', 'Team', NULL, 1, 'West', 'West'),
+(36, 'Away Team Wilbon', 'Team Wilbon', 'WLB', 'Away', NULL, 1, 'East', 'East'),
+(37, 'Home Team Stephen A', 'Team Stephen A', 'SAS', 'Home', NULL, 1, 'East', 'East'),
+(38, 'Toronto Raptors', 'Raptors', 'TOR', 'Toronto', 'https://upload.wikimedia.org/wikipedia/fr/8/89/Raptors2015.png', 0, 'East', 'Atlantic'),
+(39, 'USA USA', 'USA', 'USA', 'USA', NULL, 1, 'East', 'East'),
+(40, 'Utah Jazz', 'Jazz', 'UTA', 'Utah', 'https://upload.wikimedia.org/wikipedia/fr/3/3b/Jazz_de_l%27Utah_logo.png', 0, 'West', 'Northwest'),
+(41, 'Washington Wizards', 'Wizards', 'WAS', 'Washington', 'https://upload.wikimedia.org/wikipedia/fr/archive/d/d6/20161212034849%21Wizards2015.png', 0, 'East', 'Southeast'),
+(42, 'World World', 'World', 'WLD', 'World', NULL, 1, 'East', 'East'),
+(83, '', 'Paschoalotto/Bauru', 'BAU', 'Bauru', NULL, 0, 'Internatio', NULL),
+(84, '', 'Fenerbahce Sports Club', 'FEN', 'Istanbul', NULL, 0, 'Internatio', NULL),
+(85, '', 'Olimpia Milano', 'MLN', 'Milano', NULL, 0, 'Internatio', NULL),
+(86, 'Real Madrid Real Madrid', 'Real Madrid', 'RMD', 'Real Madrid', NULL, 0, 'Intl', NULL),
+(87, 'Rio de Janeiro Flamengo', 'Flamengo', 'FLA', 'Rio de Janeiro', NULL, 0, 'Intl', NULL),
+(88, 'Barcelona FC Barcelona', 'FC Barcelona', 'FCB', 'Barcelona', NULL, 0, 'Intl', NULL),
+(89, 'Buenos Aires San Lorenzo', 'San Lorenzo', 'SLA', 'Buenos Aires', NULL, 0, 'Intl', NULL),
+(90, 'Adelaide 36ers', '36ers', 'ADL', 'Adelaide', NULL, 0, 'Intl', NULL),
+(91, 'Beijing Ducks', 'Ducks', 'BJD', 'Beijing', NULL, 0, 'Intl', NULL),
+(92, 'New Zealand Breakers', 'Breakers', 'NZB', 'New Zealand', NULL, 0, 'Intl', NULL),
+(93, 'Perth Wildcats', 'Wildcats', 'PER', 'Perth', NULL, 0, 'Intl', NULL),
+(99, 'Franca Franca', 'Franca', 'FRA', 'Franca', NULL, 0, 'Intl', NULL),
+(104, 'Utah Blue', 'Jazz', 'UTB', 'Utah', NULL, 0, 'West', 'Northwest'),
+(105, 'Utah White', 'Jazz', 'UTW', 'Utah', NULL, 0, 'West', 'Northwest'),
+(165, 'Ra\'anana Maccabi Ra\'anana', 'Maccabi Ra\'anana', 'MRA', 'Ra\'anana', NULL, 0, 'Intl', NULL),
+(166, 'Cairns Taipans', 'Taipans', 'CNS', NULL, NULL, 0, 'Intl', NULL),
+(168, 'New Zealand Breakers', 'Breakers', 'BNZ', 'Auckland', NULL, 0, NULL, NULL),
+(169, 'Flamengo', 'Flamengo', '', NULL, NULL, 0, NULL, NULL);
 
 --
 -- Dump dei dati per la tabella `game`
@@ -775,7 +841,8 @@ INSERT INTO `game` (`id`, `season`, `date`, `time`, `stage`, `totPeriods`, `name
 (11667, 2022, '2023-01-13', '00:00:00', 2, 4, 'Little Caesars Arena', 22, 10),
 (11668, 2022, '2023-01-13', '00:00:00', 2, 4, 'Capital One Arena', 6, 41),
 (11669, 2022, '2023-01-13', '00:30:00', 2, 4, 'State Farm Arena', 21, 1),
-(11670, 2022, '2023-01-13', '00:30:00', 2, 4, 'TD Garden', 23, 2),
+(11670, 2022, '2023-01-13', '00:30:00', 2, 4, 'TD Garden', 23, 2);
+INSERT INTO `game` (`id`, `season`, `date`, `time`, `stage`, `totPeriods`, `nameArena`, `idVisitor`, `idHome`) VALUES
 (11671, 2022, '2023-01-13', '00:30:00', 2, 4, 'Madison Square Garden', 15, 24),
 (11672, 2022, '2023-01-13', '01:00:00', 2, 4, 'FedExForum', 31, 19),
 (11673, 2022, '2023-01-13', '03:00:00', 2, 4, 'Ball Arena', 28, 9),
@@ -1470,7 +1537,8 @@ INSERT INTO `game` (`id`, `season`, `date`, `time`, `stage`, `totPeriods`, `name
 (12620, 2023, '2023-11-04', '23:00:00', 2, 4, 'Gainbridge Fieldhouse', 7, 15),
 (12621, 2023, '2023-11-04', '23:30:00', 2, 4, 'Fiserv Forum', 24, 21),
 (12622, 2023, '2023-11-05', '00:00:00', 2, 4, 'Kaseya Center', 41, 20),
-(12623, 2023, '2023-11-05', '00:00:00', 2, 4, 'United Center', 4, 6),
+(12623, 2023, '2023-11-05', '00:00:00', 2, 4, 'United Center', 4, 6);
+INSERT INTO `game` (`id`, `season`, `date`, `time`, `stage`, `totPeriods`, `nameArena`, `idVisitor`, `idHome`) VALUES
 (12624, 2023, '2023-11-05', '00:00:00', 2, 4, 'Paycom Center', 11, 25),
 (12625, 2023, '2023-11-05', '02:00:00', 2, 4, 'Ball Arena', 8, 9),
 (12626, 2023, '2023-11-05', '02:00:00', 2, 4, 'Moda Center', 19, 29),
@@ -2160,7 +2228,8 @@ INSERT INTO `game` (`id`, `season`, `date`, `time`, `stage`, `totPeriods`, `name
 (13310, 2023, '2024-02-14', '00:00:00', 2, 4, 'Rocket Mortgage FieldHouse', 27, 7),
 (13311, 2023, '2024-02-14', '00:30:00', 2, 4, 'State Farm Arena', 6, 1),
 (13312, 2023, '2024-02-14', '00:30:00', 2, 4, 'Scotiabank Arena', 31, 38),
-(13313, 2023, '2024-02-14', '01:00:00', 2, 4, 'Toyota Center (Houston)', 24, 14),
+(13313, 2023, '2024-02-14', '01:00:00', 2, 4, 'Toyota Center (Houston)', 24, 14);
+INSERT INTO `game` (`id`, `season`, `date`, `time`, `stage`, `totPeriods`, `nameArena`, `idVisitor`, `idHome`) VALUES
 (13314, 2023, '2024-02-14', '01:00:00', 2, 4, 'FedExForum', 23, 19),
 (13315, 2023, '2024-02-14', '01:00:00', 2, 4, 'Fiserv Forum', 9, 21),
 (13316, 2023, '2024-02-14', '01:30:00', 2, 4, 'American Airlines Center', 41, 8),
@@ -3081,7 +3150,8 @@ INSERT INTO `player` (`id`, `firstname`, `lastname`, `dateOfBirth`, `country`, `
 (2788, 'Dalano', 'Banton', '1999-11-07', 'Canada', 2021, 0, 2.01, 92.5, 'Nebraska', 'Nebraska/Canada', 45, 1, 'F'),
 (2789, 'Scottie', 'Barnes', '2001-08-01', 'USA', 2021, 0, 2.01, 102.1, 'Florida State', 'Florida State/USA', 4, 1, 'F'),
 (2790, 'Charles', 'Bassey', '2000-10-28', 'Nigeria', 2021, 0, 2.06, 104.3, 'Western Kentucky', 'Western Kentucky/Nigeria', 23, 1, 'C-F'),
-(2792, 'Brandon', 'Boston Jr.', '2001-11-28', 'USA', 2021, 0, 1.98, 85.3, 'Kentucky', 'Kentucky/USA', 4, 1, 'G'),
+(2792, 'Brandon', 'Boston Jr.', '2001-11-28', 'USA', 2021, 0, 1.98, 85.3, 'Kentucky', 'Kentucky/USA', 4, 1, 'G');
+INSERT INTO `player` (`id`, `firstname`, `lastname`, `dateOfBirth`, `country`, `startYear`, `pro`, `height`, `weight`, `college`, `affiliation`, `jersey`, `isActive`, `pos`) VALUES
 (2793, 'James', 'Bouknight', '2000-09-18', 'USA', 2021, 0, 1.93, 86.2, 'Connecticut', 'Connecticut/USA', 2, 1, 'G'),
 (2795, 'Greg', 'Brown III', '2001-09-01', 'USA', 2021, 0, 2.01, 93.4, 'Texas', 'Texas/USA', 4, 1, 'F'),
 (2796, 'Jared', 'Butler', '2000-08-25', 'USA', 2021, 0, 1.9, 87.5, 'Baylor', 'Baylor/USA', 13, 1, 'G'),
@@ -5041,7 +5111,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (54, 28, 11251, 0, 'C', 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1),
 (54, 28, 11289, 5, 'C', 21, 2, 6, 33.3, 1, 2, 50, 0, 0, 0, 6, 4, 10, 3, 5, 0, 4, 1, 15),
 (54, 28, 11308, 2, 'C', 16, 1, 3, 33.3, 0, 2, 0, 0, 0, 0, 0, 3, 3, 1, 0, 1, 2, 2, 1),
-(54, 28, 11332, 5, 'C', 18, 2, 3, 66.7, 1, 2, 50, 0, 0, 0, 0, 5, 5, 1, 3, 0, 3, 1, -7),
+(54, 28, 11332, 5, 'C', 18, 2, 3, 66.7, 1, 2, 50, 0, 0, 0, 0, 5, 5, 1, 3, 0, 3, 1, -7);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (54, 28, 11338, 0, 'C', 8, 0, 1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 1, 2, 0, 1, -2),
 (54, 28, 11356, 4, 'C', 9, 2, 3, 66.7, 0, 0, 0, 0, 0, 0, 1, 2, 3, 2, 1, 0, 2, 2, 0),
 (54, 28, 11370, 0, 'C', 8, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 1, 0, 1, 0, 7),
@@ -5598,7 +5669,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (89, 9, 11369, 5, 'SG', 25, 2, 7, 28.6, 0, 0, 0, 1, 3, 33.3, 0, 1, 1, 2, 1, 2, 1, 1, 8),
 (89, 9, 11376, 9, 'SG', 30, 4, 9, 44.4, 0, 0, 0, 1, 5, 20, 1, 0, 1, 0, 1, 1, 1, 0, -1),
 (89, 9, 11393, 6, 'SG', 31, 2, 8, 25, 2, 2, 100, 0, 4, 0, 1, 0, 1, 1, 1, 1, 2, 0, 2),
-(89, 9, 11411, 12, 'SG', 30, 5, 9, 55.6, 0, 0, 0, 2, 5, 40, 0, 2, 2, 2, 4, 2, 2, 1, 1),
+(89, 9, 11411, 12, 'SG', 30, 5, 9, 55.6, 0, 0, 0, 2, 5, 40, 0, 2, 2, 2, 4, 2, 2, 1, 1);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (89, 9, 11425, 7, 'SG', 28, 2, 6, 33.3, 1, 1, 100, 2, 4, 50, 0, 3, 3, 2, 1, 0, 0, 0, -20),
 (89, 9, 11442, 15, 'SG', 34, 6, 9, 66.7, 0, 0, 0, 3, 6, 50, 0, 6, 6, 3, 3, 1, 0, 0, 9),
 (89, 9, 11471, 11, 'SG', 31, 4, 11, 36.4, 3, 4, 75, 0, 2, 0, 1, 4, 5, 3, 1, 2, 0, 1, 23),
@@ -6151,7 +6223,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (131, 20, 11468, 7, 'C', 15, 2, 5, 40, 1, 2, 50, 2, 4, 50, 0, 6, 6, 0, 2, 0, 0, 1, 14),
 (131, 20, 11488, 3, 'C', 8, 1, 3, 33.3, 1, 2, 50, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, -19),
 (131, 20, 11511, 3, 'C', 10, 1, 2, 50, 1, 2, 50, 0, 1, 0, 1, 3, 4, 0, 2, 1, 1, 0, 4),
-(131, 20, 11623, 2, 'C', 7, 1, 1, 100, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 3, 0, 1, 1, -3),
+(131, 20, 11623, 2, 'C', 7, 1, 1, 100, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 3, 0, 1, 1, -3);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (131, 20, 11638, 2, 'C', 10, 1, 2, 50, 0, 0, 0, 0, 0, 0, 2, 2, 4, 0, 2, 0, 1, 0, -9),
 (131, 20, 11660, 2, 'C', 5, 0, 0, 0, 2, 2, 100, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, -3),
 (131, 20, 11846, 0, 'C', 12, 0, 4, 0, 0, 0, 0, 0, 1, 0, 0, 2, 2, 1, 3, 1, 0, 1, -8),
@@ -6710,7 +6783,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (175, 8, 11799, 11, 'PF', 41, 4, 9, 44.4, 0, 0, 0, 3, 7, 42.9, 3, 6, 9, 4, 1, 2, 2, 1, 1),
 (175, 8, 11810, 6, 'PF', 35, 2, 5, 40, 2, 2, 100, 0, 1, 0, 2, 5, 7, 2, 2, 0, 0, 0, 7),
 (175, 8, 11831, 13, 'PF', 34, 5, 8, 62.5, 0, 0, 0, 3, 5, 60, 3, 4, 7, 4, 5, 1, 0, 1, -5),
-(175, 8, 11849, 18, 'PF', 34, 5, 11, 45.5, 5, 6, 83.3, 3, 7, 42.9, 4, 5, 9, 2, 1, 1, 2, 0, 10),
+(175, 8, 11849, 18, 'PF', 34, 5, 11, 45.5, 5, 6, 83.3, 3, 7, 42.9, 4, 5, 9, 2, 1, 1, 2, 0, 10);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (176, 22, 10994, 15, 'SG', 18, 4, 6, 66.7, 5, 6, 83.3, 2, 3, 66.7, 0, 2, 2, 0, 0, 0, 1, 0, 8),
 (176, 22, 11007, 7, 'SG', 13, 3, 7, 42.9, 0, 1, 0, 1, 3, 33.3, 0, 2, 2, 0, 0, 1, 0, 0, 11),
 (176, 22, 11021, 15, 'SG', 17, 5, 8, 62.5, 0, 0, 0, 5, 6, 83.3, 0, 2, 2, 0, 2, 0, 2, 0, 8),
@@ -7272,7 +7346,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (206, 11, 12450, 6, 'F', 8, 2, 4, 50, 0, 0, 0, 2, 4, 50, 0, 0, 0, 0, 1, 0, 0, 0, -5),
 (206, 11, 12451, 15, 'F', 13, 6, 9, 66.7, 0, 0, 0, 3, 6, 50, 0, 1, 1, 2, 3, 0, 1, 0, 5),
 (206, 11, 12452, 2, 'F', 11, 1, 5, 20, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 2, 0, 1, 0, -10),
-(206, 11, 12453, 0, 'F', 2, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, -6),
+(206, 11, 12453, 0, 'F', 2, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, -6);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (207, 9, 10990, 11, 'PF', 17, 4, 7, 57.1, 2, 2, 100, 1, 4, 25, 0, 3, 3, 3, 2, 0, 1, 2, -9),
 (207, 9, 11010, 7, 'PF', 18, 3, 6, 50, 0, 0, 0, 1, 3, 33.3, 0, 1, 1, 2, 1, 1, 0, 0, -6),
 (207, 9, 11025, 8, 'PF', 23, 3, 7, 42.9, 2, 2, 100, 0, 2, 0, 0, 0, 0, 1, 2, 0, 1, 1, -3),
@@ -7834,7 +7909,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (230, 38, 11482, 8, 'PF', 41, 3, 5, 60, 1, 2, 50, 1, 3, 33.3, 0, 6, 6, 1, 1, 0, 0, 0, -1),
 (230, 38, 11497, 3, 'PF', 23, 1, 4, 25, 0, 0, 0, 1, 3, 33.3, 2, 2, 4, 0, 3, 0, 1, 1, -14),
 (230, 38, 11502, 7, 'PF', 14, 3, 4, 75, 0, 0, 0, 1, 2, 50, 0, 1, 1, 0, 1, 1, 1, 0, -3),
-(230, 38, 11520, 4, 'PF', 28, 2, 4, 50, 0, 0, 0, 0, 2, 0, 3, 2, 5, 0, 2, 0, 0, 0, -2),
+(230, 38, 11520, 4, 'PF', 28, 2, 4, 50, 0, 0, 0, 0, 2, 0, 3, 2, 5, 0, 2, 0, 0, 0, -2);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (230, 38, 11533, 3, 'PF', 24, 1, 3, 33.3, 0, 0, 0, 1, 2, 50, 2, 1, 3, 1, 1, 0, 1, 0, 17),
 (230, 38, 11558, 0, 'PF', 9, 0, 5, 0, 0, 0, 0, 0, 4, 0, 0, 1, 1, 1, 0, 0, 0, 0, -1),
 (230, 38, 11575, 0, 'PF', 11, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 2, 2, 0, 0, 1, 0, 1, -11),
@@ -8399,7 +8475,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (260, 23, 12196, 31, 'SF', 37, 13, 22, 59.1, 5, 6, 83.3, 0, 1, 0, 0, 11, 11, 10, 4, 0, 1, 0, 18),
 (260, 23, 12211, 36, 'SF', 39, 13, 23, 56.5, 10, 11, 90.9, 0, 0, 0, 0, 4, 4, 8, 1, 0, 1, 0, 1),
 (260, 23, 12234, 22, 'SF', 37, 7, 15, 46.7, 7, 8, 87.5, 1, 2, 50, 2, 5, 7, 6, 2, 2, 7, 1, -18),
-(260, 23, 12243, 24, 'SF', 46, 7, 18, 38.9, 9, 12, 75, 1, 4, 25, 0, 6, 6, 13, 3, 2, 4, 1, 22),
+(260, 23, 12243, 24, 'SF', 46, 7, 18, 38.9, 9, 12, 75, 1, 4, 25, 0, 6, 6, 13, 3, 2, 4, 1, 22);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (260, 23, 12258, 18, 'SF', 40, 6, 15, 40, 6, 6, 100, 0, 3, 0, 1, 6, 7, 7, 4, 1, 5, 0, -2),
 (260, 23, 12274, 42, 'SF', 42, 16, 28, 57.1, 9, 9, 100, 1, 3, 33.3, 3, 9, 12, 7, 2, 2, 4, 1, 7),
 (260, 23, 12370, 30, 'SF', 38, 10, 19, 52.6, 9, 11, 81.8, 1, 2, 50, 2, 4, 6, 7, 3, 0, 4, 1, -13),
@@ -8960,7 +9037,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (287, 10, 12191, 13, 'PG', 33, 5, 10, 50, 0, 0, 0, 3, 6, 50, 1, 1, 2, 5, 0, 0, 2, 0, 9),
 (287, 10, 12204, 17, 'PG', 25, 7, 11, 63.6, 0, 0, 0, 3, 6, 50, 1, 3, 4, 5, 1, 1, 2, 1, -4),
 (287, 10, 12218, 8, 'PG', 21, 2, 4, 50, 2, 3, 66.7, 2, 4, 50, 0, 2, 2, 5, 2, 0, 0, 0, -19),
-(287, 10, 12226, 6, 'PG', 28, 2, 7, 28.6, 0, 0, 0, 2, 6, 33.3, 0, 0, 0, 1, 1, 1, 0, 0, -18),
+(287, 10, 12226, 6, 'PG', 28, 2, 7, 28.6, 0, 0, 0, 2, 6, 33.3, 0, 0, 0, 1, 1, 1, 0, 0, -18);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (287, 10, 12238, 12, 'PG', 30, 4, 7, 57.1, 0, 0, 0, 4, 5, 80, 1, 2, 3, 4, 0, 1, 0, 0, -11),
 (287, 10, 12252, 18, 'PG', 33, 7, 14, 50, 0, 0, 0, 4, 9, 44.4, 1, 2, 3, 5, 5, 2, 1, 0, 14),
 (287, 10, 12272, 5, 'PG', 37, 2, 10, 20, 0, 1, 0, 1, 7, 14.3, 2, 2, 4, 9, 1, 0, 2, 0, -14),
@@ -9522,7 +9600,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (326, 20, 12475, 3, 'PF', 14, 1, 4, 25, 0, 0, 0, 1, 4, 25, 0, 2, 2, 0, 1, 1, 0, 2, -11),
 (327, 20, 10994, 4, 'PG', 16, 1, 3, 33.3, 2, 2, 100, 0, 2, 0, 0, 3, 3, 1, 1, 0, 0, 0, 0),
 (327, 20, 11003, 15, 'PG', 24, 4, 9, 44.4, 5, 7, 71.4, 2, 5, 40, 1, 3, 4, 2, 1, 2, 1, 1, 8),
-(327, 20, 11034, 5, 'PG', 25, 2, 7, 28.6, 0, 0, 0, 1, 6, 16.7, 2, 7, 9, 1, 2, 2, 2, 0, 14),
+(327, 20, 11034, 5, 'PG', 25, 2, 7, 28.6, 0, 0, 0, 1, 6, 16.7, 2, 7, 9, 1, 2, 2, 2, 0, 14);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (327, 20, 11056, 2, 'PG', 35, 1, 7, 14.3, 0, 0, 0, 0, 5, 0, 0, 5, 5, 4, 4, 1, 3, 0, -13),
 (327, 20, 11071, 17, 'PG', 33, 4, 13, 30.8, 6, 8, 75, 3, 7, 42.9, 1, 3, 4, 6, 3, 3, 0, 1, 2),
 (327, 20, 11080, 17, 'PG', 37, 5, 11, 45.5, 4, 4, 100, 3, 7, 42.9, 0, 2, 2, 6, 4, 1, 3, 0, -7),
@@ -10087,7 +10166,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (365, 4, 11233, 6, 'PG', 12, 2, 5, 40, 0, 0, 0, 2, 4, 50, 1, 0, 1, 1, 0, 0, 0, 0, -3),
 (365, 4, 11247, 2, 'PG', 13, 1, 6, 16.7, 0, 0, 0, 0, 4, 0, 1, 0, 1, 1, 0, 1, 0, 0, -17),
 (365, 4, 11259, 3, 'PG', 4, 1, 1, 100, 0, 0, 0, 1, 1, 100, 0, 2, 2, 1, 0, 0, 0, 0, 0),
-(365, 4, 11270, 2, 'PG', 4, 1, 2, 50, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2, 0, 1, 1, 0, -3),
+(365, 4, 11270, 2, 'PG', 4, 1, 2, 50, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2, 0, 1, 1, 0, -3);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (365, 4, 11292, 4, 'PG', 6, 2, 2, 100, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 6),
 (365, 4, 11305, 3, 'PG', 13, 1, 3, 33.3, 0, 0, 0, 1, 3, 33.3, 1, 0, 1, 2, 2, 0, 0, 0, 0),
 (365, 4, 11315, 0, 'PG', 6, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 1, 1, 1, 0, 0, 1, 0, -11),
@@ -10652,7 +10732,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (403, 20, 12420, 8, 'SG', 19, 4, 6, 66.7, 0, 0, 0, 0, 1, 0, 0, 2, 2, 1, 3, 2, 0, 1, 11),
 (404, 40, 10985, 0, 'C', NULL, 0, 7, 0, 0, 0, 0, 0, 3, 0, 1, 5, 6, 1, 4, 1, 1, 0, -14),
 (404, 40, 10996, 12, 'PF', 24, 3, 5, 60, 4, 4, 100, 2, 3, 66.7, 2, 2, 4, 6, 3, 2, 4, 0, 7),
-(404, 40, 11029, 10, 'PF', 23, 4, 6, 66.7, 2, 3, 66.7, 0, 2, 0, 1, 2, 3, 2, 2, 2, 1, 0, -3),
+(404, 40, 11029, 10, 'PF', 23, 4, 6, 66.7, 2, 3, 66.7, 0, 2, 0, 1, 2, 3, 2, 2, 2, 1, 0, -3);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (404, 40, 11047, 8, 'PF', 25, 4, 6, 66.7, 0, 0, 0, 0, 1, 0, 0, 5, 5, 1, 3, 1, 3, 0, -7),
 (404, 40, 11061, 8, 'PF', 15, 3, 5, 60, 0, 0, 0, 2, 3, 66.7, 0, 0, 0, 1, 5, 0, 3, 0, -8),
 (404, 40, 11074, 21, 'PF', 35, 8, 14, 57.1, 0, 0, 0, 5, 6, 83.3, 1, 2, 3, 3, 6, 4, 4, 1, 7),
@@ -11210,7 +11291,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (437, 22, 11007, 4, 'PF', 14, 1, 5, 20, 2, 2, 100, 0, 2, 0, 0, 1, 1, 2, 2, 2, 1, 0, 24),
 (437, 22, 11021, 6, 'PF', 18, 2, 4, 50, 1, 2, 50, 1, 3, 33.3, 0, 5, 5, 3, 1, 0, 1, 0, -4),
 (437, 22, 11045, 6, 'PF', 15, 2, 5, 40, 2, 2, 100, 0, 1, 0, 1, 5, 6, 2, 0, 1, 1, 0, 3),
-(437, 22, 11059, 11, 'PF', 12, 4, 5, 80, 0, 0, 0, 3, 4, 75, 0, 3, 3, 1, 3, 0, 1, 0, -8),
+(437, 22, 11059, 11, 'PF', 12, 4, 5, 80, 0, 0, 0, 3, 4, 75, 0, 3, 3, 1, 3, 0, 1, 0, -8);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (437, 22, 11074, 4, 'PF', 18, 2, 4, 50, 0, 0, 0, 0, 1, 0, 2, 4, 6, 1, 3, 0, 0, 0, 5),
 (437, 22, 11090, 11, 'PF', 23, 4, 8, 50, 0, 0, 0, 3, 5, 60, 1, 2, 3, 3, 1, 0, 1, 0, 18),
 (437, 22, 11099, 3, 'PF', 9, 1, 1, 100, 0, 0, 0, 1, 1, 100, 0, 0, 0, 0, 1, 0, 1, 0, -11),
@@ -11763,7 +11845,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (463, 30, 11596, 18, 'PF', 33, 8, 14, 57.1, 2, 2, 100, 0, 2, 0, 6, 8, 14, 4, 4, 1, 0, 0, -1),
 (463, 30, 11612, 21, 'PF', 39, 8, 13, 61.5, 5, 5, 100, 0, 1, 0, 3, 11, 14, 8, 5, 0, 2, 0, 21),
 (463, 30, 11624, 20, 'PF', 40, 7, 13, 53.8, 6, 8, 75, 0, 0, 0, 4, 10, 14, 8, 4, 2, 4, 1, -5),
-(463, 30, 11644, 25, 'PF', 36, 10, 17, 58.8, 5, 7, 71.4, 0, 2, 0, 2, 10, 12, 7, 6, 0, 4, 1, 4),
+(463, 30, 11644, 25, 'PF', 36, 10, 17, 58.8, 5, 7, 71.4, 0, 2, 0, 2, 10, 12, 7, 6, 0, 4, 1, 4);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (463, 30, 11659, 12, 'PF', 32, 5, 12, 41.7, 1, 2, 50, 1, 1, 100, 2, 8, 10, 8, 0, 0, 3, 0, 14),
 (463, 30, 11674, 25, 'PF', 38, 9, 12, 75, 7, 9, 77.8, 0, 0, 0, 2, 12, 14, 9, 3, 0, 4, 0, 13),
 (463, 30, 11689, 19, 'PF', 37, 6, 14, 42.9, 7, 10, 70, 0, 3, 0, 5, 10, 15, 16, 3, 2, 2, 2, 26),
@@ -12319,7 +12402,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (520, 27, 11275, 0, 'PF', 32, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 3, 4, 2, 4, 1, 2, 0, 11),
 (520, 27, 11286, 0, 'PF', 33, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 1, 3, 0, 2, 0, 9),
 (520, 27, 11305, 0, 'PF', 37, 0, 6, 0, 0, 0, 0, 0, 2, 0, 3, 2, 5, 3, 1, 3, 0, 0, 12),
-(520, 27, 11309, 3, 'PF', 34, 1, 4, 25, 0, 0, 0, 1, 3, 33.3, 2, 5, 7, 1, 3, 1, 1, 0, -6),
+(520, 27, 11309, 3, 'PF', 34, 1, 4, 25, 0, 0, 0, 1, 3, 33.3, 2, 5, 7, 1, 3, 1, 1, 0, -6);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (520, 27, 11322, 0, 'PF', 25, 0, 3, 0, 0, 0, 0, 0, 1, 0, 2, 3, 5, 1, 1, 0, 1, 0, 3),
 (520, 27, 11346, 0, 'PF', 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 2, 0, 0, 0, 13),
 (520, 27, 11348, 0, 'PF', 28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 3, 0, 1, 0, -7),
@@ -12875,7 +12959,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (560, 8, 11135, 11, 'C', 29, 5, 10, 50, 1, 2, 50, 0, 2, 0, 1, 6, 7, 0, 5, 0, 3, 1, -7),
 (560, 8, 11142, 5, 'C', 24, 2, 6, 33.3, 1, 1, 100, 0, 1, 0, 1, 9, 10, 0, 2, 0, 2, 0, 7),
 (560, 8, 11164, 21, 'C', 23, 10, 15, 66.7, 0, 0, 0, 1, 5, 20, 2, 8, 10, 0, 0, 0, 3, 0, -7),
-(560, 8, 11176, 13, 'C', 23, 5, 8, 62.5, 2, 2, 100, 1, 2, 50, 0, 5, 5, 1, 1, 1, 1, 1, -6),
+(560, 8, 11176, 13, 'C', 23, 5, 8, 62.5, 2, 2, 100, 1, 2, 50, 0, 5, 5, 1, 1, 1, 1, 1, -6);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (560, 8, 11204, 6, 'C', 21, 3, 9, 33.3, 0, 0, 0, 0, 1, 0, 2, 4, 6, 1, 2, 1, 4, 0, -1),
 (560, 8, 11239, 19, 'C', 25, 7, 11, 63.6, 4, 5, 80, 1, 5, 20, 0, 5, 5, 1, 6, 2, 2, 0, 14),
 (560, 8, 11256, 15, 'C', 24, 6, 8, 75, 1, 4, 25, 2, 2, 100, 0, 7, 7, 0, 2, 0, 4, 0, -4),
@@ -13443,7 +13528,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (727, 7, 12393, 14, 'C', 40, 7, 11, 63.6, 0, 0, 0, 0, 0, 0, 1, 3, 4, 0, 1, 1, 1, 0, -11),
 (727, 7, 12402, 4, 'C', 36, 2, 6, 33.3, 0, 0, 0, 0, 0, 0, 2, 2, 4, 4, 4, 0, 0, 0, -9),
 (732, 38, 10985, 5, 'PF', NULL, 1, 2, 50, 2, 2, 100, 1, 2, 50, 0, 2, 2, 1, 0, 0, 2, 1, 1),
-(732, 38, 10999, 10, 'SF', 24, 4, 8, 50, 2, 2, 100, 0, 1, 0, 0, 3, 3, 0, 3, 0, 1, 0, -27),
+(732, 38, 10999, 10, 'SF', 24, 4, 8, 50, 2, 2, 100, 0, 1, 0, 0, 3, 3, 0, 3, 0, 1, 0, -27);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (732, 38, 11011, 13, 'SF', 23, 4, 9, 44.4, 5, 5, 100, 0, 5, 0, 0, 2, 2, 1, 2, 2, 1, 0, -11),
 (732, 38, 11016, 4, 'SF', 27, 2, 7, 28.6, 0, 0, 0, 0, 3, 0, 1, 1, 2, 1, 1, 1, 2, 2, -1),
 (732, 38, 11043, 32, 'SF', 29, 13, 21, 61.9, 2, 4, 50, 4, 5, 80, 3, 3, 6, 0, 4, 0, 1, 2, 1),
@@ -14002,7 +14088,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (765, 28, 12174, 4, 'SF', 17, 2, 6, 33.3, 0, 0, 0, 0, 2, 0, 1, 2, 3, 0, 2, 1, 0, 1, -12),
 (765, 28, 12193, 4, 'SF', 23, 2, 3, 66.7, 0, 0, 0, 0, 1, 0, 2, 3, 5, 1, 1, 0, 0, 0, 3),
 (765, 28, 12209, 3, 'SF', 16, 1, 3, 33.3, 0, 0, 0, 1, 1, 100, 1, 5, 6, 0, 1, 0, 0, 1, 3),
-(765, 28, 12221, 8, 'SF', 12, 3, 5, 60, 1, 1, 100, 1, 2, 50, 0, 1, 1, 1, 5, 1, 0, 1, 6),
+(765, 28, 12221, 8, 'SF', 12, 3, 5, 60, 1, 1, 100, 1, 2, 50, 0, 1, 1, 1, 5, 1, 0, 1, 6);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (765, 28, 12237, 15, 'SF', 25, 7, 9, 77.8, 0, 1, 0, 1, 3, 33.3, 4, 6, 10, 3, 1, 1, 2, 0, 28),
 (765, 28, 12250, 11, 'SF', 22, 5, 8, 62.5, 0, 0, 0, 1, 2, 50, 0, 3, 3, 2, 3, 0, 0, 1, 8),
 (765, 28, 12261, 18, 'SF', 29, 8, 12, 66.7, 0, 0, 0, 2, 5, 40, 3, 3, 6, 1, 1, 1, 0, 4, -7),
@@ -14563,7 +14650,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (830, 40, 11649, 21, 'PF', 29, 8, 18, 44.4, 4, 4, 100, 1, 4, 25, 1, 7, 8, 1, 1, 0, 1, 2, 0),
 (830, 40, 11663, 25, 'PF', 39, 6, 18, 33.3, 12, 14, 85.7, 1, 5, 20, 3, 13, 16, 1, 2, 1, 1, 0, 7),
 (830, 40, 11687, 28, 'PF', 36, 4, 13, 30.8, 17, 21, 81, 3, 6, 50, 1, 11, 12, 2, 2, 1, 5, 1, 8),
-(830, 40, 11759, 25, 'PF', 32, 8, 14, 57.1, 5, 6, 83.3, 4, 8, 50, 0, 11, 11, 2, 3, 1, 2, 1, 23),
+(830, 40, 11759, 25, 'PF', 32, 8, 14, 57.1, 5, 6, 83.3, 4, 8, 50, 0, 11, 11, 2, 3, 1, 2, 1, 23);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (830, 40, 11776, 24, 'PF', 34, 7, 16, 43.8, 7, 8, 87.5, 3, 6, 50, 1, 3, 4, 1, 0, 0, 0, 0, 2),
 (830, 40, 11799, 29, 'PF', 36, 11, 20, 55, 3, 4, 75, 4, 8, 50, 0, 5, 5, 0, 2, 1, 1, 1, 7),
 (830, 40, 11825, 28, 'PF', 36, 7, 13, 53.8, 10, 10, 100, 4, 9, 44.4, 2, 11, 13, 1, 3, 1, 4, 1, -1),
@@ -15125,7 +15213,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (880, 4, 12371, 0, 'PG', 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, -4),
 (882, 2, 10984, 16, 'PF', NULL, 4, 11, 36.4, 6, 6, 100, 2, 8, 25, 0, 6, 6, 3, 1, 2, 5, 0, 14),
 (882, 2, 10999, 18, 'SF', 29, 6, 16, 37.5, 6, 7, 85.7, 0, 7, 0, 0, 10, 10, 4, 1, 0, 1, 0, 7),
-(882, 2, 11043, 21, 'SF', 29, 6, 15, 40, 6, 6, 100, 3, 10, 30, 2, 7, 9, 5, 4, 0, 3, 0, 7),
+(882, 2, 11043, 21, 'SF', 29, 6, 15, 40, 6, 6, 100, 3, 10, 30, 2, 7, 9, 5, 4, 0, 3, 0, 7);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (882, 2, 11050, 35, 'SF', 39, 13, 20, 65, 7, 9, 77.8, 2, 7, 28.6, 0, 12, 12, 4, 1, 1, 3, 1, 10),
 (882, 2, 11071, 29, 'SF', 37, 10, 22, 45.5, 7, 7, 100, 2, 7, 28.6, 2, 3, 5, 4, 1, 1, 2, 2, -1),
 (882, 2, 11079, 40, 'SF', 38, 14, 21, 66.7, 8, 9, 88.9, 4, 10, 40, 0, 8, 8, 1, 2, 1, 1, 2, 6),
@@ -15679,7 +15768,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (940, 28, 11422, 4, 'SF', 28, 2, 12, 16.7, 0, 0, 0, 0, 5, 0, 1, 2, 3, 0, 1, 1, 1, 0, -33),
 (940, 28, 11433, 11, 'SF', 35, 4, 12, 33.3, 0, 0, 0, 3, 5, 60, 2, 3, 5, 3, 5, 2, 1, 0, -7),
 (940, 28, 11444, 27, 'SF', 45, 10, 23, 43.5, 2, 2, 100, 5, 13, 38.5, 3, 2, 5, 3, 1, 2, 1, 0, -9),
-(940, 28, 11460, 18, 'SF', 38, 4, 24, 16.7, 8, 8, 100, 2, 10, 20, 1, 2, 3, 3, 3, 2, 1, 0, -14),
+(940, 28, 11460, 18, 'SF', 38, 4, 24, 16.7, 8, 8, 100, 2, 10, 20, 1, 2, 3, 3, 3, 2, 1, 0, -14);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (940, 28, 11476, 27, 'SF', 39, 11, 18, 61.1, 3, 4, 75, 2, 5, 40, 1, 5, 6, 0, 1, 1, 1, 2, 8),
 (940, 28, 11493, 15, 'SF', 37, 5, 13, 38.5, 2, 2, 100, 3, 9, 33.3, 0, 3, 3, 2, 0, 3, 0, 0, 11),
 (940, 28, 11508, 20, 'SF', 30, 7, 16, 43.8, 4, 5, 80, 2, 6, 33.3, 0, 1, 1, 2, 3, 1, 2, 1, 18),
@@ -16236,7 +16326,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (963, 8, 11239, 42, 'PG', 38, 13, 22, 59.1, 15, 18, 83.3, 1, 5, 20, 3, 10, 13, 10, 3, 2, 2, 1, 6),
 (963, 8, 11256, 35, 'PG', 40, 11, 22, 50, 11, 11, 100, 2, 5, 40, 2, 9, 11, 5, 3, 3, 3, 0, 4),
 (963, 8, 11279, 33, 'PG', 35, 11, 22, 50, 9, 11, 81.8, 2, 7, 28.6, 1, 11, 12, 11, 1, 1, 2, 0, 25),
-(963, 8, 11295, 22, 'PG', 36, 7, 16, 43.8, 6, 10, 60, 2, 8, 25, 0, 9, 9, 8, 2, 1, 4, 0, 1),
+(963, 8, 11295, 22, 'PG', 36, 7, 16, 43.8, 6, 10, 60, 2, 8, 25, 0, 9, 9, 8, 2, 1, 4, 0, 1);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (963, 8, 11313, 42, 'PG', 40, 17, 28, 60.7, 5, 9, 55.6, 3, 8, 37.5, 1, 7, 8, 9, 4, 0, 5, 0, -13),
 (963, 8, 11335, 24, 'PG', 43, 8, 15, 53.3, 6, 9, 66.7, 2, 4, 50, 0, 7, 7, 9, 2, 2, 4, 1, 2),
 (963, 8, 11347, 27, 'PG', 35, 10, 20, 50, 4, 9, 44.4, 3, 7, 42.9, 0, 5, 5, 12, 2, 0, 6, 0, -10),
@@ -16799,7 +16890,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (982, 19, 11432, 20, 'PF', 30, 8, 12, 66.7, 1, 4, 25, 3, 5, 60, 1, 4, 5, 0, 3, 2, 2, 4, 7),
 (982, 19, 11453, 15, 'PF', 24, 6, 11, 54.5, 2, 2, 100, 1, 4, 25, 0, 7, 7, 2, 2, 0, 2, 8, 25),
 (982, 19, 11474, 4, 'PF', 13, 1, 2, 50, 1, 2, 50, 1, 1, 100, 1, 5, 6, 2, 4, 0, 0, 0, 16),
-(982, 19, 11492, 16, 'PF', 28, 3, 8, 37.5, 8, 10, 80, 2, 6, 33.3, 3, 5, 8, 1, 1, 0, 1, 0, -3),
+(982, 19, 11492, 16, 'PF', 28, 3, 8, 37.5, 8, 10, 80, 2, 6, 33.3, 3, 5, 8, 1, 1, 0, 1, 0, -3);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (982, 19, 11514, 8, 'PF', 22, 3, 6, 50, 1, 2, 50, 1, 3, 33.3, 0, 2, 2, 1, 5, 3, 1, 5, -13),
 (982, 19, 11539, 24, 'PF', 28, 9, 17, 52.9, 5, 6, 83.3, 1, 4, 25, 3, 7, 10, 1, 1, 1, 0, 2, 22),
 (982, 19, 11545, 11, 'PF', 21, 5, 7, 71.4, 0, 0, 0, 1, 2, 50, 1, 1, 2, 0, 5, 1, 1, 2, -3),
@@ -17365,7 +17457,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (1013, 8, 11642, 2, 'G', 2, 0, 0, 0, 2, 2, 100, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0),
 (1013, 8, 11651, 3, 'G', 7, 1, 2, 50, 0, 0, 0, 1, 2, 50, 1, 0, 1, 0, 0, 0, 0, 0, -3),
 (1013, 8, 11666, 0, 'G', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(1013, 8, 11696, 11, 'G', 13, 4, 7, 57.1, 0, 0, 0, 3, 6, 50, 0, 1, 1, 3, 0, 0, 0, 0, -4),
+(1013, 8, 11696, 11, 'G', 13, 4, 7, 57.1, 0, 0, 0, 3, 6, 50, 0, 1, 1, 3, 0, 0, 0, 0, -4);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (1013, 8, 11799, 0, 'G', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (1013, 8, 11849, 0, 'G', 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, -7),
 (1013, 8, 11862, 3, 'G', 13, 1, 2, 50, 0, 0, 0, 1, 2, 50, 3, 1, 4, 2, 1, 0, 1, 0, 3),
@@ -17919,7 +18012,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (1038, 17, 11508, 16, 'G', 30, 5, 13, 38.5, 3, 3, 100, 3, 6, 50, 1, 3, 4, 2, 3, 1, 0, 1, -12),
 (1038, 17, 11524, 19, 'G', 36, 6, 13, 46.2, 4, 4, 100, 3, 6, 50, 0, 5, 5, 1, 3, 2, 2, 1, -15),
 (1038, 17, 11541, 15, 'G', 27, 4, 13, 30.8, 4, 5, 80, 3, 9, 33.3, 2, 1, 3, 1, 1, 1, 1, 0, 8),
-(1038, 17, 11543, 9, 'G', 29, 3, 7, 42.9, 0, 0, 0, 3, 6, 50, 0, 0, 0, 0, 1, 1, 0, 0, 1),
+(1038, 17, 11543, 9, 'G', 29, 3, 7, 42.9, 0, 0, 0, 3, 6, 50, 0, 0, 0, 0, 1, 1, 0, 0, 1);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (1038, 17, 11554, 10, 'G', 25, 3, 10, 30, 2, 2, 100, 2, 7, 28.6, 0, 1, 1, 2, 1, 0, 0, 0, 2),
 (1038, 17, 11567, 0, 'G', 21, 0, 4, 0, 0, 0, 0, 0, 4, 0, 0, 2, 2, 1, 0, 0, 2, 0, -17),
 (1038, 17, 11798, 13, 'G', 18, 6, 8, 75, 0, 0, 0, 1, 3, 33.3, 0, 3, 3, 1, 1, 1, 1, 0, 0),
@@ -18477,7 +18571,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (1775, 20, 12438, 5, 'PG', 30, 1, 8, 12.5, 3, 3, 100, 0, 4, 0, 0, 0, 0, 4, 4, 2, 2, 0, 14),
 (1775, 20, 12439, 3, 'PG', 22, 1, 7, 14.3, 0, 0, 0, 1, 5, 20, 0, 0, 0, 5, 3, 2, 0, 0, 3),
 (1775, 20, 12440, 6, 'PG', 23, 3, 10, 30, 0, 0, 0, 0, 3, 0, 0, 4, 4, 4, 4, 1, 3, 0, -3),
-(1775, 20, 12441, 7, 'PG', 31, 3, 8, 37.5, 0, 0, 0, 1, 5, 20, 1, 2, 3, 5, 4, 1, 2, 0, 11),
+(1775, 20, 12441, 7, 'PG', 31, 3, 8, 37.5, 0, 0, 0, 1, 5, 20, 1, 2, 3, 5, 4, 1, 2, 0, 11);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (1775, 20, 12464, 15, 'PG', 36, 4, 6, 66.7, 4, 4, 100, 3, 5, 60, 0, 3, 3, 2, 3, 1, 1, 1, 12),
 (1775, 20, 12465, 9, 'PG', 40, 2, 8, 25, 4, 4, 100, 1, 4, 25, 0, 2, 2, 0, 1, 2, 1, 0, 20),
 (1775, 20, 12466, 29, 'PG', 35, 11, 14, 78.6, 1, 1, 100, 6, 9, 66.7, 0, 2, 2, 3, 2, 1, 2, 1, 18),
@@ -19040,7 +19135,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (1858, 14, 11861, 6, 'PF', 10, 1, 3, 33.3, 4, 4, 100, 0, 0, 0, 3, 2, 5, 0, 1, 0, 3, 1, -9),
 (1858, 14, 11876, 6, 'PF', 13, 3, 9, 33.3, 0, 0, 0, 0, 0, 0, 4, 6, 10, 1, 3, 0, 0, 1, 1),
 (1859, 41, 10980, 8, NULL, NULL, 3, 4, 75, 2, 4, 50, 0, 0, 0, 0, 4, 4, 1, 1, 0, 1, 2, -9),
-(1859, 41, 10983, 3, NULL, NULL, 0, 1, 0, 3, 4, 75, 0, 0, 0, 3, 4, 7, 3, 1, 0, 2, 0, -1),
+(1859, 41, 10983, 3, NULL, NULL, 0, 1, 0, 3, 4, 75, 0, 0, 0, 3, 4, 7, 3, 1, 0, 2, 0, -1);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (1859, 41, 11022, 14, 'C', 23, 7, 9, 77.8, 0, 0, 0, 0, 0, 0, 4, 3, 7, 3, 5, 1, 1, 0, -4),
 (1859, 41, 11044, 4, 'C', 26, 2, 3, 66.7, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 5, 0, 4, 5, -14),
 (1859, 41, 11053, 12, 'C', 16, 6, 8, 75, 0, 0, 0, 0, 0, 0, 4, 3, 7, 0, 0, 1, 2, 1, -2),
@@ -19589,7 +19685,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (1872, 31, 11337, 26, 'SF', 37, 10, 28, 35.7, 3, 5, 60, 3, 9, 33.3, 3, 7, 10, 3, 6, 2, 0, 1, -13),
 (1872, 31, 11368, 19, 'SF', 36, 5, 22, 22.7, 5, 8, 62.5, 4, 13, 30.8, 2, 5, 7, 6, 2, 0, 1, 0, -8),
 (1872, 31, 11382, 15, 'SF', 36, 7, 23, 30.4, 0, 1, 0, 1, 8, 12.5, 1, 5, 6, 3, 3, 0, 2, 0, -19),
-(1872, 31, 11394, 27, 'SF', 33, 11, 23, 47.8, 4, 6, 66.7, 1, 5, 20, 1, 4, 5, 2, 5, 1, 1, 0, -24),
+(1872, 31, 11394, 27, 'SF', 33, 11, 23, 47.8, 4, 6, 66.7, 1, 5, 20, 1, 4, 5, 2, 5, 1, 1, 0, -24);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (1872, 31, 11424, 32, 'SF', 35, 14, 21, 66.7, 1, 3, 33.3, 3, 6, 50, 1, 6, 7, 1, 1, 0, 3, 0, 5),
 (1872, 31, 11436, 21, 'SF', 36, 7, 15, 46.7, 7, 7, 100, 0, 2, 0, 1, 5, 6, 2, 1, 0, 5, 0, -7),
 (1872, 31, 11455, 21, 'SF', 34, 8, 25, 32, 4, 5, 80, 1, 6, 16.7, 2, 4, 6, 2, 1, 0, 2, 1, 3),
@@ -20137,7 +20234,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (1888, 14, 11424, 12, 'SG', 31, 5, 16, 31.3, 2, 2, 100, 0, 4, 0, 0, 3, 3, 4, 3, 1, 3, 0, -15),
 (1888, 14, 11450, 18, 'SG', 36, 8, 16, 50, 2, 2, 100, 0, 3, 0, 1, 2, 3, 7, 2, 2, 4, 1, 3),
 (1888, 14, 11460, 18, 'SG', 33, 6, 16, 37.5, 4, 5, 80, 2, 8, 25, 0, 5, 5, 4, 4, 2, 4, 0, 22),
-(1888, 14, 11473, 21, 'SG', 36, 10, 17, 58.8, 1, 1, 100, 0, 2, 0, 5, 2, 7, 5, 2, 4, 6, 1, 4),
+(1888, 14, 11473, 21, 'SG', 36, 10, 17, 58.8, 1, 1, 100, 0, 2, 0, 5, 2, 7, 5, 2, 4, 6, 1, 4);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (1888, 14, 11490, 13, 'SG', 29, 3, 10, 30, 7, 9, 77.8, 0, 6, 0, 1, 6, 7, 4, 3, 2, 6, 0, -21),
 (1888, 14, 11504, 15, 'SG', 27, 6, 16, 37.5, 2, 3, 66.7, 1, 5, 20, 3, 1, 4, 4, 4, 2, 1, 1, -25),
 (1888, 14, 11521, 31, 'SG', 35, 12, 19, 63.2, 2, 3, 66.7, 5, 9, 55.6, 1, 5, 6, 5, 1, 3, 5, 1, 0),
@@ -20696,7 +20794,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (2040, 25, 11103, 4, 'SF', 26, 1, 11, 9.1, 2, 2, 100, 0, 6, 0, 0, 2, 2, 0, 2, 0, 0, 0, 25),
 (2040, 25, 11116, 21, 'SF', 34, 9, 15, 60, 2, 2, 100, 1, 5, 20, 1, 2, 3, 4, 4, 2, 1, 0, 18),
 (2040, 25, 11135, 16, 'SF', 40, 6, 12, 50, 3, 6, 50, 1, 4, 25, 1, 5, 6, 2, 5, 2, 1, 0, 23),
-(2040, 25, 11154, 14, 'SF', 32, 5, 16, 31.3, 1, 2, 50, 3, 8, 37.5, 0, 0, 0, 2, 4, 1, 0, 1, -3),
+(2040, 25, 11154, 14, 'SF', 32, 5, 16, 31.3, 1, 2, 50, 3, 8, 37.5, 0, 0, 0, 2, 4, 1, 0, 1, -3);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (2040, 25, 11168, 19, 'SF', 31, 8, 15, 53.3, 2, 3, 66.7, 1, 6, 16.7, 0, 3, 3, 1, 2, 1, 0, 1, -4),
 (2040, 25, 11185, 3, 'SF', 24, 1, 5, 20, 1, 2, 50, 0, 2, 0, 0, 4, 4, 7, 2, 1, 2, 0, -16),
 (2040, 25, 11195, 7, 'SF', 26, 3, 12, 25, 0, 0, 0, 1, 6, 16.7, 2, 3, 5, 2, 5, 2, 2, 1, -18),
@@ -21252,7 +21351,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (2327, 14, 11460, 8, 'SG', 17, 2, 5, 40, 3, 3, 100, 1, 4, 25, 2, 2, 4, 1, 1, 0, 0, 0, 5),
 (2327, 14, 11473, 5, 'SG', 7, 1, 2, 50, 2, 2, 100, 1, 2, 50, 0, 0, 0, 0, 0, 1, 0, 0, -10),
 (2327, 14, 11536, 0, 'SG', 12, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 2, 0, 1, 0, 0, -16),
-(2327, 14, 11550, 0, 'SG', 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 6),
+(2327, 14, 11550, 0, 'SG', 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 6);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (2327, 14, 11556, 6, 'SG', 17, 2, 6, 33.3, 0, 0, 0, 2, 6, 33.3, 0, 1, 1, 1, 1, 2, 1, 0, -5),
 (2327, 14, 11577, 5, 'SG', 16, 1, 3, 33.3, 2, 2, 100, 1, 3, 33.3, 0, 3, 3, 1, 2, 1, 0, 0, -5),
 (2327, 14, 11590, 0, 'SG', 12, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 2, 2, 0, 2, 0, 0, 0, -11),
@@ -21806,7 +21906,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (2571, 40, 11759, 0, 'SG', 3, 0, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -7),
 (2571, 40, 11776, 0, 'SG', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2),
 (2571, 40, 11877, 0, 'F', 4, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 0, 2, 0, 0, 0, 3),
-(2573, 8, 11102, 3, 'G', 13, 1, 4, 25, 0, 0, 0, 1, 3, 33.3, 0, 0, 0, 2, 0, 2, 0, 0, 0),
+(2573, 8, 11102, 3, 'G', 13, 1, 4, 25, 0, 0, 0, 1, 3, 33.3, 0, 0, 0, 2, 0, 2, 0, 0, 0);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (2573, 8, 11115, 0, 'G', 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 2),
 (2573, 8, 11221, 0, 'G', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (2573, 8, 11267, 3, 'G', 23, 1, 7, 14.3, 0, 0, 0, 1, 6, 16.7, 0, 2, 2, 5, 1, 3, 3, 0, 5),
@@ -22363,7 +22464,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (2604, 25, 12169, 20, 'SG', 28, 5, 12, 41.7, 5, 5, 100, 5, 10, 50, 2, 5, 7, 5, 2, 2, 0, 0, 2),
 (2604, 25, 12183, 33, 'SG', 32, 11, 18, 61.1, 5, 7, 71.4, 6, 11, 54.5, 1, 1, 2, 1, 0, 0, 1, 0, 6),
 (2604, 25, 12191, 12, 'SG', 33, 4, 12, 33.3, 4, 5, 80, 0, 7, 0, 0, 4, 4, 0, 3, 0, 2, 0, -6),
-(2604, 25, 12198, 7, 'SG', 25, 2, 10, 20, 3, 4, 75, 0, 8, 0, 1, 1, 2, 1, 2, 3, 0, 0, 1),
+(2604, 25, 12198, 7, 'SG', 25, 2, 10, 20, 3, 4, 75, 0, 8, 0, 1, 1, 2, 1, 2, 3, 0, 0, 1);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (2604, 25, 12221, 7, 'SG', 22, 2, 6, 33.3, 2, 3, 66.7, 1, 3, 33.3, 0, 1, 1, 1, 1, 0, 1, 0, -7),
 (2604, 25, 12236, 14, 'SG', 28, 4, 8, 50, 4, 5, 80, 2, 3, 66.7, 1, 4, 5, 2, 4, 1, 2, 0, -15),
 (2604, 25, 12249, 11, 'SG', 21, 3, 11, 27.3, 2, 2, 100, 3, 9, 33.3, 0, 3, 3, 3, 1, 2, 2, 0, 9),
@@ -22922,7 +23024,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (2626, 15, 11602, 10, 'SF', 30, 3, 12, 25, 4, 4, 100, 0, 4, 0, 2, 3, 5, 1, 4, 0, 1, 0, -8),
 (2626, 15, 11616, 11, 'SF', 22, 3, 8, 37.5, 2, 2, 100, 3, 5, 60, 0, 5, 5, 4, 3, 0, 0, 0, 4),
 (2626, 15, 11629, 10, 'SF', 26, 3, 5, 60, 4, 4, 100, 0, 0, 0, 2, 5, 7, 0, 3, 2, 0, 0, 14),
-(2626, 15, 11647, 15, 'SF', 31, 5, 7, 71.4, 5, 7, 71.4, 0, 2, 0, 1, 5, 6, 2, 4, 4, 1, 0, 12),
+(2626, 15, 11647, 15, 'SF', 31, 5, 7, 71.4, 5, 7, 71.4, 0, 2, 0, 1, 5, 6, 2, 4, 4, 1, 0, 12);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (2626, 15, 11692, 6, 'SF', 25, 2, 13, 15.4, 2, 2, 100, 0, 8, 0, 2, 5, 7, 1, 2, 1, 2, 0, -15),
 (2626, 15, 11762, 3, 'SF', 29, 0, 7, 0, 3, 4, 75, 0, 2, 0, 2, 4, 6, 2, 5, 1, 1, 2, 1),
 (2626, 15, 11769, 0, 'SF', 13, 0, 5, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 3, 1, 2, 0, -14),
@@ -23486,7 +23589,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (2639, 5, 11066, 6, 'C', 26, 2, 4, 50, 2, 2, 100, 0, 0, 0, 1, 5, 6, 0, 2, 0, 0, 0, -8),
 (2639, 5, 11087, 20, 'C', 20, 9, 9, 100, 2, 3, 66.7, 0, 0, 0, 5, 6, 11, 1, 1, 0, 0, 2, 25),
 (2639, 5, 11107, 7, 'C', 19, 2, 2, 100, 3, 4, 75, 0, 0, 0, 2, 2, 4, 2, 0, 0, 0, 0, 12),
-(2639, 5, 11120, 14, 'C', 20, 5, 7, 71.4, 4, 5, 80, 0, 0, 0, 2, 4, 6, 0, 3, 0, 0, 0, -13),
+(2639, 5, 11120, 14, 'C', 20, 5, 7, 71.4, 4, 5, 80, 0, 0, 0, 2, 4, 6, 0, 3, 0, 0, 0, -13);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (2639, 5, 11131, 9, 'C', 20, 3, 8, 37.5, 3, 3, 100, 0, 0, 0, 5, 3, 8, 2, 2, 0, 1, 0, -3),
 (2639, 5, 11145, 4, 'C', 19, 2, 3, 66.7, 0, 2, 0, 0, 0, 0, 0, 4, 4, 2, 3, 0, 2, 1, -1),
 (2639, 5, 11160, 4, 'C', 14, 2, 3, 66.7, 0, 2, 0, 0, 0, 0, 1, 1, 2, 1, 2, 0, 2, 2, -16),
@@ -24048,7 +24152,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (2666, 11, 11863, 6, 'C', 5, 3, 3, 100, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 4),
 (2667, 25, 11000, 2, 'F', 7, 1, 3, 33.3, 0, 0, 0, 0, 1, 0, 1, 2, 3, 1, 0, 0, 0, 0, -2),
 (2667, 25, 11004, 2, 'F', 12, 1, 4, 25, 0, 0, 0, 0, 1, 0, 1, 1, 2, 0, 0, 0, 0, 0, -5),
-(2668, 23, 10995, 5, 'SF', 19, 2, 6, 33.3, 0, 2, 0, 1, 4, 25, 0, 1, 1, 3, 6, 0, 2, 1, -17),
+(2668, 23, 10995, 5, 'SF', 19, 2, 6, 33.3, 0, 2, 0, 1, 4, 25, 0, 1, 1, 3, 6, 0, 2, 1, -17);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (2668, 23, 11013, 14, 'SF', 19, 4, 8, 50, 4, 4, 100, 2, 3, 66.7, 0, 4, 4, 2, 1, 0, 0, 0, -4),
 (2668, 23, 11018, 15, 'SF', 21, 5, 12, 41.7, 4, 5, 80, 1, 6, 16.7, 1, 3, 4, 2, 1, 0, 2, 0, 1),
 (2668, 23, 11034, 15, 'SF', 24, 6, 9, 66.7, 3, 3, 100, 0, 0, 0, 1, 7, 8, 4, 2, 1, 1, 0, -13),
@@ -24611,7 +24716,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (2802, 6, 11793, 3, 'SG', 22, 1, 4, 25, 0, 0, 0, 1, 4, 25, 0, 4, 4, 1, 3, 0, 0, 2, 5),
 (2802, 6, 11815, 11, 'SG', 27, 4, 7, 57.1, 2, 2, 100, 1, 1, 100, 2, 1, 3, 4, 1, 0, 2, 0, 4),
 (2802, 6, 11830, 22, 'SG', 35, 9, 10, 90, 3, 3, 100, 1, 2, 50, 0, 0, 0, 0, 3, 1, 1, 0, 5),
-(2802, 6, 11845, 13, 'SG', 30, 5, 8, 62.5, 0, 0, 0, 3, 4, 75, 1, 2, 3, 5, 3, 1, 0, 1, 16),
+(2802, 6, 11845, 13, 'SG', 30, 5, 8, 62.5, 0, 0, 0, 3, 4, 75, 1, 2, 3, 5, 3, 1, 0, 1, 16);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (2802, 6, 11860, 10, 'SG', 31, 4, 6, 66.7, 2, 2, 100, 0, 0, 0, 1, 3, 4, 4, 1, 0, 1, 0, -3),
 (2802, 6, 11868, 14, 'SG', 38, 6, 14, 42.9, 1, 1, 100, 1, 4, 25, 0, 4, 4, 6, 3, 0, 4, 2, -7),
 (2802, 6, 11882, 6, 'SG', 27, 2, 6, 33.3, 2, 2, 100, 0, 2, 0, 1, 1, 2, 1, 3, 0, 1, 0, -22),
@@ -25169,7 +25275,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (2816, 9, 11376, 16, 'PG', 22, 6, 11, 54.5, 1, 2, 50, 3, 6, 50, 1, 1, 2, 2, 0, 1, 4, 0, -1),
 (2816, 9, 11393, 0, 'PG', 5, 0, 2, 0, 0, 1, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, -14),
 (2816, 9, 11411, 20, 'PG', 30, 7, 15, 46.7, 1, 1, 100, 5, 10, 50, 1, 3, 4, 5, 3, 2, 3, 1, -4),
-(2816, 9, 11425, 13, 'PG', 26, 4, 9, 44.4, 2, 2, 100, 3, 6, 50, 0, 5, 5, 4, 1, 1, 1, 0, 19),
+(2816, 9, 11425, 13, 'PG', 26, 4, 9, 44.4, 2, 2, 100, 3, 6, 50, 0, 5, 5, 4, 1, 1, 1, 0, 19);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (2816, 9, 11442, 11, 'PG', 21, 4, 14, 28.6, 0, 0, 0, 3, 7, 42.9, 1, 1, 2, 1, 1, 1, 1, 2, -5),
 (2816, 9, 11471, 23, 'PG', 28, 8, 11, 72.7, 5, 6, 83.3, 2, 5, 40, 0, 2, 2, 6, 4, 0, 3, 1, -1),
 (2816, 9, 11486, 5, 'PG', 15, 2, 9, 22.2, 1, 1, 100, 0, 5, 0, 0, 2, 2, 2, 0, 0, 1, 0, -24),
@@ -25730,7 +25837,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (2831, 25, 11484, 0, 'PG', 8, 0, 2, 0, 0, 0, 0, 0, 1, 0, 1, 1, 2, 2, 1, 0, 0, 0, 0),
 (2831, 25, 11492, 11, 'PG', 18, 4, 10, 40, 1, 1, 100, 2, 6, 33.3, 1, 5, 6, 1, 0, 1, 1, 0, 13),
 (2831, 25, 11537, 9, 'PG', 14, 3, 8, 37.5, 0, 0, 0, 3, 5, 60, 0, 0, 0, 0, 2, 0, 2, 1, 5),
-(2831, 25, 11560, 17, 'PG', 28, 5, 11, 45.5, 4, 4, 100, 3, 6, 50, 0, 1, 1, 3, 2, 1, 1, 0, 13),
+(2831, 25, 11560, 17, 'PG', 28, 5, 11, 45.5, 4, 4, 100, 3, 6, 50, 0, 1, 1, 3, 2, 1, 1, 0, 13);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (2831, 25, 11572, 17, 'PG', 23, 8, 19, 42.1, 0, 0, 0, 1, 9, 11.1, 0, 3, 3, 2, 0, 0, 0, 0, 4),
 (2831, 25, 11594, 3, 'PG', 25, 1, 9, 11.1, 0, 0, 0, 1, 4, 25, 1, 2, 3, 2, 2, 1, 3, 0, -2),
 (2831, 25, 11611, 21, 'PG', 32, 8, 11, 72.7, 0, 1, 0, 5, 8, 62.5, 0, 6, 6, 3, 2, 3, 3, 2, 31),
@@ -26288,7 +26396,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (2846, 25, 11262, 8, 'PF', 13, 2, 3, 66.7, 3, 4, 75, 1, 2, 50, 1, 3, 4, 1, 0, 0, 1, 0, 0),
 (2846, 25, 11278, 14, 'PF', 28, 6, 9, 66.7, 2, 2, 100, 0, 2, 0, 1, 6, 7, 1, 1, 0, 2, 3, 13),
 (2846, 25, 11303, 8, 'PF', 22, 3, 5, 60, 0, 0, 0, 2, 3, 66.7, 1, 1, 2, 2, 2, 0, 1, 0, -8),
-(2846, 25, 11317, 8, 'PF', 35, 3, 11, 27.3, 0, 0, 0, 2, 5, 40, 5, 6, 11, 3, 5, 2, 0, 1, 6),
+(2846, 25, 11317, 8, 'PF', 35, 3, 11, 27.3, 0, 0, 0, 2, 5, 40, 5, 6, 11, 3, 5, 2, 0, 1, 6);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (2846, 25, 11330, 10, 'PF', 20, 5, 9, 55.6, 0, 0, 0, 0, 2, 0, 1, 2, 3, 0, 1, 2, 0, 0, 16),
 (2846, 25, 11336, 9, 'PF', 24, 3, 7, 42.9, 2, 3, 66.7, 1, 4, 25, 4, 1, 5, 2, 0, 0, 0, 1, 13),
 (2846, 25, 11353, 10, 'PF', 34, 4, 11, 36.4, 0, 0, 0, 2, 5, 40, 5, 8, 13, 1, 1, 2, 1, 1, -6),
@@ -26854,7 +26963,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (2860, 28, 11092, 0, 'PG', 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2),
 (2860, 28, 11128, 2, 'PG', 2, 1, 3, 33.3, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1),
 (2860, 28, 11143, 0, 'PG', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(2860, 28, 11188, 2, 'PG', 5, 1, 5, 20, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, -9),
+(2860, 28, 11188, 2, 'PG', 5, 1, 5, 20, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, -9);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (2860, 28, 11226, 5, 'PG', 7, 2, 6, 33.3, 0, 0, 0, 1, 4, 25, 0, 0, 0, 1, 1, 0, 0, 0, -2),
 (2860, 28, 11251, 21, 'PG', 19, 8, 14, 57.1, 0, 0, 0, 5, 8, 62.5, 0, 0, 0, 4, 0, 0, 1, 0, 12),
 (2860, 28, 11269, 5, 'PG', 14, 2, 6, 33.3, 0, 2, 0, 1, 4, 25, 0, 2, 2, 2, 0, 0, 0, 0, -7),
@@ -27423,7 +27533,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (3398, 29, 11006, 14, 'PG', 21, 4, 6, 66.7, 4, 5, 80, 2, 4, 50, 0, 1, 1, 4, 2, 2, 2, 0, 23),
 (3398, 29, 11030, 0, 'PG', NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
 (3399, 25, 12131, 4, 'C', 19, 1, 4, 25, 2, 2, 100, 0, 1, 0, 4, 2, 6, 2, 3, 0, 2, 2, 8),
-(3399, 25, 12145, 3, 'C', 8, 1, 1, 100, 0, 0, 0, 1, 1, 100, 1, 1, 2, 1, 2, 0, 0, 0, -2),
+(3399, 25, 12145, 3, 'C', 8, 1, 1, 100, 0, 0, 0, 1, 1, 100, 1, 1, 2, 1, 2, 0, 0, 0, -2);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (3399, 25, 12191, 0, 'C', 8, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0),
 (3399, 25, 12236, 0, 'C', 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 2),
 (3399, 25, 12249, 0, 'C', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2),
@@ -27992,7 +28103,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (3423, 15, 11419, 0, 'SG', 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 1, 0, -9),
 (3424, 20, 10994, 2, 'F', 4, 1, 2, 50, 0, 0, 0, 0, 1, 0, 0, 2, 2, 1, 0, 0, 1, 0, 3),
 (3424, 20, 11003, 15, 'F', 27, 6, 10, 60, 2, 4, 50, 1, 1, 100, 6, 5, 11, 1, 2, 5, 0, 0, 18),
-(3424, 20, 11012, 19, 'F', 38, 7, 14, 50, 2, 2, 100, 3, 7, 42.9, 1, 5, 6, 3, 4, 2, 1, 0, 9),
+(3424, 20, 11012, 19, 'F', 38, 7, 14, 50, 2, 2, 100, 3, 7, 42.9, 1, 5, 6, 3, 4, 2, 1, 0, 9);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (3424, 20, 11024, 15, 'F', 31, 4, 9, 44.4, 6, 6, 100, 1, 3, 33.3, 4, 2, 6, 2, 2, 0, 0, 1, 8),
 (3424, 20, 11034, 2, 'F', 6, 1, 2, 50, 0, 0, 0, 0, 1, 0, 1, 1, 2, 0, 0, 0, 0, 0, 7),
 (3424, 20, 11238, 3, 'F', 2, 1, 1, 100, 0, 0, 0, 1, 1, 100, 0, 0, 0, 0, 0, 1, 0, 0, 0),
@@ -28565,7 +28677,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (3449, 26, 11346, 12, 'F', 26, 4, 8, 50, 0, 0, 0, 4, 8, 50, 0, 1, 1, 3, 2, 1, 0, 0, -24),
 (3449, 26, 11351, 3, 'F', 31, 1, 4, 25, 0, 0, 0, 1, 3, 33.3, 1, 6, 7, 1, 2, 1, 0, 0, -7),
 (3449, 26, 11362, 5, 'F', 15, 2, 3, 66.7, 0, 0, 0, 1, 2, 50, 0, 5, 5, 1, 0, 0, 0, 1, -2),
-(3449, 26, 11379, 3, 'F', 19, 1, 3, 33.3, 0, 0, 0, 1, 3, 33.3, 0, 2, 2, 0, 1, 0, 0, 0, -5),
+(3449, 26, 11379, 3, 'F', 19, 1, 3, 33.3, 0, 0, 0, 1, 3, 33.3, 0, 2, 2, 0, 1, 0, 0, 0, -5);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (3449, 26, 11389, 8, 'F', 25, 3, 9, 33.3, 0, 0, 0, 2, 5, 40, 1, 3, 4, 2, 4, 0, 0, 0, 11),
 (3449, 26, 11402, 3, 'F', 24, 1, 6, 16.7, 0, 0, 0, 1, 4, 25, 3, 2, 5, 0, 3, 0, 0, 0, -15),
 (3449, 26, 11412, 5, 'F', 12, 1, 2, 50, 3, 3, 100, 0, 1, 0, 1, 1, 2, 0, 1, 0, 1, 0, 8),
@@ -29132,7 +29245,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (3475, 30, 11118, 18, 'SF', 39, 7, 15, 46.7, 1, 1, 100, 3, 8, 37.5, 3, 3, 6, 0, 1, 0, 2, 0, -10),
 (3475, 30, 11130, 22, 'SF', 36, 8, 13, 61.5, 3, 4, 75, 3, 7, 42.9, 0, 1, 1, 3, 4, 0, 5, 2, 2),
 (3475, 30, 11145, 12, 'SF', 32, 5, 15, 33.3, 0, 0, 0, 2, 7, 28.6, 1, 3, 4, 2, 1, 1, 1, 1, 15),
-(3475, 30, 11158, 7, 'SF', 27, 3, 7, 42.9, 0, 0, 0, 1, 5, 20, 0, 4, 4, 3, 1, 1, 2, 2, 7),
+(3475, 30, 11158, 7, 'SF', 27, 3, 7, 42.9, 0, 0, 0, 1, 5, 20, 0, 4, 4, 3, 1, 1, 2, 2, 7);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (3475, 30, 11181, 3, 'SF', 24, 1, 6, 16.7, 0, 0, 0, 1, 4, 25, 0, 2, 2, 0, 1, 1, 1, 0, -12),
 (3475, 30, 11205, 6, 'SF', 27, 2, 7, 28.6, 1, 2, 50, 1, 4, 25, 2, 5, 7, 2, 4, 2, 0, 0, -4),
 (3475, 30, 11220, 14, 'SF', 33, 5, 10, 50, 0, 0, 0, 4, 7, 57.1, 0, 3, 3, 1, 4, 2, 1, 1, -7),
@@ -29693,7 +29807,8 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (3494, 6, 12259, 8, 'F', 16, 3, 10, 30, 2, 2, 100, 0, 4, 0, 1, 2, 3, 0, 3, 1, 1, 0, -18),
 (3494, 6, 12272, 10, 'F', 15, 3, 6, 50, 4, 4, 100, 0, 2, 0, 0, 3, 3, 1, 2, 3, 0, 1, 20),
 (3496, 29, 10992, 9, 'F', 9, 4, 6, 66.7, 0, 1, 0, 1, 1, 100, 1, 0, 1, 0, 1, 0, 2, 1, -5),
-(3496, 29, 10996, 0, 'F', 5, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, -2),
+(3496, 29, 10996, 0, 'F', 5, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, -2);
+INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min`, `fgm`, `fga`, `fgp`, `ftm`, `fta`, `ftp`, `tpm`, `tpa`, `tpp`, `offReb`, `defReb`, `totReb`, `assists`, `pFouls`, `steals`, `turnovers`, `blocks`, `plusMinus`) VALUES
 (3496, 29, 11006, 12, 'F', 24, 3, 6, 50, 6, 7, 85.7, 0, 1, 0, 2, 5, 7, 0, 2, 0, 1, 0, 20),
 (3496, 29, 11020, 0, 'F', 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 4),
 (3496, 29, 11030, 5, 'F', 16, 2, 3, 66.7, 0, 0, 0, 1, 1, 100, 1, 2, 3, 0, 0, 0, 1, 1, 2),
@@ -30150,72 +30265,6 @@ INSERT INTO `statsplayer` (`idPlayer`, `idTeam`, `idGame`, `points`, `pos`, `min
 (3931, 29, 12248, 16, 'G', 32, 8, 10, 80, 0, 0, 0, 0, 1, 0, 2, 2, 4, 4, 6, 0, 1, 0, -4),
 (3931, 29, 12264, 9, 'G', 21, 4, 5, 80, 0, 1, 0, 1, 1, 100, 1, 0, 1, 0, 2, 0, 1, 0, -5),
 (3931, 29, 12279, 17, 'G', 31, 7, 12, 58.3, 2, 2, 100, 1, 2, 50, 3, 1, 4, 3, 1, 0, 1, 0, -25);
-
---
--- Dump dei dati per la tabella `team`
---
-
-INSERT INTO `team` (`id`, `name`, `nickname`, `code`, `city`, `logo`, `allstar`, `conference`, `division`) VALUES
-(1, 'Atlanta Hawks', 'Hawks', 'ATL', 'Atlanta', 'https://upload.wikimedia.org/wikipedia/fr/e/ee/Hawks_2016.png', 0, 'East', 'Southeast'),
-(2, 'Boston Celtics', 'Celtics', 'BOS', 'Boston', 'https://upload.wikimedia.org/wikipedia/fr/thumb/6/65/Celtics_de_Boston_logo.svg/1024px-Celtics_de_Boston_logo.svg.png', 0, 'East', 'Atlantic'),
-(3, 'Brisbane Bullets', 'Bullets', 'BNE', 'Brisbane', 'https://upload.wikimedia.org/wikipedia/fr/thumb/1/1b/Brisbane_Bullets_1992.png/130px-Brisbane_Bullets_1992.png', 0, 'Intl', NULL),
-(4, 'Brooklyn Nets', 'Nets', 'BKN', 'Brooklyn', 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Brooklyn_Nets_newlogo.svg/130px-Brooklyn_Nets_newlogo.svg.png', 0, 'East', 'Atlantic'),
-(5, 'Charlotte Hornets', 'Hornets', 'CHA', 'Charlotte', 'https://upload.wikimedia.org/wikipedia/fr/thumb/f/f3/Hornets_de_Charlotte_logo.svg/1200px-Hornets_de_Charlotte_logo.svg.png', 0, 'East', 'Southeast'),
-(6, 'Chicago Bulls', 'Bulls', 'CHI', 'Chicago', 'https://upload.wikimedia.org/wikipedia/fr/thumb/d/d1/Bulls_de_Chicago_logo.svg/1200px-Bulls_de_Chicago_logo.svg.png', 0, 'East', 'Central'),
-(7, 'Cleveland Cavaliers', 'Cavaliers', 'CLE', 'Cleveland', 'https://upload.wikimedia.org/wikipedia/fr/thumb/0/06/Cavs_de_Cleveland_logo_2017.png/150px-Cavs_de_Cleveland_logo_2017.png', 0, 'East', 'Central'),
-(8, 'Dallas Mavericks', 'Mavericks', 'DAL', 'Dallas', 'https://upload.wikimedia.org/wikipedia/fr/thumb/b/b8/Mavericks_de_Dallas_logo.svg/150px-Mavericks_de_Dallas_logo.svg.png', 0, 'West', 'Southwest'),
-(9, 'Denver Nuggets', 'Nuggets', 'DEN', 'Denver', 'https://upload.wikimedia.org/wikipedia/fr/thumb/3/35/Nuggets_de_Denver_2018.png/180px-Nuggets_de_Denver_2018.png', 0, 'West', 'Northwest'),
-(10, 'Detroit Pistons', 'Pistons', 'DET', 'Detroit', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Logo_of_the_Detroit_Pistons.png/300px-Logo_of_the_Detroit_Pistons.png', 0, 'East', 'Central'),
-(11, 'Golden State Warriors', 'Warriors', 'GSW', 'Golden State', 'https://upload.wikimedia.org/wikipedia/fr/thumb/d/de/Warriors_de_Golden_State_logo.svg/1200px-Warriors_de_Golden_State_logo.svg.png', 0, 'West', 'Pacific'),
-(12, 'Guangzhou Long-Lions', 'Long-Lions', 'GUA', 'Guangzhou', 'https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Guangzhou_Long-Lions_logo.png/220px-Guangzhou_Long-Lions_logo.png', 0, 'Intl', NULL),
-(13, 'Haifa Maccabi Haifa', 'Maccabi Haifa', 'MAC', 'Haifa', 'https://upload.wikimedia.org/wikipedia/en/4/4c/Maccabi_Haifa_B.C_logo.png', 0, 'Intl', NULL),
-(14, 'Houston Rockets', 'Rockets', 'HOU', 'Houston', 'https://upload.wikimedia.org/wikipedia/fr/thumb/d/de/Houston_Rockets_logo_2003.png/330px-Houston_Rockets_logo_2003.png', 0, 'West', 'Southwest'),
-(15, 'Indiana Pacers', 'Pacers', 'IND', 'Indiana', 'https://upload.wikimedia.org/wikipedia/fr/thumb/c/cf/Pacers_de_l%27Indiana_logo.svg/1180px-Pacers_de_l%27Indiana_logo.svg.png', 0, 'East', 'Central'),
-(16, 'LA Clippers', 'Clippers', 'LAC', 'LA', 'https://upload.wikimedia.org/wikipedia/fr/d/d6/Los_Angeles_Clippers_logo_2010.png', 0, 'West', 'Pacific'),
-(17, 'Los Angeles Lakers', 'Lakers', 'LAL', 'Los Angeles', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Los_Angeles_Lakers_logo.svg/220px-Los_Angeles_Lakers_logo.svg.png', 0, 'West', 'Pacific'),
-(18, 'Melbourne United', 'United', 'MEL', 'Melbourne', 'https://upload.wikimedia.org/wikipedia/en/thumb/1/1b/Melbourne_United_logo.svg/220px-Melbourne_United_logo.svg.png', 0, 'Intl', NULL),
-(19, 'Memphis Grizzlies', 'Grizzlies', 'MEM', 'Memphis', 'https://upload.wikimedia.org/wikipedia/en/thumb/f/f1/Memphis_Grizzlies.svg/1200px-Memphis_Grizzlies.svg.png', 0, 'West', 'Southwest'),
-(20, 'Miami Heat', 'Heat', 'MIA', 'Miami', 'https://upload.wikimedia.org/wikipedia/fr/thumb/1/1c/Miami_Heat_-_Logo.svg/1200px-Miami_Heat_-_Logo.svg.png', 0, 'East', 'Southeast'),
-(21, 'Milwaukee Bucks', 'Bucks', 'MIL', 'Milwaukee', 'https://upload.wikimedia.org/wikipedia/fr/3/34/Bucks2015.png', 0, 'East', 'Central'),
-(22, 'Minnesota Timberwolves', 'Timberwolves', 'MIN', 'Minnesota', 'https://upload.wikimedia.org/wikipedia/fr/thumb/d/d9/Timberwolves_du_Minnesota_logo_2017.png/200px-Timberwolves_du_Minnesota_logo_2017.png', 0, 'West', 'Northwest'),
-(23, 'New Orleans Pelicans', 'Pelicans', 'NOP', 'New Orleans', 'https://upload.wikimedia.org/wikipedia/fr/thumb/2/21/New_Orleans_Pelicans.png/200px-New_Orleans_Pelicans.png', 0, 'West', 'Southwest'),
-(24, 'New York Knicks', 'Knicks', 'NYK', 'New York', 'https://upload.wikimedia.org/wikipedia/fr/3/34/Knicks_de_NY.png', 0, 'East', 'Atlantic'),
-(25, 'Oklahoma City Thunder', 'Thunder', 'OKC', 'Oklahoma City', 'https://upload.wikimedia.org/wikipedia/fr/thumb/4/4f/Thunder_d%27Oklahoma_City_logo.svg/1200px-Thunder_d%27Oklahoma_City_logo.svg.png', 0, 'West', 'Northwest'),
-(26, 'Orlando Magic', 'Magic', 'ORL', 'Orlando', 'https://upload.wikimedia.org/wikipedia/fr/b/bd/Orlando_Magic_logo_2010.png', 0, 'East', 'Southeast'),
-(27, 'Philadelphia 76ers', '76ers', 'PHI', 'Philadelphia', 'https://upload.wikimedia.org/wikipedia/fr/4/48/76ers_2016.png', 0, 'East', 'Atlantic'),
-(28, 'Phoenix Suns', 'Suns', 'PHX', 'Phoenix', 'https://upload.wikimedia.org/wikipedia/fr/5/56/Phoenix_Suns_2013.png', 0, 'West', 'Pacific'),
-(29, 'Portland Trail Blazers', 'Trail Blazers', 'POR', 'Portland', 'https://upload.wikimedia.org/wikipedia/en/thumb/2/21/Portland_Trail_Blazers_logo.svg/1200px-Portland_Trail_Blazers_logo.svg.png', 0, 'West', 'Northwest'),
-(30, 'Sacramento Kings', 'Kings', 'SAC', 'Sacramento', 'https://upload.wikimedia.org/wikipedia/fr/thumb/9/95/Kings_de_Sacramento_logo.svg/1200px-Kings_de_Sacramento_logo.svg.png', 0, 'West', 'Pacific'),
-(31, 'San Antonio Spurs', 'Spurs', 'SAS', 'San Antonio', 'https://upload.wikimedia.org/wikipedia/fr/0/0e/San_Antonio_Spurs_2018.png', 0, 'West', 'Southwest'),
-(32, 'Shanghai Sharks', 'Sharks', 'SDS', 'Shanghai', 'https://upload.wikimedia.org/wikipedia/fr/thumb/f/f3/Shangaisharks.jpg/130px-Shangaisharks.jpg', 0, 'Intl', NULL),
-(33, 'Sydney Kings', 'Kings', 'SYD', 'Sydney', 'https://upload.wikimedia.org/wikipedia/fr/thumb/c/c4/Sydney_Kings.jpg/220px-Sydney_Kings.jpg', 0, 'Intl', NULL),
-(34, 'Team Team Durant', 'Team Durant', 'DRT', 'Team', NULL, 1, 'East', 'East'),
-(35, 'Team LeBron', 'Team LeBron', 'LBN', 'Team', NULL, 1, 'West', 'West'),
-(36, 'Away Team Wilbon', 'Team Wilbon', 'WLB', 'Away', NULL, 1, 'East', 'East'),
-(37, 'Home Team Stephen A', 'Team Stephen A', 'SAS', 'Home', NULL, 1, 'East', 'East'),
-(38, 'Toronto Raptors', 'Raptors', 'TOR', 'Toronto', 'https://upload.wikimedia.org/wikipedia/fr/8/89/Raptors2015.png', 0, 'East', 'Atlantic'),
-(39, 'USA USA', 'USA', 'USA', 'USA', NULL, 1, 'East', 'East'),
-(40, 'Utah Jazz', 'Jazz', 'UTA', 'Utah', 'https://upload.wikimedia.org/wikipedia/fr/3/3b/Jazz_de_l%27Utah_logo.png', 0, 'West', 'Northwest'),
-(41, 'Washington Wizards', 'Wizards', 'WAS', 'Washington', 'https://upload.wikimedia.org/wikipedia/fr/archive/d/d6/20161212034849%21Wizards2015.png', 0, 'East', 'Southeast'),
-(42, 'World World', 'World', 'WLD', 'World', NULL, 1, 'East', 'East'),
-(83, '', 'Paschoalotto/Bauru', 'BAU', 'Bauru', NULL, 0, 'Internatio', NULL),
-(84, '', 'Fenerbahce Sports Club', 'FEN', 'Istanbul', NULL, 0, 'Internatio', NULL),
-(85, '', 'Olimpia Milano', 'MLN', 'Milano', NULL, 0, 'Internatio', NULL),
-(86, 'Real Madrid Real Madrid', 'Real Madrid', 'RMD', 'Real Madrid', NULL, 0, 'Intl', NULL),
-(87, 'Rio de Janeiro Flamengo', 'Flamengo', 'FLA', 'Rio de Janeiro', NULL, 0, 'Intl', NULL),
-(88, 'Barcelona FC Barcelona', 'FC Barcelona', 'FCB', 'Barcelona', NULL, 0, 'Intl', NULL),
-(89, 'Buenos Aires San Lorenzo', 'San Lorenzo', 'SLA', 'Buenos Aires', NULL, 0, 'Intl', NULL),
-(90, 'Adelaide 36ers', '36ers', 'ADL', 'Adelaide', NULL, 0, 'Intl', NULL),
-(91, 'Beijing Ducks', 'Ducks', 'BJD', 'Beijing', NULL, 0, 'Intl', NULL),
-(92, 'New Zealand Breakers', 'Breakers', 'NZB', 'New Zealand', NULL, 0, 'Intl', NULL),
-(93, 'Perth Wildcats', 'Wildcats', 'PER', 'Perth', NULL, 0, 'Intl', NULL),
-(99, 'Franca Franca', 'Franca', 'FRA', 'Franca', NULL, 0, 'Intl', NULL),
-(104, 'Utah Blue', 'Jazz', 'UTB', 'Utah', NULL, 0, 'West', 'Northwest'),
-(105, 'Utah White', 'Jazz', 'UTW', 'Utah', NULL, 0, 'West', 'Northwest'),
-(165, 'Ra\'anana Maccabi Ra\'anana', 'Maccabi Ra\'anana', 'MRA', 'Ra\'anana', NULL, 0, 'Intl', NULL),
-(166, 'Cairns Taipans', 'Taipans', 'CNS', NULL, NULL, 0, 'Intl', NULL),
-(168, 'New Zealand Breakers', 'Breakers', 'BNZ', 'Auckland', NULL, 0, NULL, NULL),
-(169, 'Flamengo', 'Flamengo', '', NULL, NULL, 0, NULL, NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
