@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public interface Handler {
     void handle(JsonNode jsonNode);
@@ -47,9 +49,15 @@ public interface Handler {
         }
     }
 
-    default String  asString(JsonNode node) {
+    default String asString(JsonNode node) {
         if (node != null && !node.isNull()) {
-            return node.textValue();
+            if (node.isObject()) {
+                List<String> values = new ArrayList<>();
+                node.fields().forEachRemaining(entry -> values.add(entry.getValue().asText()));
+                return String.join(", ", values);
+            } else {
+                return node.textValue();
+            }
         } else {
             return null;
         }
