@@ -51,13 +51,25 @@ public interface Handler {
 
     default String asString(JsonNode node) {
         if (node != null && !node.isNull()) {
-            if (node.isObject()) {
-                List<String> values = new ArrayList<>();
-                node.fields().forEachRemaining(entry -> values.add(entry.getValue().asText()));
-                return String.join(", ", values);
-            } else {
                 return node.textValue();
+        } else {
+            return null;
+        }
+    }
+
+    default String asArray(JsonNode node) {
+        if (node != null && node.isArray()) {
+            StringBuilder result = new StringBuilder();
+            for (JsonNode element : node) {
+                String value = asString(element);
+                if (value != null) {
+                    if (result.length() > 0) {
+                        result.append(", ");
+                    }
+                    result.append(value);
+                }
             }
+            return result.toString();
         } else {
             return null;
         }

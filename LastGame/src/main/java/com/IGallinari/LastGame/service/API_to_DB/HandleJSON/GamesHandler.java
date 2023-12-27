@@ -85,7 +85,7 @@ public class GamesHandler implements Handler {
             statsGameVisitor.setLose(asInteger(gameNode.get("scores").get("visitors").get("loss")));
             statsGameVisitor.setSeriesWin(asInteger(gameNode.get("scores").get("visitors").get("series").get("win")));
             statsGameVisitor.setSeriesLose(asInteger(gameNode.get("scores").get("visitors").get("series").get("loss")));
-            statsGameVisitor.setPointsPeriod(asString(gameNode.get("scores").get("visitors").get("linescore")));
+            statsGameVisitor.setPointsPeriod(asArray(gameNode.get("scores").get("visitors").get("linescore")));
             statsGameVisitor.setPoints(asInteger(gameNode.get("scores").get("visitors").get("points")));
             statsGameRepository.save(statsGameVisitor);
             System.out.println("Object StatsGame statsGameVisitor saved in the DB");
@@ -100,7 +100,7 @@ public class GamesHandler implements Handler {
             statsGameHome.setLose(asInteger(gameNode.get("scores").get("home").get("loss")));
             statsGameHome.setSeriesWin(asInteger(gameNode.get("scores").get("home").get("series").get("win")));
             statsGameHome.setSeriesLose(asInteger(gameNode.get("scores").get("home").get("series").get("loss")));
-            statsGameHome.setPointsPeriod(asString(gameNode.get("scores").get("home").get("linescore")));
+            statsGameHome.setPointsPeriod(asArray(gameNode.get("scores").get("home").get("linescore")));
             statsGameHome.setPoints(asInteger(gameNode.get("scores").get("home").get("points")));
             statsGameRepository.save(statsGameHome);
             System.out.println("Object StatsGame statsGameHome saved in the DB");
