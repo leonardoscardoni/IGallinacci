@@ -3,26 +3,8 @@
             <div class="flex justify-between flex-wrap">
                 <ng-container *ngFor="let tipoDato of a">
                     <div class="w-[48%] sm:w-[32%] md:w-[30%] mt-3">
-                        <div class="p-2 rounded-t-xl bg-arancio text-base md:text-lg color-nero text-center">{{tipoDato.titolo.toUpperCase()}}</div>
-
-                        <div class="flex flex-wrap p-5 rounded-b-xl bg-bianco color-nero text-center">
-
-                            <div class="flex w-full">
-                                <img src="{{tipoDato.squadre[0].logo}}" alt="" class="w-2/12">
-                                <p class="w-10/12 text-end text-base sm:text-l md:text-2xl">{{tipoDato.squadre[0].nome.toUpperCase()}}</p>
-                            </div>
-                            <div class="w-full mt-2">
-                                <p class="font-inter font-black text-4xl sm:text-5xl md:text-7xl">{{tipoDato.squadre[0].dato}}</p>
-                            </div>
-                            
-                            <div class="w-full mt-2">
-                                <p class="font-inter font-black text-4xl sm:text-5xl md:text-7xl">{{tipoDato.squadre[1].dato}}</p>
-                            </div>
-                            <div class="flex w-full">
-                                <img src="{{tipoDato.squadre[1].logo}}" alt="" class="w-2/12">
-                                <p class="w-10/12 text-end text-base sm:text-l md:text-2xl">{{tipoDato.squadre[1].nome.toUpperCase()}}</p>
-                            </div>
-                        </div>
+                        
+                        <app-card-confronto-dati [titoloCard]="tipoDato.titolo" [nomeSquadra1]="tipoDato.squadre[0].nome" [nomeSquadra2]="tipoDato.squadre[1].nome" [logoSquadra1]="tipoDato.squadre[0].logo" [logoSquadra2]="tipoDato.squadre[1].logo" [datoSquadra1]="tipoDato.squadre[0].dato" [datoSquadra2]="tipoDato.squadre[1].dato" />
                         
                     </div>
                 </ng-container>

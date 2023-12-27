@@ -17,6 +17,7 @@ import { TitoloSezioneComponent } from "./components/titolo-sezione/titolo-sezio
 import { StatisticheDettaglioPartitaComponent } from "./components/statistiche-dettaglio-partita/statistiche-dettaglio-partita.component";
 import { PreferitiDettaglioPartitaComponent } from "./components/preferiti-dettaglio-partita/preferiti-dettaglio-partita.component";
 import { GiocatoriDettaglioPartitaComponent } from "./components/giocatori-dettaglio-partita/giocatori-dettaglio-partita.component";
+import { CardConfrontoDatiComponent } from "./components/card-confronto-dati/card-confronto-dati.component";
 
 @NgModule({
     declarations: [
@@ -35,6 +36,7 @@ import { GiocatoriDettaglioPartitaComponent } from "./components/giocatori-detta
         StatisticheDettaglioPartitaComponent,
         PreferitiDettaglioPartitaComponent,
         GiocatoriDettaglioPartitaComponent,
+        CardConfrontoDatiComponent,
     ],
     imports: [BrowserModule, AppRoutingModule],
     providers: [],
