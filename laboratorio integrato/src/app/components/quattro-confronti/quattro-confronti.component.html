@@ -1,0 +1,62 @@
+<div class="container grid grid-cols-12 gap-4">
+    <ng-container *ngIf="quarti">
+        <ng-container *ngFor="let quarto of a.squadre[0].punteggio; index as i">
+            <p 
+              class="color-white text-center text-xl"
+              [ngClass]="{
+                'col-start-4': i === 0,
+                'col-end-6': i === 0,
+                'col-start-6': i === 1,
+                'col-end-8': i === 1,
+                'col-start-8': i === 2,
+                'col-end-10': i === 2,
+                'col-start-10': i === 3,
+                'col-end-12': i === 3,
+                'md:col-start-7': i === 0,
+                'md:col-end-8': i === 0,
+                'md:col-start-8': i === 1,
+                'md:col-end-9': i === 1,
+                'md:col-start-9': i === 2,
+                'md:col-end-10': i === 2,
+                'md:col-start-10': i === 3,
+                'md:col-end-11': i === 3,
+              }"
+            >
+              {{quarto.quarter}}
+            </p>
+        </ng-container>
+    </ng-container>
+
+    <ng-container *ngFor="let squadra of a.squadre">
+        <img src="{{squadra.logo}}" class="w-[2rem] md:w-[2.5rem] col-start-1 col-end-3 md:col-start-5 md:col-end-6 flex justify-center self-center aspect-square flex-wrap"/>
+        <p class="md:col-start-6 md:col-end-7 flex justify-center content-center aspect-square flex-wrap text-2xl">{{squadra.nome}}</p>
+        <ng-container *ngFor="let punteggio of squadra.punteggio; index as i">
+            <div class="bg-bianco flex justify-center content-center flex-wrap rounded-xl"
+            [ngClass]="{
+                'col-start-4': i === 0,
+                'col-end-6': i === 0,
+                'col-start-6': i === 1,
+                'col-end-8': i === 1,
+                'col-start-8': i === 2,
+                'col-end-10': i === 2,
+                'col-start-10': i === 3,
+                'col-end-12': i === 3,
+                'md:col-start-7': i === 0,
+                'md:col-end-8': i === 0,
+                'md:col-start-8': i === 1,
+                'md:col-end-9': i === 1,
+                'md:col-start-9': i === 2,
+                'md:col-end-10': i === 2,
+                'md:col-start-10': i === 3,
+                'md:col-end-11': i === 3,
+              }">
+                <div class="w-full relative" style="width: 100%; padding-top: 100%;">
+                    <div class="absolute text-center" style="top: 50%; left: 0; right: 0; transform: translateY(-50%);">
+                        <p class="color-nero font-inter font-black text-xl">{{punteggio.points}}</p>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+
+</div>

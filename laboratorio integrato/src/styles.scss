@@ -43,6 +43,16 @@ body , .linea{
 .border-arancio{
     border-color: $arancio;
 }
+.border-bianco{
+    border-color: $bianco;
+}
+.font-italic{
+    font-style: italic;
+    -webkit-text-stroke-width: 1px; 
+    -webkit-text-stroke-color: $bianco;
+    font-variation-settings: "ital" 1;
+    font-synthesis: none;
+}
 
 h1{
     font-family: MioFont;

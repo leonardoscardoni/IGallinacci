@@ -1,11 +1,14 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
-    selector: "app-quarters-dettaglio-partita",
-    templateUrl: "./quarters-dettaglio-partita.component.html",
-    styleUrls: ["./quarters-dettaglio-partita.component.scss"],
+    selector: "app-quattro-confronti",
+    templateUrl: "./quattro-confronti.component.html",
+    styleUrls: ["./quattro-confronti.component.scss"],
 })
-export class QuartersDettaglioPartitaComponent implements OnInit {
+export class QuattroConfrontiComponent implements OnInit {
+    @Input() quarti!: boolean;
+    @Input() numeri!: boolean;
+
     a = {
         squadre: [
             {

@@ -12,9 +12,12 @@ import { TodayMatchesComponent } from "./components/today-matches/today-matches.
 import { FooterComponent } from "./components/footer/footer.component";
 import { CalendarioPartiteComponent } from "./pages/calendario-partite/calendario-partite.component";
 import { HeaderDettaglioPartitaComponent } from "./components/header-dettaglio-partita/header-dettaglio-partita.component";
-import { QuartersDettaglioPartitaComponent } from "./components/quarters-dettaglio-partita/quarters-dettaglio-partita.component";
+import { QuattroConfrontiComponent } from "./components/quattro-confronti/quattro-confronti.component";
 import { TitoloSezioneComponent } from "./components/titolo-sezione/titolo-sezione.component";
-import { statisticheDettaglioPartitaComponent } from "./components/statistiche-dettaglio-partita/statistiche-dettaglio-partita.component";
+import { StatisticheDettaglioPartitaComponent } from "./components/statistiche-dettaglio-partita/statistiche-dettaglio-partita.component";
+import { PreferitiDettaglioPartitaComponent } from "./components/preferiti-dettaglio-partita/preferiti-dettaglio-partita.component";
+import { GiocatoriDettaglioPartitaComponent } from "./components/giocatori-dettaglio-partita/giocatori-dettaglio-partita.component";
+import { CardConfrontoDatiComponent } from "./components/card-confronto-dati/card-confronto-dati.component";
 
 @NgModule({
     declarations: [
@@ -29,8 +32,11 @@ import { statisticheDettaglioPartitaComponent } from "./components/statistiche-d
         CalendarioPartiteComponent,
         HeaderDettaglioPartitaComponent,
         TitoloSezioneComponent,
-        QuartersDettaglioPartitaComponent,
-        statisticheDettaglioPartitaComponent,
+        QuattroConfrontiComponent,
+        StatisticheDettaglioPartitaComponent,
+        PreferitiDettaglioPartitaComponent,
+        GiocatoriDettaglioPartitaComponent,
+        CardConfrontoDatiComponent,
     ],
     imports: [BrowserModule, AppRoutingModule],
     providers: [],
