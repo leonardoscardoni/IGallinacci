@@ -11,6 +11,8 @@ import { PerTeComponent } from './per-te/per-te.component';
 import { TodayMatchesComponent } from './today-matches/today-matches.component';
 import { FooterComponent } from './footer/footer.component';
 import { CalendarioPartiteComponent } from './pages/calendario-partite/calendario-partite.component';
+import { ElencoTeamComponent } from './elenco-team/elenco-team.component';
+import { DatiConfrontoTeamComponent } from './dati-confronto-team/dati-confronto-team.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { CalendarioPartiteComponent } from './pages/calendario-partite/calendari
     PerTeComponent,
     TodayMatchesComponent,
     FooterComponent,
-    CalendarioPartiteComponent
+    CalendarioPartiteComponent,
+    ElencoTeamComponent,
+    DatiConfrontoTeamComponent
   ],
   imports: [
     BrowserModule,
