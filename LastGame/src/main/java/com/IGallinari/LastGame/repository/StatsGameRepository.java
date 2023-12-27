@@ -17,7 +17,7 @@ public interface StatsGameRepository extends JpaRepository<StatsGame,Integer> {
 
     List<StatsGame> findStatsGameByGameDate(LocalDate inputDate);
 
-    @Query(value = "SELECT DISTINCT sg.idGame FROM Statsgame sg", nativeQuery = true)
-    List<Integer> findAllIds();
+    @Query(value = "SELECT sg.idGame FROM statsgame sg WHERE sg.fastBreakPoint IS NOT NULL;", nativeQuery = true)
+    List<Integer> findAllIdsWhereIsNotComplete();
 
 }

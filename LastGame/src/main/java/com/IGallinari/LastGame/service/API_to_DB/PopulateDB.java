@@ -124,6 +124,10 @@ public class PopulateDB {
         for (Integer season : seasons) {
             idTeamsInDB = statsPlayerRepository.findDistinctTeamIds(season);
             idTeamsNeed = new ArrayList<>(allIdTeams);
+            if(season == 2022) {
+                List<Integer> idTeamsEmpty = new ArrayList<>(Arrays.asList(3, 12, 13, 18, 32, 33, 34,35,36,37,39,42,83,84,85,86,87,88,89,91,92,93,99,104,105,166,168,169));
+                idTeamsNeed.removeAll(idTeamsEmpty);
+            }
             idTeamsNeed.removeAll(idTeamsInDB);
             if (!idTeamsNeed.isEmpty()) {
                 System.out.println("Preparing the call/s for the /players/statistics endpoint");
@@ -169,21 +173,44 @@ public class PopulateDB {
             }else {
                 System.out.println("All team statistics, of the season: "+season+", have already been added");
             }
-
         }
         totCall+=call;
         System.out.println("there were made "+call+" calls, total calls"+totCall);
         call=0;
+        yearsInDB= statsTeamRepository.findDistincSeasonsWhereIsNotComplete();
+        yearsNeed = new ArrayList<>(seasons);
+        yearsNeed.removeAll(yearsInDB);
+        if (!yearsNeed.isEmpty()) {
+            System.out.println("Preparing the call/s for the /standings endpoint");
+            for (Integer season : yearsNeed) {
+                params = Map.ofEntries(
+                        Map.entry("league", "standard"),
+                        Map.entry("season", season.toString()));
+                try {
+                    String response = apiCaller.callApi("standings", params);//2 chiamate
+                    call+=1;
+                    redirectJSON.manageJSON(response);
+                    TimeUnit.MINUTES.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }else {
+            System.out.println("All standings have already been added");
+        }
+        totCall+=call;
+        System.out.println("there were made "+call+" calls, total calls "+totCall);
+        call=0;
         LocalDate todayDate = LocalDate.now();
         List<Integer> allIdGames = gameRepository.findAllIdsBeforeDate(todayDate);
-        List<Integer> idGamesInDB = statsGameRepository.findAllIds();
+        List<Integer> idGamesInDB = statsGameRepository.findAllIdsWhereIsNotComplete();
         List<Integer> idGameNeed = new ArrayList<>(allIdGames);
         idGameNeed.removeAll(idGamesInDB);
         if(!idGameNeed.isEmpty()) {
             for (Integer idGame : idGameNeed) {
                 params = Map.of("id", idGame.toString());
                 try {
-                    String response = apiCaller.callApi("/teams/statistics", params);
+                    String response = apiCaller.callApi("games/statistics", params);
                     call+=1;
                     redirectJSON.manageJSON(response);
                     TimeUnit.MINUTES.sleep(1);
