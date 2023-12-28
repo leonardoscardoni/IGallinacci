@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
@@ -18,6 +17,13 @@ import { StatisticheDettaglioPartitaComponent } from "./components/statistiche-d
 import { PreferitiDettaglioPartitaComponent } from "./components/preferiti-dettaglio-partita/preferiti-dettaglio-partita.component";
 import { GiocatoriDettaglioPartitaComponent } from "./components/giocatori-dettaglio-partita/giocatori-dettaglio-partita.component";
 import { CardConfrontoDatiComponent } from "./components/card-confronto-dati/card-confronto-dati.component";
+import { DettaglioTeamComponent } from "./pages/dettaglio-team/dettaglio-team.component";
+import { HeaderDettaglioTeamComponent } from "./components/header-dettaglio-team/header-dettaglio-team.component";
+import { PosizioneInClassificaComponent } from "./components/posizione-in-classifica/posizione-in-classifica.component";
+import { DatiPrincipaliComponent } from "./components/dati-principali/dati-principali.component";
+import { LaSquadraComponent } from "./components/la-squadra/la-squadra.component";
+import { DatiGeneraliComponent } from "./components/dati-generali/dati-generali.component";
+import { ContainerDatiGeneraliComponent } from "./components/container-dati-generali/container-dati-generali.component";
 
 @NgModule({
     declarations: [
@@ -37,6 +43,13 @@ import { CardConfrontoDatiComponent } from "./components/card-confronto-dati/car
         PreferitiDettaglioPartitaComponent,
         GiocatoriDettaglioPartitaComponent,
         CardConfrontoDatiComponent,
+        DettaglioTeamComponent,
+        HeaderDettaglioTeamComponent,
+        PosizioneInClassificaComponent,
+        DatiPrincipaliComponent,
+        LaSquadraComponent,
+        DatiGeneraliComponent,
+        ContainerDatiGeneraliComponent,
     ],
     imports: [BrowserModule, AppRoutingModule],
     providers: [],

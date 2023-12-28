@@ -1,7 +1,12 @@
 $arancio:#E98A15;
 $bianco:#E5CFB5;
 $nero:#130B02;
-
+.border-bianco{
+    border-color:$bianco;
+}
+.border-arancio{
+    border-color:$arancio;
+}
 
 @font-face {
     font-family: 'MioFont';
@@ -23,6 +28,9 @@ body , .linea{
 
 .font-inter{
     font-family: inter;
+}
+.font-antonio{
+    font-family: MioFont;
 }
 
 .bg-arancio{

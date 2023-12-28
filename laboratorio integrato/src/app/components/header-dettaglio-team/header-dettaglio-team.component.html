@@ -1,0 +1,19 @@
+<div class="pt-12">
+    <div class="bg-bianco w-full h-10 color-nero text-center leading-10 font-inter text-lg">
+        <p>{{ data[0].conference }} || {{ data[0].division }}</p>
+    </div>
+    <div class="relative bg-white/5 border-b border-[#E5CFB5] flex items-center justify-center p-10 flex-wrap gap-8">
+        <div class="flex lg:gap-14 md:gap-8 lg:items-end flex-col md:flex-row items-center gap-5">
+            <div class="lg:w-20 md:w-14 h-full w-10">
+                <img src="/assets/s-l1200.webp" class="w-full" alt="">
+            </div>
+            <p class="md:text-5xl lg:text-8xl uppercase md:pe-10 text-4xl">{{ data[0].team }}</p>
+        </div>
+        <div class="w-full flex justify-center">
+            <div class="border border-[#E5CFB5] py-1 md:px-3 px-2 rounded-full md:h-12 h-8 flex gap-2 items-center justify-center lg:absolute right-20 top-14 w-fit">
+                <img src="/assets/star-outlined-svgrepo-com.svg" class="h-[70%]" alt="">
+                <p class="font-inter text-xs md:text-sm">Segui</p>
+            </div>
+        </div>
+    </div>
+</div>
