@@ -16,13 +16,13 @@ public interface GameRepository extends JpaRepository<Game,Integer> {
 
     Game findById(int id);
 
-    @Query(value = "SELECT  YEAR(game_date) FROM game GROUP BY YEAR(game_date)", nativeQuery = true)
+    @Query(value = "SELECT  YEAR(date) FROM game GROUP BY YEAR(date)", nativeQuery = true)
     List<Integer> findDistinctYears();
 
-    @Query(value = "SELECT  g.id FROM game AS g GROUP BY (g.id)", nativeQuery = true)
+    @Query(value = "SELECT  id FROM game GROUP BY (id)", nativeQuery = true)
     List<Integer> findDistinctIdTeams();
 
-    @Query(value = "SELECT g.id FROM Game g WHERE g.gameDate < :inputDate", nativeQuery = true)
+    @Query(value = "SELECT g.id,g.date FROM Game AS g WHERE g.date <:inputDate ORDER BY g.date DESC; ", nativeQuery = true)
     List<Integer> findAllIdsBeforeDate(@Param("inputDate") LocalDate inputDate);
 
     List<Game> findGameByDate(LocalDate inputDate);

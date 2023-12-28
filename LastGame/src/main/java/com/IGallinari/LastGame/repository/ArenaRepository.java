@@ -12,7 +12,7 @@ public interface ArenaRepository extends JpaRepository<Arena,Integer> {
     @Override
     List<Arena> findAll();
 
-    Arena findBynameArena(String nameArena);
+    Arena findByName(String name);
 
-    boolean existsBynameArena(String nameArena);
+    boolean existsByName(String name);
 }

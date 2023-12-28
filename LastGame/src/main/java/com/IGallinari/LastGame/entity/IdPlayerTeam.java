@@ -8,11 +8,15 @@ import java.io.Serializable;
 
 @Data
 @Embeddable
-public class IdPlayer implements Serializable {
+public class IdPlayerTeam implements Serializable {
 
     @Column(name = "idTeam")
     private int teamId;
 
-    @Column(name = "id")
-    private int id;
+    @Column(name = "idPlayer")
+    private int playerId;
+
+    @Column(name = "season")
+    private int season;
 }
+

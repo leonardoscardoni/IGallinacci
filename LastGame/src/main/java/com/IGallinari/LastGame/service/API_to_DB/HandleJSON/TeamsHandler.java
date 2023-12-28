@@ -3,27 +3,39 @@ package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 import com.IGallinari.LastGame.entity.Team;
 import com.IGallinari.LastGame.repository.TeamRepository;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+
+@Service
+@AllArgsConstructor
 public class TeamsHandler implements Handler{
 
     private TeamRepository teamRepository;
 
     @Override
     public void handle(JsonNode jsonNode) {
-        JsonNode teamsNode = jsonNode.get("response").get(0);
-
+        ArrayNode teamsNode = (ArrayNode) jsonNode.get("response");
         for (JsonNode teamNode : teamsNode) {
-            Team team = new Team();
-            team.setId(teamNode.get("id").asInt());
-            team.setName(teamNode.get("name").asText(null));
-            team.setNickname(teamNode.get("nickname").asText(null));
-            team.setCode(teamNode.get("code").asText(null));
-            team.setCity(teamNode.get("city").asText(null));
-            team.setLogo(teamNode.get("logo").asText(null));
-            team.setAllstar(teamNode.get("allStar").asBoolean());
-            team.setConference(teamNode.get("leagues").get("standard").get("conference").asText(null));
-            team.setDivision(teamNode.get("leagues").get("standard").get("division").asText(null));
-            teamRepository.save(team);
+                Team team = new Team();
+                team.setId(asInteger(teamNode.get("id")));
+                team.setName(asString(teamNode.get("name")));
+                team.setNickname(asString(teamNode.get("nickname")));
+                team.setCode(asString(teamNode.get("code")));
+                team.setCity(asString(teamNode.get("city")));
+                team.setLogo(asString(teamNode.get("logo")));
+                team.setAllstar(teamNode.get("allStar").asBoolean());
+                team.setConference(asString(teamNode.get("leagues").get("standard").get("conference")));
+                team.setDivision(asString(teamNode.get("leagues").get("standard").get("division")));
+                teamRepository.save(team);
+                System.out.println("Object Team team saved in the DB");
         }
     }
 }
+

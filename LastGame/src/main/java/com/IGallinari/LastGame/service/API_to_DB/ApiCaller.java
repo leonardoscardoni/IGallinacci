@@ -1,15 +1,18 @@
 
 package com.IGallinari.LastGame.service.API_to_DB;
 
+import org.springframework.stereotype.Service;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Map;
 
+@Service
 public class ApiCaller {
     private static final String RAPIDAPI_HOST = "v2.nba.api-sports.io";
-    private static final String RAPIDAPI_KEY = "4c64ae58903b6076d0249d712d55ee29";
+    private static final String RAPIDAPI_KEY = "694a7898066848fa96b702072f061d8b";
     private static final String baseURL = "https://v2.nba.api-sports.io/";
 
     private static final HttpClient httpClient = HttpClient.newHttpClient();
@@ -39,6 +42,7 @@ public class ApiCaller {
 
         try {
             // Make the API call and return the response
+            System.out.println("Making a call to: "+endpoint+" endpoint");
             return makeApiCall(uri);
         } catch (Exception e) {
             e.printStackTrace();

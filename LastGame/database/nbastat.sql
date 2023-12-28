@@ -33,7 +33,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `arena` (
-  `nameArena` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `city` varchar(255) DEFAULT NULL,
   `state` varchar(10) DEFAULT NULL,
   `country` varchar(255) DEFAULT NULL
@@ -48,13 +48,13 @@ CREATE TABLE `arena` (
 CREATE TABLE `game` (
   `id` int(11) NOT NULL,
   `season` smallint(5) UNSIGNED NOT NULL,
-  `gameDate` date DEFAULT NULL,
-  `startTime` time DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `time` time DEFAULT NULL,
   `stage` tinyint(4) DEFAULT NULL,
   `totPeriods` tinyint(4) DEFAULT NULL,
   `nameArena` varchar(255) DEFAULT NULL,
-  `id_visitor` int(11) DEFAULT NULL,
-  `id_home` int(11) DEFAULT NULL
+  `idVisitor` int(11) DEFAULT NULL,
+  `idHome` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -83,7 +83,6 @@ CREATE TABLE `team` (
 
 CREATE TABLE `player` (
   `id` int(11) NOT NULL,
-  `idTeam` int(11) NOT NULL,
   `firstname` varchar(255) DEFAULT NULL,
   `lastname` varchar(255) DEFAULT NULL,
   `dateOfBirth` date DEFAULT NULL,
@@ -97,6 +96,18 @@ CREATE TABLE `player` (
   `jersey` tinyint(4) DEFAULT NULL,
   `isActive` tinyint(1) DEFAULT NULL,
   `pos` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `playerteam`
+--
+
+CREATE TABLE `playerteam` (
+  `idPlayer` int(11) NOT NULL,
+  `idTeam` int(11) NOT NULL,
+  `season` smallint(5) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -183,7 +194,7 @@ CREATE TABLE `statsplayer` (
 CREATE TABLE `statsteam` (
   `idTeam` int(11) NOT NULL,
   `season` smallint(5) UNSIGNED NOT NULL,
-  `game` smallint(5) UNSIGNED DEFAULT NULL,
+  `games` smallint(5) UNSIGNED DEFAULT NULL,
   `fastBreakPoints` smallint(5) UNSIGNED DEFAULT NULL,
   `pointsInPaint` smallint(5) UNSIGNED DEFAULT NULL,
   `biggestLead` smallint(5) UNSIGNED DEFAULT NULL,
@@ -236,7 +247,7 @@ CREATE TABLE `statsteam` (
 -- Indici per le tabelle `arena`
 --
 ALTER TABLE `arena`
-  ADD PRIMARY KEY (`nameArena`);
+  ADD PRIMARY KEY (`name`);
 
 --
 -- Indici per le tabelle `game`
@@ -244,8 +255,8 @@ ALTER TABLE `arena`
 ALTER TABLE `game`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_arena` (`nameArena`),
-  ADD KEY `fk_home_team` (`id_home`),
-  ADD KEY `fk_visitor_team` (`id_visitor`);
+  ADD KEY `fk_home_team` (`idHome`),
+  ADD KEY `fk_visitor_team` (`idVisitor`);
 
 --
 -- Indici per le tabelle `team`
@@ -257,8 +268,15 @@ ALTER TABLE `team`
 -- Indici per le tabelle `player`
 --
 ALTER TABLE `player`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_player_team` (`idTeam`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indici per le tabelle `playerteam`
+--
+ALTER TABLE `playerteam`
+  ADD PRIMARY KEY (`idPlayer`,`idTeam`,`season`),
+  ADD KEY `fk_playerteam_player` (`idPlayer`),
+  ADD KEY `fk_playerteam_team` (`idTeam`);
 
 --
 -- Indici per le tabelle `statsgame`
@@ -291,15 +309,16 @@ ALTER TABLE `statsteam`
 -- Limiti per la tabella `game`
 --
 ALTER TABLE `game`
-  ADD CONSTRAINT `fk_arena` FOREIGN KEY (`nameArena`) REFERENCES `arena` (`nameArena`),
-  ADD CONSTRAINT `fk_home_team` FOREIGN KEY (`id_home`) REFERENCES `team` (`id`),
-  ADD CONSTRAINT `fk_visitor_team` FOREIGN KEY (`id_visitor`) REFERENCES `team` (`id`);
+  ADD CONSTRAINT `fk_arena` FOREIGN KEY (`nameArena`) REFERENCES `arena` (`name`),
+  ADD CONSTRAINT `fk_home_team` FOREIGN KEY (`idHome`) REFERENCES `team` (`id`),
+  ADD CONSTRAINT `fk_visitor_team` FOREIGN KEY (`idVisitor`) REFERENCES `team` (`id`);
 
 --
--- Limiti per la tabella `player`
+-- Limiti per la tabella `playerteam`
 --
-ALTER TABLE `player`
-  ADD CONSTRAINT `fk_player_team` FOREIGN KEY (`idTeam`) REFERENCES `team` (`id`);
+ALTER TABLE `playerteam`
+  ADD CONSTRAINT `fk_playerteam_player` FOREIGN KEY (`idPlayer`) REFERENCES `player` (`id`),
+  ADD CONSTRAINT `fk_playerteam_team` FOREIGN KEY (`idTeam`) REFERENCES `team` (`id`);
 
 --
 -- Limiti per la tabella `statsgame`
@@ -322,6 +341,12 @@ ALTER TABLE `statsplayer`
 ALTER TABLE `statsteam`
   ADD CONSTRAINT `fk_statsTeam_team` FOREIGN KEY (`idTeam`) REFERENCES `team` (`id`);
 COMMIT;
+
+
+CREATE USER IF NOT EXISTS 'backend-lastgame'@'localhost' IDENTIFIED BY '5lE;R230LO_%*v{(3+ECbd:';
+GRANT SELECT, INSERT, UPDATE, DELETE ON nbastat.* TO 'backend-lastgame'@'localhost';
+FLUSH PRIVILEGES;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

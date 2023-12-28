@@ -1,13 +1,18 @@
 package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 
+import com.IGallinari.LastGame.entity.IdStatsGame;
 import com.IGallinari.LastGame.entity.StatsGame;
 import com.IGallinari.LastGame.repository.GameRepository;
 import com.IGallinari.LastGame.repository.StatsGameRepository;
 import com.IGallinari.LastGame.repository.TeamRepository;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-
+@Service
+@AllArgsConstructor
 public class GamesStatisticsHandler implements Handler{
 
     private GameRepository gameRepository;
@@ -18,13 +23,15 @@ public class GamesStatisticsHandler implements Handler{
 
     @Override
     public void handle(JsonNode jsonNode) {
-        JsonNode parametersNode = jsonNode.get("parameters").get(0);
-        JsonNode gamesStatisticsNode = jsonNode.get("response").get(0);
+        JsonNode parametersNode = jsonNode.get("parameters");
+        ArrayNode gamesStatisticsNode = (ArrayNode) jsonNode.get("response");
 
         for (JsonNode gameStatisticsNode : gamesStatisticsNode) {
             StatsGame statsGame = new StatsGame();
-            statsGame.setGame(gameRepository.findById(parametersNode.get("parameters").get("id").asInt()));
-            statsGame.setTeam(teamRepository.findById(gameStatisticsNode.get("team").get("id").asInt()));
+            IdStatsGame idStatsGame = new IdStatsGame();
+            idStatsGame.setGameId(parametersNode.get("parameters").get("id").asInt());
+            idStatsGame.setTeamId(gameStatisticsNode.get("team").get("id").asInt());
+            statsGame.setStatsGameId(idStatsGame);
             statsGame.setFastBreakPoint(asInteger(gameStatisticsNode.get("fastBreakPoints")));
             statsGame.setPointsInPaint(asInteger(gameStatisticsNode.get("pointsInPaint")));
             statsGame.setBiggestLead(asInteger(gameStatisticsNode.get("biggestLead")));
@@ -49,8 +56,9 @@ public class GamesStatisticsHandler implements Handler{
             statsGame.setTurnovers(asInteger(gameStatisticsNode.get("turnovers")));
             statsGame.setBlocks(asInteger(gameStatisticsNode.get("blocks")));
             statsGame.setPlusMinus(asInteger(gameStatisticsNode.get("plusMinus")));
-            statsGame.setMin(gameStatisticsNode.get("min").asText(null));
+            statsGame.setMin(asString(gameStatisticsNode.get("min")));
             statsGameRepository.save(statsGame);
+            System.out.println("Object StatsGame statsGame saved in the DB");
         }
     }
 }

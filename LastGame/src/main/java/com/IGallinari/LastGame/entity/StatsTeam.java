@@ -79,13 +79,13 @@ public class StatsTeam {
 
     private Integer winAway;
 
-    private float winPerc;
+    private Float winPerc;
 
     private Integer lossHome;
 
     private Integer lossAway;
 
-    private float lossPerc;
+    private Float lossPerc;
 
     private Integer gamesBehind;
 

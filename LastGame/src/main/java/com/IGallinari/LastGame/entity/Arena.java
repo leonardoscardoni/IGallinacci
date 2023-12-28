@@ -10,8 +10,8 @@ import lombok.Data;
 public class Arena {
 
     @Id
-    @Column(name = "nameArena")
-    private String nameArena;
+    @Column(name = "name")
+    private String name;
 
     private String city;
 

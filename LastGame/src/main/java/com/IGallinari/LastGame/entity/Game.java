@@ -25,17 +25,17 @@ public class Game {
 
     private Integer stage;
 
-    private Integer totPeriods;
+    private Integer totperiods;
 
     @ManyToOne
     @JoinColumn(name = "nameArena")
     private Arena arena;
 
     @ManyToOne
-    @JoinColumn(name = "idTeam")
+    @JoinColumn(name = "idVisitor")
     private Team visitorTeam;
 
     @ManyToOne
-    @JoinColumn(name = "id_home")
+    @JoinColumn(name = "idHome")
     private Team homeTeam;
 }

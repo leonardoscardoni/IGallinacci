@@ -1,10 +1,16 @@
 package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 
+import com.IGallinari.LastGame.entity.IdStatsTeam;
 import com.IGallinari.LastGame.entity.StatsTeam;
 import com.IGallinari.LastGame.repository.StatsTeamRepository;
 import com.IGallinari.LastGame.repository.TeamRepository;
 import com.fasterxml.jackson.databind.JsonNode;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Service
+@AllArgsConstructor
 public class TeamsStatisticsHandler implements Handler{
 
     private TeamRepository teamRepository;
@@ -13,12 +19,14 @@ public class TeamsStatisticsHandler implements Handler{
 
     @Override
     public void handle(JsonNode jsonNode) {
-        JsonNode parametersNode = jsonNode.get("parameters").get(0);
-        JsonNode teamStatisticsNode = jsonNode.get("response").get(0);
+        JsonNode parametersNode = jsonNode.get("parameters");
+        JsonNode teamStatisticsNode = jsonNode.get("response");
         
         StatsTeam statsTeam = new StatsTeam();
-        statsTeam.setSeason(parametersNode.get("season").asInt());
-        statsTeam.setTeam(teamRepository.findById(parametersNode.get("id").asInt()));
+        IdStatsTeam idStatsTeam = new IdStatsTeam();
+        idStatsTeam.setTeamId(parametersNode.get("id").asInt());
+        idStatsTeam.setSeason(parametersNode.get("season").asInt());
+        statsTeam.setStatsTeamId(idStatsTeam);
         statsTeam.setGames(asInteger(teamStatisticsNode.get("games")));
         statsTeam.setFastBreakPoints(asInteger(teamStatisticsNode.get("fastBreakPoints")));
         statsTeam.setPointsInPaint(asInteger(teamStatisticsNode.get("pointsInPaint")));
@@ -46,5 +54,6 @@ public class TeamsStatisticsHandler implements Handler{
         statsTeam.setBlocks(asInteger(teamStatisticsNode.get("blocks")));
         statsTeam.setPlusMinus(asInteger(teamStatisticsNode.get("plusMinus")));
         statsTeamRepository.save(statsTeam);
+        System.out.println("Object StatTeam statsTeam saved in the DB");
     }
 }

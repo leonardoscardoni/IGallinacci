@@ -12,10 +12,6 @@ public class Player {
     @Id
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "idTeam", insertable = false, updatable = false)
-    private Team team;
-
     private String firstname;
 
     private String lastname;
@@ -28,9 +24,9 @@ public class Player {
 
     private Integer pro;
 
-    private float heigth;
+    private Float height;
 
-    private float weight;
+    private Float weight;
 
     private String college;
 
