@@ -18,7 +18,7 @@ import { StatisticheDettaglioPartitaComponent } from "./components/statistiche-d
 import { PreferitiDettaglioPartitaComponent } from "./components/preferiti-dettaglio-partita/preferiti-dettaglio-partita.component";
 import { GiocatoriDettaglioPartitaComponent } from "./components/giocatori-dettaglio-partita/giocatori-dettaglio-partita.component";
 import { CardConfrontoDatiComponent } from "./components/card-confronto-dati/card-confronto-dati.component";
-import { HeaderConfrontoComponent } from "./components/header-confronto/header-confronto.component";
+import { HeaderConfrontoDettaglioComponent } from "./components/header-confronto-dettaglio/header-confronto-dettaglio.component";
 import { DettConfrontoGiocatoriComponent } from "./pages/dett-confronto-giocatori/dett-confonto-giocatori.component";
 
 @NgModule({
@@ -39,7 +39,7 @@ import { DettConfrontoGiocatoriComponent } from "./pages/dett-confronto-giocator
         PreferitiDettaglioPartitaComponent,
         GiocatoriDettaglioPartitaComponent,
         CardConfrontoDatiComponent,
-        HeaderConfrontoComponent,
+        HeaderConfrontoDettaglioComponent,
         DettConfrontoGiocatoriComponent,
     ],
     imports: [BrowserModule, AppRoutingModule],
