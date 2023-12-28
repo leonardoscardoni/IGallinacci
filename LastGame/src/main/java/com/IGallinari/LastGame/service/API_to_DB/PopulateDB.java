@@ -132,6 +132,7 @@ public class PopulateDB {
             if (!idTeamsNeed.isEmpty()) {
                 System.out.println("Preparing the call/s for the /players/statistics endpoint");
                 for (Integer idTeam : idTeamsNeed) {
+                    System.out.println("idTeam: "+idTeam);
                     params = Map.ofEntries(
                             Map.entry("season", season.toString()),
                             Map.entry("team", idTeam.toString()));

@@ -30,10 +30,11 @@ public class PlayersStatisticsHandler implements Handler{
         for (JsonNode playerStatisticsNode : playersStatisticsNode) {
             StatsPlayer statsPlayer = new StatsPlayer();
             IdStatsPlayer idStatsPlayer = new IdStatsPlayer();
-            statsPlayer.setStatsPlayerId(idStatsPlayer);
             idStatsPlayer.setPlayerId(playerStatisticsNode.get("player").get("id").asInt());
             idStatsPlayer.setGameId(playerStatisticsNode.get("game").get("id").asInt());
             idStatsPlayer.setTeamId(playerStatisticsNode.get("team").get("id").asInt());
+            statsPlayer.setStatsPlayerId(idStatsPlayer);
+            System.out.println("idPlayer: "+idStatsPlayer.getPlayerId());
             statsPlayer.setPoints(asInteger(playerStatisticsNode.get("points")));
             statsPlayer.setPos(asString(playerStatisticsNode.get("pos")));
             statsPlayer.setMin(asInteger(playerStatisticsNode.get("min")));
