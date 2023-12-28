@@ -1,4 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ApiService } from '../../api.service';
+import { TypeHome } from '../../_models/homeApi.type';
 
 @Component({
   selector: 'app-home-page',
@@ -37,6 +39,15 @@ scroll(direction: number) {
   this.carouselContent.nativeElement.scrollTo({
     left: newScrollLeft,
     behavior: 'smooth'
+  });
+}
+constructor(private apiService: ApiService) {}
+dati: TypeHome = {} as TypeHome
+
+ngOnInit() {
+  this.apiService.getHomeApi().subscribe((data:TypeHome) => {
+    this.dati = data;
+    console.log(this.dati)
   });
 }
 }

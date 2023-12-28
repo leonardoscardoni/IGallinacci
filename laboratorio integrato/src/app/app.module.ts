@@ -24,6 +24,8 @@ import { DatiPrincipaliComponent } from "./components/dati-principali/dati-princ
 import { LaSquadraComponent } from "./components/la-squadra/la-squadra.component";
 import { DatiGeneraliComponent } from "./components/dati-generali/dati-generali.component";
 import { ContainerDatiGeneraliComponent } from "./components/container-dati-generali/container-dati-generali.component";
+import { ProvaApiComponent } from './prova-api/prova-api.component';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
     declarations: [
@@ -50,8 +52,9 @@ import { ContainerDatiGeneraliComponent } from "./components/container-dati-gene
         LaSquadraComponent,
         DatiGeneraliComponent,
         ContainerDatiGeneraliComponent,
+        ProvaApiComponent,
     ],
-    imports: [BrowserModule, AppRoutingModule],
+    imports: [BrowserModule, AppRoutingModule,HttpClientModule],
     providers: [],
     bootstrap: [AppComponent],
 })

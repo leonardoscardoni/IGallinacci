@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="68100f67-1321-44f9-b6e3-39aa364d6269" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/IGallinari/LastGame/controller/GameController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/IGallinari/LastGame/payload/request/HomeGamesResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/IGallinari/LastGame/repository/GameRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/IGallinari/LastGame/repository/GameRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/IGallinari/LastGame/service/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/IGallinari/LastGame/service/GameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/app.module.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +53,7 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2ZWzzq9R3fI6AcKhWmVYRHeH8UU" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
