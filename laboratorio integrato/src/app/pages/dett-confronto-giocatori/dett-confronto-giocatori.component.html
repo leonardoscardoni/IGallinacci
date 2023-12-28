@@ -1,0 +1,29 @@
+<div class="fixed">
+    <div class="block sm:hidden">XS</div>
+    <div class="hidden sm:block md:hidden">SM</div>
+    <div class="hidden md:block lg:hidden">MD</div>
+    <div class="hidden md:hidden lg:block xl:hidden">LG</div>
+    <div class="hidden lg:hidden xl:block">XL</div>
+</div>
+
+<app-header-confronto-dettaglio [bgImg]="a.bgImg" [nome1]="a.nome1" [nome2]="a.nome2" [logo1]="a.logo1" [logo2]="a.logo2"></app-header-confronto-dettaglio>
+
+<div class="container">
+    <div class="flex justify-between w-full">
+        <ng-container *ngFor="let giocatore of a.confrontoGiocatori; index as i">
+            <app-bio-giocatore
+                [nomeGiocatore]="a.confrontoGiocatori[i].nomeGiocatore"
+                [eta]="a.confrontoGiocatori[i].eta"
+                [peso]="a.confrontoGiocatori[i].peso"
+                [stato]="a.confrontoGiocatori[i].stato"
+                [altezza]="a.confrontoGiocatori[i].altezza"
+                [squadra]="a.confrontoGiocatori[i].squadra"
+                [annoIngressoNBA]="a.confrontoGiocatori[i].annoIngressoNBA"
+                [college]="a.confrontoGiocatori[i].college"
+                [affiliation]="a.confrontoGiocatori[i].affiliation"
+                class="w-[45%]"
+            ></app-bio-giocatore>
+        </ng-container>
+    </div>
+</div>
+

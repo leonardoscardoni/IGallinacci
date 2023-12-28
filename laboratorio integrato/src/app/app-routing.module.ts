@@ -3,7 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { DettaglioPartitaComponent } from "./pages/dettaglio-partita/dettaglio-partita-giocata.component";
 import { CalendarioPartiteComponent } from "./pages/calendario-partite/calendario-partite.component";
-import { DettConfrontoGiocatoriComponent } from "./pages/dett-confronto-giocatori/dett-confonto-giocatori.component";
+import { DettConfrontoGiocatoriComponent } from "./pages/dett-confronto-giocatori/dett-confronto-giocatori.component";
 
 const routes: Routes = [
     { path: "home", component: HomePageComponent },
