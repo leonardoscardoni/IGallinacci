@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class HomeResponse {
-    private List<PastResultGame> pastGame;
-    private List<NextViewGame> nextGame;
+    private List<PastViewGame> pastGames;
+    private List<NextViewGame> nextGames;
 
 }

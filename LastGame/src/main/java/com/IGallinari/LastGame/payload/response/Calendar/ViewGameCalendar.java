@@ -10,6 +10,7 @@ import java.time.LocalTime;
 @Data
 @AllArgsConstructor
 public class ViewGameCalendar {
+    private int id;
     private LocalDate date;
     private LocalTime time;
     private ViewTeamCalendar homeTeam;

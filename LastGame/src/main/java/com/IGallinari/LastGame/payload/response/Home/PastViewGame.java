@@ -5,8 +5,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class nextResultGame {
+public class PastViewGame {
     private int id;
-    private nextResultTeam homeTeam;
-    private nextResultTeam visitorTeam;
+    private PastViewTeam homeTeam;
+    private PastViewTeam visitorTeam;
 }

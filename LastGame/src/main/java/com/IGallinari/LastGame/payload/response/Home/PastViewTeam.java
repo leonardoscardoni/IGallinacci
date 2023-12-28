@@ -3,11 +3,11 @@ package com.IGallinari.LastGame.payload.response.Home;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.time.LocalDate;
-
 @Data
 @AllArgsConstructor
-public class nextResultTeam {
+public class PastViewTeam {
+    private int id;
     private String nickname;
     private String logo;
+    private int points;
 }

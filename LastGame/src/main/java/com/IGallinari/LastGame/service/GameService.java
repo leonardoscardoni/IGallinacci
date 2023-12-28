@@ -14,44 +14,39 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class GameService {
-    private GameRepository gameRepository;
+    private final GameRepository gameRepository;
 
-    private TeamRepository teamRepository;
-
-    private StatsGameRepository statsGameRepository;
-
-    public List<Game> getGamesByDate(LocalDate inputDate){
-        return gameRepository.findGameByDate(inputDate);
-    }
+    private final StatsGameRepository statsGameRepository;
 
     public HomeResponse buildHomeUnLogged(){
         LocalDate todoayDate = LocalDate.now();
         LocalDate yesterdayDate = todoayDate.minusDays(1);
         List<Game> yesterdayGames = gameRepository.findGameByDate(yesterdayDate);
         List<Game> todayGames = gameRepository.findGameByDate(todoayDate);
-        List<PastResultGame> pastResultGames = Collections.emptyList();
-        List<NextViewGame> nextViewGames = Collections.emptyList();
+        List<PastViewGame> pastViewGames = new ArrayList<>();
+        List<NextViewGame> nextViewGames = new ArrayList<>();
         for(Game yesterdayGame: yesterdayGames){
             Team teamHome=yesterdayGame.getHomeTeam();
             Team teamVisitors= yesterdayGame.getVisitorTeam();
-            StatsGame statsGameTeamHome= statsGameRepository.findStatsGameByGameAndTAndTeam(yesterdayGame,teamHome);
-            StatsGame statsGameTeamVisitor= statsGameRepository.findStatsGameByGameAndTAndTeam(yesterdayGame,teamVisitors);
-            pastResultGames.add(
-                    new PastResultGame(
+            StatsGame statsGameTeamHome= statsGameRepository.findStatsGameByGameAndTeam(yesterdayGame,teamHome);
+            StatsGame statsGameTeamVisitor= statsGameRepository.findStatsGameByGameAndTeam(yesterdayGame,teamVisitors);
+            pastViewGames.add(
+                    new PastViewGame(
                             yesterdayGame.getId(),
-                            new PastResultTeam(
+                            new PastViewTeam(
                                     teamHome.getId(),
                                     teamHome.getNickname(),
                                     teamHome.getLogo(),
                                     statsGameTeamHome.getPoints()
                             ),
-                            new PastResultTeam(
+                            new PastViewTeam(
                                     teamVisitors.getId(),
                                     teamVisitors.getNickname(),
                                     teamVisitors.getLogo(),
@@ -68,34 +63,39 @@ public class GameService {
                             todayGame.getId(),
                             todayGame.getTime(),
                             new NextViewTeam(
+                                    teamHome.getId(),
                                     teamHome.getNickname(),
                                     teamHome.getLogo()
                             ),
                             new NextViewTeam(
+                                    teamVisitors.getId(),
                                     teamVisitors.getNickname(),
                                     teamVisitors.getLogo()
                             )
                     )
             );
         }
-        return new HomeResponse(pastResultGames,nextViewGames);
+        return new HomeResponse(pastViewGames,nextViewGames);
     }
 
     public CalendarResponse buildCalendar(LocalDate inputDate){
         List<Game> gamesByDate = gameRepository.findGameByDate(inputDate);
-        List<ViewGameCalendar> viewGameCalendars = Collections.emptyList();
+        List<ViewGameCalendar> viewGameCalendars = new ArrayList<>();
         for(Game game: gamesByDate){
             Team teamHome=game.getHomeTeam();
             Team teamVisitors= game.getVisitorTeam();
             viewGameCalendars.add(
                     new ViewGameCalendar(
+                            game.getId(),
                             game.getDate(),
                             game.getTime(),
                             new ViewTeamCalendar(
+                                    teamHome.getId(),
                                     teamHome.getNickname(),
                                     teamHome.getLogo()
                             ),
                             new ViewTeamCalendar(
+                                    teamVisitors.getId(),
                                     teamVisitors.getNickname(),
                                     teamVisitors.getLogo()
                             )
@@ -104,4 +104,6 @@ public class GameService {
         }
         return new CalendarResponse(viewGameCalendars);
     }
+
+
 }

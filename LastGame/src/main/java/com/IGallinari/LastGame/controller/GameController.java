@@ -4,10 +4,7 @@ import com.IGallinari.LastGame.payload.response.Calendar.CalendarResponse;
 import com.IGallinari.LastGame.payload.response.Home.HomeResponse;
 import com.IGallinari.LastGame.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
@@ -19,13 +16,15 @@ public class GameController {
     @Autowired
     private GameService service;
 
-    @PostMapping("/getHomeUnLogged")
+    @RequestMapping("/getHomeUnLogged")
     public HomeResponse getHomeUnLogged(){
         return this.service.buildHomeUnLogged();
     }
 
     @PostMapping("/getCalendar")
-    public CalendarResponse getHomeUnLogged(LocalDate inputdate){
-        return this.service.buildCalendar(inputdate);
+    public CalendarResponse getHomeUnLogged(@RequestParam LocalDate date){
+        return this.service.buildCalendar(date);
     }
+
+
 }
