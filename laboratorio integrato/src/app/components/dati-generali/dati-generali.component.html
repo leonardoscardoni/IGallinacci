@@ -1,0 +1,20 @@
+<div class="px-6 lg:px-16 py-6">
+  <div class="w-full">
+    <div
+      class="border-y border-arancio text-center text-[1.6rem] uppercase py-1"
+    >
+      {{ titolo }}
+    </div>
+
+    <div class="py-5">
+      <div *ngFor="let dato of dati" class="flex justify-between">
+        <span class="lg:text-2xl text-lg color-white font-inter py-2"
+          >{{ dato.chiave }}:</span
+        >
+        <span class="lg:text-2xl text-xl font-bold color-white py-2">{{
+          dato.valore
+        }}</span>
+      </div>
+    </div>
+  </div>
+</div>
