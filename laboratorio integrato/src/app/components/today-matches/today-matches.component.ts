@@ -1,5 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { MatchDataService } from "../../match-data.service";
+import { TypeHome } from "src/app/_models/homeApi.type";
+import dayjs from "dayjs";
 
 @Component({
     selector: "app-today-matches",
@@ -7,11 +9,15 @@ import { MatchDataService } from "../../match-data.service";
     styleUrls: ["./today-matches.component.scss"],
 })
 export class TodayMatchesComponent implements OnInit {
-    a: any[] = [];
+    hour = "";
 
-    constructor(private matchDataService: MatchDataService) {}
+    @Input() data: TypeHome = {} as TypeHome;
 
     ngOnInit() {
-        this.a = this.matchDataService.getMatches();
+
+    }
+    convertHour(orario:string) {
+        const hourDayJs = dayjs(orario);
+        return hourDayJs.format("HH:mm");
     }
 }

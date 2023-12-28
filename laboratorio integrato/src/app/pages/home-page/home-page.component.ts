@@ -42,12 +42,12 @@ scroll(direction: number) {
   });
 }
 constructor(private apiService: ApiService) {}
-dati: TypeHome = {} as TypeHome
+data: TypeHome = {} as TypeHome
 
 ngOnInit() {
   this.apiService.getHomeApi().subscribe((data:TypeHome) => {
-    this.dati = data;
-    console.log(this.dati)
+    this.data = data;
+    console.log(this.data)
   });
 }
 }
