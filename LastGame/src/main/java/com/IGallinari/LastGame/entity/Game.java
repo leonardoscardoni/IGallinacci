@@ -19,9 +19,9 @@ public class Game {
 
     private Integer season;
 
-    private LocalDate gameDate;
+    private LocalDate date;
 
-    private LocalTime startTime;
+    private LocalTime time;
 
     private Integer stage;
 

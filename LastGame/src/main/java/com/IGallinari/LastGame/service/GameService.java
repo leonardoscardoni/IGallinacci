@@ -1,9 +1,5 @@
 package com.IGallinari.LastGame.service;
 
-<<<<<<< Updated upstream
-public class GameService {
-}
-=======
 import com.IGallinari.LastGame.entity.Game;
 import com.IGallinari.LastGame.entity.StatsGame;
 import com.IGallinari.LastGame.entity.Team;
@@ -109,4 +105,3 @@ public class GameService {
         return new CalendarResponse(viewGameCalendars);
     }
 }
->>>>>>> Stashed changes
