@@ -26,6 +26,7 @@ import { DatiGeneraliComponent } from "./components/dati-generali/dati-generali.
 import { ContainerDatiGeneraliComponent } from "./components/container-dati-generali/container-dati-generali.component";
 import { ProvaApiComponent } from './prova-api/prova-api.component';
 import { HttpClientModule } from "@angular/common/http";
+import { UltimiRisultatiHomeComponent } from './components/ultimi-risultati-home/ultimi-risultati-home.component';
 
 @NgModule({
     declarations: [
@@ -53,6 +54,7 @@ import { HttpClientModule } from "@angular/common/http";
         DatiGeneraliComponent,
         ContainerDatiGeneraliComponent,
         ProvaApiComponent,
+        UltimiRisultatiHomeComponent,
     ],
     imports: [BrowserModule, AppRoutingModule,HttpClientModule],
     providers: [],
