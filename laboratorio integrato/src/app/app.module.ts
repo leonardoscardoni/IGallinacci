@@ -13,7 +13,7 @@ import { CalendarioPartiteComponent } from "./pages/calendario-partite/calendari
 import { HeaderDettaglioPartitaComponent } from "./components/header-dettaglio-partita/header-dettaglio-partita.component";
 import { QuattroConfrontiComponent } from "./components/quattro-confronti/quattro-confronti.component";
 import { TitoloSezioneComponent } from "./components/titolo-sezione/titolo-sezione.component";
-import { StatisticheDettaglioPartitaComponent } from "./components/statistiche-dettaglio-partita/statistiche-dettaglio-partita.component";
+import { ContenitoreCardConfrontoDatiComponent } from "./components/contenitore-card-confronto-dati/contenitore-card-confronto-dati.component";
 import { PreferitiDettaglioPartitaComponent } from "./components/preferiti-dettaglio-partita/preferiti-dettaglio-partita.component";
 import { GiocatoriDettaglioPartitaComponent } from "./components/giocatori-dettaglio-partita/giocatori-dettaglio-partita.component";
 import { CardConfrontoDatiComponent } from "./components/card-confronto-dati/card-confronto-dati.component";
@@ -24,6 +24,9 @@ import { DatiPrincipaliComponent } from "./components/dati-principali/dati-princ
 import { LaSquadraComponent } from "./components/la-squadra/la-squadra.component";
 import { DatiGeneraliComponent } from "./components/dati-generali/dati-generali.component";
 import { ContainerDatiGeneraliComponent } from "./components/container-dati-generali/container-dati-generali.component";
+import { HeaderConfrontoDettaglioComponent } from "./components/header-confronto-dettaglio/header-confronto-dettaglio.component";
+import { DettConfrontoGiocatoriComponent } from "./pages/dett-confronto-giocatori/dett-confronto-giocatori.component";
+import { BioGiocatoreComponent } from "./components/bio-giocatore/bio-giocatore.component";
 
 @NgModule({
     declarations: [
@@ -39,7 +42,7 @@ import { ContainerDatiGeneraliComponent } from "./components/container-dati-gene
         HeaderDettaglioPartitaComponent,
         TitoloSezioneComponent,
         QuattroConfrontiComponent,
-        StatisticheDettaglioPartitaComponent,
+        ContenitoreCardConfrontoDatiComponent,
         PreferitiDettaglioPartitaComponent,
         GiocatoriDettaglioPartitaComponent,
         CardConfrontoDatiComponent,
@@ -50,6 +53,9 @@ import { ContainerDatiGeneraliComponent } from "./components/container-dati-gene
         LaSquadraComponent,
         DatiGeneraliComponent,
         ContainerDatiGeneraliComponent,
+        HeaderConfrontoDettaglioComponent,
+        DettConfrontoGiocatoriComponent,
+        BioGiocatoreComponent,
     ],
     imports: [BrowserModule, AppRoutingModule],
     providers: [],

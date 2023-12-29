@@ -1,0 +1,14 @@
+<div class="flex justify-between items-center flex-wrap w-full min-h-[25vh] md:min-h-[35vh] my-10 p-4 bgImg" style="background-image: url('{{ bgImg }}')">
+
+    <div class="w-full md:w-[45%] flex justify-center md:justify-end items-center">
+        <img src="{{logo1}}" class="inline-block w-[2rem] md:w-[3rem] mr-5 md:mr-10" alt="Logo {{nome1}}">
+        <p class="inline-block align-middle text-[2rem] sm:text-[2rem] md:text-[2.5rem] lg:text-[3rem] text-end">{{nome1.toUpperCase()}}</p>
+    </div>
+
+    <p class="w-full md:w-[10%] font-inter text-center font-extralight text-xl sm:text-xl md:text-3xl">vs</p>
+
+    <div class="w-full md:w-[45%] flex justify-center md:justify-end items-center md:flex-row-reverse">
+        <img src="{{logo2}}" class="inline-block w-[2rem] md:w-[3rem] mr-5 md:mr-0 md:ml-10" alt="Logo {{nome2}}">
+        <p class="inline-block align-middle text-[2rem] sm:text-[2rem] md:text-[2.5rem] lg:text-[3rem]">{{nome2.toUpperCase()}}</p>
+    </div>
+</div>
