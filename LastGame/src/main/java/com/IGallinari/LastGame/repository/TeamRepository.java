@@ -16,4 +16,6 @@ public interface TeamRepository extends JpaRepository<Team,Integer> {
 
     @Query(value = "SELECT DISTINCT t.id FROM Team t", nativeQuery = true)
     List<Integer> findAllIds();
+
+    List<Team> findByDivision(String division);
 }

@@ -5,8 +5,9 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class NextViewTeam {
+public class ViewPastTeam {
     private int id;
     private String nickname;
     private String logo;
+    private int points;
 }

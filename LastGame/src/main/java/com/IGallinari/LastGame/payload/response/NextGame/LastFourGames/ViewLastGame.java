@@ -7,5 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class ViewLastGame {
     private int idGame;
-    private Boolean result;
+    private boolean result;
 }

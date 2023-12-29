@@ -18,7 +18,5 @@ public interface StatsGameRepository extends JpaRepository<StatsGame,Integer> {
     List<Integer> findAllIds();
     @Query(value = "SELECT sg.idGame FROM statsgame sg WHERE sg.fastBreakPoint IS NOT NULL;", nativeQuery = true)
     List<Integer> findAllIdsWhereIsNotComplete();
-
-
     StatsGame findStatsGameByGameAndTeam(Game inputGame,Team inputTeam);
 }

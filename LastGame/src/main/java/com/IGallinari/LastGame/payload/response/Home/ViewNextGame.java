@@ -3,10 +3,13 @@ package com.IGallinari.LastGame.payload.response.Home;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.time.LocalTime;
+
 @Data
 @AllArgsConstructor
-public class PastViewGame {
+public class ViewNextGame {
     private int id;
-    private PastViewTeam homeTeam;
-    private PastViewTeam visitorTeam;
+    private LocalTime time;
+    private ViewNextTeam homeTeam;
+    private ViewNextTeam visitorTeam;
 }

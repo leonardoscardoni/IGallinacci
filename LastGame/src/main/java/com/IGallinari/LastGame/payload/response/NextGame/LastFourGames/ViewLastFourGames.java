@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class LastFourGames {
+public class ViewLastFourGames {
     private int idTeam;
     private String code;
     private String logo;
