@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 @Component({
     selector: "app-contenitore-card-confronto-dati",
     templateUrl: "./contenitore-card-confronto-dati.component.html",
     styleUrls: ["./contenitore-card-confronto-dati.component.scss"],
 })
-export class ContenitoreCardConfrontoDatiComponent implements OnInit {
+export class ContenitoreCardConfrontoDatiComponent {
     a = [
         {
             titolo: "Punti da tre",
@@ -52,5 +52,4 @@ export class ContenitoreCardConfrontoDatiComponent implements OnInit {
             ],
         },
     ];
-    ngOnInit() {}
 }
