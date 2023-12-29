@@ -23,6 +23,7 @@ export class DettConfrontoGiocatoriComponent {
                 annoIngressoNBA: 2000,
                 college: "Torino",
                 affiliation: "Bo",
+                ruolo: "attaccante",
             },
             {
                 nomeGiocatore: "Alessio Strano",
@@ -34,6 +35,7 @@ export class DettConfrontoGiocatoriComponent {
                 annoIngressoNBA: 2000,
                 college: "Torino",
                 affiliation: "Bo",
+                ruolo: "difensore",
             },
         ],
     };

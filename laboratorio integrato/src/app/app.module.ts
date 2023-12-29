@@ -14,7 +14,7 @@ import { CalendarioPartiteComponent } from "./pages/calendario-partite/calendari
 import { HeaderDettaglioPartitaComponent } from "./components/header-dettaglio-partita/header-dettaglio-partita.component";
 import { QuattroConfrontiComponent } from "./components/quattro-confronti/quattro-confronti.component";
 import { TitoloSezioneComponent } from "./components/titolo-sezione/titolo-sezione.component";
-import { StatisticheDettaglioPartitaComponent } from "./components/statistiche-dettaglio-partita/statistiche-dettaglio-partita.component";
+import { ContenitoreCardConfrontoDatiComponent } from "./components/contenitore-card-confronto-dati/contenitore-card-confronto-dati.component";
 import { PreferitiDettaglioPartitaComponent } from "./components/preferiti-dettaglio-partita/preferiti-dettaglio-partita.component";
 import { GiocatoriDettaglioPartitaComponent } from "./components/giocatori-dettaglio-partita/giocatori-dettaglio-partita.component";
 import { CardConfrontoDatiComponent } from "./components/card-confronto-dati/card-confronto-dati.component";
@@ -36,7 +36,7 @@ import { BioGiocatoreComponent } from "./components/bio-giocatore/bio-giocatore.
         HeaderDettaglioPartitaComponent,
         TitoloSezioneComponent,
         QuattroConfrontiComponent,
-        StatisticheDettaglioPartitaComponent,
+        ContenitoreCardConfrontoDatiComponent,
         PreferitiDettaglioPartitaComponent,
         GiocatoriDettaglioPartitaComponent,
         CardConfrontoDatiComponent,

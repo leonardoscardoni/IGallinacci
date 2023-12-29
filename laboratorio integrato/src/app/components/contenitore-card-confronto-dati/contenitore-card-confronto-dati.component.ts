@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 @Component({
-    selector: "app-statistiche-dettaglio-partita",
-    templateUrl: "./statistiche-dettaglio-partita.component.html",
-    styleUrls: ["./statistiche-dettaglio-partita.component.scss"],
+    selector: "app-contenitore-card-confronto-dati",
+    templateUrl: "./contenitore-card-confronto-dati.component.html",
+    styleUrls: ["./contenitore-card-confronto-dati.component.scss"],
 })
-export class StatisticheDettaglioPartitaComponent implements OnInit {
+export class ContenitoreCardConfrontoDatiComponent implements OnInit {
     a = [
         {
             titolo: "Punti da tre",

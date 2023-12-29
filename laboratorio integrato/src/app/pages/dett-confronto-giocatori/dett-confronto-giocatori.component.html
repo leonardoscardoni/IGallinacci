@@ -9,7 +9,7 @@
 <app-header-confronto-dettaglio [bgImg]="a.bgImg" [nome1]="a.nome1" [nome2]="a.nome2" [logo1]="a.logo1" [logo2]="a.logo2"></app-header-confronto-dettaglio>
 
 <div class="container">
-    <div class="flex justify-between w-full">
+    <div class="flex justify-center sm:justify-between w-full flex-wrap">
         <ng-container *ngFor="let giocatore of a.confrontoGiocatori; index as i">
             <app-bio-giocatore
                 [nomeGiocatore]="a.confrontoGiocatori[i].nomeGiocatore"
@@ -21,9 +21,42 @@
                 [annoIngressoNBA]="a.confrontoGiocatori[i].annoIngressoNBA"
                 [college]="a.confrontoGiocatori[i].college"
                 [affiliation]="a.confrontoGiocatori[i].affiliation"
-                class="w-[45%]"
+                class="w-[4/5] sm:w-[45%]"
+                [ngClass]="i == 0 ? 'mb-10 sm:mb-0' : ''"
             ></app-bio-giocatore>
         </ng-container>
     </div>
 </div>
 
+<app-titolo-sezione [numero]="'01'" [titolo]="'Ruolo'" [spiegazione]="'Lorem ipsum dolor sit amet consectetur. Velit urna vitae scelerisque nullam sed metus dictum pulvinar.'" [spanSpiegazione]="'Consectetur volutpat turpis nec congue.'"/>
+
+<div class="container">
+    <div class="grid grid-cols-12 gap-4">
+        <ng-container *ngFor="let giocatore of a.confrontoGiocatori; index as i">
+            <div [ngClass]="{
+                'col-start-2': i === 0 || i === 1,
+                'col-span-10': i === 0 || i === 1,
+                'md:col-start-2': i === 0,
+                'md:col-span-5': i === 0 || i === 1,
+                'md:col-start-7': i === 1,
+                'lg:col-start-4': i === 0,
+                'lg:col-span-4': i === 0 || i === 1,
+                'lg:col-start-8': i === 1,
+                'xl:col-start-5': i === 0,
+                'xl:col-span-3': i === 0 || i === 1,
+                'xl:col-start-8': i === 1,
+              }"
+              class="border border-[#E5CFB5] rounded-2xl p-3 text-center hover:bg-[#E5CFB5] hover:text-black"
+            >
+                <p class="text-base md:text-lg">{{a.confrontoGiocatori[i].nomeGiocatore.toUpperCase()}}</p>
+                <p class="font-inter text-2lg md:text-3xl font-black">{{a.confrontoGiocatori[i].ruolo.toUpperCase()}}</p>
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<section class="py-20">
+    <app-titolo-sezione [numero]="'02'" [titolo]="'Dati'" [spiegazione]="'Lorem ipsum dolor sit amet consectetur. Velit urna vitae scelerisque nullam sed metus dictum pulvinar.'" [spanSpiegazione]="'Consectetur volutpat turpis nec congue.'"/>
+    
+    <app-contenitore-card-confronto-dati/>
+</section>
