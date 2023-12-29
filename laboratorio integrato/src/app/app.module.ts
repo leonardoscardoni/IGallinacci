@@ -31,7 +31,7 @@ import { ProvaApiComponent } from "./prova-api/prova-api.component";
 import { HttpClientModule } from "@angular/common/http";
 import { UltimiRisultatiHomeComponent } from "./components/ultimi-risultati-home/ultimi-risultati-home.component";
 import { SceltaConfrontoTeamComponent } from './pages/scelta-confronto-team/scelta-confronto-team.component';
-import { HeaderBgTitoloComponent } from './components/header-bg-titolo/header-bg-titolo.component';
+import { HeaderBgTitoloComponent } from './header-bg-titolo/header-bg-titolo.component';
 
 @NgModule({
     declarations: [
