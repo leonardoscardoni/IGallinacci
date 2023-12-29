@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-header-bg-titolo',
@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./header-bg-titolo.component.scss']
 })
 export class HeaderBgTitoloComponent {
+  @Input() data:any;
+
   isModalOpen = false;
   selectedTeam1: { nome: string; immagine: string } = { nome: '', immagine: '' };
   selectedTeam2: { nome: string; immagine: string } = { nome: '', immagine: '' };

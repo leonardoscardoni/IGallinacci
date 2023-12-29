@@ -7,14 +7,21 @@ import { TypeHome } from "./_models/homeApi.type";
   providedIn: "root",
 })
 export class ApiService {
-  private baseURL = "http://localhost:8090/games/";
+  private baseURL = "http://localhost:8090/";
 
-  private homeUrl = "getHomeUnLogged";
+  private homeUrl = "games/getHomeUnLogged";
+
+  private divisione = "teams/getTeams"
 
   constructor(private http: HttpClient) {}
   getHomeApi() {
     return this.http.get(`${this.baseURL}${this.homeUrl}`)
     .pipe(map((response:any) => {
         return response as TypeHome}));
+  }
+  getDivisionApi() {
+    return this.http.get(`${this.baseURL}${this.divisione}`)
+    .pipe(map((response:any) => {
+        return response as any}));
   }
 }
