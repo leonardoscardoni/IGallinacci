@@ -16,17 +16,21 @@
     </div>
 
     <div *ngFor="let a of data.nextGames" >
-        <div class="border-t flex flex-col md:flex-row justify-between pb-6 pt-0 md:pt-2">
+        <div class="border-t border-bianco flex flex-col md:flex-row justify-between pb-6 pt-0 md:pt-2">
             <p class="md:text-7xl font-inter font-black">{{convertHour(a.time)}}{{hour}}</p>
             <div class="md:text-3xl text-lg flex items-end pb-2 md:gap-12 md:w-2/3 w-full justify-between border-y py-3 md:border-none md:py-0">
                 <div class="flex md:gap-5 gap-2 items-center w-2/5 uppercase">
-                    <img src={{a.homeTeam.logo}} class="md:w-8 md:h-8 w-5 h-5" alt="">
+                    <div class="bg-white p-1 rounded-full overflow-hidden">
+                        <img src={{a.homeTeam.logo}} class="md:w-8 md:h-8 w-5 h-5" alt="">
+                    </div>
                     <p>{{a.homeTeam.nickname}}</p>
                 </div>
                 <p class="w-1/5 font-thin font-inter text-center">vs</p>
                 <div class="flex gap-5 items-center justify-end w-2/5 uppercase ">
                     <p>{{a.visitorTeam.nickname}}</p>
-                    <img src={{a.visitorTeam.logo}} class="md:w-8 md:h-8 w-5 h-5" alt="">
+                    <div class="bg-white p-1 rounded-full overflow-hidden">
+                        <img src={{a.visitorTeam.logo}} class="md:w-8 md:h-8 w-5 h-5" alt="">
+                    </div>
                 </div>
             </div>
         </div>
