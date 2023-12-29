@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="68100f67-1321-44f9-b6e3-39aa364d6269" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/app.module.ts" afterDir="false" />
+    <list default="true" id="c37c9620-1c6a-4a8f-b566-00dea8a53df4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/LastGame.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
