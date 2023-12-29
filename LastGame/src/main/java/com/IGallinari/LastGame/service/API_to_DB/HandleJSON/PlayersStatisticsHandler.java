@@ -23,20 +23,20 @@ public class PlayersStatisticsHandler implements Handler{
         JsonNode paramsNode = jsonNode.get("parameters");
 
         for (JsonNode playerStatisticsNode : playersStatisticsNode) {
-            /*if(!playerRepository.existsById(playerStatisticsNode.get("player").get("id").asInt())){
+            if(!playerRepository.existsById(playerStatisticsNode.get("player").get("id").asInt())){
                 Player player = new Player();
-                player.setId();
-                player.setFirstname();
-                player.setLastname();
+                player.setId(playerStatisticsNode.get("player").get("id").asInt());
+                player.setFirstname(asString(playerStatisticsNode.get("player").get("firstname")));
+                player.setLastname(asString(playerStatisticsNode.get("player").get("lastname")));
                 playerRepository.save(player);
                 IdPlayerTeam idPlayerTeam = new IdPlayerTeam();
-                idPlayerTeam.setSeason();
-                idPlayerTeam.setPlayerId();
-                idPlayerTeam.setTeamId();
+                idPlayerTeam.setSeason(paramsNode.get("season").asInt());
+                idPlayerTeam.setPlayerId(playerStatisticsNode.get("player").get("id").asInt());
+                idPlayerTeam.setTeamId(paramsNode.get("team").asInt());
                 PlayerTeam playerTeam = new PlayerTeam();
                 playerTeam.setIdPlayerTeam(idPlayerTeam);
                 playerTeamRepository.save(playerTeam);
-            }*/
+            }
             StatsPlayer statsPlayer = new StatsPlayer();
             IdStatsPlayer idStatsPlayer = new IdStatsPlayer();
             idStatsPlayer.setPlayerId(playerStatisticsNode.get("player").get("id").asInt());
