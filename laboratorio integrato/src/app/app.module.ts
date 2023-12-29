@@ -27,6 +27,9 @@ import { ContainerDatiGeneraliComponent } from "./components/container-dati-gene
 import { HeaderConfrontoDettaglioComponent } from "./components/header-confronto-dettaglio/header-confronto-dettaglio.component";
 import { DettConfrontoGiocatoriComponent } from "./pages/dett-confronto-giocatori/dett-confronto-giocatori.component";
 import { BioGiocatoreComponent } from "./components/bio-giocatore/bio-giocatore.component";
+import { ProvaApiComponent } from "./prova-api/prova-api.component";
+import { HttpClientModule } from "@angular/common/http";
+import { UltimiRisultatiHomeComponent } from "./components/ultimi-risultati-home/ultimi-risultati-home.component";
 
 @NgModule({
     declarations: [
@@ -56,8 +59,10 @@ import { BioGiocatoreComponent } from "./components/bio-giocatore/bio-giocatore.
         HeaderConfrontoDettaglioComponent,
         DettConfrontoGiocatoriComponent,
         BioGiocatoreComponent,
+        ProvaApiComponent,
+        UltimiRisultatiHomeComponent,
     ],
-    imports: [BrowserModule, AppRoutingModule],
+    imports: [BrowserModule, AppRoutingModule, HttpClientModule],
     providers: [],
     bootstrap: [AppComponent],
 })
