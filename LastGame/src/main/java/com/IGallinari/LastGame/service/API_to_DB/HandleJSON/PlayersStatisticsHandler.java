@@ -23,7 +23,7 @@ public class PlayersStatisticsHandler implements Handler{
         JsonNode paramsNode = jsonNode.get("parameters");
 
         for (JsonNode playerStatisticsNode : playersStatisticsNode) {
-            if(!playerRepository.existsById(playerStatisticsNode.get("player").get("id").asInt())){
+            /*if(!playerRepository.existsById(playerStatisticsNode.get("player").get("id").asInt())){
                 Player player = new Player();
                 player.setId();
                 player.setFirstname();
@@ -36,17 +36,14 @@ public class PlayersStatisticsHandler implements Handler{
                 PlayerTeam playerTeam = new PlayerTeam();
                 playerTeam.setIdPlayerTeam(idPlayerTeam);
                 playerTeamRepository.save(playerTeam);
-            }
+            }*/
             StatsPlayer statsPlayer = new StatsPlayer();
             IdStatsPlayer idStatsPlayer = new IdStatsPlayer();
             idStatsPlayer.setPlayerId(playerStatisticsNode.get("player").get("id").asInt());
             idStatsPlayer.setGameId(playerStatisticsNode.get("game").get("id").asInt());
             idStatsPlayer.setTeamId(playerStatisticsNode.get("team").get("id").asInt());
             statsPlayer.setStatsPlayerId(idStatsPlayer);
-<<<<<<< Updated upstream
             System.out.println("idPlayer: "+idStatsPlayer.getPlayerId());
-=======
->>>>>>> Stashed changes
             statsPlayer.setPoints(asInteger(playerStatisticsNode.get("points")));
             statsPlayer.setPos(asString(playerStatisticsNode.get("pos")));
             statsPlayer.setMin(asInteger(playerStatisticsNode.get("min")));
