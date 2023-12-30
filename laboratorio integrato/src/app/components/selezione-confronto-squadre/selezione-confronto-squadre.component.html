@@ -1,0 +1,108 @@
+<div class="lg:px-20 px-6 pb-20 flex flex-col items-center">
+    <h2 class="color-arancio uppercase self-start">scelta squadre</h2>
+    <div class="flex flex-col md:flex-row gap-y-10 md:gap-y-0 gap-10 justify-between lg:p-20 p-6 items-center w-full">
+      <div class="relative">
+        <div class="bg-arancio w-full h-10 border border-arancio z-20 rounded-t-3xl absolute top-0">
+          <p class="text-black uppercase text-2xl text-center leading-10">prima squadra</p>
+        </div>
+        <div
+    class="w-56 h-56 lg:w-72 lg:h-72 rounded-3xl border-t-0 border border-dashed border-bianco text-8xl flex flex-col-reverse items-center justify-center relative gap-5"
+    (click)="openModal(plusNumber1)"
+    [class.bg-bianco]="selectedTeam1.nome"
+    [class.text-black]="selectedTeam1.nome"
+  
+  >
+    <ng-container *ngIf="selectedTeam1.nome; else plusSign">
+      <p class="text-3xl uppercase">{{ selectedTeam1.nome }}</p>
+    </ng-container>
+    <ng-template #plusSign>
+      +
+    </ng-template>
+    <img *ngIf="selectedTeam1.immagine" [src]="selectedTeam1.immagine" class="w-14" alt="">
+  </div>
+  
+      </div>
+      <p class="text-3xl uppercase font-inter">vs</p>
+      <div class="relative">
+        <div class="bg-arancio w-full h-10 border border-arancio z-20 rounded-t-3xl absolute top-0">
+          <p class="text-black uppercase text-2xl text-center leading-10">seconda squadra</p>
+        </div>
+        <div
+    class="w-56 h-56 lg:w-72 lg:h-72 rounded-3xl border-t-0 border border-dashed border-bianco text-8xl flex flex-col-reverse items-center justify-center relative gap-5"
+    (click)="openModal(plusNumber2)"
+    [class.bg-bianco]="selectedTeam2.nome"
+    [class.text-black]="selectedTeam2.nome"
+  
+  >
+    <ng-container *ngIf="selectedTeam2.nome; else plusSign">
+      <p class="text-3xl uppercase">{{ selectedTeam2.nome }}</p>
+    </ng-container>
+    <ng-template #plusSign>
+      +
+    </ng-template>
+    <img *ngIf="selectedTeam2.immagine" [src]="selectedTeam2.immagine" class="w-14" alt="">
+  </div>
+  
+      </div>
+    </div>
+    <button class="bg-arancio rounded-full py-3 px-4 w-fit uppercase font-inter font-bold">Vai al Confronto</button>
+  
+    <div
+      *ngIf="isModalOpen"
+      class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+    >
+      <div
+        class="bg-black border border-bianco w-[90%] h-[90%] p-8 pt-20 rounded-lg relative flex flex-wrap gap-y-2 overflow-y-scroll hide-scrollbar"
+        >
+        <h3 class="absolute top-3 text-2xl color-arancio uppercase">Scegli Squadra</h3>
+        <input type="text" placeholder="Cerca..." class="lg:absolute static outline-none top-3 rounded-2xl px-3 py-1 left-[50%] lg:translate-x-[-50%] text-xl bg-transparent border border-arancio uppercase h-fit" [(ngModel)]="searchInput" (input)="onSearchInputChange()" />        <div class="absolute w-10 h-10 p-2 top-3 right-2"
+        (click)="closeModal()"
+        >
+          <img src="/assets/close-svgrepo-com.svg" class="w-full" alt="">
+        </div>
+        <div class="w-full h-fit px-4">
+          <h3 class="w-full border-y border-arancio text-2xl uppercase leading-10 ps-2 my-3" [class.filtered]="searchInput">East</h3>
+          <div class="flex flex-col lg:flex-row flex-wrap gap-5 gap-x-10">
+            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl" *ngFor="let a of data.east.atlantic.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo })"
+            [class.filtered]="searchInput && !a.nickname.toUpperCase().includes(searchInput)">
+              <p class="text-lg">{{a.nickname}}</p>
+              <img src={{a.logo}} class="w-8 h-8 bg-white rounded-full object-contain p-1" alt="">
+            </div>
+            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl" *ngFor="let a of data.east.central.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo })"
+            [class.filtered]="searchInput && !a.nickname.toUpperCase().includes(searchInput)">
+              <p class="text-lg">{{a.nickname}}</p>
+              <img src={{a.logo}} class="w-8 h-8 bg-white rounded-full object-contain p-1" alt="">
+            </div>
+            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl" *ngFor="let a of data.east.southeast.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo })"
+            [class.filtered]="searchInput && !a.nickname.toUpperCase().includes(searchInput)">
+              <p class="text-lg">{{a.nickname}}</p>
+              <img src={{a.logo}} class="w-8 h-8 bg-white rounded-full object-contain p-1" alt="">
+            </div>
+          </div>
+          <h3 class="w-full border-y border-arancio text-2xl uppercase leading-10 ps-2 my-3"
+        [class.filtered]="searchInput"
+        >West</h3>
+          <div class="flex flex-col lg:flex-row flex-wrap gap-5 gap-x-10">
+            <div class="lg:w-1/6 w-full flex justify-between items-center px-6 border border-bianco rounded-2xl" *ngFor="let a of data.west.northwest.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo })"
+            [class.filtered]="searchInput && !a.nickname.toUpperCase().includes(searchInput)"
+            >
+              <p class="text-lg">{{a.nickname}}</p>
+              <img src={{a.logo}} class="w-8 h-8 bg-white rounded-full object-contain p-1" alt="">
+            </div>
+            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl" *ngFor="let a of data.west.pacific.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo })"
+            [class.filtered]="searchInput && !a.nickname.toUpperCase().includes(searchInput)"
+            >
+              <p class="text-lg">{{a.nickname}}</p>
+              <img src={{a.logo}} class="w-8 h-8 bg-white rounded-full object-contain p-1" alt="">
+            </div>
+            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl" *ngFor="let a of data.west.southwest.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo })"
+            [class.filtered]="searchInput && !a.nickname.toUpperCase().includes(searchInput)"
+            >
+              <p class="text-lg">{{a.nickname}}</p>
+              <img src={{a.logo}} class="w-8 h-8 bg-white rounded-full object-contain p-1" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

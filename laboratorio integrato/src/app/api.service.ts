@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable, map } from "rxjs";
 import { TypeHome } from "./_models/homeApi.type";
+import { TeamType } from "./_models/divisionTeamApi.type";
 
 @Injectable({
   providedIn: "root",
@@ -22,6 +23,6 @@ export class ApiService {
   getDivisionApi() {
     return this.http.get(`${this.baseURL}${this.divisione}`)
     .pipe(map((response:any) => {
-        return response as any}));
+        return response as TeamType}));
   }
 }

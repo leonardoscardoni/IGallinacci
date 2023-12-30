@@ -31,7 +31,10 @@ import { ProvaApiComponent } from "./prova-api/prova-api.component";
 import { HttpClientModule } from "@angular/common/http";
 import { UltimiRisultatiHomeComponent } from "./components/ultimi-risultati-home/ultimi-risultati-home.component";
 import { SceltaConfrontoTeamComponent } from './pages/scelta-confronto-team/scelta-confronto-team.component';
-import { HeaderBgTitoloComponent } from './header-bg-titolo/header-bg-titolo.component';
+import { HeaderBgTitoloComponent } from './components/header-bg-titolo/header-bg-titolo.component';
+import { SelezioneConfrontoSquadreComponent } from './components/selezione-confronto-squadre/selezione-confronto-squadre.component';
+import { FormsModule } from "@angular/forms";
+
 
 @NgModule({
     declarations: [
@@ -65,8 +68,9 @@ import { HeaderBgTitoloComponent } from './header-bg-titolo/header-bg-titolo.com
         UltimiRisultatiHomeComponent,
         SceltaConfrontoTeamComponent,
         HeaderBgTitoloComponent,
+        SelezioneConfrontoSquadreComponent,
     ],
-    imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+    imports: [BrowserModule, AppRoutingModule, HttpClientModule,FormsModule],
     providers: [],
     bootstrap: [AppComponent],
 })

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TeamType } from 'src/app/_models/divisionTeamApi.type';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { ApiService } from 'src/app/api.service';
 })
 export class SceltaConfrontoTeamComponent {
   constructor(private apiService: ApiService) {}
-  data: any
+  data: TeamType = {} as TeamType
   
   ngOnInit() {
     this.apiService.getDivisionApi().subscribe((data) => {
