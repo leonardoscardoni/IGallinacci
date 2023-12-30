@@ -151,7 +151,7 @@ public class PopulateDB {
                 for (Integer idTeam : idTeamsNeed) {
                     params = Map.ofEntries(
                             Map.entry("season", season.toString()),
-                            Map.entry("team", idTeam.toString()));
+                            Map.entry("id", idTeam.toString()));
                     try {
                         String response = apiCaller.callApi("teams/statistics", params);//120 chiamate
                         call+=1;
