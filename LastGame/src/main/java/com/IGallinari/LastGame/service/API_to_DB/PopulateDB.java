@@ -41,7 +41,7 @@ public class PopulateDB {
         int call=0;
         Map<String, String> params;
         System.out.println("Start of database population");
-        if(teamRepository.count() <60 ) {//check if the team is full
+        if(teamRepository.count() <35 ) {//check if the team is full
             System.out.println("Preparing the call for the /teams endpoint");
             //prepare the call for the /teams endpoint
             params = Map.of("league", "standard");
