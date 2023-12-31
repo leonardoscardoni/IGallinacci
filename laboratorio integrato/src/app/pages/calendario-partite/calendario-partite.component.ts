@@ -32,8 +32,14 @@ export class CalendarioPartiteComponent implements AfterViewInit {
   formatDate(date: Date): string {
     return format(date, 'MMM d, y');
   }
-  handleDateClick(clickedDate: Date): void {
-    console.log("Data cliccata:", clickedDate);
+ 
+   formatDateApi(date: Date): string {
+    return format(date, 'yyyy-MM-dd');
+  }
+
+  handleDateClick(clickedDate: Date): string {
+    console.log(this.formatDateApi(clickedDate))  
+    return this.formatDateApi(clickedDate)
   }
 
   a: any[] = [];

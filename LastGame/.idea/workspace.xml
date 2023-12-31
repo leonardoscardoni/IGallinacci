@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c37c9620-1c6a-4a8f-b566-00dea8a53df4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/header-bg-titolo/header-bg-titolo.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/header-bg-titolo/header-bg-titolo.component.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/header-bg-titolo/header-bg-titolo.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/header-bg-titolo/header-bg-titolo.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/pages/scelta-confronto-team/scelta-confronto-team.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/pages/scelta-confronto-team/scelta-confronto-team.component.html" afterDir="false" />
-    </list>
+    <list default="true" id="c37c9620-1c6a-4a8f-b566-00dea8a53df4" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
