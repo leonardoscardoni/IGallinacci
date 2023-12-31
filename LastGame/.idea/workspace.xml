@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c37c9620-1c6a-4a8f-b566-00dea8a53df4" name="Changes" comment="" />
+    <list default="true" id="c37c9620-1c6a-4a8f-b566-00dea8a53df4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/api.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/api.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/pages/calendario-partite/calendario-partite.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/pages/calendario-partite/calendario-partite.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/pages/calendario-partite/calendario-partite.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/pages/calendario-partite/calendario-partite.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/pages/calendario-partite/calendario-partite.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/pages/calendario-partite/calendario-partite.component.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
