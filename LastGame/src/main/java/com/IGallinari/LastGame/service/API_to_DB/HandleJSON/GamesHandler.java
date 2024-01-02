@@ -37,7 +37,8 @@ public class GamesHandler implements Handler {
         ArrayNode gamesNode = (ArrayNode) jsonNode.get("response");
 
         for (JsonNode gameNode : gamesNode) {
-            if(!arenaRepository.existsByName(gameNode.get("arena").get("name").asText())) {
+            if (!gameRepository.existsById(gameNode.get("id").asInt())) {
+                if(!arenaRepository.existsByName(gameNode.get("arena").get("name").asText())) {
                 Arena arena = new Arena();
                 arena.setName(asString(gameNode.get("arena").get("name")));
                 arena.setCity(asString(gameNode.get("arena").get("city")));
@@ -104,6 +105,8 @@ public class GamesHandler implements Handler {
             statsGameHome.setPoints(asInteger(gameNode.get("scores").get("home").get("points")));
             statsGameRepository.save(statsGameHome);
             System.out.println("Object StatsGame statsGameHome saved in the DB");
+            }
+            
         }
     }
 }

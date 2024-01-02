@@ -63,7 +63,7 @@ public class PopulateDB {
         List<Integer> yearsInDB= gameRepository.findDistinctYears();
         List<Integer> seasons = Arrays.asList(2022, 2023);
         List<Integer> yearsNeed = new ArrayList<>(seasons);
-        yearsNeed.removeAll(yearsInDB);
+        //yearsNeed.removeAll(yearsInDB);
         if (!yearsNeed.isEmpty()) {
             System.out.println("Preparing the call/s for the /games endpoint");
             for (Integer season : yearsNeed) {
@@ -92,6 +92,7 @@ public class PopulateDB {
             System.out.println("Preparing the call/s for the /players endpoint");
             for (Integer season : seasons) {
                 idTeamsInDB = playerTeamRepository.findDistinctIdTeams(season);
+                idTeamsInDB.addAll(List.of(166,168,169));
                 idTeamsNeed.removeAll(idTeamsInDB);
                 for (Integer idTeam : idTeamsNeed) {
                     System.out.println("idTeam: "+idTeam);
@@ -127,7 +128,7 @@ public class PopulateDB {
                             Map.entry("season", season.toString()),
                             Map.entry("team", idTeam.toString()));
                     try {
-                        String response = apiCaller.callApi("players/statistics", params);//120 chiamate
+                        String response = apiCaller.callApi("players/statistics", params);//70 chiamate
                         call+=1;
                         redirectJSON.manageJSON(response);
                         TimeUnit.MINUTES.sleep(1);

@@ -5,6 +5,10 @@ import com.IGallinari.LastGame.repository.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import lombok.AllArgsConstructor;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +18,8 @@ public class PlayersStatisticsHandler implements Handler{
     private PlayerTeamRepository  playerTeamRepository;
 
     private PlayerRepository playerRepository;
+
+    private TeamRepository teamRepository;
 
     private StatsPlayerRepository statsPlayerRepository;
 
@@ -44,6 +50,7 @@ public class PlayersStatisticsHandler implements Handler{
             idStatsPlayer.setTeamId(playerStatisticsNode.get("team").get("id").asInt());
             statsPlayer.setStatsPlayerId(idStatsPlayer);
             System.out.println("idPlayer: "+idStatsPlayer.getPlayerId());
+            System.out.println("game: "+idStatsPlayer.getGameId());
             statsPlayer.setPoints(asInteger(playerStatisticsNode.get("points")));
             statsPlayer.setPos(asString(playerStatisticsNode.get("pos")));
             statsPlayer.setMin(asInteger(playerStatisticsNode.get("min")));
