@@ -119,6 +119,7 @@ public class PopulateDB {
         for (Integer season : seasons) {
             idTeamsInDB = statsPlayerRepository.findDistinctTeamIds(season);
             idTeamsNeed = new ArrayList<>(allIdTeams);
+            idTeamsInDB.addAll(List.of(166,168,169));
             idTeamsNeed.removeAll(idTeamsInDB);
             if (!idTeamsNeed.isEmpty()) {
                 System.out.println("Preparing the call/s for the /players/statistics endpoint");
