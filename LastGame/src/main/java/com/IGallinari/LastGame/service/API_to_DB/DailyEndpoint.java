@@ -33,7 +33,7 @@ public class DailyEndpoint {
         }
         System.out.println("there were made "+call+" calls, total calls "+totCall);
         call=0;
-        List<Integer> allIdTeams = teamRepository.findAllIds();
+        //List<Integer> allIdTeams = teamRepository.findAllIds();
     }
 
 }
