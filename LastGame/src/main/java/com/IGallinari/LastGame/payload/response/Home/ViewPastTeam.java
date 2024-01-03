@@ -9,5 +9,5 @@ public class ViewPastTeam {
     private int id;
     private String nickname;
     private String logo;
-    private int points;
+    private Integer points;
 }
