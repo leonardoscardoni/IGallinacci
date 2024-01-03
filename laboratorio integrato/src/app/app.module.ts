@@ -30,6 +30,7 @@ import { BioGiocatoreComponent } from "./components/bio-giocatore/bio-giocatore.
 import { ProvaApiComponent } from "./prova-api/prova-api.component";
 import { HttpClientModule } from "@angular/common/http";
 import { UltimiRisultatiHomeComponent } from "./components/ultimi-risultati-home/ultimi-risultati-home.component";
+import { DettaglioConfrontoTeamComponent } from './pages/dettaglio-confronto-team/dettaglio-confronto-team.component';
 
 @NgModule({
     declarations: [
@@ -61,6 +62,7 @@ import { UltimiRisultatiHomeComponent } from "./components/ultimi-risultati-home
         BioGiocatoreComponent,
         ProvaApiComponent,
         UltimiRisultatiHomeComponent,
+        DettaglioConfrontoTeamComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, HttpClientModule],
     providers: [],
