@@ -17,4 +17,6 @@ public interface PlayerRepository extends JpaRepository<Player,Integer> {
 
     Player findById(int id);
 
+    boolean existsById(int id);
+
 }

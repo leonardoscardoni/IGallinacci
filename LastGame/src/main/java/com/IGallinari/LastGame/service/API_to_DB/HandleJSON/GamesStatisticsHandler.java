@@ -27,6 +27,8 @@ public class GamesStatisticsHandler implements Handler{
         ArrayNode gamesStatisticsNode = (ArrayNode) jsonNode.get("response");
 
         for (JsonNode gameStatisticsNode : gamesStatisticsNode) {
+            System.out.println("gameid"+parametersNode.get("parameters").get("id").asInt());
+            System.out.println("teamid"+gameStatisticsNode.get("team").get("id").asInt());
             StatsGame statsGame = new StatsGame();
             IdStatsGame idStatsGame = new IdStatsGame();
             idStatsGame.setGameId(parametersNode.get("parameters").get("id").asInt());
