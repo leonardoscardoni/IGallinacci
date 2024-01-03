@@ -237,6 +237,64 @@ CREATE TABLE `statsteam` (
   `winStreak` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+--
+-- Struttura della tabella `user`
+--
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `role` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Struttura della tabella `favteam`
+--
+CREATE TABLE `favteam` (
+  `idUser` int(11) NOT NULL,
+  `idTeam` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Struttura della tabella `favplayer`
+--
+CREATE TABLE `favplayer` (
+  `idUser` int(11) NOT NULL,
+  `idPlayer` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Struttura della tabella 'blog'
+--
+CREATE TABLE `blog` (
+  `id` int(11) NOT NULL,
+  `idUser` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `subtitle` varchar(255) DEFAULT NULL,
+  `content` text NOT NULL,
+  `img` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Struttura della tabella 'tagTeam'
+--
+CREATE TABLE `tagTeam` (
+  `idBlog` int(11) NOT NULL,
+  `idTeam` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Struttura della tabella 'tagPlayer'
+--
+CREATE TABLE `tagPlayer` (
+  `idBlog` int(11) NOT NULL,
+  `idPlayer` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
 -- --------------------------------------------------------
 
 --
@@ -292,7 +350,8 @@ ALTER TABLE `statsgame`
 ALTER TABLE `statsplayer`
   ADD PRIMARY KEY (`idPlayer`,`idTeam`,`idGame`),
   ADD KEY `fk_statsPlayer_team` (`idTeam`),
-  ADD KEY `fk_statsPlayer_game` (`idGame`);
+  ADD KEY `fk_statsPlayer_game` (`idGame`),
+  ADD KEY `fk_statsPlayer_player` (`idPlayer`);
 
 --
 -- Indici per le tabelle `statsteam`
@@ -300,6 +359,53 @@ ALTER TABLE `statsplayer`
 ALTER TABLE `statsteam`
   ADD PRIMARY KEY (`idTeam`,`season`),
   ADD KEY `fk_statsTeam_team` (`idTeam`);
+
+--
+-- Indici per le tabelle 'user'
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indici per le tabelle 'favteam'
+--
+ALTER TABLE `favteam`
+  ADD PRIMARY KEY (`idUser`, `idTeam`),
+  ADD KEY `fk_idUser_user` (`idUser`),
+  ADD KEY `fk_idTeam_team` (`idTeam`);
+
+--
+-- Indici per le tabelle 'favplayer'
+--
+ALTER TABLE `favplayer`
+  ADD PRIMARY KEY (`idUser`, `idPlayer`),
+  ADD KEY `fk_idUser_user` (`idUser`),
+  ADD KEY `fk_idPlayer_player` (`idPlayer`);
+
+--
+-- Indici per le tabelle 'blog'
+--
+ALTER TABLE `blog`
+  ADD PRIMARY KEY (`id`, `idUser`),
+  ADD KEY `fk_idUser_user` (`idUser`);
+
+--
+-- Indici per la tabella 'tagTeam'
+--
+ALTER TABLE `tagTeam`
+  ADD PRIMARY KEY (`idBlog`, `idTeam`),
+  ADD KEY `fk_idBlog_blog` (`idBlog`),
+  ADD KEY `fk_idTeam_team` (`idTeam`);
+
+--
+-- Indici per le tabelle 'tagPlayer'
+--
+ALTER TABLE `tagPlayer`
+  ADD PRIMARY KEY (`idBlog`, `idPlayer`),
+  ADD KEY `fk_idBlog_blog` (`idBlog`),
+  ADD KEY `fk_idPlayer_player` (`idPlayer`);
+
+
 
 --
 -- Limiti per le tabelle
@@ -340,13 +446,40 @@ ALTER TABLE `statsplayer`
 --
 ALTER TABLE `statsteam`
   ADD CONSTRAINT `fk_statsTeam_team` FOREIGN KEY (`idTeam`) REFERENCES `team` (`id`);
-COMMIT;
+
+--
+-- Limiti per la tabella 'user'
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `fk_user_favteam` FOREIGN KEY (`id`) REFERENCES `favteam` (`idUser`),
+  ADD CONSTRAINT `fk_user_favplayer` FOREIGN KEY (`id`) REFERENCES `favplayer` (`idUser`),
+  ADD CONSTRAINT `fk_user_blog` FOREIGN KEY (`id`) REFERENCES `blog` (`idUser`);
+
+--
+-- Limiti per la tabella 'blog'
+--
+ALTER TABLE `blog`
+  ADD CONSTRAINT `fk_blog_user` FOREIGN KEY (`idUser`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `fk_blog_tagplayer` FOREIGN KEY (`id`) REFERENCES `tagPlayer` (`idBlog`);
+
+--
+-- Limiti per la tabella `team`
+--
+ALTER TABLE `team`
+  ADD CONSTRAINT `fk_favTeam_team` FOREIGN KEY (`id`) REFERENCES `favTeam` (`idTeam`),
+  ADD CONSTRAINT `fk_tagTeam_team` FOREIGN KEY (`id`) REFERENCES `tagTeam` (`idTeam`);
+
+--
+-- Limiti per la tabella `player`
+--
+ALTER TABLE `player`
+  ADD CONSTRAINT `fk_favplayer_player` FOREIGN KEY (`id`) REFERENCES `favplayer` (`idPlayer`),
+  ADD CONSTRAINT `fk_tagPlayer_player` FOREIGN KEY (`id`) REFERENCES `tagPlayer` (`idPlayer`);
 
 
 CREATE USER IF NOT EXISTS 'backend-lastgame'@'localhost' IDENTIFIED BY '5lE;R230LO_%*v{(3+ECbd:';
 GRANT SELECT, INSERT, UPDATE, DELETE ON nbastat.* TO 'backend-lastgame'@'localhost';
 FLUSH PRIVILEGES;
-
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -19,4 +19,5 @@ public class PlayerTeam {
 
     @Column(name = "season", insertable = false, updatable = false)
     private int season;
+    
 }
