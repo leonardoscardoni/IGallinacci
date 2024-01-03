@@ -33,6 +33,9 @@ import { ElencoGiocatoriComponent } from "./pages/elenco-giocatori/elenco-giocat
 import { DropdownModule } from "primeng/dropdown";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { SceltaConfrontoTeamComponent } from "./pages/scelta-confronto-team/scelta-confronto-team.component";
+import { HeaderBgTitoloComponent } from "./components/header-bg-titolo/header-bg-titolo.component";
+import { SelezioneConfrontoSquadreComponent } from "./components/selezione-confronto-squadre/selezione-confronto-squadre.component";
 
 @NgModule({
     declarations: [
@@ -64,6 +67,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
         BioGiocatoreComponent,
         UltimiRisultatiHomeComponent,
         ElencoGiocatoriComponent,
+        SceltaConfrontoTeamComponent,
+        HeaderBgTitoloComponent,
+        SelezioneConfrontoSquadreComponent,
     ],
     imports: [
         BrowserModule,
@@ -73,6 +79,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
         ReactiveFormsModule,
         FormsModule,
         BrowserAnimationsModule,
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

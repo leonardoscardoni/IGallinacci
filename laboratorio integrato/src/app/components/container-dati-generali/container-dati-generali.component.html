@@ -1,41 +1,54 @@
-<div class="lg:px-20 px-6">
+<div class="lg:px-20">
     <app-titolo-sezione [numero]="'02'" [titolo]="'I dati'" [spiegazione]="'Lorem ipsum dolor sit amet consectetur. Velit urna vitae scelerisque nullam sed metus dictum pulvinar.'" [spanSpiegazione]="'Consectetur volutpat turpis nec congue.'"/>
 </div>
 
-<div class="flex flex-col md:flex-row">
-    <div class="md:w-1/2 flex flex-col md:gap-[2.5rem]">
-        <app-dati-generali [titolo]="'Tiri'" [dati]="[
-        { chiave: 'Tiri segnati', valore: data[0].tiri.fieldGoalsMade },
-        { chiave: 'Tiri tentati', valore: data[0].tiri.fieldGoalsAttempted },
-        { chiave: 'Percentuale tiri segnati', valore: data[0].tiri.fieldGoalsPercentage },
-        { chiave: 'Liberi segnati', valore: data[0].tiri.freeThrowsMade },
-        { chiave: 'Liberi tentati', valore: data[0].tiri.freeThrowsAttempted },
-        { chiave: 'Tiri da tre segnati', valore: data[0].tiri.threePointersMade },
-        { chiave: 'Tiri da tre tentati', valore: data[0].tiri.threePointersAttempted },
-        { chiave: 'Percentuale tiri da tre segnati', valore: data[0].tiri.threePointersPercentage }
-        ]"></app-dati-generali>
-        <app-dati-generali [titolo]="'Rimbalzi e Assist'" [dati]="[
-        { chiave: 'Tiri segnati', valore: data[0].tiri.fieldGoalsMade },
-        { chiave: 'Tiri tentati', valore: data[0].tiri.fieldGoalsAttempted },
-        { chiave: 'Percentuale tiri segnati', valore: data[0].tiri.fieldGoalsPercentage },
-        { chiave: 'Liberi segnati', valore: data[0].tiri.freeThrowsMade },
-        ]"></app-dati-generali>
+<div class="flex flex-col md:gap-5">
+    <div class="w-full flex md:flex-row flex-col justify-center px-10 md:gap-20">
+        <div class="md:w-1/2">
+            <app-dati-generali [titolo]="'Tiri'" [dati]="[
+            { chiave: 'Tiri segnati', valore: data[0].tiri.fieldGoalsMade },
+            { chiave: 'Tiri tentati', valore: data[0].tiri.fieldGoalsAttempted },
+            { chiave: 'Percentuale tiri segnati', valore: data[0].tiri.fieldGoalsPercentage },
+            { chiave: 'Liberi segnati', valore: data[0].tiri.freeThrowsMade },
+            { chiave: 'Liberi tentati', valore: data[0].tiri.freeThrowsAttempted },
+            { chiave: 'Tiri da tre segnati', valore: data[0].tiri.threePointersMade },
+            { chiave: 'Tiri da tre tentati', valore: data[0].tiri.threePointersAttempted },
+            { chiave: 'Percentuale tiri da tre segnati', valore: data[0].tiri.threePointersPercentage }
+            ]"></app-dati-generali>
+        </div>
+        <div class="md:w-1/2">
+            <app-dati-generali [titolo]="'Rimbalzi e Assist'" [dati]="[
+            { chiave: 'Tiri tentati', valore: data[0].tiri.fieldGoalsAttempted },
+            { chiave: 'Percentuale tiri segnati', valore: data[0].tiri.fieldGoalsPercentage },
+            { chiave: 'Liberi segnati', valore: data[0].tiri.freeThrowsMade },
+            ]"></app-dati-generali>
+            <app-dati-generali [titolo]="'Rimbalzi e Assist'" [dati]="[
+            { chiave: 'Tiri segnati', valore: data[0].tiri.fieldGoalsMade },
+            { chiave: 'Tiri tentati', valore: data[0].tiri.fieldGoalsAttempted },
+            { chiave: 'Percentuale tiri segnati', valore: data[0].tiri.fieldGoalsPercentage },
+            { chiave: 'Liberi segnati', valore: data[0].tiri.freeThrowsMade },
+            ]"></app-dati-generali>
+        </div>
     </div>
-    <div class="md:w-1/2">
-        <app-dati-generali [titolo]="'punti'" [dati]="[
-        { chiave: 'Tiri segnati', valore: data[0].tiri.fieldGoalsMade },
-        { chiave: 'Tiri da tre tentati', valore: data[0].tiri.threePointersAttempted },
-        { chiave: 'Percentuale tiri da tre segnati', valore: data[0].tiri.threePointersPercentage }
-        ]"></app-dati-generali>
-        <app-dati-generali [titolo]="'punti'" [dati]="[
-        { chiave: 'Tiri segnati', valore: data[0].tiri.fieldGoalsMade },
-        { chiave: 'Tiri da tre tentati', valore: data[0].tiri.threePointersAttempted },
-        { chiave: 'Percentuale tiri da tre segnati', valore: data[0].tiri.threePointersPercentage }
-        ]"></app-dati-generali>
-        <app-dati-generali [titolo]="'punti'" [dati]="[
-        { chiave: 'Tiri segnati', valore: data[0].tiri.fieldGoalsMade },
-        { chiave: 'Tiri da tre tentati', valore: data[0].tiri.threePointersAttempted },
-        { chiave: 'Percentuale tiri da tre segnati', valore: data[0].tiri.threePointersPercentage }
-        ]"></app-dati-generali>
+    <div class="w-full flex md:flex-row flex-col justify-center px-10 md:gap-20">
+        <div class="md:w-1/2">
+            <app-dati-generali [titolo]="'Tiri'" [dati]="[
+            { chiave: 'Tiri segnati', valore: data[0].tiri.fieldGoalsMade },
+            { chiave: 'Tiri tentati', valore: data[0].tiri.fieldGoalsAttempted },
+            { chiave: 'Percentuale tiri segnati', valore: data[0].tiri.fieldGoalsPercentage },
+            { chiave: 'Liberi segnati', valore: data[0].tiri.freeThrowsMade },
+           ]"></app-dati-generali>
+        </div>
+        <div class="md:w-1/2">
+            <app-dati-generali [titolo]="'Rimbalzi e Assist'" [dati]="[
+            { chiave: 'Tiri segnati', valore: data[0].tiri.fieldGoalsMade },
+            { chiave: 'Tiri tentati', valore: data[0].tiri.fieldGoalsAttempted },
+            { chiave: 'Percentuale tiri segnati', valore: data[0].tiri.fieldGoalsPercentage },
+            { chiave: 'Liberi segnati', valore: data[0].tiri.freeThrowsMade },
+            ]"></app-dati-generali>
+        </div>
     </div>
+    
 </div>
+
+

@@ -6,6 +6,7 @@ import { CalendarioPartiteComponent } from "./pages/calendario-partite/calendari
 import { DettaglioTeamComponent } from "./pages/dettaglio-team/dettaglio-team.component";
 import { DettConfrontoGiocatoriComponent } from "./pages/dett-confronto-giocatori/dett-confronto-giocatori.component";
 import { ElencoGiocatoriComponent } from "./pages/elenco-giocatori/elenco-giocatori.component";
+import { SceltaConfrontoTeamComponent } from "./pages/scelta-confronto-team/scelta-confronto-team.component";
 
 const routes: Routes = [
     { path: "home", component: HomePageComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
     { path: "dettaglio-team", component: DettaglioTeamComponent },
     { path: "dett-confronto-giocatori", component: DettConfrontoGiocatoriComponent },
     { path: "elenco-giocatori", component: ElencoGiocatoriComponent },
+    { path: "scelta-confronto-team", component: SceltaConfrontoTeamComponent },
     { path: "", redirectTo: "home", pathMatch: "full" },
 ];
 
