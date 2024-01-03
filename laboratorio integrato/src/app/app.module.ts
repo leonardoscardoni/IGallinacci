@@ -27,9 +27,12 @@ import { ContainerDatiGeneraliComponent } from "./components/container-dati-gene
 import { HeaderConfrontoDettaglioComponent } from "./components/header-confronto-dettaglio/header-confronto-dettaglio.component";
 import { DettConfrontoGiocatoriComponent } from "./pages/dett-confronto-giocatori/dett-confronto-giocatori.component";
 import { BioGiocatoreComponent } from "./components/bio-giocatore/bio-giocatore.component";
-import { ProvaApiComponent } from "./prova-api/prova-api.component";
 import { HttpClientModule } from "@angular/common/http";
 import { UltimiRisultatiHomeComponent } from "./components/ultimi-risultati-home/ultimi-risultati-home.component";
+import { ElencoGiocatoriComponent } from "./pages/elenco-giocatori/elenco-giocatori.component";
+import { DropdownModule } from "primeng/dropdown";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
     declarations: [
@@ -59,10 +62,18 @@ import { UltimiRisultatiHomeComponent } from "./components/ultimi-risultati-home
         HeaderConfrontoDettaglioComponent,
         DettConfrontoGiocatoriComponent,
         BioGiocatoreComponent,
-        ProvaApiComponent,
         UltimiRisultatiHomeComponent,
+        ElencoGiocatoriComponent,
     ],
-    imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        DropdownModule,
+        ReactiveFormsModule,
+        FormsModule,
+        BrowserAnimationsModule,
+    ],
     providers: [],
     bootstrap: [AppComponent],
 })
