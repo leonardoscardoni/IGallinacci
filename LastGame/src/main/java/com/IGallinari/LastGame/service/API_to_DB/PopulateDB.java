@@ -27,8 +27,6 @@ public class PopulateDB {
 
     private TeamRepository teamRepository;
 
-    private PlayerRepository playerRepository;
-
     private StatsPlayerRepository statsPlayerRepository;
 
     private StatsTeamRepository statsTeamRepository;
@@ -43,7 +41,7 @@ public class PopulateDB {
         int call=0;
         Map<String, String> params;
         System.out.println("Start of database population");
-        if(teamRepository.count() <60 ) {//check if the team is full
+        if(teamRepository.count() <30 ) {//check if the team table is full
             System.out.println("Preparing the call for the /teams endpoint");
             //prepare the call for the /teams endpoint
             params = Map.of("league", "standard");
@@ -94,10 +92,6 @@ public class PopulateDB {
             System.out.println("Preparing the call/s for the /players endpoint");
             for (Integer season : seasons) {
                 idTeamsInDB = playerTeamRepository.findDistinctIdTeams(season);
-                if(season == 2022) {
-                    List<Integer> idTeamsEmpty = new ArrayList<>(Arrays.asList(3, 12, 13, 18, 32, 33, 34,35,36,37,39,42,83,84,85,86,87,88,89,91,92,93,99,104,105,166,168,169));
-                    idTeamsNeed.removeAll(idTeamsEmpty);
-                }
                 idTeamsNeed.removeAll(idTeamsInDB);
                 for (Integer idTeam : idTeamsNeed) {
                     System.out.println("idTeam: "+idTeam);
@@ -124,10 +118,6 @@ public class PopulateDB {
         for (Integer season : seasons) {
             idTeamsInDB = statsPlayerRepository.findDistinctTeamIds(season);
             idTeamsNeed = new ArrayList<>(allIdTeams);
-            if(season == 2022) {
-                List<Integer> idTeamsEmpty = new ArrayList<>(Arrays.asList(3, 12, 13, 18, 32, 33, 34,35,36,37,39,42,83,84,85,86,87,88,89,91,92,93,99,104,105,166,168,169));
-                idTeamsNeed.removeAll(idTeamsEmpty);
-            }
             idTeamsNeed.removeAll(idTeamsInDB);
             if (!idTeamsNeed.isEmpty()) {
                 System.out.println("Preparing the call/s for the /players/statistics endpoint");

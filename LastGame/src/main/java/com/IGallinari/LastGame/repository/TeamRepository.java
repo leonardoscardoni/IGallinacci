@@ -18,4 +18,6 @@ public interface TeamRepository extends JpaRepository<Team,Integer> {
     List<Integer> findAllIds();
 
     List<Team> findByDivision(String division);
+
+    Boolean existsById(int id);
 }
