@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c37c9620-1c6a-4a8f-b566-00dea8a53df4" name="Changes" comment="" />
+    <list default="true" id="c37c9620-1c6a-4a8f-b566-00dea8a53df4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/container-dati-generali/container-dati-generali.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/container-dati-generali/container-dati-generali.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/selezione-confronto-squadre/selezione-confronto-squadre.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/selezione-confronto-squadre/selezione-confronto-squadre.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/pages/calendario-partite/calendario-partite.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/pages/calendario-partite/calendario-partite.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/pages/dettaglio-team/dettaglio-team.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/pages/dettaglio-team/dettaglio-team.component.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
