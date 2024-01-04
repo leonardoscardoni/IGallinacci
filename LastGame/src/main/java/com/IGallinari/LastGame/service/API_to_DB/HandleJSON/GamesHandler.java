@@ -73,6 +73,7 @@ public class GamesHandler implements Handler {
                 game.setTime(time);
                 game.setStage(asInteger(gameNode.get("stage")));
                 game.setTotperiods(asInteger(gameNode.get("periods").get("total")));
+                game.setStatus(asInteger(gameNode.get("status").get("short")));
                 game.setArena(arenaRepository.findByName(gameNode.get("arena").get("name").asText()));
                 game.setVisitorTeam(teamRepository.findById(gameNode.get("teams").get("visitors").get("id").asInt()));
                 game.setHomeTeam(teamRepository.findById(gameNode.get("teams").get("home").get("id").asInt()));
