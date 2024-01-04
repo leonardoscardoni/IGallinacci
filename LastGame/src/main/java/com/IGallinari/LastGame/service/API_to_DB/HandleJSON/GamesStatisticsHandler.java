@@ -1,7 +1,9 @@
 package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 
+import com.IGallinari.LastGame.entity.Game;
 import com.IGallinari.LastGame.entity.IdStatsGame;
 import com.IGallinari.LastGame.entity.StatsGame;
+import com.IGallinari.LastGame.entity.Team;
 import com.IGallinari.LastGame.repository.GameRepository;
 import com.IGallinari.LastGame.repository.StatsGameRepository;
 import com.IGallinari.LastGame.repository.TeamRepository;
@@ -15,6 +17,10 @@ import org.springframework.transaction.annotation.Transactional;
 @AllArgsConstructor
 public class GamesStatisticsHandler implements Handler{
 
+    private GameRepository gameRepository;
+
+    private TeamRepository teamRepository;
+
     private StatsGameRepository statsGameRepository;
 
     @Override
@@ -25,11 +31,9 @@ public class GamesStatisticsHandler implements Handler{
         for (JsonNode gameStatisticsNode : gamesStatisticsNode) {
             System.out.println("id game: "+asInteger(parametersNode.get("id")));
             System.out.println("id team: "+gameStatisticsNode.get("team").get("id").asInt());
-            StatsGame statsGame = new StatsGame();
-            IdStatsGame idStatsGame = new IdStatsGame();
-            idStatsGame.setGameId(asInteger(parametersNode.get("id")));
-            idStatsGame.setTeamId(gameStatisticsNode.get("team").get("id").asInt());
-            statsGame.setStatsGameId(idStatsGame);
+            Team team = teamRepository.findById(gameStatisticsNode.get("team").get("id").asInt());
+            Game game = gameRepository.findById(parametersNode.get("id").asInt());
+            StatsGame statsGame = statsGameRepository.findStatsGameByGameAndTeam(game,team);
             ArrayNode statisticsNode = (ArrayNode) gamesStatisticsNode.get("statistics");
             for(JsonNode statisticNode : statisticsNode) {
                 statsGame.setFastBreakPoint(asInteger(statisticNode.get("fastBreakPoints")));

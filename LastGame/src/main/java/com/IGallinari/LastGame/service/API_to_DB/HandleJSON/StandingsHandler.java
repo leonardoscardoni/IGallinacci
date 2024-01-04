@@ -3,10 +3,13 @@ package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 import com.IGallinari.LastGame.entity.IdStatsPlayer;
 import com.IGallinari.LastGame.entity.IdStatsTeam;
 import com.IGallinari.LastGame.entity.StatsTeam;
+import com.IGallinari.LastGame.entity.Team;
 import com.IGallinari.LastGame.repository.StatsTeamRepository;
 import com.IGallinari.LastGame.repository.TeamRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,16 +22,16 @@ public class StandingsHandler implements Handler{
 
     private StatsTeamRepository statsTeamRepository;
 
+    @PersistenceContext
+    private EntityManager entityManager;
+
     @Override
     public void handle(JsonNode jsonNode) {
         ArrayNode standingsNode = (ArrayNode) jsonNode.get("response");
 
         for (JsonNode standingNode : standingsNode) {
-            StatsTeam statsTeam = new StatsTeam();
-            IdStatsTeam idStatsTeam = new IdStatsTeam();
-            idStatsTeam.setSeason(standingNode.get("season").asInt());
-            idStatsTeam.setTeamId(standingNode.get("team").get("id").asInt());
-            statsTeam.setStatsTeamId(idStatsTeam);
+            Team team = teamRepository.findById(standingNode.get("team").get("id").asInt());
+            StatsTeam statsTeam = statsTeamRepository.findByTeamAndSeason(team,standingNode.get("season").asInt());
             statsTeam.setRankConference(asInteger(standingNode.get("conference").get("rankConference")));
             statsTeam.setWinConference(asInteger(standingNode.get("conference").get("winConference")));
             statsTeam.setLossConference(asInteger(standingNode.get("conference").get("lossDivision")));
