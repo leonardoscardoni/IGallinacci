@@ -23,11 +23,11 @@ public class GamesStatisticsHandler implements Handler{
         ArrayNode gamesStatisticsNode = (ArrayNode) jsonNode.get("response");
 
         for (JsonNode gameStatisticsNode : gamesStatisticsNode) {
-            System.out.println("gameid"+parametersNode.get("parameters").get("id").asInt());
-            System.out.println("teamid"+gameStatisticsNode.get("team").get("id").asInt());
+            System.out.println("id game: "+asInteger(parametersNode.get("id")));
+            System.out.println("id team: "+gameStatisticsNode.get("team").get("id").asInt());
             StatsGame statsGame = new StatsGame();
             IdStatsGame idStatsGame = new IdStatsGame();
-            idStatsGame.setGameId(parametersNode.get("parameters").get("id").asInt());
+            idStatsGame.setGameId(asInteger(parametersNode.get("id")));
             idStatsGame.setTeamId(gameStatisticsNode.get("team").get("id").asInt());
             statsGame.setStatsGameId(idStatsGame);
             ArrayNode statisticsNode = (ArrayNode) gamesStatisticsNode.get("statistics");
