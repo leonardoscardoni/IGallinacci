@@ -52,6 +52,7 @@ CREATE TABLE `game` (
   `time` time DEFAULT NULL,
   `stage` tinyint(4) DEFAULT NULL,
   `totPeriods` tinyint(4) DEFAULT NULL,
+  `status` smallint(1) DEFAULT NULL,
   `nameArena` varchar(255) DEFAULT NULL,
   `idVisitor` int(11) DEFAULT NULL,
   `idHome` int(11) DEFAULT NULL
