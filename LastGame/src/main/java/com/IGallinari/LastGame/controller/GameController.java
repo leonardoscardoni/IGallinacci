@@ -22,12 +22,12 @@ public class GameController {
         return this.service.buildHomeUnLogged();
     }
 
-    @PostMapping("/getCalendar")
+    @RequestMapping("/getCalendar")
     public CalendarResponse getHomeUnLogged(@RequestParam LocalDate date){
         return this.service.buildCalendar(date);
     }
 
-    @PostMapping("/getGameDetails")
+    @RequestMapping("/getGameDetails")
     public NextGameResponse getNextGameDetails(@RequestParam int idGame){return this.service.buildNextGame(idGame);}
 
 

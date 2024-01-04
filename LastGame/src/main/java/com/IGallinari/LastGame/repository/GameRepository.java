@@ -23,7 +23,7 @@ public interface GameRepository extends JpaRepository<Game,Integer> {
     @Query(value = "SELECT  id FROM game GROUP BY (id)", nativeQuery = true)
     List<Integer> findDistinctIdTeams();
 
-    @Query(value = "SELECT g.id,g.date FROM Game AS g WHERE g.date <:inputDate ORDER BY g.date DESC; ", nativeQuery = true)
+    @Query(value = "SELECT g.id FROM Game AS g WHERE g.date <:inputDate ORDER BY g.date DESC; ", nativeQuery = true)
     List<Integer> findAllIdsBeforeDate(@Param("inputDate") LocalDate inputDate);
 
     List<Game> findGameByDate(LocalDate inputDate);
@@ -33,4 +33,7 @@ public interface GameRepository extends JpaRepository<Game,Integer> {
 
     @Query(value = "SELECT * FROM game g WHERE (g.idVisitor=:idTeamHome AND g.idHome=:idTeamVisitor) OR (g.idVisitor=:idTeamVisitor AND g.idHome=:idTeamHome) LIMIT 4;", nativeQuery = true)
     List<Game> findLastFourHtH(@Param("idTeamHome")int idTeamHome,@Param("idTeamVisitor")int idTeamVisitor);
+
+    @Query(value = "SELECT * FROM game g WHERE (g.idVisitor=:idTeamHome AND g.idHome=:idTeamVisitor) OR (g.idVisitor=:idTeamVisitor AND g.idHome=:idTeamHome) LIMIT 4;", nativeQuery = true)
+    List<Game> findGameWithoutStatsPlayer(@Param("idTeamHome")int idTeamHome,@Param("idTeamVisitor")int idTeamVisitor);
 }
