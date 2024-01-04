@@ -451,14 +451,14 @@ ALTER TABLE `statsteam`
 -- Limiti per la tabella 'favplayer'
 --
 ALTER TABLE `favplayer`
-  ADD CONSTRAINT `fk_favplayer_player` FOREIGN KEY (`idPlayer`) REFERENCES `player`(`id`);
+  ADD CONSTRAINT `fk_favplayer_player` FOREIGN KEY (`idPlayer`) REFERENCES `player`(`id`),
   ADD CONSTRAINT `fk_favplayer_user` FOREIGN KEY (`idUser`) REFERENCES `user`(`id`);
 
 --
 -- Limiti per la tabella 'favteam'
 --
 ALTER TABLE `favteam`
-  ADD CONSTRAINT `fk_favteam_team` FOREIGN KEY (`idTeam`) REFERENCES `team`(`id`);
+  ADD CONSTRAINT `fk_favteam_team` FOREIGN KEY (`idTeam`) REFERENCES `team`(`id`),
   ADD CONSTRAINT `fk_favteam_user` FOREIGN KEY (`idUser`) REFERENCES `user`(`id`);
 
 
@@ -466,7 +466,7 @@ ALTER TABLE `favteam`
 -- Limiti per la tabella 'tagteam'
 --
 ALTER TABLE `tagteam`
-  ADD CONSTRAINT `fk_tagteam_blog` FOREIGN KEY (`idBlog`) REFERENCES `blog`(`id`);
+  ADD CONSTRAINT `fk_tagteam_blog` FOREIGN KEY (`idBlog`) REFERENCES `blog`(`id`),
   ADD CONSTRAINT `fk_tagteam_team` FOREIGN KEY (`idTeam`) REFERENCES `team`(`id`);
 
 
@@ -474,14 +474,14 @@ ALTER TABLE `tagteam`
 -- Limiti per la tabella 'tagplayer'
 --
 ALTER TABLE `tagplayer`
-  ADD CONSTRAINT `fk_tagteam_blog` FOREIGN KEY (`idBlog`) REFERENCES `blog`(`id`);
-  ADD CONSTRAINT `fk_tagteam_player` FOREIGN KEY (`idPlayer`) REFERENCES `player`(`id`);
+  ADD CONSTRAINT `fk_tagplayer_blog` FOREIGN KEY (`idBlog`) REFERENCES `blog`(`id`),
+  ADD CONSTRAINT `fk_tagplayer_player` FOREIGN KEY (`idPlayer`) REFERENCES `player`(`id`);
 
 --
 -- Limiti per la tabella 'blog'
 --
 ALTER TABLE `blog`
-  ADD CONSTRAINT `fk_blog_user` FOREIGN KEY (`idUser`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `fk_blog_user` FOREIGN KEY (`idUser`) REFERENCES `user` (`id`);
 
 
 
