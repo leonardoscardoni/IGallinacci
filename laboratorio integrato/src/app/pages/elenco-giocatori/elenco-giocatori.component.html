@@ -8,111 +8,147 @@
     </div>
 </div>
 
-<div class="bg-white/5">
-    <hr class="w-full border-bianco">
-        <div class="container grid grid-cols-12 gap-4 py-2">
-            <div class="col-start-2 col-span-3">
-                <p class="text-base md:text-lg inline">Nome</p>
-            </div>
-            <div class="col-span-3">
-                <p class="text-base md:text-lg inline">Squadra</p>
-            </div>
-            <div class="col-span-2">
-                <p class="text-base md:text-lg inline">Ruolo</p>
-            </div>
-            <div class="col-span-2">
-                <p class="text-base md:text-lg inline">Provenienza</p>
+<div class="container flex gap-4 pt-2 pb-10 overflow-x-auto flex-wrap">
+    <ng-container *ngIf="squadraSelezionata == undefined && ruoloSelezionato == undefined">
+        <div class="w-full text-center mt-20 text-xl color-arancio">
+            <p>Applica un filtro!</p>
+        </div>
+    </ng-container>
+
+    <ng-container *ngFor="let giocatore of a.giocatori; index as i">
+
+        <div class="sticky left-0 z-10 w-[35%] md:w-[20%]">
+
+            <ng-container *ngIf="squadraSelezionata == giocatore.nomeSquadra && ruoloSelezionato == undefined || squadraSelezionata == giocatore.nomeSquadra && ruoloSelezionato == giocatore.ruolo">
+                <ng-container *ngIf="i==0">
+                    <div class="bg-[#231C13]">
+                        <hr class="w-full border-bianco">
+                            <p class="text-base md:text-lg inline">NOME</p>
+                        <hr class="w-full border-bianco mb-3">
+                    </div>
+                </ng-container>
+                <p class="text-base md:text-lg block bg-[#130B02]">{{giocatore.nomeGiocatore}}</p>
+            </ng-container>
+
+            <ng-container *ngIf="squadraSelezionata == undefined && ruoloSelezionato == giocatore.ruolo">
+                <ng-container *ngIf="i==0">
+                    <div class="bg-[#231C13]">
+                        <hr class="w-full border-bianco">
+                            <p class="text-base md:text-lg inline">NOME</p>
+                        <hr class="w-full border-bianco mb-3">
+                    </div>
+                </ng-container>
+                <p class="text-base md:text-lg block bg-[#130B02]">{{giocatore.nomeGiocatore}}</p>
+            </ng-container>
+            
+        </div>
+
+        <div class="w-[60%] md:w-[75%]">
+            <div class="flex justify-between w-[500px] md:w-full">
+                
+                <ng-container *ngIf="squadraSelezionata == giocatore.nomeSquadra && ruoloSelezionato == undefined || squadraSelezionata == giocatore.nomeSquadra && ruoloSelezionato == giocatore.ruolo">
+                    <div class="min-w-[60px] w-[30%]">
+
+                        <ng-container *ngIf="i==0">
+                            <div class="bg-[#231C13]">
+                                <hr class="w-full border-bianco">
+                                    <p class="text-base md:text-lg inline">SQUADRA</p>
+                                <hr class="w-full border-bianco mb-3">
+                            </div>
+                        </ng-container>
+
+                        <p class="text-base md:text-lg inline">{{giocatore.nomeSquadra}}</p>
+                    </div>
+
+                    <div class="min-w-[60px] w-[30%]">
+                        <ng-container *ngIf="i==0">
+                            <div class="bg-[#231C13]">
+                                <hr class="w-full border-bianco">
+                                    <p class="text-base md:text-lg inline">RUOLO</p>
+                                <hr class="w-full border-bianco mb-3">
+                            </div>
+                        </ng-container>
+
+                        <p class="text-base md:text-lg inline">{{giocatore.ruolo}}</p>
+                    </div>
+
+                    <div class="min-w-[50px] w-[30%]">
+                        <ng-container *ngIf="i==0">
+                            <div class="bg-[#231C13]">
+                                <hr class="w-full border-bianco">
+                                    <p class="text-base md:text-lg inline">ORIGINE</p>
+                                <hr class="w-full border-bianco mb-3">
+                            </div>
+                        </ng-container>
+
+                        <p class="text-base md:text-lg inline">{{giocatore.provenienza}}</p>
+                    </div>
+
+                    <div class="min-w-[30px] w-[10%]">
+                        <ng-container *ngIf="i==0">
+                            <div class="bg-[#231C13]">
+                                <hr class="w-full border-bianco">
+                                    <p class="text-base md:text-lg inline"> &nbsp; </p>
+                                <hr class="w-full border-bianco mb-3">
+                            </div>
+                        </ng-container>
+
+                        <img src="/assets/star-outlined-svgrepo-com.svg" alt="" class="w-7">
+                    </div>
+                </ng-container>
+
+                <ng-container *ngIf="squadraSelezionata == undefined && ruoloSelezionato == giocatore.ruolo">
+                    <div class="min-w-[60px] w-[30%]">
+
+                        <ng-container *ngIf="i==0">
+                            <div class="bg-[#231C13]">
+                                <hr class="w-full border-bianco">
+                                    <p class="text-base md:text-lg inline">SQUADRA</p>
+                                <hr class="w-full border-bianco mb-3">
+                            </div>
+                        </ng-container>
+
+                        <p class="text-base md:text-lg inline">{{giocatore.nomeSquadra}}</p>
+                    </div>
+
+                    <div class="min-w-[60px] w-[30%]">
+                        <ng-container *ngIf="i==0">
+                            <div class="bg-[#231C13]">
+                                <hr class="w-full border-bianco">
+                                    <p class="text-base md:text-lg inline">RUOLO</p>
+                                <hr class="w-full border-bianco mb-3">
+                            </div>
+                        </ng-container>
+
+                        <p class="text-base md:text-lg inline">{{giocatore.ruolo}}</p>
+                    </div>
+
+                    <div class="min-w-[50px] w-[30%]">
+                        <ng-container *ngIf="i==0">
+                            <div class="bg-[#231C13]">
+                                <hr class="w-full border-bianco">
+                                    <p class="text-base md:text-lg inline">ORIGINE</p>
+                                <hr class="w-full border-bianco mb-3">
+                            </div>
+                        </ng-container>
+
+                        <p class="text-base md:text-lg inline">{{giocatore.provenienza}}</p>
+                    </div>
+
+                    <div class="min-w-[30px] w-[10%]">
+                        <ng-container *ngIf="i==0">
+                            <div class="bg-[#231C13]">
+                                <hr class="w-full border-bianco">
+                                    <p class="text-base md:text-lg inline"> &nbsp; </p>
+                                <hr class="w-full border-bianco mb-3">
+                            </div>
+                        </ng-container>
+
+                        <img src="/assets/star-outlined-svgrepo-com.svg" alt="" class="w-7">
+                    </div>
+                </ng-container>
             </div>
         </div>
-    <hr class="w-full border-bianco">
-</div>
-
-<div class="container grid grid-cols-12 gap-4 pt-2 pb-10">
-    <ng-container *ngFor="let giocatore of a.giocatori">
-
-        <ng-container *ngIf="squadraSelezionata == undefined && ruoloSelezionato == undefined">
-            <div class="col-span-1">
-                <img [src]="giocatore.logoSquadra" alt="" class="w-7">
-            </div>
-            <div class="col-span-3">
-                <p class="text-base md:text-lg inline">{{giocatore.nomeGiocatore}}</p>
-            </div>
-            <div class="col-span-3">
-                <p class="text-base md:text-lg inline">{{giocatore.nomeSquadra}}</p>
-            </div>
-            <div class="col-span-2">
-                <p class="text-base md:text-lg inline">{{giocatore.ruolo}}</p>
-            </div>
-            <div class="col-span-2">
-                <p class="text-base md:text-lg inline">{{giocatore.provenienza}}</p>
-            </div>
-            <div class="col-span-1">
-                <img src="/assets/star-outlined-svgrepo-com.svg" alt="" class="w-7">
-            </div>
-        </ng-container>
-
-        <ng-container *ngIf="squadraSelezionata == giocatore.nomeSquadra && ruoloSelezionato == undefined">
-            <div class="col-span-1">
-                <img [src]="giocatore.logoSquadra" alt="" class="w-7">
-            </div>
-            <div class="col-span-3">
-                <p class="text-base md:text-lg inline prova">{{giocatore.nomeGiocatore}}</p>
-            </div>
-            <div class="col-span-3">
-                <p class="text-base md:text-lg inline">{{giocatore.nomeSquadra}}</p>
-            </div>
-            <div class="col-span-2">
-                <p class="text-base md:text-lg inline">{{giocatore.ruolo}}</p>
-            </div>
-            <div class="col-span-2">
-                <p class="text-base md:text-lg inline">{{giocatore.provenienza}}</p>
-            </div>
-            <div class="col-span-1">
-                <img src="/assets/star-outlined-svgrepo-com.svg" alt="" class="w-7">
-            </div>
-        </ng-container>
-
-        <ng-container *ngIf="squadraSelezionata == giocatore.nomeSquadra && ruoloSelezionato == giocatore.ruolo">
-            <div class="col-span-1">
-                <img [src]="giocatore.logoSquadra" alt="" class="w-7">
-            </div>
-            <div class="col-span-3">
-                <p class="text-base md:text-lg inline prova">{{giocatore.nomeGiocatore}}</p>
-            </div>
-            <div class="col-span-3">
-                <p class="text-base md:text-lg inline">{{giocatore.nomeSquadra}}</p>
-            </div>
-            <div class="col-span-2">
-                <p class="text-base md:text-lg inline">{{giocatore.ruolo}}</p>
-            </div>
-            <div class="col-span-2">
-                <p class="text-base md:text-lg inline">{{giocatore.provenienza}}</p>
-            </div>
-            <div class="col-span-1">
-                <img src="/assets/star-outlined-svgrepo-com.svg" alt="" class="w-7">
-            </div>
-        </ng-container>
-
-        <ng-container *ngIf="squadraSelezionata == undefined && ruoloSelezionato == giocatore.ruolo">
-            <div class="col-span-1">
-                <img [src]="giocatore.logoSquadra" alt="" class="w-7">
-            </div>
-            <div class="col-span-3">
-                <p class="text-base md:text-lg inline prova">{{giocatore.nomeGiocatore}}</p>
-            </div>
-            <div class="col-span-3">
-                <p class="text-base md:text-lg inline">{{giocatore.nomeSquadra}}</p>
-            </div>
-            <div class="col-span-2">
-                <p class="text-base md:text-lg inline">{{giocatore.ruolo}}</p>
-            </div>
-            <div class="col-span-2">
-                <p class="text-base md:text-lg inline">{{giocatore.provenienza}}</p>
-            </div>
-            <div class="col-span-1">
-                <img src="/assets/star-outlined-svgrepo-com.svg" alt="" class="w-7">
-            </div>
-        </ng-container>
 
     </ng-container>
 </div>

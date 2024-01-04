@@ -20,9 +20,17 @@ export class ElencoGiocatoriComponent implements OnInit {
             },
             {
                 logoSquadra: "/assets/s-l1200.webp",
+                nomeGiocatore: "Nomignolino",
+                nomeSquadra: "squadrettina",
+                ruolo: "difensore",
+                provenienza: "italia",
+                preferiti: false,
+            },
+            {
+                logoSquadra: "/assets/s-l1200.webp",
                 nomeGiocatore: "Lisa Bertinotti",
                 nomeSquadra: "squadrona",
-                ruolo: "portiere",
+                ruolo: "difensore",
                 provenienza: "italia",
                 preferiti: false,
             },
