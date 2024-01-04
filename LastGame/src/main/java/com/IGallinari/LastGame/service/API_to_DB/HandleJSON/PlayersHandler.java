@@ -52,7 +52,7 @@ public class PlayersHandler implements Handler{
             idPlayerTeam.setSeason(paramsNode.get("season").asInt());
             playerTeam.setIdPlayerTeam(idPlayerTeam);
             playerTeamRepository.save(playerTeam);
-            System.out.println("Object Player player saved in the DB");
+            System.out.println("Object Player saved in the DB");
         }
     }
 }

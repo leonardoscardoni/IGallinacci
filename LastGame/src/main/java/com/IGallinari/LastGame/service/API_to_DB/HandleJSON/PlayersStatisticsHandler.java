@@ -36,6 +36,7 @@ public class PlayersStatisticsHandler implements Handler{
                     player.setFirstname(asString(playerStatisticsNode.get("player").get("firstname")));
                     player.setLastname(asString(playerStatisticsNode.get("player").get("lastname")));
                     playerRepository.save(player);
+                    System.out.println("Object Player saved in the DB");
                     IdPlayerTeam idPlayerTeam = new IdPlayerTeam();
                     idPlayerTeam.setSeason(paramsNode.get("season").asInt());
                     idPlayerTeam.setPlayerId(playerStatisticsNode.get("player").get("id").asInt());
@@ -43,6 +44,7 @@ public class PlayersStatisticsHandler implements Handler{
                     PlayerTeam playerTeam = new PlayerTeam();
                     playerTeam.setIdPlayerTeam(idPlayerTeam);
                     playerTeamRepository.save(playerTeam);
+                    System.out.println("Object PlayerTeam saved in the DB");
                 }
                 StatsPlayer statsPlayer = new StatsPlayer();
                 IdStatsPlayer idStatsPlayer = new IdStatsPlayer();
@@ -74,7 +76,7 @@ public class PlayersStatisticsHandler implements Handler{
                 statsPlayer.setBlocks(asInteger(playerStatisticsNode.get("blocks")));
                 statsPlayer.setPlusMinus(asInteger(playerStatisticsNode.get("plusMinus")));
                 statsPlayerRepository.save(statsPlayer);
-                System.out.println("Object StatsPlayer statsPlayer saved in the DB");
+                System.out.println("Object StatsPlayer saved in the DB");
             }
         }
     }

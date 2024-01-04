@@ -63,7 +63,7 @@ public class GamesStatisticsHandler implements Handler{
                 statsGame.setMin(asString(statisticNode.get("min")));
             }
             statsGameRepository.save(statsGame);
-            System.out.println("Object StatsGame statsGame saved in the DB");
+            System.out.println("Object StatsGame updated in the DB");
         }
     }
 }
