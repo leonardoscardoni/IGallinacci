@@ -5,7 +5,6 @@ import { DettaglioPartitaComponent } from "./pages/dettaglio-partita/dettaglio-p
 import { CalendarioPartiteComponent } from "./pages/calendario-partite/calendario-partite.component";
 import { DettaglioTeamComponent } from "./pages/dettaglio-team/dettaglio-team.component";
 import { DettConfrontoGiocatoriComponent } from "./pages/dett-confronto-giocatori/dett-confronto-giocatori.component";
-import { ProvaApiComponent } from "./prova-api/prova-api.component";
 import { DettaglioConfrontoTeamComponent } from "./pages/dettaglio-confronto-team/dettaglio-confronto-team.component";
 
 const routes: Routes = [
@@ -14,7 +13,6 @@ const routes: Routes = [
     { path: "calendario-partite", component: CalendarioPartiteComponent },
     { path: "dettaglio-team", component: DettaglioTeamComponent },
     { path: "dett-confronto-giocatori", component: DettConfrontoGiocatoriComponent },
-    { path: "a", component: ProvaApiComponent },
     { path: "dettaglio-confronto-team", component: DettaglioConfrontoTeamComponent },
     { path: "", redirectTo: "home", pathMatch: "full" },
 ];
