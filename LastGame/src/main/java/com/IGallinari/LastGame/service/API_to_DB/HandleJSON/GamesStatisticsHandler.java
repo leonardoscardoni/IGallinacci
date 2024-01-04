@@ -34,8 +34,8 @@ public class GamesStatisticsHandler implements Handler{
             Team team = teamRepository.findById(gameStatisticsNode.get("team").get("id").asInt());
             Game game = gameRepository.findById(parametersNode.get("id").asInt());
             StatsGame statsGame = statsGameRepository.findStatsGameByGameAndTeam(game,team);
-            ArrayNode statisticsNode = (ArrayNode) gamesStatisticsNode.get("statistics");
-            for(JsonNode statisticNode : statisticsNode) {
+            ArrayNode teamStatisticsNode = (ArrayNode) gameStatisticsNode.get("statistics");
+            for(JsonNode statisticNode : teamStatisticsNode) {
                 statsGame.setFastBreakPoint(asInteger(statisticNode.get("fastBreakPoints")));
                 statsGame.setPointsInPaint(asInteger(statisticNode.get("pointsInPaint")));
                 statsGame.setBiggestLead(asInteger(statisticNode.get("biggestLead")));
