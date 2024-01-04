@@ -34,6 +34,6 @@ public interface GameRepository extends JpaRepository<Game,Integer> {
     @Query(value = "SELECT * FROM game g WHERE (g.idVisitor=:idTeamHome AND g.idHome=:idTeamVisitor) OR (g.idVisitor=:idTeamVisitor AND g.idHome=:idTeamHome) LIMIT 4;", nativeQuery = true)
     List<Game> findLastFourHtH(@Param("idTeamHome")int idTeamHome,@Param("idTeamVisitor")int idTeamVisitor);
 
-    @Query(value = "SELECT * FROM game g WHERE (g.idVisitor=:idTeamHome AND g.idHome=:idTeamVisitor) OR (g.idVisitor=:idTeamVisitor AND g.idHome=:idTeamHome) LIMIT 4;", nativeQuery = true)
-    List<Game> findGameWithoutStatsPlayer(@Param("idTeamHome")int idTeamHome,@Param("idTeamVisitor")int idTeamVisitor);
+    @Query(value = "SELECT idHome AS TeamID FROM game WHERE date =:inputDate UNION SELECT idVisitor AS TeamID FROM game WHERE date =:inputDate; ", nativeQuery = true)
+    List<Integer> findIdTeamFromDate(@Param("inputDate")LocalDate inputDate);
 }
