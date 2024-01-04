@@ -1,4 +1,4 @@
-package com.IGallinari.LastGame.entity;
+package com.IGallinari.LastGame.entity.id_class;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
@@ -6,12 +6,11 @@ import lombok.Data;
 
 @Data
 @Embeddable
-public class IdFavTeam implements Serializable{
-
-    @Column(name = "idUser")
-    private int idUser;
+public class idTagTeam implements Serializable{
+    
+    @Column(name = "idBlog")
+    private int idblog;
 
     @Column(name = "idTeam")
     private int idTeam;
-
 }

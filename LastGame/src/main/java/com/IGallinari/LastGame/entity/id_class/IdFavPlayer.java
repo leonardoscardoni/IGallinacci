@@ -1,4 +1,4 @@
-package com.IGallinari.LastGame.entity;
+package com.IGallinari.LastGame.entity.id_class;
 
 import java.io.Serializable;
 import jakarta.persistence.Column;

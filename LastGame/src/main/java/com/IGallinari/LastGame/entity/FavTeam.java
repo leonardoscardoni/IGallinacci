@@ -1,5 +1,6 @@
 package com.IGallinari.LastGame.entity;
 
+import com.IGallinari.LastGame.entity.id_class.IdFavTeam;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,10 +13,9 @@ public class FavTeam {
 
     @ManyToOne
     @JoinColumn(name = "idUser", insertable = false, updatable = false)
-    private int idUser;
+    private User user;
 
-    @Id
     @ManyToOne
     @JoinColumn(name = "idTeam", insertable = false, updatable = false)
-    private int idTeam;
+    private Team team;
 }

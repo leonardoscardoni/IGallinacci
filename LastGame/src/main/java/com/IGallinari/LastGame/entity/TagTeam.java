@@ -9,15 +9,15 @@ import lombok.Data;
 public class TagTeam {
 
     @EmbeddedId
-    private idTagTeam idTagTeam;
+    private com.IGallinari.LastGame.entity.id_class.idTagTeam idTagTeam;
 
     @ManyToOne
     @JoinColumn(name = "idBlog", insertable = false, updatable = false)
-    private int idBlog;
+    private Blog blog;
 
 
     @ManyToOne
     @JoinColumn(name = "idTeam", insertable = false, updatable = false)
-    private int idTeam;
+    private Team team;
     
 }

@@ -2,7 +2,7 @@ package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 
 import com.IGallinari.LastGame.entity.Arena;
 import com.IGallinari.LastGame.entity.Game;
-import com.IGallinari.LastGame.entity.IdStatsGame;
+import com.IGallinari.LastGame.entity.id_class.IdStatsGame;
 import com.IGallinari.LastGame.entity.StatsGame;
 import com.IGallinari.LastGame.repository.ArenaRepository;
 import com.IGallinari.LastGame.repository.GameRepository;
@@ -12,7 +12,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

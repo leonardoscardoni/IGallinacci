@@ -7,11 +7,12 @@ import jakarta.persistence.*;
 @Data
 public class Blog {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     @ManyToOne
-    @JoinColumn(name = "idUser", insertable = false, updatable = false)
-    private int idUser;
+    @JoinColumn(name = "idUser")
+    private User user;
 
     private String title;
 

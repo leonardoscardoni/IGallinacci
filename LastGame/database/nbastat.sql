@@ -242,11 +242,12 @@ CREATE TABLE `statsteam` (
 -- Struttura della tabella `user`
 --
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `role` varchar(50) NOT NULL
+  `role` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -269,12 +270,13 @@ CREATE TABLE `favplayer` (
 -- Struttura della tabella 'blog'
 --
 CREATE TABLE `blog` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `idUser` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `subtitle` varchar(255) DEFAULT NULL,
   `content` text NOT NULL,
-  `img` varchar(255) DEFAULT NULL
+  `img` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -361,12 +363,6 @@ ALTER TABLE `statsteam`
   ADD KEY `fk_statsTeam_team` (`idTeam`);
 
 --
--- Indici per le tabelle 'user'
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indici per le tabelle 'favteam'
 --
 ALTER TABLE `favteam`
@@ -386,7 +382,6 @@ ALTER TABLE `favplayer`
 -- Indici per le tabelle 'blog'
 --
 ALTER TABLE `blog`
-  ADD PRIMARY KEY (`id`, `idUser`),
   ADD KEY `fk_blog_user` (`idUser`);
 
 --

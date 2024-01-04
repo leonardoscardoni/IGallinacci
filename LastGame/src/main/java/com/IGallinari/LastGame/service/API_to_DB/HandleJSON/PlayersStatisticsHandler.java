@@ -1,16 +1,14 @@
 package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 
 import com.IGallinari.LastGame.entity.*;
+import com.IGallinari.LastGame.entity.id_class.IdPlayerTeam;
+import com.IGallinari.LastGame.entity.id_class.IdStatsPlayer;
 import com.IGallinari.LastGame.repository.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import lombok.AllArgsConstructor;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor

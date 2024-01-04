@@ -7,14 +7,14 @@ import lombok.Data;
 public class TagPlayer {
 
     @EmbeddedId
-    private idTagPlayer idTagPlayer;
+    private com.IGallinari.LastGame.entity.id_class.idTagPlayer idTagPlayer;
 
 
     @ManyToOne
     @JoinColumn(name = "idBlog", insertable = false, updatable = false)
-    private int idBlog;
+    private Blog blog;
 
     @ManyToOne
     @JoinColumn(name = "idPlayer", insertable = false, updatable = false)
-    private int idPlayer;
+    private Player player;
 }

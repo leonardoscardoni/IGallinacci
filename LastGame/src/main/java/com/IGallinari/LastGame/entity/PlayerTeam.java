@@ -1,5 +1,6 @@
 package com.IGallinari.LastGame.entity;
 
+import com.IGallinari.LastGame.entity.id_class.IdPlayerTeam;
 import jakarta.persistence.*;
 import lombok.Data;
 
