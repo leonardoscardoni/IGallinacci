@@ -86,7 +86,7 @@ public class PopulateDB {
         System.out.println("there were made "+call+" calls, total calls "+totCall);
         call=0;
         List<Integer> allIdTeams = teamRepository.findAllIds();
-        List<Integer> idTeamsInDB = new ArrayList<>();
+        List<Integer> idTeamsInDB;
         List<Integer> idTeamsNeed = new ArrayList<>(allIdTeams);
         if (!idTeamsNeed.isEmpty()) {
             System.out.println("Preparing the call/s for the /players endpoint");
