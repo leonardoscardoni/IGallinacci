@@ -38,6 +38,7 @@ public class DailyEndpoint {
             String response = apiCaller.callApi("games", params);
             call+=1;
             redirectJSON.manageJSON(response);
+            System.out.println("Wait for 60 sec!");
             TimeUnit.MINUTES.sleep(1);
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,6 +58,7 @@ public class DailyEndpoint {
                         String response = apiCaller.callApi("players", params);//120 chiamate
                         call+=1;
                         redirectJSON.manageJSON(response);
+                        System.out.println("Wait for 60 sec!");
                         TimeUnit.MINUTES.sleep(1);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -65,6 +67,7 @@ public class DailyEndpoint {
                         String response = apiCaller.callApi("players/statistics", params);//120 chiamate
                         call+=1;
                         redirectJSON.manageJSON(response);
+                        System.out.println("Wait for 60 sec!");
                         TimeUnit.MINUTES.sleep(1);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -76,6 +79,7 @@ public class DailyEndpoint {
                         String response = apiCaller.callApi("teams/statistics", params);//120 chiamate
                         call+=1;
                         redirectJSON.manageJSON(response);
+                        System.out.println("Wait for 60 sec!");
                         TimeUnit.MINUTES.sleep(1);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -89,6 +93,7 @@ public class DailyEndpoint {
                     String response = apiCaller.callApi("games/statistics", params);
                     call+=1;
                     redirectJSON.manageJSON(response);
+                    System.out.println("Wait for 60 sec!");
                     TimeUnit.MINUTES.sleep(1);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -103,6 +108,7 @@ public class DailyEndpoint {
                 String response = apiCaller.callApi("standings", params);//2 chiamate
                 call+=1;
                 redirectJSON.manageJSON(response);
+                System.out.println("Wait for 60 sec!");
                 TimeUnit.MINUTES.sleep(1);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -121,6 +127,7 @@ public class DailyEndpoint {
                     String response = apiCaller.callApi("games/statistics", params);
                     call+=1;
                     redirectJSON.manageJSON(response);
+                    System.out.println("Wait for 60 sec!");
                     TimeUnit.MINUTES.sleep(1);
                 } catch (Exception e) {
                     e.printStackTrace();
