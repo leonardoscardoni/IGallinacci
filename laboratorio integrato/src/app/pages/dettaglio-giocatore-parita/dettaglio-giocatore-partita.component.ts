@@ -27,12 +27,13 @@ export class DettaglioGiocatorePartitaComponent {
         giocatore: {
             nome: "Clara Cosentino",
             logo: "/assets/s-l1200.webp",
+            ruolo: "Attaccante",
         },
         stats: {
-            gamesPlayed: 30,
+            mins: 30,
             score: 200,
-            fieldGoalsMadePercentage: "20%",
-            threePointersMadePercentage: "20%",
+            totalRebounds: 200, // Rimbalzi totali: 200
+            assists: 200,
         },
         tiri: {
             fieldGoalsMade: 200,
@@ -40,6 +41,7 @@ export class DettaglioGiocatorePartitaComponent {
             fieldGoalsPercentage: "200%",
             freeThrowsMade: 200,
             freeThrowsAttempted: 200,
+            freeThrowsPercentage: "80%",
             threePointersMade: 200,
             threePointersAttempted: 200,
             threePointersPercentage: "200%",
