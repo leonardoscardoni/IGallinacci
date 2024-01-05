@@ -1,17 +1,10 @@
 package com.IGallinari.LastGame.service.API_to_DB;
 
-<<<<<<< Updated upstream
-import com.IGallinari.LastGame.repository.GameRepository;
-=======
-import com.IGallinari.LastGame.entity.Game;
 import com.IGallinari.LastGame.repository.GameRepository;
 import com.IGallinari.LastGame.repository.StatsGameRepository;
->>>>>>> Stashed changes
-import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +21,9 @@ public class DailyEndpoint {
 
     private GameRepository gameRepository;
 
-<<<<<<< Updated upstream
-=======
     private StatsGameRepository statsGameRepository;
 
     @PostConstruct
->>>>>>> Stashed changes
     public void makeDailyCall(){
         LocalDate today=LocalDate.now();
         System.out.println("Starting daily call");
@@ -54,9 +44,6 @@ public class DailyEndpoint {
         }
         System.out.println("there were made "+call+" calls, total calls "+totCall);
         call=0;
-<<<<<<< Updated upstream
-
-=======
         List<Integer> idGamesNotPlayed= gameRepository.findAllGameIdsBeforeDateNotPlayed(today);
         if (!idGamesNotPlayed.isEmpty()) {
             for (int idGame : idGamesNotPlayed) {
@@ -145,6 +132,5 @@ public class DailyEndpoint {
         }
         totCall+=call;
         System.out.println("there were made "+call+" calls, total calls "+totCall);
->>>>>>> Stashed changes
     }
 }
