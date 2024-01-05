@@ -16,7 +16,10 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Map;
 
+<<<<<<< Updated upstream
 //@Component
+=======
+>>>>>>> Stashed changes
 @AllArgsConstructor
 public class PopulateDB {
     private ApiCaller apiCaller;
@@ -35,7 +38,10 @@ public class PopulateDB {
 
     private PlayerTeamRepository playerTeamRepository;
 
+<<<<<<< Updated upstream
     //@PostConstruct
+=======
+>>>>>>> Stashed changes
     public void init() throws JsonProcessingException {
         int totCall=0;
         int call=0;
@@ -192,7 +198,7 @@ public class PopulateDB {
         System.out.println("there were made "+call+" calls, total calls "+totCall);
         call=0;
         LocalDate todayDate = LocalDate.now();
-        List<Integer> allIdGames = gameRepository.findAllIdsBeforeDate(todayDate);
+        List<Integer> allIdGames = gameRepository.findAllGameIdsBeforeDate(todayDate);
         List<Integer> idGamesInDB = statsGameRepository.findAllIdsWhereIsNotComplete();
         List<Integer> idGameNeed = new ArrayList<>(allIdGames);
         idGameNeed.removeAll(idGamesInDB);
