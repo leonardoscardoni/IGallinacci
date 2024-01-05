@@ -8,8 +8,10 @@ import { DettConfrontoGiocatoriComponent } from "./pages/dett-confronto-giocator
 import { ElencoGiocatoriComponent } from "./pages/elenco-giocatori/elenco-giocatori.component";
 import { SceltaConfrontoTeamComponent } from "./pages/scelta-confronto-team/scelta-confronto-team.component";
 import { DettaglioGiocatorePartitaComponent } from "./pages/dettaglio-giocatore-parita/dettaglio-giocatore-partita.component";
+import { LoginComponent } from "./pages/login/login.component";
 
 const routes: Routes = [
+    { path: "login", component: LoginComponent },
     { path: "home", component: HomePageComponent },
     { path: "dett-partita-giocata", component: DettaglioPartitaGiocataComponent },
     { path: "calendario-partite", component: CalendarioPartiteComponent },

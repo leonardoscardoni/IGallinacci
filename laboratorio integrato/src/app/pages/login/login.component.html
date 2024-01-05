@@ -1,0 +1,16 @@
+<div class="container flex justify-center">
+<form method="post">
+
+    <div class="my-10">
+    <label for="EmailId"><b>Email</b></label>
+    <input type="email" placeholder="Enter Email" name="EmailId" [(ngModel)]="loginObj.EmailId" required>
+    </div>
+
+    <div class="my-10">
+    <label for="Password"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="Password" [(ngModel)]="loginObj.Password" required>
+    </div>
+        
+    <button (click)="onLogin()">Login</button>
+</form>
+</div>

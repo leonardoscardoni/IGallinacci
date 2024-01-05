@@ -27,7 +27,7 @@ import { ContainerDatiGeneraliComponent } from "./components/container-dati-gene
 import { HeaderConfrontoDettaglioComponent } from "./components/header-confronto-dettaglio/header-confronto-dettaglio.component";
 import { DettConfrontoGiocatoriComponent } from "./pages/dett-confronto-giocatori/dett-confronto-giocatori.component";
 import { BioGiocatoreComponent } from "./components/bio-giocatore/bio-giocatore.component";
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { UltimiRisultatiHomeComponent } from "./components/ultimi-risultati-home/ultimi-risultati-home.component";
 import { ElencoGiocatoriComponent } from "./pages/elenco-giocatori/elenco-giocatori.component";
 import { DropdownModule } from "primeng/dropdown";
@@ -37,6 +37,8 @@ import { SceltaConfrontoTeamComponent } from "./pages/scelta-confronto-team/scel
 import { HeaderBgTitoloComponent } from "./components/header-bg-titolo/header-bg-titolo.component";
 import { SelezioneConfrontoSquadreComponent } from "./components/selezione-confronto-squadre/selezione-confronto-squadre.component";
 import { DettaglioGiocatorePartitaComponent } from "./pages/dettaglio-giocatore-parita/dettaglio-giocatore-partita.component";
+import { LoginComponent } from "./pages/login/login.component";
+import { CustomInterceptor } from "./_services/custom.interceptor";
 
 @NgModule({
     declarations: [
@@ -72,6 +74,7 @@ import { DettaglioGiocatorePartitaComponent } from "./pages/dettaglio-giocatore-
         HeaderBgTitoloComponent,
         SelezioneConfrontoSquadreComponent,
         DettaglioGiocatorePartitaComponent,
+        LoginComponent,
     ],
     imports: [
         BrowserModule,
@@ -86,7 +89,13 @@ import { DettaglioGiocatorePartitaComponent } from "./pages/dettaglio-giocatore-
         HttpClientModule,
         FormsModule,
     ],
-    providers: [],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: CustomInterceptor,
+            multi: true,
+        },
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
