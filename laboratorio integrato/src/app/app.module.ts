@@ -36,6 +36,11 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { SceltaConfrontoTeamComponent } from "./pages/scelta-confronto-team/scelta-confronto-team.component";
 import { HeaderBgTitoloComponent } from "./components/header-bg-titolo/header-bg-titolo.component";
 import { SelezioneConfrontoSquadreComponent } from "./components/selezione-confronto-squadre/selezione-confronto-squadre.component";
+import { ArticoloLoggatoComponent } from './components/articolo-loggato/articolo-loggato.component';
+import { DettaglioArticoloNonLoggatoComponent } from './pages/dettaglio-articolo-non-loggato/dettaglio-articolo-non-loggato.component';
+import { ArticoloLoggatoTxtComponent } from './components/articolo-loggato-txt/articolo-loggato-txt.component';
+import { ArticoloLoggatoSectionComponent } from './components/articolo-loggato-section/articolo-loggato-section.component';
+import { DettaglioArticoloLoggatoComponent } from './pages/dettaglio-articolo-loggato/dettaglio-articolo-loggato.component';
 
 @NgModule({
     declarations: [
@@ -70,6 +75,11 @@ import { SelezioneConfrontoSquadreComponent } from "./components/selezione-confr
         SceltaConfrontoTeamComponent,
         HeaderBgTitoloComponent,
         SelezioneConfrontoSquadreComponent,
+        ArticoloLoggatoComponent,
+        DettaglioArticoloNonLoggatoComponent,
+        ArticoloLoggatoTxtComponent,
+        ArticoloLoggatoSectionComponent,
+        DettaglioArticoloLoggatoComponent,
     ],
     imports: [
         BrowserModule,

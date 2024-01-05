@@ -7,6 +7,11 @@ import { DettaglioTeamComponent } from "./pages/dettaglio-team/dettaglio-team.co
 import { DettConfrontoGiocatoriComponent } from "./pages/dett-confronto-giocatori/dett-confronto-giocatori.component";
 import { ElencoGiocatoriComponent } from "./pages/elenco-giocatori/elenco-giocatori.component";
 import { SceltaConfrontoTeamComponent } from "./pages/scelta-confronto-team/scelta-confronto-team.component";
+import { DettaglioArticoloNonLoggatoComponent } from "./pages/dettaglio-articolo-non-loggato/dettaglio-articolo-non-loggato.component";
+import { DettaglioArticoloLoggatoComponent } from "./pages/dettaglio-articolo-loggato/dettaglio-articolo-loggato.component";
+
+
+
 
 const routes: Routes = [
     { path: "home", component: HomePageComponent },
@@ -16,6 +21,8 @@ const routes: Routes = [
     { path: "dett-confronto-giocatori", component: DettConfrontoGiocatoriComponent },
     { path: "elenco-giocatori", component: ElencoGiocatoriComponent },
     { path: "scelta-confronto-team", component: SceltaConfrontoTeamComponent },
+    { path: "dettaglio-articolo-non-loggato", component: DettaglioArticoloNonLoggatoComponent },
+    { path: "dettaglio-articolo-loggato", component: DettaglioArticoloLoggatoComponent },
     { path: "", redirectTo: "home", pathMatch: "full" },
 ];
 
