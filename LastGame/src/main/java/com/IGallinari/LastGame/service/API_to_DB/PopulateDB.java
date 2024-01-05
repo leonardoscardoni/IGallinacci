@@ -16,10 +16,8 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Map;
 
-<<<<<<< Updated upstream
+
 //@Component
-=======
->>>>>>> Stashed changes
 @AllArgsConstructor
 public class PopulateDB {
     private ApiCaller apiCaller;
@@ -38,10 +36,8 @@ public class PopulateDB {
 
     private PlayerTeamRepository playerTeamRepository;
 
-<<<<<<< Updated upstream
+
     //@PostConstruct
-=======
->>>>>>> Stashed changes
     public void init() throws JsonProcessingException {
         int totCall=0;
         int call=0;

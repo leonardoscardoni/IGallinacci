@@ -27,6 +27,8 @@ public class Game {
 
     private Integer totperiods;
 
+    private Integer status;
+
     @ManyToOne
     @JoinColumn(name = "nameArena")
     private Arena arena;

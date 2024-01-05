@@ -24,7 +24,7 @@ public class DailyEndpoint {
     private StatsGameRepository statsGameRepository;
 
     @PostConstruct
-    public void makeDailyCall(){
+    public void init(){
         LocalDate today=LocalDate.now();
         System.out.println("Starting daily call");
         Integer season = 2023;
