@@ -5,7 +5,7 @@ import { AppComponent } from "./app.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
-import { DettaglioPartitaComponent } from "./pages/dettaglio-partita/dettaglio-partita-giocata.component";
+import { DettaglioPartitaGiocataComponent } from "./pages/dettaglio-partita/dettaglio-partita-giocata.component";
 import { PerTeComponent } from "./components/per-te/per-te.component";
 import { TodayMatchesComponent } from "./components/today-matches/today-matches.component";
 import { FooterComponent } from "./components/footer/footer.component";
@@ -36,6 +36,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { SceltaConfrontoTeamComponent } from "./pages/scelta-confronto-team/scelta-confronto-team.component";
 import { HeaderBgTitoloComponent } from "./components/header-bg-titolo/header-bg-titolo.component";
 import { SelezioneConfrontoSquadreComponent } from "./components/selezione-confronto-squadre/selezione-confronto-squadre.component";
+import { DettaglioGiocatorePartitaComponent } from "./pages/dettaglio-giocatore-parita/dettaglio-giocatore-partita.component";
 
 @NgModule({
     declarations: [
@@ -43,7 +44,7 @@ import { SelezioneConfrontoSquadreComponent } from "./components/selezione-confr
         NavbarComponent,
         HeaderComponent,
         HomePageComponent,
-        DettaglioPartitaComponent,
+        DettaglioPartitaGiocataComponent,
         PerTeComponent,
         TodayMatchesComponent,
         FooterComponent,
@@ -70,6 +71,7 @@ import { SelezioneConfrontoSquadreComponent } from "./components/selezione-confr
         SceltaConfrontoTeamComponent,
         HeaderBgTitoloComponent,
         SelezioneConfrontoSquadreComponent,
+        DettaglioGiocatorePartitaComponent,
     ],
     imports: [
         BrowserModule,
