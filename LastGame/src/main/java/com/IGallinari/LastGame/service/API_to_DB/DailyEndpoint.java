@@ -24,7 +24,7 @@ public class DailyEndpoint {
     private StatsGameRepository statsGameRepository;
 
     @PostConstruct
-    public void init(){
+    public void init() throws InterruptedException {
         LocalDate today=LocalDate.now();
         System.out.println("Starting daily call");
         Integer season = 2023;
@@ -127,11 +127,11 @@ public class DailyEndpoint {
                     String response = apiCaller.callApi("games/statistics", params);
                     call+=1;
                     redirectJSON.manageJSON(response);
-                    System.out.println("Wait for 60 sec!");
-                    TimeUnit.MINUTES.sleep(1);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                System.out.println("Wait for 60 sec!");
+                TimeUnit.MINUTES.sleep(1);
             }
         }
         else {

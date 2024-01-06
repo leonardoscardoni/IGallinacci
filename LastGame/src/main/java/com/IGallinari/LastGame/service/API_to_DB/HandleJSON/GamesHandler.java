@@ -34,8 +34,8 @@ public class GamesHandler implements Handler {
         ArrayNode gamesNode = (ArrayNode) jsonNode.get("response");
 
         for (JsonNode gameNode : gamesNode) {
-            Team teamHome = teamRepository.findById(gameNode.get("teams").get("visitors").get("id").asInt());
-            Team teamVisitor = teamRepository.findById(gameNode.get("teams").get("home").get("id").asInt());
+            Team teamVisitor = teamRepository.findById(gameNode.get("teams").get("visitors").get("id").asInt());
+            Team teamHome = teamRepository.findById(gameNode.get("teams").get("home").get("id").asInt());
 
             if (teamHome!=null && teamVisitor!=null) {
                 Game game= gameRepository.findById(gameNode.get("id").asInt());
@@ -71,21 +71,22 @@ public class GamesHandler implements Handler {
                     game.setTime(time);
                     game.setStage(asInteger(gameNode.get("stage")));
                     game.setTotperiods(asInteger(gameNode.get("periods").get("total")));
+                    game.setStatus(asInteger(gameNode.get("status").get("short")));
                     game.setArena(arenaRepository.findByName(gameNode.get("arena").get("name").asText()));
                     game.setVisitorTeam(teamRepository.findById(gameNode.get("teams").get("visitors").get("id").asInt()));
                     game.setHomeTeam(teamRepository.findById(gameNode.get("teams").get("home").get("id").asInt()));
                     gameRepository.save(game);
                     System.out.println("Object Game game saved in the DB");
-                    LocalDate today = LocalDate.now();
-                    if (game.getDate().isBefore(today)) {
-                        StatsGame statsGameVisitor = statsGameRepository.findStatsGameByGameAndTeam(game, teamVisitor);
-                        if (statsGameVisitor == null) {
-                            statsGameVisitor = new StatsGame();
-                            IdStatsGame idStatsGameVisitor = new IdStatsGame();
-                            idStatsGameVisitor.setTeamId(gameNode.get("teams").get("visitors").get("id").asInt());
-                            idStatsGameVisitor.setGameId(gameNode.get("id").asInt());
-                            statsGameVisitor.setStatsGameId(idStatsGameVisitor);
-                        }
+                }
+                LocalDate today = LocalDate.now();
+                if (game.getDate().isBefore(today)) {
+                    StatsGame statsGameVisitor = statsGameRepository.findStatsGameByGameAndTeam(game, teamVisitor);
+                    if (statsGameVisitor == null) {
+                        statsGameVisitor = new StatsGame();
+                        IdStatsGame idStatsGameVisitor = new IdStatsGame();
+                        idStatsGameVisitor.setTeamId(gameNode.get("teams").get("visitors").get("id").asInt());
+                        idStatsGameVisitor.setGameId(gameNode.get("id").asInt());
+                        statsGameVisitor.setStatsGameId(idStatsGameVisitor);
                         statsGameVisitor.setWin(asInteger(gameNode.get("scores").get("visitors").get("win")));
                         statsGameVisitor.setLose(asInteger(gameNode.get("scores").get("visitors").get("loss")));
                         statsGameVisitor.setSeriesWin(asInteger(gameNode.get("scores").get("visitors").get("series").get("win")));
@@ -94,15 +95,15 @@ public class GamesHandler implements Handler {
                         statsGameVisitor.setPoints(asInteger(gameNode.get("scores").get("visitors").get("points")));
                         statsGameRepository.save(statsGameVisitor);
                         System.out.println("Object StatsGame statsGameVisitor saved in the DB");
+                    }
 
-                        StatsGame statsGameHome = statsGameRepository.findStatsGameByGameAndTeam(game, teamHome);
-                        if (statsGameHome == null) {
-                            statsGameHome = new StatsGame();
-                            IdStatsGame idStatsGameHome = new IdStatsGame();
-                            idStatsGameHome.setTeamId(gameNode.get("teams").get("home").get("id").asInt());
-                            idStatsGameHome.setGameId(gameNode.get("id").asInt());
-                            statsGameHome.setStatsGameId(idStatsGameHome);
-                        }
+                    StatsGame statsGameHome = statsGameRepository.findStatsGameByGameAndTeam(game, teamHome);
+                    if (statsGameHome == null) {
+                        statsGameHome = new StatsGame();
+                        IdStatsGame idStatsGameHome = new IdStatsGame();
+                        idStatsGameHome.setTeamId(gameNode.get("teams").get("home").get("id").asInt());
+                        idStatsGameHome.setGameId(gameNode.get("id").asInt());
+                        statsGameHome.setStatsGameId(idStatsGameHome);
                         statsGameHome.setWin(asInteger(gameNode.get("scores").get("home").get("win")));
                         statsGameHome.setLose(asInteger(gameNode.get("scores").get("home").get("loss")));
                         statsGameHome.setSeriesWin(asInteger(gameNode.get("scores").get("home").get("series").get("win")));
