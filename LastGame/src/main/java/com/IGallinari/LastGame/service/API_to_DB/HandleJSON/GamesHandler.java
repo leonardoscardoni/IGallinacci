@@ -34,23 +34,21 @@ public class GamesHandler implements Handler {
         ArrayNode gamesNode = (ArrayNode) jsonNode.get("response");
 
         for (JsonNode gameNode : gamesNode) {
-            Integer idHomeTeam = gameNode.get("teams").get("home").get("id").asInt();
-            Integer idVisitorTeam = gameNode.get("teams").get("visitors").get("id").asInt();
+            Team teamHome = teamRepository.findById(gameNode.get("teams").get("visitors").get("id").asInt());
+            Team teamVisitor = teamRepository.findById(gameNode.get("teams").get("home").get("id").asInt());
 
-            if (teamRepository.existsById(idHomeTeam) && teamRepository.existsById(idVisitorTeam)) {
-                if (!arenaRepository.existsByName(gameNode.get("arena").get("name").asText())) {
-                    Arena arena = new Arena();
-                    arena.setName(asString(gameNode.get("arena").get("name")));
-                    arena.setCity(asString(gameNode.get("arena").get("city")));
-                    arena.setState(asString(gameNode.get("arena").get("state")));
-                    arena.setCountry(asString(gameNode.get("arena").get("country")));
-                    arenaRepository.save(arena);
-                    System.out.println("Object Arena arena saved in the DB");
-                }
-                Team teamHome = teamRepository.findById(gameNode.get("teams").get("visitors").get("id").asInt());
-                Team teamVisitor = teamRepository.findById(gameNode.get("teams").get("home").get("id").asInt());
+            if (teamHome!=null && teamVisitor!=null) {
                 Game game= gameRepository.findById(gameNode.get("id").asInt());
                 if(game==null || game.getStatus()<3) {
+                    if (!arenaRepository.existsByName(gameNode.get("arena").get("name").asText())) {
+                        Arena arena = new Arena();
+                        arena.setName(asString(gameNode.get("arena").get("name")));
+                        arena.setCity(asString(gameNode.get("arena").get("city")));
+                        arena.setState(asString(gameNode.get("arena").get("state")));
+                        arena.setCountry(asString(gameNode.get("arena").get("country")));
+                        arenaRepository.save(arena);
+                        System.out.println("Object Arena arena saved in the DB");
+                    }
                     game = new Game();
                     game.setId(gameNode.get("id").asInt());
                     game.setSeason(asInteger(gameNode.get("season")));

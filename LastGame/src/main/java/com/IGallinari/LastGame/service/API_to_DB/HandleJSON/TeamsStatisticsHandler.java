@@ -22,17 +22,13 @@ public class TeamsStatisticsHandler implements Handler{
     @Override
     public void handle(JsonNode jsonNode) {
         JsonNode parametersNode = jsonNode.get("parameters");
-
         JsonNode teamsStatisticsNode = (ArrayNode) jsonNode.get("response");
-        Team team = teamRepository.findById(parametersNode.get("id").asInt());
-        int season = parametersNode.get("season").asInt();
-        StatsTeam statsTeam= statsTeamRepository.findByTeamAndSeason(team,season);
-        if(statsTeam == null) {
-            IdStatsTeam idStatsTeam = new IdStatsTeam();
-            idStatsTeam.setTeamId(asInteger(parametersNode.get("id")));
-            idStatsTeam.setSeason(asInteger(parametersNode.get("season")));
-            statsTeam.setStatsTeamId(idStatsTeam);
-        }
+
+        StatsTeam statsTeam = new StatsTeam();
+        IdStatsTeam idStatsTeam = new IdStatsTeam();
+        idStatsTeam.setTeamId(asInteger(parametersNode.get("id")));
+        idStatsTeam.setSeason(asInteger(parametersNode.get("season")));
+        statsTeam.setStatsTeamId(idStatsTeam);
         for(JsonNode teamStatisticsNode: teamsStatisticsNode) {
             statsTeam.setGames(asInteger(teamStatisticsNode.get("games")));
             statsTeam.setFastBreakPoints(asInteger(teamStatisticsNode.get("fastBreakPoints")));
