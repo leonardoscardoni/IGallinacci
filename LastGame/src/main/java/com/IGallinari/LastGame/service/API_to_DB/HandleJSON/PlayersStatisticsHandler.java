@@ -51,6 +51,7 @@ public class PlayersStatisticsHandler implements Handler{
                 Player player = playerRepository.findById(playerStatisticsNode.get("player").get("id").asInt());
                 StatsPlayer statsPlayer = statsPlayerRepository.findByTeamAndGameAndPlayer(team,game,player);
                 if(statsPlayer == null){
+                    statsPlayer=new StatsPlayer();
                     IdStatsPlayer idStatsPlayer = new IdStatsPlayer();
                     idStatsPlayer.setPlayerId(playerStatisticsNode.get("player").get("id").asInt());
                     idStatsPlayer.setGameId(playerStatisticsNode.get("game").get("id").asInt());
