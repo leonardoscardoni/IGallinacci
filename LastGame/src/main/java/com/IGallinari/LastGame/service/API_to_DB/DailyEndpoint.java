@@ -45,9 +45,9 @@ public class DailyEndpoint {
         }
         System.out.println("there were made "+call+" calls, total calls "+totCall);
         call=0;
-        List<Integer> idGamesNotPlayed= gameRepository.findAllGameIdsBeforeDateNotCompleted(today);
-        if (!idGamesNotPlayed.isEmpty()) {
-            for (int idGame : idGamesNotPlayed) {
+        List<Integer> idGamesNotCompleted= gameRepository.findAllGameIdsBeforeDateNotCompleted(today);
+        if (!idGamesNotCompleted.isEmpty()) {
+            for (int idGame : idGamesNotCompleted) {
                 List<Integer> idTeams = gameRepository.findIdTeam(idGame);
                 for(Integer idTeam: idTeams){
                     System.out.println("idTeam: "+idTeam);
