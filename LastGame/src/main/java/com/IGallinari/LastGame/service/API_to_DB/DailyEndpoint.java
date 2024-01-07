@@ -43,6 +43,7 @@ public class DailyEndpoint {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        totCall+=call;
         System.out.println("there were made "+call+" calls, total calls "+totCall);
         call=0;
         List<Integer> idGamesNotCompleted= gameRepository.findAllGameIdsBeforeDateNotCompleted(today);
@@ -85,6 +86,7 @@ public class DailyEndpoint {
                         e.printStackTrace();
                     }
                 }
+                totCall+=call;
                 System.out.println("there were made "+call+" calls, total calls "+totCall);
                 call=0;
                 Integer idGameInteger = idGame;
@@ -99,6 +101,7 @@ public class DailyEndpoint {
                     e.printStackTrace();
                 }
             }
+            totCall+=call;
             System.out.println("there were made "+call+" calls, total calls "+totCall);
             call=0;
             params = Map.ofEntries(
@@ -114,12 +117,10 @@ public class DailyEndpoint {
                 e.printStackTrace();
             }
         }
+        totCall+=call;
         System.out.println("there were made "+call+" calls, total calls "+totCall);
         call=0;
-        List<Integer> allIdGames = gameRepository.findAllGameIdsBeforeDate(today);
-        List<Integer> idGamesInDB = statsGameRepository.findAllIdsWhereIsNotComplete();
-        List<Integer> idGameNeed = new ArrayList<>(allIdGames);
-        idGameNeed.removeAll(idGamesInDB);
+        List<Integer> idGameNeed = statsGameRepository.findAllIdsWhereIsNotComplete();
         if(!idGameNeed.isEmpty()) {
             for (Integer idGame : idGameNeed) {
                 params = Map.of("id", idGame.toString());

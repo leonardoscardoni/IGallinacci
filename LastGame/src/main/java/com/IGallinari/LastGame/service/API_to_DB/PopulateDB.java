@@ -194,10 +194,7 @@ public class PopulateDB {
         System.out.println("there were made "+call+" calls, total calls "+totCall);
         call=0;
         LocalDate todayDate = LocalDate.now();
-        List<Integer> allIdGames = gameRepository.findAllGameIdsBeforeDate(todayDate);
-        List<Integer> idGamesInDB = statsGameRepository.findAllIdsWhereIsNotComplete();
-        List<Integer> idGameNeed = new ArrayList<>(allIdGames);
-        idGameNeed.removeAll(idGamesInDB);
+        List<Integer> idGameNeed = statsGameRepository.findAllIdsWhereIsNotComplete();
         if(!idGameNeed.isEmpty()) {
             for (Integer idGame : idGameNeed) {
                 params = Map.of("id", idGame.toString());
