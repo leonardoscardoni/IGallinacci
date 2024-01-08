@@ -112,7 +112,6 @@ public class GameService {
     }
 
 
-
     public NextGameResponse buildNextGame(int id){
         Game game = gameRepository.findById(id);
         Arena arena = game.getArena();

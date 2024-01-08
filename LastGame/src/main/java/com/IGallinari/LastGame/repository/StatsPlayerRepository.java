@@ -1,6 +1,7 @@
 package com.IGallinari.LastGame.repository;
 
 import com.IGallinari.LastGame.entity.*;
+import com.IGallinari.LastGame.payload.response.TeamDetails.ViewStatsPlayerTeamDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,6 +12,8 @@ import java.util.List;
 @Repository
 public interface StatsPlayerRepository extends JpaRepository<StatsPlayer,Integer> {
 
+    @Query(value = "SELECT AVG(sp.points),AVG(sp.assists),AVG(sp.totReb),AVG(sp.steals),AVG(sp.blocks) FROM statsplayer sp WHERE idPlayer=265", nativeQuery = true)
+    ViewStatsPlayerTeamDetails
     StatsPlayer findByTeamAndGameAndPlayer(Team team, Game game, Player player);
 
     @Query(value = "SELECT sp.idTeam FROM StatsPlayer sp LEFT JOIN Game g ON sp.idGame = g.id WHERE g.season=:season GROUP BY (sp.idTeam)", nativeQuery = true)

@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class TeamsStatisticsHandler implements Handler{
 
-    private TeamRepository teamRepository;
-
     private StatsTeamRepository statsTeamRepository;
 
     @Override
