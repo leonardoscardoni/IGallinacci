@@ -1,6 +1,5 @@
 package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 
-import com.IGallinari.LastGame.entity.id_class.IdStatsTeam;
 import com.IGallinari.LastGame.entity.StatsTeam;
 import com.IGallinari.LastGame.entity.Team;
 import com.IGallinari.LastGame.repository.StatsTeamRepository;

@@ -4,14 +4,8 @@ import com.IGallinari.LastGame.entity.Team;
 import com.IGallinari.LastGame.repository.TeamRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
 
 @Service
 @AllArgsConstructor
