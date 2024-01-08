@@ -21,6 +21,8 @@ public class PlayersStatisticsHandler implements Handler{
 
     private StatsPlayerRepository statsPlayerRepository;
 
+    private TeamRepository teamRepository;
+
     @Override
     public void handle(JsonNode jsonNode) {
         ArrayNode playersStatisticsNode = (ArrayNode) jsonNode.get("response");
@@ -42,14 +44,20 @@ public class PlayersStatisticsHandler implements Handler{
                     playerTeam.setIdPlayerTeam(idPlayerTeam);
                     playerTeamRepository.save(playerTeam);
                 }
-                StatsPlayer statsPlayer = new StatsPlayer();
-                IdStatsPlayer idStatsPlayer = new IdStatsPlayer();
-                idStatsPlayer.setPlayerId(playerStatisticsNode.get("player").get("id").asInt());
-                idStatsPlayer.setGameId(playerStatisticsNode.get("game").get("id").asInt());
-                idStatsPlayer.setTeamId(playerStatisticsNode.get("team").get("id").asInt());
-                statsPlayer.setStatsPlayerId(idStatsPlayer);
-                System.out.println("idPlayer: " + idStatsPlayer.getPlayerId());
-                System.out.println("game: " + idStatsPlayer.getGameId());
+                Game game = gameRepository.findById(playerStatisticsNode.get("game").get("id").asInt());
+                Team team = teamRepository.findById(playerStatisticsNode.get("team").get("id").asInt());
+                Player player = playerRepository.findById(playerStatisticsNode.get("player").get("id").asInt());
+                StatsPlayer statsPlayer = statsPlayerRepository.findByTeamAndGameAndPlayer(team,game,player);
+                if(statsPlayer == null){
+                    statsPlayer=new StatsPlayer();
+                    IdStatsPlayer idStatsPlayer = new IdStatsPlayer();
+                    idStatsPlayer.setPlayerId(playerStatisticsNode.get("player").get("id").asInt());
+                    idStatsPlayer.setGameId(playerStatisticsNode.get("game").get("id").asInt());
+                    idStatsPlayer.setTeamId(playerStatisticsNode.get("team").get("id").asInt());
+                    statsPlayer.setStatsPlayerId(idStatsPlayer);
+                }
+                System.out.println("id player: " + playerStatisticsNode.get("player").get("id").asInt());
+                System.out.println(" id game: " + playerStatisticsNode.get("game").get("id").asInt());
                 statsPlayer.setPoints(asInteger(playerStatisticsNode.get("points")));
                 statsPlayer.setPos(asString(playerStatisticsNode.get("pos")));
                 statsPlayer.setMin(asInteger(playerStatisticsNode.get("min")));

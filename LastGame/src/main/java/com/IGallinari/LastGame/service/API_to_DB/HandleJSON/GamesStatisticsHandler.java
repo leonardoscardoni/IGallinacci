@@ -1,7 +1,9 @@
 package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 
-import com.IGallinari.LastGame.entity.id_class.IdStatsGame;
+import com.IGallinari.LastGame.entity.Game;
+import com.IGallinari.LastGame.entity.IdStatsGame;
 import com.IGallinari.LastGame.entity.StatsGame;
+import com.IGallinari.LastGame.entity.Team;
 import com.IGallinari.LastGame.repository.GameRepository;
 import com.IGallinari.LastGame.repository.StatsGameRepository;
 import com.IGallinari.LastGame.repository.TeamRepository;
@@ -9,6 +11,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
@@ -26,40 +29,41 @@ public class GamesStatisticsHandler implements Handler{
         ArrayNode gamesStatisticsNode = (ArrayNode) jsonNode.get("response");
 
         for (JsonNode gameStatisticsNode : gamesStatisticsNode) {
-            System.out.println("gameid"+parametersNode.get("parameters").get("id").asInt());
-            System.out.println("teamid"+gameStatisticsNode.get("team").get("id").asInt());
-            StatsGame statsGame = new StatsGame();
-            IdStatsGame idStatsGame = new IdStatsGame();
-            idStatsGame.setGameId(parametersNode.get("parameters").get("id").asInt());
-            idStatsGame.setTeamId(gameStatisticsNode.get("team").get("id").asInt());
-            statsGame.setStatsGameId(idStatsGame);
-            statsGame.setFastBreakPoint(asInteger(gameStatisticsNode.get("fastBreakPoints")));
-            statsGame.setPointsInPaint(asInteger(gameStatisticsNode.get("pointsInPaint")));
-            statsGame.setBiggestLead(asInteger(gameStatisticsNode.get("biggestLead")));
-            statsGame.setSecondChancePoints(asInteger(gameStatisticsNode.get("secondChancePoints")));
-            statsGame.setPointsOffTurnovers(asInteger(gameStatisticsNode.get("pointsOffTurnovers")));
-            statsGame.setLongestRun(asInteger(gameStatisticsNode.get("longestRun")));
-            statsGame.setFgm(asInteger(gameStatisticsNode.get("fgm")));
-            statsGame.setFga(asInteger(gameStatisticsNode.get("fga")));
-            statsGame.setFgp(asFloat(gameStatisticsNode.get("fgp")));
-            statsGame.setFtm(asInteger(gameStatisticsNode.get("ftm")));
-            statsGame.setFta(asInteger(gameStatisticsNode.get("fta")));
-            statsGame.setFtp(asFloat(gameStatisticsNode.get("ftp")));
-            statsGame.setTpm(asInteger(gameStatisticsNode.get("tpm")));
-            statsGame.setTpa(asInteger(gameStatisticsNode.get("tpa")));
-            statsGame.setTpp(asFloat(gameStatisticsNode.get("tpp")));
-            statsGame.setOffReb(asInteger(gameStatisticsNode.get("offReb")));
-            statsGame.setDefReb(asInteger(gameStatisticsNode.get("defReb")));
-            statsGame.setTotReb(asInteger(gameStatisticsNode.get("totReb")));
-            statsGame.setAssists(asInteger(gameStatisticsNode.get("assists")));
-            statsGame.setPFouls(asInteger(gameStatisticsNode.get("pFouls")));
-            statsGame.setSteals(asInteger(gameStatisticsNode.get("steals")));
-            statsGame.setTurnovers(asInteger(gameStatisticsNode.get("turnovers")));
-            statsGame.setBlocks(asInteger(gameStatisticsNode.get("blocks")));
-            statsGame.setPlusMinus(asInteger(gameStatisticsNode.get("plusMinus")));
-            statsGame.setMin(asString(gameStatisticsNode.get("min")));
+            System.out.println("id game: "+asInteger(parametersNode.get("id")));
+            System.out.println("id team: "+gameStatisticsNode.get("team").get("id").asInt());
+            Team team = teamRepository.findById(gameStatisticsNode.get("team").get("id").asInt());
+            Game game = gameRepository.findById(parametersNode.get("id").asInt());
+            StatsGame statsGame = statsGameRepository.findStatsGameByGameAndTeam(game,team);
+            ArrayNode teamStatisticsNode = (ArrayNode) gameStatisticsNode.get("statistics");
+            for(JsonNode statisticNode : teamStatisticsNode) {
+                statsGame.setFastBreakPoint(asInteger(statisticNode.get("fastBreakPoints")));
+                statsGame.setPointsInPaint(asInteger(statisticNode.get("pointsInPaint")));
+                statsGame.setBiggestLead(asInteger(statisticNode.get("biggestLead")));
+                statsGame.setSecondChancePoints(asInteger(statisticNode.get("secondChancePoints")));
+                statsGame.setPointsOffTurnovers(asInteger(statisticNode.get("pointsOffTurnovers")));
+                statsGame.setLongestRun(asInteger(statisticNode.get("longestRun")));
+                statsGame.setFgm(asInteger(statisticNode.get("fgm")));
+                statsGame.setFga(asInteger(statisticNode.get("fga")));
+                statsGame.setFgp(asFloat(statisticNode.get("fgp")));
+                statsGame.setFtm(asInteger(statisticNode.get("ftm")));
+                statsGame.setFta(asInteger(statisticNode.get("fta")));
+                statsGame.setFtp(asFloat(statisticNode.get("ftp")));
+                statsGame.setTpm(asInteger(statisticNode.get("tpm")));
+                statsGame.setTpa(asInteger(statisticNode.get("tpa")));
+                statsGame.setTpp(asFloat(statisticNode.get("tpp")));
+                statsGame.setOffReb(asInteger(statisticNode.get("offReb")));
+                statsGame.setDefReb(asInteger(statisticNode.get("defReb")));
+                statsGame.setTotReb(asInteger(statisticNode.get("totReb")));
+                statsGame.setAssists(asInteger(statisticNode.get("assists")));
+                statsGame.setPFouls(asInteger(statisticNode.get("pFouls")));
+                statsGame.setSteals(asInteger(statisticNode.get("steals")));
+                statsGame.setTurnovers(asInteger(statisticNode.get("turnovers")));
+                statsGame.setBlocks(asInteger(statisticNode.get("blocks")));
+                statsGame.setPlusMinus(asInteger(statisticNode.get("plusMinus")));
+                statsGame.setMin(asString(statisticNode.get("min")));
+            }
             statsGameRepository.save(statsGame);
-            System.out.println("Object StatsGame statsGame saved in the DB");
+            System.out.println("Object StatsGame updated in the DB");
         }
     }
 }
