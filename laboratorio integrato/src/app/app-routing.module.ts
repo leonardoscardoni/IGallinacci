@@ -8,6 +8,9 @@ import { DettConfrontoGiocatoriComponent } from "./pages/dett-confronto-giocator
 import { ElencoGiocatoriComponent } from "./pages/elenco-giocatori/elenco-giocatori.component";
 import { SceltaConfrontoTeamComponent } from "./pages/scelta-confronto-team/scelta-confronto-team.component";
 import { DettaglioGiocatorePartitaComponent } from "./pages/dettaglio-giocatore-parita/dettaglio-giocatore-partita.component";
+import { SceltaConfrontoGiocatoriComponent } from "./pages/scelta-confronto-giocatori/scelta-confronto-giocatori.component";
+import { DettGiocatoreIndipendenteComponent } from "./pages/dett-giocatore-indipendente/dett-giocatore-indipendente.component";
+import { ElencoArticoliComponent } from "./pages/elenco-articoli/elenco-articoli.component";
 
 const routes: Routes = [
     { path: "home", component: HomePageComponent },
@@ -15,9 +18,12 @@ const routes: Routes = [
     { path: "calendario-partite", component: CalendarioPartiteComponent },
     { path: "dettaglio-team", component: DettaglioTeamComponent },
     { path: "dett-confronto-giocatori", component: DettConfrontoGiocatoriComponent },
+    { path: "dett-giocatore-ind", component: DettGiocatoreIndipendenteComponent },
     { path: "elenco-giocatori", component: ElencoGiocatoriComponent },
+    { path: "elenco-articoli", component: ElencoArticoliComponent },
     { path: "scelta-confronto-team", component: SceltaConfrontoTeamComponent },
     { path: "dett-giocatore-partita", component: DettaglioGiocatorePartitaComponent },
+    { path: "scelta-confronto-giocatori", component: SceltaConfrontoGiocatoriComponent },
     { path: "", redirectTo: "home", pathMatch: "full" },
 ];
 

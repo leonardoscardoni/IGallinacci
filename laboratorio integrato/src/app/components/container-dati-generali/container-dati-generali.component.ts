@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: "app-container-dati-generali",
@@ -6,5 +7,6 @@ import { Component, Input } from "@angular/core";
     styleUrls: ["./container-dati-generali.component.scss"],
 })
 export class ContainerDatiGeneraliComponent {
-    @Input() data: any;
+    @Input() data: any[] = [];
+    constructor(private route: ActivatedRoute) {}
 }

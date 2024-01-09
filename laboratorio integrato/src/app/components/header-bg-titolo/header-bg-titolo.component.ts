@@ -7,4 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class HeaderBgTitoloComponent {
   @Input() data:any;
+  @Input() titolo:string = '';
+  @Input() desc:string = '';
 }
