@@ -42,6 +42,7 @@ import { SelezioneConfrontoGiocatoriComponent } from "./components/selezione-con
 import { DettGiocatoreIndipendenteComponent } from "./pages/dett-giocatore-indipendente/dett-giocatore-indipendente.component";
 import { ElencoArticoliComponent } from "./pages/elenco-articoli/elenco-articoli.component";
 import { HeaderElencoArticoliComponent } from "./components/header-elenco-articoli/header-elenco-articoli.component";
+import { ElencoTeamComponent } from "./elenco-team/elenco-team.component";
 
 @NgModule({
     declarations: [
@@ -82,6 +83,7 @@ import { HeaderElencoArticoliComponent } from "./components/header-elenco-artico
         DettGiocatoreIndipendenteComponent,
         ElencoArticoliComponent,
         HeaderElencoArticoliComponent,
+        ElencoTeamComponent,
     ],
     imports: [
         BrowserModule,
