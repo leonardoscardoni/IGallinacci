@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class SelezioneConfrontoSquadreComponent {
   @Input() data: any;
-  searchInput: string = ''; // Cambiato in searchInput
+  searchInput: string = '';
 
   isModalOpen = false;
   selectedTeam1: { nome: string; immagine: string } = { nome: '', immagine: '' };
@@ -36,14 +36,10 @@ export class SelezioneConfrontoSquadreComponent {
     this.selectedPlus = null;
   }
 
-  // Metodo per gestire l'input dell'utente
   onSearchInputChange(): void {
-    // Puoi aggiungere ulteriori logiche qui se necessario
-    // ad esempio, puoi convertire tutto in maiuscolo per una corrispondenza case-insensitive
     this.searchInput = this.searchInput.toUpperCase();
   }
 
-  // Nuovo metodo per resettare la sequenza di lettere
   resetSearchInput(): void {
     this.searchInput = '';
   }
