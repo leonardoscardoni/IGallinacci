@@ -1,5 +1,6 @@
 package com.IGallinari.LastGame.controller;
 
+import com.IGallinari.LastGame.payload.response.CompareTeam.CompareTeamResponse;
 import com.IGallinari.LastGame.payload.response.ListTeam.TeamsResponse;
 import com.IGallinari.LastGame.payload.response.TeamDetails.TeamDetailsResponse;
 import com.IGallinari.LastGame.service.TeamService;
@@ -22,4 +23,6 @@ public class TeamController {
 
     @RequestMapping("/getTeamsDetails")
     public TeamDetailsResponse getTeamDetails(@RequestParam int idTeam,@RequestParam int season){return this.service.buildTeamDetailsResponse(idTeam,season);}
+    @RequestMapping("/getCompareTeam")
+    public CompareTeamResponse getCompareTeam(@RequestParam int idTeam1, @RequestParam int idTeam2, @RequestParam int season){return  this.service.buildCompareTeamResponse(idTeam1,idTeam2,season);}
 }
