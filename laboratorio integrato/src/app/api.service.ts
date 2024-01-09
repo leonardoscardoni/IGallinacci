@@ -13,8 +13,8 @@ export class ApiService {
 
   private homeUrl = "games/getHomeUnLogged";
 
-  private divisione = "teams/getTeams"
-  private calendar = "games/getCalendar?date="
+  private divisione = "team/getTeams"
+  private calendar = "game/getCalendar?date="
 
   constructor(private http: HttpClient) {}
   getHomeApi() {
@@ -31,7 +31,7 @@ export class ApiService {
     // Inserisci qui i dati che vuoi inviare al server, se necessario
   };
   getCalendarApi(data: string) {
-    return this.http.post(`${this.baseURL}${this.calendar}${data}`, this.requestBody)
+    return this.http.get(`${this.baseURL}${this.calendar}${data}`)
       .pipe(
         map((response: any) => {
           return response as CalendarType;
