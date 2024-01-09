@@ -8,6 +8,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class TeamDetailsResponse {
+    private int idTeam;
+    private boolean favourite;
     private String name;
     private String conference;
     private String division;
@@ -20,4 +22,5 @@ public class TeamDetailsResponse {
     private ViewPointsTeamDetails points;
     private ViewFoulsBallsBlocksTeamDetails foulsBallsBlocks;
     private ViewWinLossTeamDetails winLoss;
+    private List<ViewPlayerComparisonNbaAvgTeamDetails> dataComparisonNba;
 }

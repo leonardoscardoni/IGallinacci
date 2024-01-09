@@ -7,9 +7,9 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ViewStatsPlayerTeamDetails {
-    private Integer pointsForGame;
-    private Integer assist;
-    private Integer rebounds;
-    private Integer steals;
-    private Integer blocks;
+    private Float pointsForGame;
+    private Float assist;
+    private Float rebounds;
+    private Float steals;
+    private Float blocks;
 }

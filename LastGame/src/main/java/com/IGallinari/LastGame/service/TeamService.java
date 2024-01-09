@@ -6,16 +6,16 @@ import com.IGallinari.LastGame.entity.StatsTeam;
 import com.IGallinari.LastGame.entity.Team;
 import com.IGallinari.LastGame.payload.response.ListTeam.*;
 import com.IGallinari.LastGame.payload.response.TeamDetails.*;
-import com.IGallinari.LastGame.repository.PlayerTeamRepository;
-import com.IGallinari.LastGame.repository.StatsGameRepository;
-import com.IGallinari.LastGame.repository.StatsTeamRepository;
-import com.IGallinari.LastGame.repository.TeamRepository;
+import com.IGallinari.LastGame.repository.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.swing.*;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +28,8 @@ public class TeamService {
     private final PlayerTeamRepository playerTeamRepository;
 
     private final StatsGameRepository statsGameRepository;
+
+    private final StatsPlayerRepository statsPlayerRepository;
 
     public Team getTeamById(int inputId){
         return teamRepository.findById(inputId);
@@ -45,18 +47,6 @@ public class TeamService {
                 buildViewDivision("Southwest")
         );
         return new TeamsResponse(conferenceWest, conferenceEast);
-    }
-
-    public TeamsNoConferenceResponse buildTeamsNoConferece(){
-        TeamsNoConferenceResponse teamsNoConferenceResponse = new TeamsNoConferenceResponse(
-                buildViewDivision("Atlantic"),
-                buildViewDivision("Central"),
-                buildViewDivision("Northwest"),
-                buildViewDivision("Pacific"),
-                buildViewDivision("Southeast"),
-                buildViewDivision("Southwest")
-        );
-        return teamsNoConferenceResponse;
     }
 
     public ViewDivision buildViewDivision(String division){
@@ -91,6 +81,7 @@ public class TeamService {
                 statsTeam.getFgp(),
                 statsTeam.getFtm(),
                 statsTeam.getFta(),
+                statsTeam.getFtp(),
                 statsTeam.getTpm(),
                 statsTeam.getTpa(),
                 statsTeam.getTpp()
@@ -99,15 +90,22 @@ public class TeamService {
         List<PlayerTeam> playersTeam= playerTeamRepository.findByTeamAndSeason(team,season);
         for (PlayerTeam playerTeam: playersTeam){
             Player player = playerTeam.getPlayer();
+            List<Float[]> avgStats = statsPlayerRepository.findAvgStatsByIdPlayer(player.getId());
             players.add(
                     new ViewPlayerTeamDetails(
                             player.getFirstname(),
                             player.getLastname(),
                             player.getJersey(),
-                            player.getPos(),
-                            new ViewStatsPlayerTeamDetails()//da implementare
-                    );
-            )
+                            Player.getRole(player.getPos()),
+                            new ViewStatsPlayerTeamDetails(
+                                    avgStats.get(0)[0],
+                                    avgStats.get(0)[1],
+                                    avgStats.get(0)[2],
+                                    avgStats.get(0)[3],
+                                    avgStats.get(0)[4]
+                            )//DATI DI MOCK capire come restituire avgStats invecie che valori predefiniti
+                    )
+            );
         }
         ViewAssistReboundsTeamDetails viewAssistReboundsTeamDetails = new ViewAssistReboundsTeamDetails(
                 statsTeam.getOffReb(),
@@ -132,7 +130,22 @@ public class TeamService {
                 statsTeam.getWinHome(),
                 statsTeam.getLossHome()
         );
+        List<ViewPlayerComparisonNbaAvgTeamDetails> playerComparisonNbaAvg= new ArrayList<>();
+        List<String > dataNames= List.of("points","rebounds","assist","fieldShotsMade","freeTrowMade","treePointsMade");
+        List<Integer[]> datasTeam= statsTeamRepository.findDataTeamByIdTeamAndSeason(idTeam,season);
+        List<Float[]> datasNba = statsTeamRepository.findDataAvgNba(idTeam,season);
+        for(int i=0;i<dataNames.size();i++){
+            playerComparisonNbaAvg.add(
+                    new ViewPlayerComparisonNbaAvgTeamDetails(
+                    dataNames.get(i),
+                    datasTeam.get(0)[i],
+                    datasNba.get(0)[i]
+                    )
+            );
+        }
         TeamDetailsResponse teamDetailsResponse = new TeamDetailsResponse(
+                team.getId(),
+                false,//DA IMPLEMENTARE QUANDO AVRO I PREFERITI
                 team.getName(),
                 team.getConference(),
                 team.getDivision(),
@@ -141,8 +154,12 @@ public class TeamService {
                 viewStatsTeamDetails,
                 players,
                 viewShotTeamDetails,
-                viewAssistReboundsTeamDetails
-        )
+                viewAssistReboundsTeamDetails,
+                viewPointsTeamDetails,
+                viewFoulsBallsBlocksTeamDetails,
+                viewWinLossTeamDetails,
+                playerComparisonNbaAvg
+        );
         return teamDetailsResponse;
     }
 }

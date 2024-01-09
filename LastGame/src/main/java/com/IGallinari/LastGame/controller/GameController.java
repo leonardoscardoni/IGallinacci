@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 
 @RestController
-@RequestMapping("/games")
+@RequestMapping("/game")
 @CrossOrigin
 public class GameController {
 

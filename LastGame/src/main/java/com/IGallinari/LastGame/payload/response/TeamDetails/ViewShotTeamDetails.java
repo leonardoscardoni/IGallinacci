@@ -11,6 +11,7 @@ public class ViewShotTeamDetails {
     private Float fieldGoalsPercentage;
     private Integer freeTrowMade;
     private Integer freeTrowAttempted;
+    private Float freeTrowPercentage;
     private Integer threePointersMade;
     private Integer threePointersAttempted;
     private Float threePointersPercentage;

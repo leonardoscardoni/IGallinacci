@@ -81,6 +81,7 @@ public class GameService {
                     )
             );
         }
+        //aggiungere la parte di blog
         return new HomeResponse(viewPastGames, viewNextGames);
     }
 
@@ -93,6 +94,7 @@ public class GameService {
             viewGameCalendars.add(
                     new ViewGameCalendar(
                             game.getId(),
+                            //aggiungi lo status true o false
                             game.getDate(),
                             game.getTime(),
                             new ViewTeamCalendar(
