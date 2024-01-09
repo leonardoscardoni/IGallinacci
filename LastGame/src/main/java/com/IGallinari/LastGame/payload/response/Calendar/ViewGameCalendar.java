@@ -11,6 +11,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class ViewGameCalendar {
     private int id;
+    private boolean played;
     private LocalDate date;
     private LocalTime time;
     private ViewTeamCalendar homeTeam;

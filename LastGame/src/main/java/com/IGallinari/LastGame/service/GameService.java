@@ -86,15 +86,20 @@ public class GameService {
     }
 
     public CalendarResponse buildCalendar(LocalDate inputDate){
+
         List<Game> gamesByDate = gameRepository.findGameByDate(inputDate);
         List<ViewGameCalendar> viewGameCalendars = new ArrayList<>();
         for(Game game: gamesByDate){
             Team teamHome=game.getHomeTeam();
             Team teamVisitors= game.getVisitorTeam();
+            boolean played=false;
+            if(game.getStatus()==3){
+                played=true;
+            }
             viewGameCalendars.add(
                     new ViewGameCalendar(
                             game.getId(),
-                            //aggiungi lo status true o false
+                            played,
                             game.getDate(),
                             game.getTime(),
                             new ViewTeamCalendar(

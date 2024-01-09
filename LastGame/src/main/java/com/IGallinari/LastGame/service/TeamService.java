@@ -103,7 +103,7 @@ public class TeamService {
                                     avgStats.get(0)[2],
                                     avgStats.get(0)[3],
                                     avgStats.get(0)[4]
-                            )//DATI DI MOCK capire come restituire avgStats invecie che valori predefiniti
+                            )
                     )
             );
         }
