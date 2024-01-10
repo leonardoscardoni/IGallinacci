@@ -1,6 +1,5 @@
 package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 
-import com.IGallinari.LastGame.entity.StatsGame;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

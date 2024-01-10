@@ -38,4 +38,33 @@ public class Player {
 
     private String pos;
 
+    public static String getRole(String nbaRole) {
+        if (nbaRole == null) {
+            return "";
+        }
+        switch(nbaRole) {
+            case "C":
+                return "Centro";
+            case "C-F":
+                return "Centro-Ala Grande";
+            case "F":
+                return "Ala Grande";
+            case "F-C":
+                return "Ala Grande-Centro";
+            case "F-G":
+                return "Ala Grande-Guardia";
+            case "G":
+                return "Guardia";
+            case "G-F":
+                return "Guardia-Ala Grande";
+            case "SF":
+                return "Ala Piccola";
+            case "SG":
+                return "Guardia Tiratrice";
+            default:
+                return "";
+        }
+    }
+
+
 }

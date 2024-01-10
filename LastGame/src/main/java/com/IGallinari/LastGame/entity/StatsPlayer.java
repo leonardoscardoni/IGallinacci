@@ -1,5 +1,6 @@
 package com.IGallinari.LastGame.entity;
 
+import com.IGallinari.LastGame.entity.id_class.IdStatsPlayer;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;

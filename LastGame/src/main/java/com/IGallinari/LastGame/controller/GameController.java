@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 
 @RestController
-@RequestMapping("/games")
+@RequestMapping("/game")
 @CrossOrigin
 public class GameController {
 
@@ -23,12 +23,12 @@ public class GameController {
     }
 
     @RequestMapping("/getCalendar")
-    public CalendarResponse getHomeUnLogged(@RequestParam LocalDate date){
+    public CalendarResponse getCalendar(@RequestParam LocalDate date){
         return this.service.buildCalendar(date);
     }
 
     @RequestMapping("/getGameDetails")
-    public NextGameResponse getNextGameDetails(@RequestParam int idGame){return this.service.buildNextGame(idGame);}
+    public NextGameResponse getGameDetails(@RequestParam int idGame){return this.service.buildNextGame(idGame);}
 
 
 }
