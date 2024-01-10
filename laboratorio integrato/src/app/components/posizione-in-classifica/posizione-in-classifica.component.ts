@@ -7,10 +7,7 @@ import { TeamDetailType } from 'src/app/_models/TeamDetailApi.type';
   styleUrls: ['./posizione-in-classifica.component.scss']
 })
 export class PosizioneInClassificaComponent {
-  @Input() data: TeamDetailType;
+  @Input() data: TeamDetailType = {} as TeamDetailType
 
-  constructor() {
-    this.data = {} as TeamDetailType;
- }
  
 }

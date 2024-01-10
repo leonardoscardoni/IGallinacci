@@ -16,7 +16,7 @@ export class ApiService {
 
   private divisione = "team/getTeams"
   private calendar = "game/getCalendar?date="
-  private team = "team/getTeamsDetails?idTeam=1&season=2022"
+  private team = "team/getTeamsDetails?idTeam=5&season=2022"
 
   constructor(private http: HttpClient) {}
   getHomeApi() {
@@ -35,9 +35,7 @@ export class ApiService {
     .pipe(map((response:any) => {
         return response as TeamDetailType}));
   }
-  requestBody = {
-    // Inserisci qui i dati che vuoi inviare al server, se necessario
-  };
+
   getCalendarApi(data: string) {
     return this.http.get(`${this.baseURL}${this.calendar}${data}`)
       .pipe(
