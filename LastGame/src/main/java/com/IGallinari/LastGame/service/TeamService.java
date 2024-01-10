@@ -4,8 +4,10 @@ import com.IGallinari.LastGame.entity.Player;
 import com.IGallinari.LastGame.entity.PlayerTeam;
 import com.IGallinari.LastGame.entity.StatsTeam;
 import com.IGallinari.LastGame.entity.Team;
+import com.IGallinari.LastGame.payload.response.CompareTeam.CompareTeamResponse;
 import com.IGallinari.LastGame.payload.response.ListTeam.*;
 import com.IGallinari.LastGame.payload.response.TeamDetails.*;
+import com.IGallinari.LastGame.payload.response.CompareTeam.*;
 import com.IGallinari.LastGame.repository.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.RequiredArgsConstructor;
@@ -161,5 +163,47 @@ public class TeamService {
                 playerComparisonNbaAvg
         );
         return teamDetailsResponse;
+    }
+
+    public CompareTeamResponse buildCompareTeamResponse(int idTeam1, int idTeam2, int season){
+
+        Team team1 = teamRepository.findById(idTeam1);
+        Team team2 = teamRepository.findById(idTeam2);
+        StatsTeam statsTeam1= statsTeamRepository.findByTeamAndSeason(team1,season);
+        StatsTeam statsTeam2 = statsTeamRepository.findByTeamAndSeason(team2,season);
+
+        ViewTeamCompareTeam viewTeamCompareTeam1 = new ViewTeamCompareTeam(
+                team1.getName(),
+                team1.getLogo(),
+                team1.getConference(),
+                statsTeam1.getRankConference()
+        );
+        ViewTeamCompareTeam viewTeamCompareTeam2 = new ViewTeamCompareTeam(
+                team2.getName(),
+                team2.getLogo(),
+                team1.getConference(),
+                statsTeam2.getRankConference()
+        );
+        // Team data comparison
+        List<ViewTeamComparisonNbaAvgCompareTeam> TeamCompareNba= new ArrayList<>();
+        List<String > dataNames = List.of("points","rebounds","assist","fieldShotsMade","freeTrowMade","treePointsMade");
+        List<Integer[]> datasTeam1 = statsTeamRepository.findDataTeamByIdTeamAndSeason(idTeam1,season);
+        List<Integer[]> datasTeam2 = statsTeamRepository.findDataTeamByIdTeamAndSeason(idTeam2,season);
+        for(int i=0;i<dataNames.size();i++){
+            TeamCompareNba.add(
+                    new ViewTeamComparisonNbaAvgCompareTeam(
+                            dataNames.get(i),
+                            datasTeam1.get(0)[i],
+                            datasTeam2.get(0)[i]
+                    )
+            );
+        }
+
+        CompareTeamResponse CompareTeamResponse = new CompareTeamResponse(
+                viewTeamCompareTeam1,
+                viewTeamCompareTeam2,
+                TeamCompareNba
+        );
+        return CompareTeamResponse;
     }
 }
