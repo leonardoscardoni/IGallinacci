@@ -4,6 +4,9 @@ package com.IGallinari.LastGame.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.IGallinari.LastGame.payload.response.ListPlayerFilter.PlayerFilterResponse;
+import com.IGallinari.LastGame.payload.response.ListPlayerFilter.ViewRolesPlayerFilter;
+import com.IGallinari.LastGame.payload.response.ListPlayerFilter.ViewTeamsPlayerFilter;
 import org.springframework.stereotype.Service;
 
 import com.IGallinari.LastGame.entity.Player;
@@ -134,4 +137,24 @@ public class PlayerService {
                 viewFoulsBallsBlocksPlayerDetailsByGame
         );
     }
+        public PlayerFilterResponse buildCompareFilterResponse(){
+            List<ViewTeamsPlayerFilter> allTeam = new ArrayList<>();
+            List<Team> dataTeams = teamRepository.findAll();
+            for (Team team: dataTeams
+                 ) { allTeam.add(new ViewTeamsPlayerFilter(
+                    team.getId(),
+                    team.getName()
+            ));
+            }
+
+            List<ViewRolesPlayerFilter> allRoles = new ArrayList<>();
+            List<String> roles = playerRepository.findRoles();
+            for (String role : roles
+                 ) { allRoles.add(new ViewRolesPlayerFilter((Player.getRole(role))));
+            }
+            PlayerFilterResponse playerFilterResponse = new PlayerFilterResponse(allTeam, allRoles);
+            return  playerFilterResponse;
+        }
+
+
 }
