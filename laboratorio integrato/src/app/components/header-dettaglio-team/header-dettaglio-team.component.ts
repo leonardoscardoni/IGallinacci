@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { TeamDetailType } from 'src/app/_models/TeamDetailApi.type';
 
 @Component({
   selector: 'app-header-dettaglio-team',
@@ -7,6 +8,7 @@ import { Component, Input } from '@angular/core';
 })
 export class HeaderDettaglioTeamComponent {
 
-@Input() data: any[] = [];
+  @Input() data: TeamDetailType | undefined;
 
+  
 }

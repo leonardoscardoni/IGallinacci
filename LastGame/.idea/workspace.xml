@@ -6,17 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="c37c9620-1c6a-4a8f-b566-00dea8a53df4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/prova-api/prova-api.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/prova-api/prova-api.component.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/prova-api/prova-api.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/prova-api/prova-api.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/api.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/api.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/dati-principali/dati-principali.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/dati-principali/dati-principali.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/dati-principali/dati-principali.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/dati-principali/dati-principali.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/header-dettaglio-team/header-dettaglio-team.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/header-dettaglio-team/header-dettaglio-team.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/header-dettaglio-team/header-dettaglio-team.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/header-dettaglio-team/header-dettaglio-team.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/la-squadra/la-squadra.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/la-squadra/la-squadra.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/la-squadra/la-squadra.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/la-squadra/la-squadra.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/posizione-in-classifica/posizione-in-classifica.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/posizione-in-classifica/posizione-in-classifica.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/posizione-in-classifica/posizione-in-classifica.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/posizione-in-classifica/posizione-in-classifica.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/pages/dettaglio-team/dettaglio-team.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/pages/dettaglio-team/dettaglio-team.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/pages/dettaglio-team/dettaglio-team.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/pages/dettaglio-team/dettaglio-team.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

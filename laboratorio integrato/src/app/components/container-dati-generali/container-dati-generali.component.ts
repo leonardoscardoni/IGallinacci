@@ -1,5 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { TeamDetailType } from "src/app/_models/TeamDetailApi.type";
 
 @Component({
     selector: "app-container-dati-generali",
@@ -7,6 +8,7 @@ import { ActivatedRoute } from "@angular/router";
     styleUrls: ["./container-dati-generali.component.scss"],
 })
 export class ContainerDatiGeneraliComponent {
-    @Input() data: any[] = [];
+    @Input() data: TeamDetailType = {} as TeamDetailType
+
     constructor(private route: ActivatedRoute) {}
 }

@@ -1,35 +1,33 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { TeamDetailType } from 'src/app/_models/TeamDetailApi.type';
 
 @Component({
   selector: 'app-la-squadra',
   templateUrl: './la-squadra.component.html',
   styleUrls: ['./la-squadra.component.scss']
 })
-export class LaSquadraComponent {
-  @Input() data: any[] = [];
+
+export class LaSquadraComponent implements OnInit {
+  @Input() data: TeamDetailType = {} as TeamDetailType
 
   numeroElementiDaVisualizzare = 3;
-  slicedPlayers: any[] =[];
 
   ngOnInit() {
-    this.aggiornaSlicedPlayers();
   }
-
-  mostraAltri() {
-    this.numeroElementiDaVisualizzare += 3;
-    this.aggiornaSlicedPlayers();
-  }
-  nascondi() {
-    this.numeroElementiDaVisualizzare = 3;
-    this.aggiornaSlicedPlayers();
-  }
-  aggiornaSlicedPlayers() {
-    if (this.data && this.data.length > 0 && this.data[0].players) {
-      this.slicedPlayers = this.data[0].players.slice(0, this.numeroElementiDaVisualizzare);
+  
+  get slicedPlayers(): any[] {
+    if (this.data.players && this.data.players.length > 0) {
+      return this.data.players.slice(0, this.numeroElementiDaVisualizzare);
     } else {
-      this.slicedPlayers = [];
+      return [];
     }
   }
 
-  
+  mostraAltri() {
+    this.numeroElementiDaVisualizzare = this.data.players.length;
+  }
+
+  nascondi() {
+    this.numeroElementiDaVisualizzare = 3;
+  }
 }

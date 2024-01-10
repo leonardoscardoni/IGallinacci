@@ -6,51 +6,49 @@
     <div class="w-full flex md:flex-row flex-col justify-center px-10 md:gap-20">
         <div class="md:w-1/2">
             <app-dati-generali [titolo]="'Tiri'" [dati]="[
-            { chiave: 'Tiri segnati', valore: data[0].tiri.fieldGoalsMade },
-            { chiave: 'Tiri tentati', valore: data[0].tiri.fieldGoalsAttempted },
-            { chiave: 'Percentuale tiri segnati', valore: data[0].tiri.fieldGoalsPercentage },
-            { chiave: 'Liberi segnati', valore: data[0].tiri.freeThrowsMade },
-            { chiave: 'Liberi tentati', valore: data[0].tiri.freeThrowsAttempted },
-            { chiave: 'Tiri da tre segnati', valore: data[0].tiri.threePointersMade },
-            { chiave: 'Tiri da tre tentati', valore: data[0].tiri.threePointersAttempted },
-            { chiave: 'Percentuale tiri da tre segnati', valore: data[0].tiri.threePointersPercentage }
+            { chiave: 'Tiri segnati', valore: data.shots.fieldGoalsMade },
+            { chiave: 'Tiri tentati', valore: data.shots.fieldGoalsAttempted },
+            { chiave: 'Percentuale tiri segnati', valore: data.shots.fieldGoalsPercentage },
+            { chiave: 'Tiri Liberi segnati', valore: data.shots.freeTrowMade },
+            { chiave: 'Tiri Liberi tentati', valore: data.shots.freeTrowAttempted },
+            { chiave: 'Tiri da tre segnati', valore: data.shots.threePointersMade },
+            { chiave: 'Tiri da tre tentati', valore: data.shots.threePointersAttempted },
+            { chiave: 'Percentuale tiri da tre segnati', valore: data.shots.threePointersPercentage }
             ]"></app-dati-generali>
         </div>
         <div class="md:w-1/2" 
          >
             <app-dati-generali [titolo]="'Rimbalzi e Assist'" [dati]="[
-            { chiave: 'Tiri tentati', valore: data[0].tiri.fieldGoalsAttempted },
-            { chiave: 'Percentuale tiri segnati', valore: data[0].tiri.fieldGoalsPercentage },
-            { chiave: 'Liberi segnati', valore: data[0].tiri.freeThrowsMade },
+            { chiave: 'Rimbalzi in attacco', valore: data.assistRebounds.reboundsOffensive },
+            { chiave: 'Rimbalzi in difesa', valore: data.assistRebounds.reboundsDefensive },
+            { chiave: 'Rimbalzi totali', valore: data.assistRebounds.totalRebounds },
+            { chiave: 'Assist', valore: data.assistRebounds.assists },
             ]"
-            [class.hidden]="data[0].tiri.fieldGoalsAttempted == undefined"
+            [class.hidden]="data.assistRebounds.reboundsOffensive == undefined"
        ></app-dati-generali>
-            <app-dati-generali [titolo]="'Rimbalzi e Assist'" [dati]="[
-            { chiave: 'Tiri segnati', valore: data[0].tiri.fieldGoalsMade },
-            { chiave: 'Tiri tentati', valore: data[0].tiri.fieldGoalsAttempted },
-            { chiave: 'Percentuale tiri segnati', valore: data[0].tiri.fieldGoalsPercentage },
-            { chiave: 'Liberi segnati', valore: data[0].tiri.freeThrowsMade },
+            <app-dati-generali [titolo]="'Punti'" [dati]="[
+            { chiave: 'Punti totali', valore: data.points.totalPoints },
+            { chiave: 'Media punti per partita', valore: data.points.pointsPerGame },
+            { chiave: 'Media punti subiti', valore: data.points.pointsAllowedPerGame },
             ]"></app-dati-generali>
         </div>
     </div>
-    <div class="w-full flex md:flex-row flex-col justify-center px-10 md:gap-20">
+     <div class="w-full flex md:flex-row flex-col justify-center px-10 md:gap-20">
         <div class="md:w-1/2">
-            <app-dati-generali [titolo]="'Tiri'" [dati]="[
-            { chiave: 'Tiri segnati', valore: data[0].tiri.fieldGoalsMade },
-            { chiave: 'Tiri tentati', valore: data[0].tiri.fieldGoalsAttempted },
-            { chiave: 'Percentuale tiri segnati', valore: data[0].tiri.fieldGoalsPercentage },
-            { chiave: 'Liberi segnati', valore: data[0].tiri.freeThrowsMade },
+            <app-dati-generali [titolo]="'falli, palle e blocchi'" [dati]="[
+            { chiave: 'Falli commessi', valore: data.foulsBallsBlocks.foulsCommitted },
+            { chiave: 'Palle rubate', valore: data.foulsBallsBlocks.steals },
+            { chiave: 'Palle perse', valore: data.foulsBallsBlocks.turnovers },
+            { chiave: 'Blocchi effettuati', valore: data.foulsBallsBlocks.blocks },
            ]"></app-dati-generali>
         </div>
         <div class="md:w-1/2">
-            <app-dati-generali [titolo]="'Rimbalzi e Assist'" [dati]="[
-            { chiave: 'Tiri segnati', valore: data[0].tiri.fieldGoalsMade },
-            { chiave: 'Tiri tentati', valore: data[0].tiri.fieldGoalsAttempted },
-            { chiave: 'Percentuale tiri segnati', valore: data[0].tiri.fieldGoalsPercentage },
-            { chiave: 'Liberi segnati', valore: data[0].tiri.freeThrowsMade },
+            <app-dati-generali [titolo]="'vittorie e sconfitte in casa'" [dati]="[
+            { chiave: 'Vittorie in casa', valore: data.winLoss.victoriesAtHome },
+            { chiave: 'Sconfitte in casa', valore: data.winLoss.defeatsAtHome },
             ]"></app-dati-generali>
         </div>
-    </div>
+    </div> 
     
 </div>
 

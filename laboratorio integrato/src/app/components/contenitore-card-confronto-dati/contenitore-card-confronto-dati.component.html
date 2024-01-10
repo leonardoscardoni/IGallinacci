@@ -1,10 +1,11 @@
 <div class="container grid grid-cols-12 gap-4">
         <div class="col-start-0 col-span-12 md:col-start-1 lg:col-start-2 md:col-span-12 lg:col-span-10">
             <div class="flex justify-between flex-wrap flex-col md:flex-row">
-                <ng-container *ngFor="let tipoDato of a">
+                <ng-container *ngFor="let tipoDato of data.dataComparisonNba, let i = index">
                     <div class="w-full md:w-[30%] mt-3 ">
                         
-                        <app-card-confronto-dati [titoloCard]="tipoDato.titolo" [nomeSquadra1]="tipoDato.squadre[0].nome" [nomeSquadra2]="tipoDato.squadre[1].nome" [logoSquadra1]="tipoDato.squadre[0].logo" [logoSquadra2]="tipoDato.squadre[1].logo" [datoSquadra1]="tipoDato.squadre[0].dato" [datoSquadra2]="tipoDato.squadre[1].dato" />
+                        <app-card-confronto-dati [titoloCard]="titoli[i]" [nomeSquadra1]="data.name" [nomeSquadra2]="'Media NBA'" [logoSquadra1]="data.name" [logoSquadra2]="logo" [datoSquadra1]="tipoDato.dataTeam"
+                        [datoSquadra2]="arrotondaPerDifetto(tipoDato.dataNba)"/>
                         
                     </div>
                 </ng-container>

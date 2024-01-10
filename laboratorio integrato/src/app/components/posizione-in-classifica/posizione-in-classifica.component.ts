@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { TeamDetailType } from 'src/app/_models/TeamDetailApi.type';
 
 @Component({
   selector: 'app-posizione-in-classifica',
@@ -6,5 +7,10 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./posizione-in-classifica.component.scss']
 })
 export class PosizioneInClassificaComponent {
-  @Input() data: any[] = [];
+  @Input() data: TeamDetailType;
+
+  constructor() {
+    this.data = {} as TeamDetailType;
+ }
+ 
 }

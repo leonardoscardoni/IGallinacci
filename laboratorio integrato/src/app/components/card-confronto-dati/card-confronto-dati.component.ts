@@ -11,8 +11,8 @@ export class CardConfrontoDatiComponent implements OnInit {
     @Input() nomeSquadra2!: string;
     @Input() logoSquadra1!: string;
     @Input() logoSquadra2!: string;
-    @Input() datoSquadra1!: string;
-    @Input() datoSquadra2!: string;
+    @Input() datoSquadra1!: number;
+    @Input() datoSquadra2!: number;
 
     ngOnInit() {}
 }

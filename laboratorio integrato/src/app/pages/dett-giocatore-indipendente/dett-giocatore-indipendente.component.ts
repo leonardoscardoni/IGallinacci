@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./dett-giocatore-indipendente.component.scss']
 })
 export class DettGiocatoreIndipendenteComponent {
-  data: any[] = [
+  data: any = [
     {
       team: "Trail Brazers",
       conference: "West",

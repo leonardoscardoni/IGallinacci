@@ -4,6 +4,7 @@ import { Observable, map } from "rxjs";
 import { TypeHome } from "./_models/homeApi.type";
 import { TeamType } from "./_models/divisionTeamApi.type";
 import { CalendarType } from "./_models/calendarApi.type";
+import { TeamDetailType } from "./_models/TeamDetailApi.type";
 
 @Injectable({
   providedIn: "root",
@@ -15,6 +16,7 @@ export class ApiService {
 
   private divisione = "team/getTeams"
   private calendar = "game/getCalendar?date="
+  private team = "team/getTeamsDetails?idTeam=1&season=2022"
 
   constructor(private http: HttpClient) {}
   getHomeApi() {
@@ -22,10 +24,16 @@ export class ApiService {
     .pipe(map((response:any) => {
         return response as TypeHome}));
   }
+  
   getDivisionApi() {
     return this.http.get(`${this.baseURL}${this.divisione}`)
     .pipe(map((response:any) => {
         return response as TeamType}));
+  }
+  getTeamDetailApi() {
+    return this.http.get(`${this.baseURL}${this.team}`)
+    .pipe(map((response:any) => {
+        return response as TeamDetailType}));
   }
   requestBody = {
     // Inserisci qui i dati che vuoi inviare al server, se necessario
