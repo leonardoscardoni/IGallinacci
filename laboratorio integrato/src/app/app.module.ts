@@ -86,6 +86,7 @@ import { DettaglioConfrontoTeamComponent } from './pages/dettaglio-confronto-tea
         ElencoArticoliComponent,
         HeaderElencoArticoliComponent,
         ElencoTeamComponent,
+        DettaglioConfrontoTeamComponent,
     ],
     imports: [
         BrowserModule,
@@ -99,7 +100,6 @@ import { DettaglioConfrontoTeamComponent } from './pages/dettaglio-confronto-tea
         AppRoutingModule,
         HttpClientModule,
         FormsModule,
-        DettaglioConfrontoTeamComponent,
     ],
     providers: [],
     bootstrap: [AppComponent],
