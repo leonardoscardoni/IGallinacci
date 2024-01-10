@@ -1,5 +1,6 @@
 package com.IGallinari.LastGame.controller;
 
+import com.IGallinari.LastGame.payload.response.PlayerDetailsByGame.PlayerDetailsByGameResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,4 +18,7 @@ public class PlayerController {
 
     @RequestMapping("/getPlayerTeamFilter")
     public PlayerTeamFilterResponse getPlayerTeamFilter(@RequestParam int idTeam, @RequestParam int season){return this.service.buildPlayerTeamFilterResponse(idTeam, season);}
+
+    @RequestMapping("/getPlayerDetailsByGame")
+    public PlayerDetailsByGameResponse getPlayerDetailsByGame (@RequestParam int idGame, @RequestParam int idPlayer){return this.service.buildPlayerDetailsByGameResponse(idGame, idPlayer);}
 }

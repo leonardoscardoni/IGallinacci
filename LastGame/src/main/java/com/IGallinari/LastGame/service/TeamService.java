@@ -12,15 +12,11 @@ import com.IGallinari.LastGame.payload.response.ListTeam.*;
 import com.IGallinari.LastGame.payload.response.TeamDetails.*;
 import com.IGallinari.LastGame.payload.response.CompareTeam.*;
 import com.IGallinari.LastGame.repository.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.swing.*;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -73,7 +69,7 @@ public class TeamService {
 
     public TeamDetailsResponse buildTeamDetailsResponse(int idTeam, int season){
         Team team = teamRepository.findById(idTeam);
-        StatsTeam statsTeam = statsTeamRepository.findByTeamAndSeason(team,season);
+        StatsTeam statsTeam = statsTeamRepository.findByTeamAndSeason(team, season);
         ViewStatsTeamDetails viewStatsTeamDetails = new ViewStatsTeamDetails(
                 statsTeam.getGames(),
                 statsTeam.getPoints(),
@@ -172,8 +168,8 @@ public class TeamService {
 
         Team team1 = teamRepository.findById(idTeam1);
         Team team2 = teamRepository.findById(idTeam2);
-        StatsTeam statsTeam1= statsTeamRepository.findByTeamAndSeason(team1,season);
-        StatsTeam statsTeam2 = statsTeamRepository.findByTeamAndSeason(team2,season);
+        StatsTeam statsTeam1= statsTeamRepository.findByTeamAndSeason(team1, season);
+        StatsTeam statsTeam2 = statsTeamRepository.findByTeamAndSeason(team2, season);
 
         ViewTeamCompareTeam viewTeamCompareTeam1 = new ViewTeamCompareTeam(
                 team1.getName(),
