@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class DetailsPlayerBioIndependentByGame {
+public class ViewPlayerBioDetailsIndependentByGame {
     private Integer age;
     private String country;
     private Integer weight;

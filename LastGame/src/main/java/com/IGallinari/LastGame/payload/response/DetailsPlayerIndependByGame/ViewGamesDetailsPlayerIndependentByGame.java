@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class DetailsGamePlayerIndependentByGame {
+public class ViewGamesDetailsPlayerIndependentByGame {
     private Integer gamesPlayed;
     private Integer jerseyNumber;
     private Integer averageScore;
