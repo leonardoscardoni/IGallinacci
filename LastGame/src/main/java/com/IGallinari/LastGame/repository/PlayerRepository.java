@@ -19,4 +19,7 @@ public interface PlayerRepository extends JpaRepository<Player,Integer> {
 
     boolean existsById(int id);
 
+    @Query(value="SELECT pos FROM player GROUP BY pos;", nativeQuery = true)
+    List<String> findRoles();
+
 }
