@@ -11,11 +11,10 @@ import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-//b0ece3dd7a1f7d32a464cb8fec924c7a
 @Service
 public class ApiCaller {
     private static final String RAPIDAPI_HOST = "v2.nba.api-sports.io";
-    private static final String RAPIDAPI_KEY = "b0ece3dd7a1f7d32a464cb8fec924c7a";
+    private static final String RAPIDAPI_KEY = "";
     private static final String baseURL = "https://v2.nba.api-sports.io/";
 
     private Integer countCall=0;
@@ -54,13 +53,14 @@ public class ApiCaller {
                  countCall+=1;
             }else if (ChronoUnit.SECONDS.between(firstCall,LocalTime.now()) < 60 || countCall>=10) {
                 System.out.println("LIMITE RAGGIUNTO time: "+ChronoUnit.SECONDS.between(firstCall,LocalTime.now())+" sec, countCall: "+countCall);
-                TimeUnit.SECONDS.sleep(60);
+                TimeUnit.SECONDS.sleep(ChronoUnit.SECONDS.between(firstCall,LocalTime.now()));
                 firstCall= LocalTime.now();
                 countCall = 1;
             }else {
                 firstCall=LocalTime.now();
                 countCall=1;
             }
+            System.out.println("time: "+ChronoUnit.SECONDS.between(firstCall,LocalTime.now())+" sec, countCall: "+countCall);
             // Make the API call and return the response
             System.out.println("Making a call to: "+endpoint+" endpoint");
             return makeApiCall(uri);
