@@ -5,6 +5,9 @@ import com.IGallinari.LastGame.entity.PlayerTeam;
 import com.IGallinari.LastGame.entity.StatsTeam;
 import com.IGallinari.LastGame.entity.Team;
 import com.IGallinari.LastGame.payload.response.CompareTeam.CompareTeamResponse;
+import com.IGallinari.LastGame.payload.response.ListPlayerFilter.PlayerFilterResponse;
+import com.IGallinari.LastGame.payload.response.ListPlayerFilter.ViewRolesPlayerFilter;
+import com.IGallinari.LastGame.payload.response.ListPlayerFilter.ViewTeamsPlayerFilter;
 import com.IGallinari.LastGame.payload.response.ListTeam.*;
 import com.IGallinari.LastGame.payload.response.TeamDetails.*;
 import com.IGallinari.LastGame.payload.response.CompareTeam.*;
@@ -206,4 +209,22 @@ public class TeamService {
         );
         return CompareTeamResponse;
     }
+    /*
+    public PlayerFilterResponse buildCompareFilterResponse(){
+        List<ViewTeamsPlayerFilter> allTeam = new ArrayList<>();
+        List<Team> dataTeams = teamRepository.findAll();
+        for (Team team: dataTeams
+             ) { allTeam.add(new ViewTeamsPlayerFilter(
+                team.getId(),
+                team.getName()
+        ));
+        }
+
+        List<ViewRolesPlayerFilter> allRoles = new ArrayList<>();
+        List<String> roles = List.of();
+        
+        return  PlayerFilterResponse;
+    }
+
+     */
 }
