@@ -1,4 +1,7 @@
 import { Component } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { ConfrontoTeamType } from "src/app/_models/confrontoTeamApi.type";
+import { ApiService } from "src/app/api.service";
 
 @Component({
     selector: "app-dettaglio-confronto-team",
@@ -6,22 +9,33 @@ import { Component } from "@angular/core";
     styleUrls: ["./dettaglio-confronto-team.component.scss"],
 })
 export class DettaglioConfrontoTeamComponent {
-    a = {
-        bgImg: "/assets/confronto-giocatori-header.jpg",
-        nome1: "Clara Cosentino",
-        nome2: "Alessio Strano",
-        logo1: "/assets/s-l1200.webp",
-        logo2: "/assets/s-l1200.webp",
+    constructor(private route: ActivatedRoute ,private apiService: ApiService) {}
+    data: ConfrontoTeamType = {} as ConfrontoTeamType
+    id1: any;
+    id2: any;
+    
+    ngOnInit() {
+      this.route.paramMap.subscribe((params) => {
+        this.id1 = params.get('id1');
+        this.id2 = params.get('id2');
+        console.log('id1:', this.id1);
+        console.log('id2:', this.id2);
+        this.apiService.getConfrontoTeamApi(this.id1, this.id2).subscribe((data) => {
+          this.data = data
+          console.log('qeust',data);
+        });
+      });
+    }
 
-        classifica: {
-            squadra1: {
-                nome: "Trail brazers",
-                numero: "3",
-            },
-            squadra2: {
-                nome: "Raptors",
-                numero: "34",
-            },
-        },
-    };
+
+  bgImg= "/assets/confronto-giocatori-header.jpg"
+  logo= "/assets/s-l1200.webp"
+  titoli = [
+      'PUNTEGGIO',
+      'RIMBALZI',
+      'ASSIST',
+      'TIRI DA CAMPO SEGNATI',
+      'TIRI DA 2 SEGNATI',
+      'TIRI DA 3 SEGNATI',
+  ]
 }

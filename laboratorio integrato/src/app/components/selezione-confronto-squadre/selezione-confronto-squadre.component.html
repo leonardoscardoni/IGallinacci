@@ -18,7 +18,7 @@
     <ng-template #plusSign>
       +
     </ng-template>
-    <img *ngIf="selectedTeam1.immagine" [src]="selectedTeam1.immagine" class="w-14 mix-blend-color-burn" alt="">
+    <img *ngIf="selectedTeam1.immagine" [src]="selectedTeam1.immagine" class="w-14 " alt="">
   </div>
   
       </div>
@@ -45,7 +45,8 @@
   
       </div>
     </div>
-    <button class="bg-arancio rounded-full py-3 px-4 w-fit uppercase font-inter font-bold">Vai al Confronto</button>
+
+<button class="bg-arancio rounded-full py-3 px-4 w-fit uppercase font-inter font-bold" (click)="goToConfrontoTeam()">Vai al Confronto</button>
   
     <div
       *ngIf="isModalOpen"
@@ -63,17 +64,17 @@
         <div class="w-full h-fit px-4">
           <h3 class="w-full border-y border-arancio text-2xl uppercase leading-10 ps-2 my-3" [class.filtered]="searchInput">East</h3>
           <div class="flex flex-col lg:flex-row flex-wrap gap-5 gap-x-10">
-            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl" *ngFor="let a of data.east.atlantic.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo })"
+            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl" *ngFor="let a of data.east.atlantic.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo,id:a.id })"
             [class.filtered]="searchInput && !a.nickname.toUpperCase().includes(searchInput)">
               <p class="text-lg">{{a.nickname}}</p>
               <img src={{a.logo}} class="w-8 h-8 bg-white rounded-full object-contain p-1" alt="">
             </div>
-            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl" *ngFor="let a of data.east.central.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo })"
+            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl" *ngFor="let a of data.east.central.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo,id:a.id })"
             [class.filtered]="searchInput && !a.nickname.toUpperCase().includes(searchInput)">
               <p class="text-lg">{{a.nickname}}</p>
               <img src={{a.logo}} class="w-8 h-8 bg-white rounded-full object-contain p-1" alt="">
             </div>
-            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl" *ngFor="let a of data.east.southeast.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo })"
+            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl" *ngFor="let a of data.east.southeast.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo,id:a.id })"
             [class.filtered]="searchInput && !a.nickname.toUpperCase().includes(searchInput)">
               <p class="text-lg">{{a.nickname}}</p>
               <img src={{a.logo}} class="w-8 h-8 bg-white rounded-full object-contain p-1" alt="">
@@ -83,19 +84,19 @@
         [class.filtered]="searchInput"
         >West</h3>
           <div class="flex flex-col lg:flex-row flex-wrap gap-5 gap-x-10">
-            <div class="lg:w-1/6 w-full flex justify-between items-center px-6 border border-bianco rounded-2xl" *ngFor="let a of data.west.northwest.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo })"
+            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl" *ngFor="let a of data.west.northwest.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo,id:a.id })"
             [class.filtered]="searchInput && !a.nickname.toUpperCase().includes(searchInput)"
             >
               <p class="text-lg">{{a.nickname}}</p>
               <img src={{a.logo}} class="w-8 h-8 bg-white rounded-full object-contain p-1" alt="">
             </div>
-            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl" *ngFor="let a of data.west.pacific.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo })"
+            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl" *ngFor="let a of data.west.pacific.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo,id:a.id })"
             [class.filtered]="searchInput && !a.nickname.toUpperCase().includes(searchInput)"
             >
               <p class="text-lg">{{a.nickname}}</p>
               <img src={{a.logo}} class="w-8 h-8 bg-white rounded-full object-contain p-1" alt="">
             </div>
-            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl" *ngFor="let a of data.west.southwest.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo })"
+            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl" *ngFor="let a of data.west.southwest.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo,id:a.id })"
             [class.filtered]="searchInput && !a.nickname.toUpperCase().includes(searchInput)"
             >
               <p class="text-lg">{{a.nickname}}</p>

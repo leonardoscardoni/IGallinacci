@@ -6,7 +6,7 @@ import { TeamDetailType } from "src/app/_models/TeamDetailApi.type";
     styleUrls: ["./contenitore-card-confronto-dati.component.scss"],
 })
 export class ContenitoreCardConfrontoDatiComponent {
-    @Input() data: TeamDetailType = {} as TeamDetailType
+    @Input() data: any
     logo= "/assets/s-l1200.webp"
     titoli = [
         'PUNTEGGIO',

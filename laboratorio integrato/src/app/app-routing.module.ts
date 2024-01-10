@@ -28,7 +28,11 @@ const routes: Routes = [
     { path: "dett-giocatore-partita", component: DettaglioGiocatorePartitaComponent },
     { path: "scelta-confronto-giocatori", component: SceltaConfrontoGiocatoriComponent },
     { path: "elenco-team", component: ElencoTeamComponent },
-    { path: "dettaglio-confronto-team", component: DettaglioConfrontoTeamComponent },
+    {
+        path: "dettaglio-confronto-team/:id1/:id2",
+        component: DettaglioConfrontoTeamComponent,
+      },
+      
     { path: "", redirectTo: "home", pathMatch: "full" },
 ];
 

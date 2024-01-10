@@ -7,8 +7,7 @@
     <list default="true" id="c37c9620-1c6a-4a8f-b566-00dea8a53df4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/api.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/api.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/dati-principali/dati-principali.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/dati-principali/dati-principali.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/posizione-in-classifica/posizione-in-classifica.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/posizione-in-classifica/posizione-in-classifica.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/pages/dettaglio-confronto-team/dettaglio-confronto-team.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/pages/dettaglio-confronto-team/dettaglio-confronto-team.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

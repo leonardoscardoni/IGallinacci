@@ -14,7 +14,8 @@ import { ApiService } from 'src/app/api.service';
 export class DettaglioTeamComponent {
   constructor(private apiService: ApiService) {}
   data: TeamDetailType = {} as TeamDetailType
-  
+  logo= "/assets/s-l1200.webp"
+
   ngOnInit() {
     this.apiService.getTeamDetailApi().subscribe((data) => {
       this.data = data;

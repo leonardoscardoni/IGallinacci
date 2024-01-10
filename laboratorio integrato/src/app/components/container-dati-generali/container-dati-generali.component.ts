@@ -8,7 +8,7 @@ import { TeamDetailType } from "src/app/_models/TeamDetailApi.type";
     styleUrls: ["./container-dati-generali.component.scss"],
 })
 export class ContainerDatiGeneraliComponent {
-    @Input() data: TeamDetailType = {} as TeamDetailType
+    @Input() data: any
 
     constructor(private route: ActivatedRoute) {}
 }
