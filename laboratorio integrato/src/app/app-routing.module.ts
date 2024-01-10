@@ -12,6 +12,8 @@ import { SceltaConfrontoGiocatoriComponent } from "./pages/scelta-confronto-gioc
 import { DettGiocatoreIndipendenteComponent } from "./pages/dett-giocatore-indipendente/dett-giocatore-indipendente.component";
 import { ElencoArticoliComponent } from "./pages/elenco-articoli/elenco-articoli.component";
 import { ElencoTeamComponent } from "./elenco-team/elenco-team.component";
+import { DettaglioConfrontoTeamComponent } from "./pages/dettaglio-confronto-team/dettaglio-confronto-team.component";
+
 
 const routes: Routes = [
     { path: "home", component: HomePageComponent },
@@ -26,6 +28,7 @@ const routes: Routes = [
     { path: "dett-giocatore-partita", component: DettaglioGiocatorePartitaComponent },
     { path: "scelta-confronto-giocatori", component: SceltaConfrontoGiocatoriComponent },
     { path: "elenco-team", component: ElencoTeamComponent },
+    { path: "dettaglio-confronto-team", component: DettaglioConfrontoTeamComponent },
     { path: "", redirectTo: "home", pathMatch: "full" },
 ];
 

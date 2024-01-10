@@ -1,0 +1,30 @@
+<div class="fixed">
+    <div class="block sm:hidden">XS</div>
+    <div class="hidden sm:block md:hidden">SM</div>
+    <div class="hidden md:block lg:hidden">MD</div>
+    <div class="hidden md:hidden lg:block xl:hidden">LG</div>
+    <div class="hidden lg:hidden xl:block">XL</div>
+</div>
+<app-header-confronto-dettaglio [bgImg]="a.bgImg" [nome1]="a.nome1" [nome2]="a.nome2" [logo1]="a.logo1" [logo2]="a.logo2"></app-header-confronto-dettaglio>
+<div class="p-20">
+
+<app-titolo-sezione [numero]="'01'" [titolo]="'Classifica'" [spiegazione]="'Lorem ipsum dolor sit amet consectetur. Velit urna vitae scelerisque nullam sed metus dictum pulvinar.'" [spanSpiegazione]="'Consectetur volutpat turpis nec congue.'"/>
+
+<div class="grid grid-cols-12 gap-4 mb-16 mt-4">
+    <div class="col-start-3 md:col-start-5 col-span-4 md:col-span-3">
+        <app-dati-principali [title]="a.classifica.squadra1.nome" [dato]="a.classifica.squadra1.numero"></app-dati-principali>
+    </div>
+    <div class="col-start-7 md:col-start-8 col-span-4 md:col-span-3">
+        <app-dati-principali [title]="a.classifica.squadra2.nome" [dato]="a.classifica.squadra2.numero"></app-dati-principali>
+    </div>
+</div>
+
+<app-titolo-sezione [numero]="'02'" [titolo]="'Dati'" [spiegazione]="'Lorem ipsum dolor sit amet consectetur. Velit urna vitae scelerisque nullam sed metus dictum pulvinar.'" [spanSpiegazione]="'Consectetur volutpat turpis nec congue.'"/>
+<app-contenitore-card-confronto-dati/>
+
+<app-titolo-sezione [numero]="'03'" [titolo]="'Ultimi 4 incontri'" [spiegazione]="'Lorem ipsum dolor sit amet consectetur. Velit urna vitae scelerisque nullam sed metus dictum pulvinar.'" [spanSpiegazione]="'Consectetur volutpat turpis nec congue.'"/>
+<app-quattro-confronti [quarti]="false" [numeri]="false"/>
+
+<app-titolo-sezione [numero]="'04'" [titolo]="'Head to head'" [spiegazione]="'Lorem ipsum dolor sit amet consectetur. Velit urna vitae scelerisque nullam sed metus dictum pulvinar.'" [spanSpiegazione]="'Consectetur volutpat turpis nec congue.'"/>
+<app-quattro-confronti [quarti]="false" [numeri]="true"/>
+</div>

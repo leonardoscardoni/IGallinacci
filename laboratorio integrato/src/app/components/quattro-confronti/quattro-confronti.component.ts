@@ -32,6 +32,7 @@ export class QuattroConfrontiComponent implements OnInit {
                         points: 160,
                     },
                 ],
+                vittorie: [true, false, true, true],
             },
             {
                 nome: "CUL",
@@ -54,6 +55,7 @@ export class QuattroConfrontiComponent implements OnInit {
                         points: 200,
                     },
                 ],
+                vittorie: [false, false, true, true],
             },
         ],
     };

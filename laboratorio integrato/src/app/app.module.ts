@@ -43,6 +43,8 @@ import { DettGiocatoreIndipendenteComponent } from "./pages/dett-giocatore-indip
 import { ElencoArticoliComponent } from "./pages/elenco-articoli/elenco-articoli.component";
 import { HeaderElencoArticoliComponent } from "./components/header-elenco-articoli/header-elenco-articoli.component";
 import { ElencoTeamComponent } from "./elenco-team/elenco-team.component";
+import { DettaglioConfrontoTeamComponent } from './pages/dettaglio-confronto-team/dettaglio-confronto-team.component';
+
 
 @NgModule({
     declarations: [
@@ -97,6 +99,7 @@ import { ElencoTeamComponent } from "./elenco-team/elenco-team.component";
         AppRoutingModule,
         HttpClientModule,
         FormsModule,
+        DettaglioConfrontoTeamComponent,
     ],
     providers: [],
     bootstrap: [AppComponent],
