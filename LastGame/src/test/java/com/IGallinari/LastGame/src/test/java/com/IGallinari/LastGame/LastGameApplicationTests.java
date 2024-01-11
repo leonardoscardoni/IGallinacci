@@ -1,4 +1,4 @@
-package com.IGallinari.LastGame;
+package com.IGallinari.LastGame.src.test.java.com.IGallinari.LastGame;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

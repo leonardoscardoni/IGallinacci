@@ -20,9 +20,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TeamService {
 
-    private final StatsTeamRepository statsTeamRepository;
-
     private final TeamRepository teamRepository;
+    private final StatsTeamRepository statsTeamRepository;
 
     private final PlayerTeamRepository playerTeamRepository;
 
@@ -67,7 +66,7 @@ public class TeamService {
 
     public TeamDetailsResponse buildTeamDetailsResponse(int idTeam, int season){
         Team team = teamRepository.findById(idTeam);
-        StatsTeam statsTeam = statsTeamRepository.findByTeamAndSeason(team,season);
+        StatsTeam statsTeam = statsTeamRepository.findByTeamAndSeason(team, season);
         ViewStatsTeamDetails viewStatsTeamDetails = new ViewStatsTeamDetails(
                 statsTeam.getGames(),
                 statsTeam.getPoints(),
@@ -164,12 +163,10 @@ public class TeamService {
     }
 
     public CompareTeamResponse buildCompareTeamResponse(int idTeam1, int idTeam2, int season){
-
         Team team1 = teamRepository.findById(idTeam1);
         Team team2 = teamRepository.findById(idTeam2);
         StatsTeam statsTeam1= statsTeamRepository.findByTeamAndSeason(team1,season);
         StatsTeam statsTeam2 = statsTeamRepository.findByTeamAndSeason(team2,season);
-
         ViewTeamCompareTeam viewTeamCompareTeam1 = new ViewTeamCompareTeam(
                 team1.getName(),
                 team1.getLogo(),

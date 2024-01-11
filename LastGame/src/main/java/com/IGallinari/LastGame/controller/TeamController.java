@@ -1,4 +1,5 @@
 package com.IGallinari.LastGame.controller;
+
 import com.IGallinari.LastGame.payload.response.comparison.team.CompareTeamResponse;
 import com.IGallinari.LastGame.payload.response.listTeam.TeamsResponse;
 import com.IGallinari.LastGame.payload.response.teamDetails.TeamDetailsResponse;

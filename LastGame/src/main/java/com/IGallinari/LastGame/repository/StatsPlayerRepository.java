@@ -32,4 +32,6 @@ public interface StatsPlayerRepository extends JpaRepository<StatsPlayer,Integer
 
     @Query(value = "SELECT DISTINCT g.season FROM StatsPlayer sp LEFT JOIN Game g ON sp.idGame = g.id", nativeQuery = true)
     List<Integer> findDistinctSeason();
+
+    StatsPlayer findByPlayerAndGame(Player player, Game game);
 }
