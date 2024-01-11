@@ -6,49 +6,67 @@ import { TeamType } from "./_models/divisionTeamApi.type";
 import { CalendarType } from "./_models/calendarApi.type";
 import { TeamDetailType } from "./_models/TeamDetailApi.type";
 import { ConfrontoTeamType } from "./_models/confrontoTeamApi.type";
+import { ElencoTeamType } from "./_models/elencoTeam.type";
 
 @Injectable({
-  providedIn: "root",
+    providedIn: "root",
 })
 export class ApiService {
-  private baseURL = "http://localhost:8090/";
+    private baseURL = "http://localhost:8090/";
 
-  private homeUrl = "games/getHomeUnLogged";
+    private homeUrl = "games/getHomeUnLogged";
+    private divisione = "team/getTeams";
+    private calendar = "game/getCalendar?date=";
+    private team = "team/getTeamsDetails?idTeam=5&season=2022";
+    private confrontoTeam = `${"team/getCompareTeam?idTeam1="}`;
+    private elencoTeam = "team/getTeams";
 
-  private divisione = "team/getTeams"
-  private calendar = "game/getCalendar?date="
-  private team = "team/getTeamsDetails?idTeam=5&season=2022"
-  private confrontoTeam = `${'team/getCompareTeam?idTeam1='}`
+    constructor(private http: HttpClient) {}
+    getHomeApi() {
+        return this.http.get(`${this.baseURL}${this.homeUrl}`).pipe(
+            map((response: any) => {
+                return response as TypeHome;
+            })
+        );
+    }
 
-  constructor(private http: HttpClient) {}
-  getHomeApi() {
-    return this.http.get(`${this.baseURL}${this.homeUrl}`)
-    .pipe(map((response:any) => {
-        return response as TypeHome}));
-  }
-  
-  getDivisionApi() {
-    return this.http.get(`${this.baseURL}${this.divisione}`)
-    .pipe(map((response:any) => {
-        return response as TeamType}));
-  }
-  getTeamDetailApi() {
-    return this.http.get(`${this.baseURL}${this.team}`)
-    .pipe(map((response:any) => {
-        return response as TeamDetailType}));
-  }
-  getConfrontoTeamApi(id1:string,id2:string) {
-    return this.http.get(`${this.baseURL}${this.confrontoTeam}${id1}${'&idTeam2='}${id2}${'&season=2022'}`)
-    .pipe(map((response:any) => {
-        return response as ConfrontoTeamType}));
-  }
+    getDivisionApi() {
+        return this.http.get(`${this.baseURL}${this.divisione}`).pipe(
+            map((response: any) => {
+                return response as TeamType;
+            })
+        );
+    }
+    getTeamDetailApi() {
+        return this.http.get(`${this.baseURL}${this.team}`).pipe(
+            map((response: any) => {
+                return response as TeamDetailType;
+            })
+        );
+    }
+    getConfrontoTeamApi(id1: string, id2: string) {
+        return this.http
+            .get(`${this.baseURL}${this.confrontoTeam}${id1}${"&idTeam2="}${id2}${"&season=2022"}`)
+            .pipe(
+                map((response: any) => {
+                    return response as ConfrontoTeamType;
+                })
+            );
+    }
 
-  getCalendarApi(data: string) {
-    return this.http.get(`${this.baseURL}${this.calendar}${data}`)
-      .pipe(
-        map((response: any) => {
-          return response as CalendarType;
-        })
-      );
-  }
+    getCalendarApi(data: string) {
+        return this.http.get(`${this.baseURL}${this.calendar}${data}`).pipe(
+            map((response: any) => {
+                return response as CalendarType;
+            })
+        );
+    }
+
+    getElencoTeam() {
+        return this.http.get(`${this.baseURL}${this.elencoTeam}`).pipe(
+            map((response: any) => {
+                return response as ElencoTeamType;
+            })
+        );
+    }
 }
