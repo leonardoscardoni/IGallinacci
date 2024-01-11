@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ViewPlayerTeamDetails {
+    
     private String firstname;
     private String lastname;
     private Integer number;

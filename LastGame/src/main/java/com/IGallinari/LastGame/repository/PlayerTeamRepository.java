@@ -1,6 +1,7 @@
 package com.IGallinari.LastGame.repository;
 
 import com.IGallinari.LastGame.entity.Arena;
+import com.IGallinari.LastGame.entity.Player;
 import com.IGallinari.LastGame.entity.PlayerTeam;
 import com.IGallinari.LastGame.entity.Team;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,4 +19,6 @@ public interface PlayerTeamRepository extends JpaRepository<PlayerTeam,Integer> 
 
     @Query(value ="SELECT DISTINCT pt.idTeam FROM playerteam AS pt WHERE season LIKE :inputSeason GROUP BY  idTeam",  nativeQuery = true)
     List<Integer> findDistinctIdTeams(@Param("inputSeason") Integer inputSeason);
+
+    PlayerTeam findByPlayerAndSeason(Player player,int season);
 }
