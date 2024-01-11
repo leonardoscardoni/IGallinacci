@@ -1,4 +1,4 @@
-package com.IGallinari.LastGame.payload.response.Calendar;
+package com.IGallinari.LastGame.payload.response.calendar;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

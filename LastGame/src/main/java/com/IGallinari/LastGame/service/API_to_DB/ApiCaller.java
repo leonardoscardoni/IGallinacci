@@ -7,14 +7,17 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class ApiCaller {
     private static final String RAPIDAPI_HOST = "v2.nba.api-sports.io";
     private static final String RAPIDAPI_KEY = "";
     private static final String baseURL = "https://v2.nba.api-sports.io/";
-
+    private Integer counterCall=0;
     private static final HttpClient httpClient = HttpClient.newHttpClient();
 
     private String makeApiCall(URI uri) throws Exception {
@@ -41,8 +44,22 @@ public class ApiCaller {
         URI uri = URI.create(baseURL + endpoint + "?" + paramString);
 
         try {
+            LocalTime firstCall = null;
+            if (counterCall == 0) {
+                firstCall = LocalTime.now();
+                counterCall += 1;
+            } else if (ChronoUnit.SECONDS.between(firstCall, LocalTime.now()) < 60 && counterCall < 10) {
+                counterCall +=1;
+            } else if (ChronoUnit.SECONDS.between(firstCall, LocalTime.now()) < 60 && counterCall>=10) {
+                TimeUnit.SECONDS.sleep(ChronoUnit.SECONDS.between(firstCall, LocalTime.now()));
+                firstCall = LocalTime.now();
+                counterCall=1;
+            } else {
+                firstCall = LocalTime.now();
+                counterCall=1;
+            }
             // Make the API call and return the response
-            System.out.println("Making a call to: "+endpoint+" endpoint");
+            System.out.println("Making a call to: " + endpoint + " endpoint");
             return makeApiCall(uri);
         } catch (Exception e) {
             e.printStackTrace();

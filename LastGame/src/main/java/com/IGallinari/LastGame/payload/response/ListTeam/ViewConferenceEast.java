@@ -1,4 +1,4 @@
-package com.IGallinari.LastGame.payload.response.ListTeam;
+package com.IGallinari.LastGame.payload.response.listTeam;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

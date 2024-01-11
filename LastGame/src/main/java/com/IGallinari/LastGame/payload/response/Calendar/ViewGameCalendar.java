@@ -1,9 +1,8 @@
-package com.IGallinari.LastGame.payload.response.Calendar;
+package com.IGallinari.LastGame.payload.response.calendar;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.security.PrivateKey;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -11,6 +10,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class ViewGameCalendar {
     private int id;
+    private boolean played;
     private LocalDate date;
     private LocalTime time;
     private ViewTeamCalendar homeTeam;

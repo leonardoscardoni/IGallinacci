@@ -4,18 +4,17 @@ import com.IGallinari.LastGame.entity.Player;
 import com.IGallinari.LastGame.entity.PlayerTeam;
 import com.IGallinari.LastGame.entity.StatsTeam;
 import com.IGallinari.LastGame.entity.Team;
-import com.IGallinari.LastGame.payload.response.ListTeam.*;
-import com.IGallinari.LastGame.payload.response.TeamDetails.*;
+import com.IGallinari.LastGame.payload.response.comparison.team.CompareTeamResponse;
+import com.IGallinari.LastGame.payload.response.comparison.team.ViewTeamCompareTeam;
+import com.IGallinari.LastGame.payload.response.comparison.team.ViewTeamComparisonNbaAvgCompareTeam;
+import com.IGallinari.LastGame.payload.response.listTeam.*;
+import com.IGallinari.LastGame.payload.response.teamDetails.*;
 import com.IGallinari.LastGame.repository.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.swing.*;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -103,7 +102,7 @@ public class TeamService {
                                     avgStats.get(0)[2],
                                     avgStats.get(0)[3],
                                     avgStats.get(0)[4]
-                            )//DATI DI MOCK capire come restituire avgStats invecie che valori predefiniti
+                            )
                     )
             );
         }
@@ -149,6 +148,7 @@ public class TeamService {
                 team.getName(),
                 team.getConference(),
                 team.getDivision(),
+                team.getLogo(),
                 statsTeam.getRankConference(),
                 statsTeam.getRankDivision(),
                 viewStatsTeamDetails,
@@ -161,5 +161,47 @@ public class TeamService {
                 playerComparisonNbaAvg
         );
         return teamDetailsResponse;
+    }
+
+    public CompareTeamResponse buildCompareTeamResponse(int idTeam1, int idTeam2, int season){
+
+        Team team1 = teamRepository.findById(idTeam1);
+        Team team2 = teamRepository.findById(idTeam2);
+        StatsTeam statsTeam1= statsTeamRepository.findByTeamAndSeason(team1,season);
+        StatsTeam statsTeam2 = statsTeamRepository.findByTeamAndSeason(team2,season);
+
+        ViewTeamCompareTeam viewTeamCompareTeam1 = new ViewTeamCompareTeam(
+                team1.getName(),
+                team1.getLogo(),
+                team1.getConference(),
+                statsTeam1.getRankConference()
+        );
+        ViewTeamCompareTeam viewTeamCompareTeam2 = new ViewTeamCompareTeam(
+                team2.getName(),
+                team2.getLogo(),
+                team1.getConference(),
+                statsTeam2.getRankConference()
+        );
+        // Team data comparison
+        List<ViewTeamComparisonNbaAvgCompareTeam> TeamCompareNba= new ArrayList<>();
+        List<String > dataNames = List.of("points","rebounds","assist","fieldShotsMade","freeTrowMade","treePointsMade");
+        List<Integer[]> datasTeam1 = statsTeamRepository.findDataTeamByIdTeamAndSeason(idTeam1,season);
+        List<Integer[]> datasTeam2 = statsTeamRepository.findDataTeamByIdTeamAndSeason(idTeam2,season);
+        for(int i=0;i<dataNames.size();i++){
+            TeamCompareNba.add(
+                    new ViewTeamComparisonNbaAvgCompareTeam(
+                            dataNames.get(i),
+                            datasTeam1.get(0)[i],
+                            datasTeam2.get(0)[i]
+                    )
+            );
+        }
+
+        CompareTeamResponse CompareTeamResponse = new CompareTeamResponse(
+                viewTeamCompareTeam1,
+                viewTeamCompareTeam2,
+                TeamCompareNba
+        );
+        return CompareTeamResponse;
     }
 }
