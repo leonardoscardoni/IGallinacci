@@ -6,13 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c37c9620-1c6a-4a8f-b566-00dea8a53df4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/api.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/api.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/elenco-team/elenco-team.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/elenco-team/elenco-team.component.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/elenco-team/elenco-team.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/elenco-team/elenco-team.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/navbar/navbar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/navbar/navbar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/navbar/navbar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/navbar/navbar.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
