@@ -18,9 +18,7 @@ public class GameController {
     private GameService service;
 
     @RequestMapping("/getHomeUnLogged")
-    public HomeResponse getHomeUnLogged(){
-        return this.service.buildHomeUnLogged();
-    }
+    public HomeResponse getHomeUnLogged(){return this.service.buildHomeUnLogged();}
 
     @RequestMapping("/getCalendar")
     public CalendarResponse getCalendar(@RequestParam LocalDate date){

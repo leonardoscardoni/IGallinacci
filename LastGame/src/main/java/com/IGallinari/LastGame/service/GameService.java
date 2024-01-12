@@ -1,13 +1,14 @@
 package com.IGallinari.LastGame.service;
 
 import com.IGallinari.LastGame.entity.*;
+import com.IGallinari.LastGame.payload.response.calendar.ViewTeamCalendar;
 import com.IGallinari.LastGame.payload.response.lastFourGames.ViewLastFourGames;
 import com.IGallinari.LastGame.payload.response.lastFourGames.ViewLastGame;
 import com.IGallinari.LastGame.payload.response.lastFourHtH.HeadToHead;
 import com.IGallinari.LastGame.payload.response.lastFourHtH.LastFourHtH;
 import com.IGallinari.LastGame.payload.response.calendar.CalendarResponse;
 import com.IGallinari.LastGame.payload.response.calendar.ViewGameCalendar;
-import com.IGallinari.LastGame.payload.response.calendar.ViewTeamCalendar;
+import com.IGallinari.LastGame.payload.response.home.*;
 import com.IGallinari.LastGame.payload.response.gameDetails.pastGame.PastGameResponse;
 import com.IGallinari.LastGame.payload.response.gameDetails.pastGame.gameDetails.ViewGameDetailsPastGame;
 import com.IGallinari.LastGame.payload.response.gameDetails.pastGame.gameDetails.ViewTeamDetailsPastGame;
@@ -18,7 +19,6 @@ import com.IGallinari.LastGame.payload.response.gameDetails.pastGame.players.Vie
 import com.IGallinari.LastGame.payload.response.gameDetails.pastGame.quartersForTeam.ViewQuartersPastGame;
 import com.IGallinari.LastGame.payload.response.gameDetails.pastGame.quartersForTeam.ViewQuartersTeamPastGame;
 import com.IGallinari.LastGame.payload.response.gameDetails.pastGame.statistics.ViewStatisticsPastGame;
-import com.IGallinari.LastGame.payload.response.home.*;
 import com.IGallinari.LastGame.payload.response.gameDetails.nextGame.gameDetails.ViewGameDetailsNextGame;
 import com.IGallinari.LastGame.payload.response.gameDetails.nextGame.gameDetails.ViewTeamDetailsNextGame;
 import com.IGallinari.LastGame.payload.response.gameDetails.nextGame.NextGameResponse;
@@ -48,8 +48,8 @@ public class GameService {
         LocalDate yesterdayDate = todoayDate.minusDays(1);
         List<Game> yesterdayGames = gameRepository.findGameByDate(yesterdayDate);
         List<Game> todayGames = gameRepository.findGameByDate(todoayDate);
-        List<ViewPastGame> viewPastGames = new ArrayList<>();
-        List<ViewNextGame> viewNextGames = new ArrayList<>();
+        List<com.IGallinari.LastGame.payload.response.home.ViewPastGame> viewPastGames = new ArrayList<>();
+        List<com.IGallinari.LastGame.payload.response.home.ViewNextGame> viewNextGames = new ArrayList<>();
         for(Game yesterdayGame: yesterdayGames){
             Team teamHome=yesterdayGame.getHomeTeam();
             Team teamVisitors= yesterdayGame.getVisitorTeam();
