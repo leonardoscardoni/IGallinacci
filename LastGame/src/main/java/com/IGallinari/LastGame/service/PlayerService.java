@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
 import com.IGallinari.LastGame.payload.response.detailsPlayerIndependByGame.*;
 import com.IGallinari.LastGame.payload.response.listPlayerFilter.PlayerFilterResponse;
 import com.IGallinari.LastGame.payload.response.listPlayerFilter.ViewRolesPlayerFilter;
@@ -160,7 +159,7 @@ public class PlayerService {
 
     public DetailsPlayerIndependentByGameResponse buildDetailsPlayerIndependentByGameResponse(int idPlayer, int season) {
         Player player = playerRepository.findById(idPlayer);
-        List<Objects[]> sumStatsPlayerAndAvgPointsArray = statsPlayerRepository.findSumStatsPlayerAndAvgPointsByIdPlayerAndSeason(idPlayer, season);
+        List<java.util.Objects[]> sumStatsPlayerAndAvgPointsArray = statsPlayerRepository.findSumStatsPlayerAndAvgPointsByIdPlayerAndSeason(idPlayer, season);
         PlayerTeam playerTeam = playerTeamRepository.findByPlayerAndSeason(player,season);
         Team team= playerTeam.getTeam();
         boolean favourite = false;
@@ -186,31 +185,31 @@ public class PlayerService {
                 player.getAffiliation()
         );
         ViewShotsDetailsPlayerIndependentByGame viewShotsDetailsPlayerIndependentByGame = new ViewShotsDetailsPlayerIndependentByGame(
-                statsPlayer.getFgm(),
-                statsPlayer.getFga(),
-                statsPlayer.getFgp(),
-                statsPlayer.getFtm(),
-                statsPlayer.getFta(),
-                statsPlayer.getFtp(),
-                statsPlayer.getTpm(),
-                statsPlayer.getTpa(),
-                statsPlayer.getTpp()
+                Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[0].toString()),
+                Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[1].toString()),
+                Float.parseFloat(sumStatsPlayerAndAvgPointsArray.get(0)[2].toString()),
+                Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[3].toString()),
+                Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[4].toString()),
+                Float.parseFloat(sumStatsPlayerAndAvgPointsArray.get(0)[5].toString()),
+                Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[6].toString()),
+                Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[7].toString()),
+                Float.parseFloat(sumStatsPlayerAndAvgPointsArray.get(0)[8].toString())
         );
         ViewAssistReboundsDetailsPlayerIndependentByGame viewAssistReboundsDetailsPlayerIndependentByGame = new ViewAssistReboundsDetailsPlayerIndependentByGame(
-                statsPlayer.getOffReb(),
-                statsPlayer.getDefReb(),
-                statsPlayer.getTotReb(),
-                statsPlayer.getAssists()
+                Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[9].toString()),
+                Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[10].toString()),
+                Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[11].toString()),
+                Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[12].toString())
         );
         ViewFoulsBallsBlocksDetailsPlayerIndependentByGame viewFoulsBallsBlocksDetailsPlayerIndependentByGame = new ViewFoulsBallsBlocksDetailsPlayerIndependentByGame(
-                statsPlayer.getPFouls(),
-                statsPlayer.getSteals(),
-                statsPlayer.getTurnovers(),
-                statsPlayer.getBlocks()
+                Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[13].toString()),
+                Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[14].toString()),
+                Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[15].toString()),
+                Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[16].toString())
         );
         ViewPointsDetailsPlayerIndependentByGame viewPointsDetailsPlayerIndependentByGame = new ViewPointsDetailsPlayerIndependentByGame(
-                statsPlayer.getPoints(),
-                avgPoints
+                Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[17].toString()),
+                Float.parseFloat(sumStatsPlayerAndAvgPointsArray.get(0)[18].toString())
         );
 
         return new DetailsPlayerIndependentByGameResponse(

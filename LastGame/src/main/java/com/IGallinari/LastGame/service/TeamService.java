@@ -161,7 +161,10 @@ public class TeamService {
                 viewPointsTeamDetails,
                 viewFoulsBallsBlocksTeamDetails,
                 viewWinLossTeamDetails,
-                playerComparisonNbaAvg
+                List<ViewPlayerComparisonNbaAvgTeamDetails>
+
+
+
         );
         return teamDetailsResponse;
     }
