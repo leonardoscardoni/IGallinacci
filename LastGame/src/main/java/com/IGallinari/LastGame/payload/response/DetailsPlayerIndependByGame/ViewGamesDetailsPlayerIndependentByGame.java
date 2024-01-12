@@ -9,5 +9,5 @@ public class ViewGamesDetailsPlayerIndependentByGame {
     private Integer gamesPlayed;
     private Integer jerseyNumber;
     private Float averageScore;
-    private Float seasonScore;
+    private Integer seasonScore;
 }

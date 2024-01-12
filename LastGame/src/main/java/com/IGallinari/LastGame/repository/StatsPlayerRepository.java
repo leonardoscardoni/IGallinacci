@@ -18,14 +18,19 @@ public interface StatsPlayerRepository extends JpaRepository<StatsPlayer,Integer
     StatsPlayer findByTeamAndGameAndPlayer(Team team, Game game, Player player);
 
     @Query(value = "SELECT sp.idTeam FROM StatsPlayer sp LEFT JOIN Game g ON sp.idGame = g.id WHERE g.season=:season GROUP BY (sp.idTeam)", nativeQuery = true)
-    List<Integer> findDistinctTeamIds(@Param("season") Integer season);
+    List<Integer> findDistinctTeamIds(@Param("season") int season);
 
+    @Query(value = "SELECT SUM(sp.fgm), SUM(sp.fga), SUM(sp.fgp), SUM(sp.ftm), SUM(sp.fta), SUM(sp.ftp), SUM(sp.tpm), SUM(sp.tpa), SUM(sp.tpp), SUM(sp.offReb)," +
+            " SUM(sp.defReb), SUM(sp.totReb), SUM(sp.assists), SUM(sp.pFouls), SUM(sp.steals), SUM(sp.turnovers), SUM(sp.blocks), SUM(sp.points) AS sumPoints, " +
+            "AVG(sp.points) AS avgPoints FROM statsplayer sp LEFT JOIN game g ON sp.idGame=g.id WHERE g.season=2022 AND sp.idPlayer=4; ", nativeQuery = true)
+    List<Objects[]> findSumStatsPlayerAndAvgPointsByIdPlayerAndSeason(@Param("inputIdPlayer") int idPlayer, @Param("inputSeason") int season);
 
     @Query(value = "SELECT DISTINCT g.season FROM StatsPlayer sp LEFT JOIN Game g ON sp.idGame = g.id", nativeQuery = true)
     List<Integer> findDistinctSeason();
 
-    @Query(value = "SELECT AVG(st.points)FROM StatsPlayer st LEFT JOIN game g ON st.idGame = g.id WHERE st.idPlayer = :inputPlayer AND g.season = :inputSeason", nativeQuery = true)
-    Float findAvgPointsByIdPlayerAndSeason(@Param("inputIdPlayer")int idPlayer, @Param("inputSeason")int season);
+    @Query(value = "SELECT AVG(st.points) FROM StatsPlayer st LEFT JOIN game g ON st.idGame = g.id WHERE st.idPlayer = :inputIdPlayer AND g.season = :inputSeason", nativeQuery = true)
+    Float findAvgPointsByIdPlayerAndSeason(@Param("inputIdPlayer") int idPlayer, @Param("inputSeason") int season);
+
 
     @Query(value = "SELECT SUM(st.points)FROM StatsPlayer st LEFT JOIN game g ON st.idGame = g.id WHERE st.idPlayer = 40 AND g.season = 2023;", nativeQuery = true)
     Float findSumPointsByIdPlayerAndSeason(@Param("inputIdPlayer")int idPlayer, @Param("inputSeason")int season);

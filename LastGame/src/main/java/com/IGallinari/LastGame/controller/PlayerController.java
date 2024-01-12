@@ -30,5 +30,5 @@ public class PlayerController {
     public PlayerFilterResponse getTeamRolesPlayerFilter(){return this.service.buildCompareFilterResponse();}
 
     @RequestMapping("getPlayerByGame")
-    public DetailsPlayerIndependentByGameResponse getPlayerByGame(@RequestParam int idGame, int idPlayer){return this.service.buildDetailsPlayerIndependentByGameResponse(idGame, idPlayer);}
+    public DetailsPlayerIndependentByGameResponse getPlayerByGame(@RequestParam int idPlayer, int season){return this.service.buildDetailsPlayerIndependentByGameResponse(idPlayer, season);}
 }

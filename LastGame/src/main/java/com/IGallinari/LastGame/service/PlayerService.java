@@ -3,6 +3,7 @@ package com.IGallinari.LastGame.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 import com.IGallinari.LastGame.payload.response.DetailsPlayerIndependByGame.*;
@@ -158,11 +159,10 @@ public class PlayerService {
             return  playerFilterResponse;
         }
 
-    public DetailsPlayerIndependentByGameResponse buildDetailsPlayerIndependentByGameResponse(int idGame, int idPlayer) {
-        Game game = gameRepository.findById(idGame);
+    public DetailsPlayerIndependentByGameResponse buildDetailsPlayerIndependentByGameResponse(int idPlayer, int season) {
         Player player = playerRepository.findById(idPlayer);
-        StatsPlayer statsPlayer = statsPlayerRepository.findByPlayerAndGame(player,game);
-        PlayerTeam playerTeam = playerTeamRepository.findByPlayerAndSeason(player,game.getSeason());
+        List<Objects[]> sumStatsPlayerAndAvgPointsArray = statsPlayerRepository.findSumStatsPlayerAndAvgPointsByIdPlayerAndSeason(idPlayer, season);
+        PlayerTeam playerTeam = playerTeamRepository.findByPlayerAndSeason(player,season);
         Team team= playerTeam.getTeam();
         boolean favourite = false;
         String firstName = player.getFirstname();
@@ -170,14 +170,11 @@ public class PlayerService {
         int idTeam = team.getId();
         String logo = team.getLogo();
         String nameTeam = team.getName();
-
-        Float avgPoints = statsPlayerRepository.findAvgPointsByIdPlayerAndSeason(idPlayer, game.getSeason());
-        Float sumPoints = statsPlayerRepository.findSumPointsByIdPlayerAndSeason(idPlayer, game.getSeason());
         ViewGamesDetailsPlayerIndependentByGame viewGamesDetailsPlayerIndependentByGame = new ViewGamesDetailsPlayerIndependentByGame(
-                game.getId(),
+                player.getId(),
                 player.getJersey(),
-                avgPoints,
-                sumPoints
+                Float.parseFloat(sumStatsPlayerAndAvgPointsArray.get(0)[18].toString()),
+                Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[17].toString())
         );
         ViewPlayerBioDetailsIndependentByGame viewPlayerBioDetailsIndependentByGame = new ViewPlayerBioDetailsIndependentByGame(
                 player.getDateOfBirth(),
