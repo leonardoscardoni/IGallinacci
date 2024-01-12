@@ -1,10 +1,10 @@
 package com.IGallinari.LastGame.service;
 
 import com.IGallinari.LastGame.entity.*;
-import com.IGallinari.LastGame.payload.response.LastFourGames.ViewLastFourGames;
-import com.IGallinari.LastGame.payload.response.LastFourGames.ViewLastGame;
-import com.IGallinari.LastGame.payload.response.LastFourHtH.HeadToHead;
-import com.IGallinari.LastGame.payload.response.LastFourHtH.LastFourHtH;
+import com.IGallinari.LastGame.payload.response.lastFourGames.ViewLastFourGames;
+import com.IGallinari.LastGame.payload.response.lastFourGames.ViewLastGame;
+import com.IGallinari.LastGame.payload.response.lastFourHtH.HeadToHead;
+import com.IGallinari.LastGame.payload.response.lastFourHtH.LastFourHtH;
 import com.IGallinari.LastGame.payload.response.listTeam.*;
 import com.IGallinari.LastGame.payload.response.teamDetails.*;
 import com.IGallinari.LastGame.payload.response.comparison.team.CompareTeamResponse;

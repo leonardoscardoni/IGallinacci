@@ -1,6 +1,10 @@
 package com.IGallinari.LastGame.service;
 
 import com.IGallinari.LastGame.entity.*;
+import com.IGallinari.LastGame.payload.response.lastFourGames.ViewLastFourGames;
+import com.IGallinari.LastGame.payload.response.lastFourGames.ViewLastGame;
+import com.IGallinari.LastGame.payload.response.lastFourHtH.HeadToHead;
+import com.IGallinari.LastGame.payload.response.lastFourHtH.LastFourHtH;
 import com.IGallinari.LastGame.payload.response.calendar.CalendarResponse;
 import com.IGallinari.LastGame.payload.response.calendar.ViewGameCalendar;
 import com.IGallinari.LastGame.payload.response.calendar.ViewTeamCalendar;
@@ -17,10 +21,6 @@ import com.IGallinari.LastGame.payload.response.gameDetails.pastGame.statistics.
 import com.IGallinari.LastGame.payload.response.home.*;
 import com.IGallinari.LastGame.payload.response.gameDetails.nextGame.gameDetails.ViewGameDetailsNextGame;
 import com.IGallinari.LastGame.payload.response.gameDetails.nextGame.gameDetails.ViewTeamDetailsNextGame;
-import com.IGallinari.LastGame.payload.response.gameDetails.nextGame.lastFourGames.ViewLastFourGamesNextGame;
-import com.IGallinari.LastGame.payload.response.gameDetails.nextGame.lastFourGames.ViewLastGameNextGame;
-import com.IGallinari.LastGame.payload.response.gameDetails.lastFourHtH.HeadToHeadGameDetails;
-import com.IGallinari.LastGame.payload.response.gameDetails.lastFourHtH.LastFourHtHGameDetails;
 import com.IGallinari.LastGame.payload.response.gameDetails.nextGame.NextGameResponse;
 import com.IGallinari.LastGame.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -228,14 +228,14 @@ public class GameService {
             }
         }
         ViewBestPlayersPerTeamPastGame bestPlayersPerTeamPastGame = new ViewBestPlayersPerTeamPastGame(homeBestPlayerPastGameList,visitorBestPlayerPastGameList);
-        List<HeadToHeadGameDetails> listHeadToHeadGameDetails = builListHeadToHead(homeTeam,visitorTeam);
-        LastFourHtHGameDetails lastFourHtHGameDetailsHome = new LastFourHtHGameDetails(
+        List<HeadToHead> listHeadToHeadGameDetails = builListHeadToHead(homeTeam,visitorTeam);
+        LastFourHtH lastFourHtHGameDetailsHome = new LastFourHtH(
                 homeTeam.getId(),
                 homeTeam.getCode(),
                 homeTeam.getLogo(),
                 listHeadToHeadGameDetails.subList(0, Math.min(4, listHeadToHeadGameDetails.size()))
         );
-        LastFourHtHGameDetails lastFourHtHGameDetailsVisitor = new LastFourHtHGameDetails(
+        LastFourHtH lastFourHtHGameDetailsVisitor = new LastFourHtH(
                 visitorTeam.getId(),
                 visitorTeam.getCode(),
                 visitorTeam.getLogo(),
@@ -290,26 +290,26 @@ public class GameService {
                         teamHome.getLogo()
                 )
         );
-        ViewLastFourGamesNextGame viewLastFourGamesNextGameHome = new ViewLastFourGamesNextGame(
+        ViewLastFourGames viewLastFourGamesNextGameHome = new ViewLastFourGames(
                 teamHome.getId(),
                 teamHome.getCode(),
                 teamHome.getLogo(),
                 buildListViewLastGame(teamHome)
         );
-        ViewLastFourGamesNextGame viewLastFourGamesNextGameVisitor = new ViewLastFourGamesNextGame(
+        ViewLastFourGames viewLastFourGamesNextGameVisitor = new ViewLastFourGames(
                 teamVisitor.getId(),
                 teamVisitor.getCode(),
                 teamVisitor.getLogo(),
                 buildListViewLastGame(teamVisitor)
         );
-        List<HeadToHeadGameDetails> listHeadToHeadGameDetails = builListHeadToHead(teamHome,teamVisitor);
-        LastFourHtHGameDetails lastFourHtHGameDetailsHome = new LastFourHtHGameDetails(
+        List<HeadToHead> listHeadToHeadGameDetails = builListHeadToHead(teamHome,teamVisitor);
+        LastFourHtH lastFourHtHGameDetailsHome = new LastFourHtH(
                 teamHome.getId(),
                 teamHome.getCode(),
                 teamHome.getLogo(),
                 listHeadToHeadGameDetails.subList(0, Math.min(4, listHeadToHeadGameDetails.size()))
         );
-        LastFourHtHGameDetails lastFourHtHGameDetailsVisitor = new LastFourHtHGameDetails(
+        LastFourHtH lastFourHtHGameDetailsVisitor = new LastFourHtH(
                 teamVisitor.getId(),
                 teamVisitor.getCode(),
                 teamVisitor.getLogo(),
@@ -317,13 +317,13 @@ public class GameService {
         );
         return new NextGameResponse(viewGameDetailsNextGame, viewLastFourGamesNextGameHome, viewLastFourGamesNextGameVisitor, lastFourHtHGameDetailsHome, lastFourHtHGameDetailsVisitor);
     }
-    public List<HeadToHeadGameDetails> builListHeadToHead(Team teamHome, Team teamVisitor){
-        List<HeadToHeadGameDetails> listHeadToHeadGameDetails = new ArrayList<>();
+    public List<HeadToHead> builListHeadToHead(Team teamHome, Team teamVisitor){
+        List<HeadToHead> listHeadToHeadGameDetails = new ArrayList<>();
         List<Game> games = gameRepository.findLastFourHtH(teamHome.getId(),teamVisitor.getId());
         for (Game game : games){
             StatsGame statsGame = statsGameRepository.findStatsGameByGameAndTeam(game,teamHome);
             listHeadToHeadGameDetails.add(
-                    new HeadToHeadGameDetails(
+                    new HeadToHead(
                             game.getId(),
                             statsGame.getPoints()
                     )
@@ -332,7 +332,7 @@ public class GameService {
         for (Game game : games){
             StatsGame statsGame = statsGameRepository.findStatsGameByGameAndTeam(game,teamVisitor);
             listHeadToHeadGameDetails.add(
-                    new HeadToHeadGameDetails(
+                    new HeadToHead(
                             game.getId(),
                             statsGame.getPoints()
                     )
@@ -341,8 +341,8 @@ public class GameService {
         return listHeadToHeadGameDetails;
     }
 
-    public List<ViewLastGameNextGame> buildListViewLastGame(Team team){
-        List<ViewLastGameNextGame> lastGames = new ArrayList<>();
+    public List<ViewLastGame> buildListViewLastGame(Team team){
+        List<ViewLastGame> lastGames = new ArrayList<>();
         List<Game> games= gameRepository.findLastFourGameByTeam(team.getId());
         Team otherTeam = new Team();
         for (Game game: games){
@@ -360,7 +360,7 @@ public class GameService {
                 result = Boolean.FALSE;
             }
             lastGames.add(
-                    new ViewLastGameNextGame(
+                    new ViewLastGame(
                             game.getId(),
                             result
                     )

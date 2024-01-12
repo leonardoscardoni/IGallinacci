@@ -11,5 +11,4 @@ public class CompareTeamResponse {
     private ViewTeamCompareTeam team1;
     private ViewTeamCompareTeam team2;
     private List<ViewTeamComparisonNbaAvgCompareTeam> dataCompareTeamNba;
-
 }
