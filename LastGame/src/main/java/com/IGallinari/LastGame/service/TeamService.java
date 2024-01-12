@@ -147,6 +147,7 @@ public class TeamService {
                 team.getId(),
                 false,//DA IMPLEMENTARE QUANDO AVRO I PREFERITI
                 team.getName(),
+                team.getLogo(),
                 team.getConference(),
                 team.getDivision(),
                 statsTeam.getRankConference(),

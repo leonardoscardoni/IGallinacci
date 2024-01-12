@@ -8,6 +8,6 @@ import lombok.Data;
 public class ViewGamesDetailsPlayerIndependentByGame {
     private Integer gamesPlayed;
     private Integer jerseyNumber;
-    private Integer averageScore;
-    private Integer seasonScore;
+    private Float averageScore;
+    private Float seasonScore;
 }

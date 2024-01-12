@@ -3,13 +3,15 @@ package com.IGallinari.LastGame.payload.response.DetailsPlayerIndependByGame;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Data
 @AllArgsConstructor
 public class ViewPlayerBioDetailsIndependentByGame {
-    private Integer age;
+    private LocalDate age;
     private String country;
-    private Integer weight;
-    private Integer height;
+    private Float weight;
+    private Float height;
     private String pos;
     private Integer startYearNba;
     private String college;

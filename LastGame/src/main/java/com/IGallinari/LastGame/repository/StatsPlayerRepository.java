@@ -24,5 +24,11 @@ public interface StatsPlayerRepository extends JpaRepository<StatsPlayer,Integer
     @Query(value = "SELECT DISTINCT g.season FROM StatsPlayer sp LEFT JOIN Game g ON sp.idGame = g.id", nativeQuery = true)
     List<Integer> findDistinctSeason();
 
+    @Query(value = "SELECT AVG(st.points)FROM StatsPlayer st LEFT JOIN game g ON st.idGame = g.id WHERE st.idPlayer = :inputPlayer AND g.season = :inputSeason", nativeQuery = true)
+    Float findAvgPointsByIdPlayerAndSeason(@Param("inputIdPlayer")int idPlayer, @Param("inputSeason")int season);
+
+    @Query(value = "SELECT SUM(st.points)FROM StatsPlayer st LEFT JOIN game g ON st.idGame = g.id WHERE st.idPlayer = 40 AND g.season = 2023;", nativeQuery = true)
+    Float findSumPointsByIdPlayerAndSeason(@Param("inputIdPlayer")int idPlayer, @Param("inputSeason")int season);
+
     StatsPlayer findByPlayerAndGame(Player player, Game game);
 }

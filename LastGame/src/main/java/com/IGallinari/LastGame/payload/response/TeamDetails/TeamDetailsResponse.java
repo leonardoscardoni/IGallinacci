@@ -11,6 +11,7 @@ public class TeamDetailsResponse {
     private int idTeam;
     private boolean favourite;
     private String name;
+    private String logo;
     private String conference;
     private String division;
     private Integer rankConference;

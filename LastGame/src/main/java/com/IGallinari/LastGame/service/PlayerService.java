@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import com.IGallinari.LastGame.payload.response.DetailsPlayerIndependByGame.*;
 import com.IGallinari.LastGame.payload.response.ListPlayerFilter.PlayerFilterResponse;
 import com.IGallinari.LastGame.payload.response.ListPlayerFilter.ViewRolesPlayerFilter;
 import com.IGallinari.LastGame.payload.response.ListPlayerFilter.ViewTeamsPlayerFilter;
@@ -157,5 +158,78 @@ public class PlayerService {
             return  playerFilterResponse;
         }
 
+    public DetailsPlayerIndependentByGameResponse buildDetailsPlayerIndependentByGameResponse(int idGame, int idPlayer) {
+        Game game = gameRepository.findById(idGame);
+        Player player = playerRepository.findById(idPlayer);
+        StatsPlayer statsPlayer = statsPlayerRepository.findByPlayerAndGame(player,game);
+        PlayerTeam playerTeam = playerTeamRepository.findByPlayerAndSeason(player,game.getSeason());
+        Team team= playerTeam.getTeam();
+        boolean favourite = false;
+        String firstName = player.getFirstname();
+        String lastName = player.getLastname();
+        int idTeam = team.getId();
+        String logo = team.getLogo();
+        String nameTeam = team.getName();
 
-}
+        Float avgPoints = statsPlayerRepository.findAvgPointsByIdPlayerAndSeason(idPlayer, game.getSeason());
+        Float sumPoints = statsPlayerRepository.findSumPointsByIdPlayerAndSeason(idPlayer, game.getSeason());
+        ViewGamesDetailsPlayerIndependentByGame viewGamesDetailsPlayerIndependentByGame = new ViewGamesDetailsPlayerIndependentByGame(
+                game.getId(),
+                player.getJersey(),
+                avgPoints,
+                sumPoints
+        );
+        ViewPlayerBioDetailsIndependentByGame viewPlayerBioDetailsIndependentByGame = new ViewPlayerBioDetailsIndependentByGame(
+                player.getDateOfBirth(),
+                player.getCountry(),
+                player.getWeight(),
+                player.getHeight(),
+                player.getPos(),
+                player.getStartYear(),
+                player.getCollege(),
+                player.getAffiliation()
+        );
+        ViewShotsDetailsPlayerIndependentByGame viewShotsDetailsPlayerIndependentByGame = new ViewShotsDetailsPlayerIndependentByGame(
+                statsPlayer.getFgm(),
+                statsPlayer.getFga(),
+                statsPlayer.getFgp(),
+                statsPlayer.getFtm(),
+                statsPlayer.getFta(),
+                statsPlayer.getFtp(),
+                statsPlayer.getTpm(),
+                statsPlayer.getTpa(),
+                statsPlayer.getTpp()
+        );
+        ViewAssistReboundsDetailsPlayerIndependentByGame viewAssistReboundsDetailsPlayerIndependentByGame = new ViewAssistReboundsDetailsPlayerIndependentByGame(
+                statsPlayer.getOffReb(),
+                statsPlayer.getDefReb(),
+                statsPlayer.getTotReb(),
+                statsPlayer.getAssists()
+        );
+        ViewFoulsBallsBlocksDetailsPlayerIndependentByGame viewFoulsBallsBlocksDetailsPlayerIndependentByGame = new ViewFoulsBallsBlocksDetailsPlayerIndependentByGame(
+                statsPlayer.getPFouls(),
+                statsPlayer.getSteals(),
+                statsPlayer.getTurnovers(),
+                statsPlayer.getBlocks()
+        );
+        ViewPointsDetailsPlayerIndependentByGame viewPointsDetailsPlayerIndependentByGame = new ViewPointsDetailsPlayerIndependentByGame(
+                statsPlayer.getPoints(),
+                avgPoints
+        );
+
+        return new DetailsPlayerIndependentByGameResponse(
+                favourite,
+                idPlayer,
+                firstName,
+                lastName,
+                idTeam,
+                logo,
+                nameTeam,
+                viewGamesDetailsPlayerIndependentByGame,
+                viewPlayerBioDetailsIndependentByGame,
+                viewShotsDetailsPlayerIndependentByGame,
+                viewAssistReboundsDetailsPlayerIndependentByGame,
+                viewFoulsBallsBlocksDetailsPlayerIndependentByGame,
+                viewPointsDetailsPlayerIndependentByGame
+        );
+    }}
