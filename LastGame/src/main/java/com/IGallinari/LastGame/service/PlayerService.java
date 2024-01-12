@@ -6,27 +6,26 @@ import java.util.List;
 import java.util.Objects;
 
 
-import com.IGallinari.LastGame.payload.response.DetailsPlayerIndependByGame.*;
-import com.IGallinari.LastGame.payload.response.ListPlayerFilter.PlayerFilterResponse;
-import com.IGallinari.LastGame.payload.response.ListPlayerFilter.ViewRolesPlayerFilter;
-import com.IGallinari.LastGame.payload.response.ListPlayerFilter.ViewTeamsPlayerFilter;
+import com.IGallinari.LastGame.payload.response.detailsPlayerIndependByGame.*;
+import com.IGallinari.LastGame.payload.response.listPlayerFilter.PlayerFilterResponse;
+import com.IGallinari.LastGame.payload.response.listPlayerFilter.ViewRolesPlayerFilter;
+import com.IGallinari.LastGame.payload.response.listPlayerFilter.ViewTeamsPlayerFilter;
+import com.IGallinari.LastGame.payload.response.playerDetailsByGame.*;
+import com.IGallinari.LastGame.payload.response.playerTeamFilter.PlayerTeamFilterResponse;
+import com.IGallinari.LastGame.payload.response.playerTeamFilter.ViewPlayersPlayerTeamFilter;
 import org.springframework.stereotype.Service;
 
 import com.IGallinari.LastGame.entity.Player;
 import com.IGallinari.LastGame.entity.PlayerTeam;
 import com.IGallinari.LastGame.entity.Team;
-import com.IGallinari.LastGame.payload.response.PlayerTeamFilter.PlayerTeamFilterResponse;
-import com.IGallinari.LastGame.payload.response.PlayerTeamFilter.ViewPlayersPlayerTeamFilter;
+
 import com.IGallinari.LastGame.repository.PlayerRepository;
 import com.IGallinari.LastGame.repository.PlayerTeamRepository;
 import com.IGallinari.LastGame.repository.TeamRepository;
 
 import lombok.RequiredArgsConstructor;
 import com.IGallinari.LastGame.entity.*;
-import com.IGallinari.LastGame.payload.response.PlayerDetailsByGame.*;
 import com.IGallinari.LastGame.repository.*;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 
 @Service

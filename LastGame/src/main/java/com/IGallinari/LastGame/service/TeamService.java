@@ -1,14 +1,15 @@
 package com.IGallinari.LastGame.service;
 
 import com.IGallinari.LastGame.entity.*;
-import com.IGallinari.LastGame.payload.response.CompareTeam.CompareTeamResponse;
-import com.IGallinari.LastGame.payload.response.CompareTeam.LastFourGames.ViewLastFourGames;
-import com.IGallinari.LastGame.payload.response.CompareTeam.LastFourGames.ViewLastGame;
-import com.IGallinari.LastGame.payload.response.CompareTeam.LastFourHtH.HeadToHead;
-import com.IGallinari.LastGame.payload.response.CompareTeam.LastFourHtH.LastFourHtH;
-import com.IGallinari.LastGame.payload.response.ListTeam.*;
-import com.IGallinari.LastGame.payload.response.TeamDetails.*;
-import com.IGallinari.LastGame.payload.response.CompareTeam.*;
+import com.IGallinari.LastGame.payload.response.lastFourGames.ViewLastFourGames;
+import com.IGallinari.LastGame.payload.response.lastFourGames.ViewLastGame;
+import com.IGallinari.LastGame.payload.response.lastFourHtH.HeadToHead;
+import com.IGallinari.LastGame.payload.response.lastFourHtH.LastFourHtH;
+import com.IGallinari.LastGame.payload.response.listTeam.*;
+import com.IGallinari.LastGame.payload.response.teamDetails.*;
+import com.IGallinari.LastGame.payload.response.comparison.team.CompareTeamResponse;
+import com.IGallinari.LastGame.payload.response.comparison.team.ViewTeamCompareTeam;
+import com.IGallinari.LastGame.payload.response.comparison.team.ViewTeamComparisonNbaAvgCompareTeam;
 import com.IGallinari.LastGame.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -103,7 +104,7 @@ public class TeamService {
                                     avgStats.get(0)[2],
                                     avgStats.get(0)[3],
                                     avgStats.get(0)[4]
-                            )//DATI DI MOCK capire come restituire avgStats invecie che valori predefiniti
+                            )
                     )
             );
         }
@@ -150,6 +151,7 @@ public class TeamService {
                 team.getLogo(),
                 team.getConference(),
                 team.getDivision(),
+                team.getLogo(),
                 statsTeam.getRankConference(),
                 statsTeam.getRankDivision(),
                 viewStatsTeamDetails,
@@ -190,7 +192,6 @@ public class TeamService {
         }
         return lastGames;
     }
-
     public List<HeadToHead> builListHeadToHead(Team teamHome, Team teamVisitor){
         List<HeadToHead> listHeadToHead = new ArrayList<>();
         List<Game> games = gameRepository.findLastFourHtH(teamHome.getId(),teamVisitor.getId());
@@ -273,15 +274,10 @@ public class TeamService {
                 team2.getLogo(),
                 headToHeadList.subList(0, Math.min(4, headToHeadList.size()))
         );
-
         CompareTeamResponse CompareTeamResponse = new CompareTeamResponse(
                 viewTeamCompareTeam1,
                 viewTeamCompareTeam2,
-                TeamCompareNba,
-                viewLastFourGamesTeam1,
-                viewLastFourGamesTeam2,
-                headToHeadListTeam1,
-                headToHeadListTeam2
+                TeamCompareNba
         );
         return CompareTeamResponse;
     }
