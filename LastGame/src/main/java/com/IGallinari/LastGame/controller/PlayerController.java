@@ -2,7 +2,7 @@ package com.IGallinari.LastGame.controller;
 
 
 
-import com.IGallinari.LastGame.payload.response.detailsPlayerIndependByGame.DetailsPlayerIndependentByGameResponse;
+import com.IGallinari.LastGame.payload.response.playerDetails.PlayerDetailsResponse;
 import com.IGallinari.LastGame.payload.response.listPlayerFilter.PlayerFilterResponse;
 import com.IGallinari.LastGame.payload.response.playerDetailsByGame.PlayerDetailsByGameResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class PlayerController {
     @Autowired
     private PlayerService service;
 
-    @RequestMapping("/getPlayerTeamFilter")
+    @RequestMapping("/getPlayerTeamFiltered")
     public PlayerTeamFilterResponse getPlayerTeamFilter(@RequestParam int idTeam, @RequestParam int season){return this.service.buildPlayerTeamFilterResponse(idTeam, season);}
 
     @RequestMapping("/getPlayerDetailsByGame")
@@ -31,6 +31,6 @@ public class PlayerController {
     @RequestMapping("getTeamRolesPlayerFilter")
     public PlayerFilterResponse getTeamRolesPlayerFilter(){return this.service.buildCompareFilterResponse();}
 
-    @RequestMapping("getPlayerByGame")
-    public DetailsPlayerIndependentByGameResponse getPlayerByGame(@RequestParam int idPlayer, int season){return this.service.buildDetailsPlayerIndependentByGameResponse(idPlayer, season);}
+    @RequestMapping("getPlayerDetails")
+    public PlayerDetailsResponse getPlayerDetails(@RequestParam int idPlayer, int season){return this.service.buildDetailsPlayerIndependentByGameResponse(idPlayer, season);}
 }

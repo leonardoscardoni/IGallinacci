@@ -1,18 +1,18 @@
-package com.IGallinari.LastGame.payload.response.detailsPlayerIndependByGame;
+package com.IGallinari.LastGame.payload.response.playerDetails;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class DetailsShotsPlayerIndependentByGame {
+public class ViewShotsPlayerDetails {
     private Integer fieldShotsScored;
     private Integer fieldShotsAttempted;
-    private Integer fieldShotsPercentage;
+    private Float fieldShotsPercentage;
     private Integer freeThrowsScored;
     private Integer freeThrowsAttempted;
-    private Integer freeThrowsPercentage;
+    private Float freeThrowsPercentage;
     private Integer threePointersShotsScored;
     private Integer threePointersShotsAttempted;
-    private Integer threePointersShotsPercentage;
+    private Float threePointersShotsPercentage;
 }

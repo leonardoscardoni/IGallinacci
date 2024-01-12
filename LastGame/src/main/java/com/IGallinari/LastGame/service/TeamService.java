@@ -14,6 +14,7 @@ import com.IGallinari.LastGame.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -151,7 +152,6 @@ public class TeamService {
                 team.getLogo(),
                 team.getConference(),
                 team.getDivision(),
-                team.getLogo(),
                 statsTeam.getRankConference(),
                 statsTeam.getRankDivision(),
                 viewStatsTeamDetails,
@@ -161,16 +161,16 @@ public class TeamService {
                 viewPointsTeamDetails,
                 viewFoulsBallsBlocksTeamDetails,
                 viewWinLossTeamDetails,
-                List<ViewPlayerComparisonNbaAvgTeamDetails>
+                playerComparisonNbaAvg
 
 
 
         );
         return teamDetailsResponse;
     }
-    public List<ViewLastGame> buildListViewLastGame(Team team){
+    public List<ViewLastGame> buildListViewLastGame(Team team, LocalDate date){
         List<ViewLastGame> lastGames = new ArrayList<>();
-        List<Game> games= gameRepository.findLastFourGameByTeam(team.getId());
+        List<Game> games= gameRepository.findLastFourGameByTeam(team.getId(),date);
         Team otherTeam = new Team();
         for (Game game: games){
             if(team.equals(game.getHomeTeam())) {
@@ -195,9 +195,9 @@ public class TeamService {
         }
         return lastGames;
     }
-    public List<HeadToHead> builListHeadToHead(Team teamHome, Team teamVisitor){
+    public List<HeadToHead> builListHeadToHead(Team teamHome, Team teamVisitor, LocalDate date){
         List<HeadToHead> listHeadToHead = new ArrayList<>();
-        List<Game> games = gameRepository.findLastFourHtH(teamHome.getId(),teamVisitor.getId());
+        List<Game> games = gameRepository.findLastFourHtH(teamHome.getId(),teamVisitor.getId(),date);
         for (Game game : games){
             StatsGame statsGame = statsGameRepository.findStatsGameByGameAndTeam(game,teamHome);
             listHeadToHead.add(
@@ -227,22 +227,24 @@ public class TeamService {
         StatsTeam statsTeam2 = statsTeamRepository.findByTeamAndSeason(team2, season);
 
         ViewTeamCompareTeam viewTeamCompareTeam1 = new ViewTeamCompareTeam(
+                team1.getId(),
                 team1.getName(),
                 team1.getLogo(),
                 team1.getConference(),
                 statsTeam1.getRankConference()
         );
         ViewTeamCompareTeam viewTeamCompareTeam2 = new ViewTeamCompareTeam(
+                team2.getId(),
                 team2.getName(),
                 team2.getLogo(),
                 team1.getConference(),
                 statsTeam2.getRankConference()
         );
-        // Team data comparison
         List<ViewTeamComparisonNbaAvgCompareTeam> TeamCompareNba= new ArrayList<>();
         List<String > dataNames = List.of("points","rebounds","assist","fieldShotsMade","freeTrowMade","treePointsMade");
         List<Integer[]> datasTeam1 = statsTeamRepository.findDataTeamByIdTeamAndSeason(idTeam1,season);
         List<Integer[]> datasTeam2 = statsTeamRepository.findDataTeamByIdTeamAndSeason(idTeam2,season);
+        LocalDate today = LocalDate.now();
         for(int i=0;i<dataNames.size();i++){
             TeamCompareNba.add(
                     new ViewTeamComparisonNbaAvgCompareTeam(
@@ -252,35 +254,38 @@ public class TeamService {
                     )
             );
         }
-        // last 4 games win||loss
         ViewLastFourGames viewLastFourGamesTeam1 = new ViewLastFourGames(
                 team1.getId(),
                 team1.getName(),
                 team1.getLogo(),
-                buildListViewLastGame(team1));
+                buildListViewLastGame(team1,today));
         ViewLastFourGames viewLastFourGamesTeam2 = new ViewLastFourGames(
-                team1.getId(),
+                team2.getId(),
                 team2.getName(),
                 team2.getLogo(),
-                buildListViewLastGame(team2)
+                buildListViewLastGame(team2,today)
         );
-
-        // Head to head
-        List<HeadToHead> headToHeadList = builListHeadToHead(team1, team2);
-        LastFourHtH headToHeadListTeam1 = new LastFourHtH(team1.getId(),
+        List<HeadToHead> headToHeadList = builListHeadToHead(team1, team2, today);
+        LastFourHtH lastFourHtHTeam1 = new LastFourHtH(
+                team1.getId(),
                 team1.getCode(),
                 team1.getLogo(),
                 headToHeadList.subList(0, Math.min(4, headToHeadList.size()))
         );
-        LastFourHtH headToHeadListTeam2 = new LastFourHtH(team1.getId(),
+        LastFourHtH lastFourHtHTeam2 = new LastFourHtH(
+                team2.getId(),
                 team2.getCode(),
                 team2.getLogo(),
-                headToHeadList.subList(0, Math.min(4, headToHeadList.size()))
+                headToHeadList.subList(Math.max(0, headToHeadList.size() - 4), headToHeadList.size())
         );
         CompareTeamResponse CompareTeamResponse = new CompareTeamResponse(
                 viewTeamCompareTeam1,
                 viewTeamCompareTeam2,
-                TeamCompareNba
+                TeamCompareNba,
+                viewLastFourGamesTeam1,
+                viewLastFourGamesTeam2,
+                lastFourHtHTeam1,
+                lastFourHtHTeam2
         );
         return CompareTeamResponse;
     }

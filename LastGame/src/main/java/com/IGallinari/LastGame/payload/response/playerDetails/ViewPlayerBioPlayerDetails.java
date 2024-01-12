@@ -1,4 +1,4 @@
-package com.IGallinari.LastGame.payload.response.detailsPlayerIndependByGame;
+package com.IGallinari.LastGame.payload.response.playerDetails;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
-public class ViewPlayerBioDetailsIndependentByGame {
+public class ViewPlayerBioPlayerDetails {
     private LocalDate age;
     private String country;
     private Float weight;

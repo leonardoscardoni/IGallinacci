@@ -31,8 +31,8 @@ public interface StatsPlayerRepository extends JpaRepository<StatsPlayer,Integer
 
     @Query(value = "SELECT SUM(sp.fgm), SUM(sp.fga), SUM(sp.fgp), SUM(sp.ftm), SUM(sp.fta), SUM(sp.ftp), SUM(sp.tpm), SUM(sp.tpa), SUM(sp.tpp), SUM(sp.offReb)," +
             " SUM(sp.defReb), SUM(sp.totReb), SUM(sp.assists), SUM(sp.pFouls), SUM(sp.steals), SUM(sp.turnovers), SUM(sp.blocks), SUM(sp.points) AS sumPoints, " +
-            "AVG(sp.points) AS avgPoints FROM statsplayer sp LEFT JOIN game g ON sp.idGame=g.id WHERE g.season=2022 AND sp.idPlayer=4; ", nativeQuery = true)
-    List<java.util.Objects[]> findSumStatsPlayerAndAvgPointsByIdPlayerAndSeason(@Param("inputIdPlayer") int idPlayer, @Param("inputSeason") int season);
+            "AVG(sp.points) AS avgPoints, COUNT(idGame) AS TotGame FROM statsplayer sp LEFT JOIN game g ON sp.idGame=g.id WHERE g.season=:inputSeason AND sp.idPlayer=:inputIdPlayer ", nativeQuery = true)
+    List<Object[]> findSumStatsPlayerAndAvgPointsByIdPlayerAndSeason(@Param("inputIdPlayer") int idPlayer, @Param("inputSeason") int season);
 
     @Query(value = "SELECT DISTINCT g.season FROM StatsPlayer sp LEFT JOIN Game g ON sp.idGame = g.id", nativeQuery = true)
     List<Integer> findDistinctSeason();

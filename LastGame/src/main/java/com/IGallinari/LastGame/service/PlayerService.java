@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.IGallinari.LastGame.payload.response.detailsPlayerIndependByGame.*;
+import com.IGallinari.LastGame.payload.response.playerDetails.*;
 import com.IGallinari.LastGame.payload.response.listPlayerFilter.PlayerFilterResponse;
 import com.IGallinari.LastGame.payload.response.listPlayerFilter.ViewRolesPlayerFilter;
 import com.IGallinari.LastGame.payload.response.listPlayerFilter.ViewTeamsPlayerFilter;
@@ -157,9 +157,9 @@ public class PlayerService {
             return  playerFilterResponse;
         }
 
-    public DetailsPlayerIndependentByGameResponse buildDetailsPlayerIndependentByGameResponse(int idPlayer, int season) {
+    public PlayerDetailsResponse buildDetailsPlayerIndependentByGameResponse(int idPlayer, int season) {
         Player player = playerRepository.findById(idPlayer);
-        List<java.util.Objects[]> sumStatsPlayerAndAvgPointsArray = statsPlayerRepository.findSumStatsPlayerAndAvgPointsByIdPlayerAndSeason(idPlayer, season);
+        List<Object[]> sumStatsPlayerAndAvgPointsArray = statsPlayerRepository.findSumStatsPlayerAndAvgPointsByIdPlayerAndSeason(idPlayer, season);
         PlayerTeam playerTeam = playerTeamRepository.findByPlayerAndSeason(player,season);
         Team team= playerTeam.getTeam();
         boolean favourite = false;
@@ -168,13 +168,13 @@ public class PlayerService {
         int idTeam = team.getId();
         String logo = team.getLogo();
         String nameTeam = team.getName();
-        ViewGamesDetailsPlayerIndependentByGame viewGamesDetailsPlayerIndependentByGame = new ViewGamesDetailsPlayerIndependentByGame(
-                player.getId(),
+        ViewGamePlayerDetails viewGamePlayerDetails = new ViewGamePlayerDetails(
+                Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[19].toString()),
                 player.getJersey(),
                 Float.parseFloat(sumStatsPlayerAndAvgPointsArray.get(0)[18].toString()),
                 Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[17].toString())
         );
-        ViewPlayerBioDetailsIndependentByGame viewPlayerBioDetailsIndependentByGame = new ViewPlayerBioDetailsIndependentByGame(
+        ViewPlayerBioPlayerDetails viewPlayerBioPlayerDetails = new ViewPlayerBioPlayerDetails(
                 player.getDateOfBirth(),
                 player.getCountry(),
                 player.getWeight(),
@@ -184,7 +184,7 @@ public class PlayerService {
                 player.getCollege(),
                 player.getAffiliation()
         );
-        ViewShotsDetailsPlayerIndependentByGame viewShotsDetailsPlayerIndependentByGame = new ViewShotsDetailsPlayerIndependentByGame(
+        ViewShotsPlayerDetails viewShotsPlayerDetails = new ViewShotsPlayerDetails(
                 Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[0].toString()),
                 Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[1].toString()),
                 Float.parseFloat(sumStatsPlayerAndAvgPointsArray.get(0)[2].toString()),
@@ -195,24 +195,24 @@ public class PlayerService {
                 Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[7].toString()),
                 Float.parseFloat(sumStatsPlayerAndAvgPointsArray.get(0)[8].toString())
         );
-        ViewAssistReboundsDetailsPlayerIndependentByGame viewAssistReboundsDetailsPlayerIndependentByGame = new ViewAssistReboundsDetailsPlayerIndependentByGame(
+        ViewAssistReboundsPlayerDetails viewAssistReboundsPlayerDetails = new ViewAssistReboundsPlayerDetails(
                 Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[9].toString()),
                 Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[10].toString()),
                 Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[11].toString()),
                 Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[12].toString())
         );
-        ViewFoulsBallsBlocksDetailsPlayerIndependentByGame viewFoulsBallsBlocksDetailsPlayerIndependentByGame = new ViewFoulsBallsBlocksDetailsPlayerIndependentByGame(
+        ViewFoulsBallsBlocksPlayerDetails viewFoulsBallsBlocksPlayerDetails = new ViewFoulsBallsBlocksPlayerDetails(
                 Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[13].toString()),
                 Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[14].toString()),
                 Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[15].toString()),
                 Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[16].toString())
         );
-        ViewPointsDetailsPlayerIndependentByGame viewPointsDetailsPlayerIndependentByGame = new ViewPointsDetailsPlayerIndependentByGame(
+        ViewPointsPlayerDetails viewPointsPlayerDetails = new ViewPointsPlayerDetails(
                 Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[17].toString()),
                 Float.parseFloat(sumStatsPlayerAndAvgPointsArray.get(0)[18].toString())
         );
 
-        return new DetailsPlayerIndependentByGameResponse(
+        return new PlayerDetailsResponse(
                 favourite,
                 idPlayer,
                 firstName,
@@ -220,11 +220,11 @@ public class PlayerService {
                 idTeam,
                 logo,
                 nameTeam,
-                viewGamesDetailsPlayerIndependentByGame,
-                viewPlayerBioDetailsIndependentByGame,
-                viewShotsDetailsPlayerIndependentByGame,
-                viewAssistReboundsDetailsPlayerIndependentByGame,
-                viewFoulsBallsBlocksDetailsPlayerIndependentByGame,
-                viewPointsDetailsPlayerIndependentByGame
+                viewGamePlayerDetails,
+                viewPlayerBioPlayerDetails,
+                viewShotsPlayerDetails,
+                viewAssistReboundsPlayerDetails,
+                viewFoulsBallsBlocksPlayerDetails,
+                viewPointsPlayerDetails
         );
     }}

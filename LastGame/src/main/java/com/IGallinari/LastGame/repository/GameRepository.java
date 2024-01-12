@@ -31,14 +31,14 @@ public interface GameRepository extends JpaRepository<Game,Integer> {
 
     List<Game> findGameByDate(LocalDate inputDate);
 
-    @Query(value = "SELECT * FROM game g WHERE g.idVisitor=:idTeam OR g.idHome=:idTeam ORDER BY g.date DESC LIMIT 4", nativeQuery = true)
-    List<Game> findLastFourGameByTeam(@Param("idTeam")int idTeam);
+    @Query(value = "SELECT * FROM game g WHERE (g.idVisitor=:inputIdTeam OR g.idHome=:inputIdTeam) AND g.id IN (SELECT sg.idGame FROM statsgame sg GROUP BY sg.idGame) AND g.date<:inputDate ORDER BY g.date DESC LIMIT 4", nativeQuery = true)
+    List<Game> findLastFourGameByTeam(@Param("inputIdTeam")int idTeam,@Param("inputDate")LocalDate date);
 
     @Query(value = "SELECT g.idHome AS idTeam FROM game g WHERE g.id =:idGame UNION SELECT g.idVisitor AS idTeam FROM game g WHERE g.id=:idGame ", nativeQuery = true)
     List<Integer> findIdTeam(@Param("idGame")int idGame);
 
-    @Query(value = "SELECT * FROM game g WHERE (g.idVisitor=:idTeamHome AND g.idHome=:idTeamVisitor) OR (g.idVisitor=:idTeamVisitor AND g.idHome=:idTeamHome) ORDER BY g.date DESC LIMIT 4;", nativeQuery = true)
-    List<Game> findLastFourHtH(@Param("idTeamHome")int idTeamHome,@Param("idTeamVisitor")int idTeamVisitor);
+    @Query(value = "SELECT * FROM game g WHERE ((g.idVisitor=:idTeamHome AND g.idHome=:idTeamVisitor) OR (g.idVisitor=:idTeamVisitor AND g.idHome=:idTeamHome)) AND g.id IN (SELECT sg.idGame FROM statsgame sg GROUP BY sg.idGame) AND g.date<:inputDate ORDER BY g.date DESC LIMIT 4;", nativeQuery = true)
+    List<Game> findLastFourHtH(@Param("idTeamHome")int idTeamHome,@Param("idTeamVisitor")int idTeamVisitor,@Param("inputDate")LocalDate date);
 
     @Query(value = "SELECT idHome AS TeamID FROM game WHERE date =:inputDate UNION SELECT idVisitor AS TeamID FROM game WHERE date =:inputDate; ", nativeQuery = true)
     List<Integer> findIdTeamFromDate(@Param("inputDate")LocalDate inputDate);
