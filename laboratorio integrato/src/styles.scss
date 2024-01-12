@@ -76,11 +76,11 @@ span{
 .hide-scrollbar {
     scrollbar-width: none; /* Per Firefox */
     -ms-overflow-style: none; /* Per Internet Explorer e Microsoft Edge */
-  }
+}
   
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none; /* Per WebKit (Chrome, Safari) */
-  }
+.hide-scrollbar::-webkit-scrollbar {
+display: none; /* Per WebKit (Chrome, Safari) */
+}
   
 h2{
     font-size: 1.5rem!important;

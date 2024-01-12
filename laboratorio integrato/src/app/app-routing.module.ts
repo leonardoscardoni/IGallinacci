@@ -14,6 +14,7 @@ import { ElencoArticoliComponent } from "./pages/elenco-articoli/elenco-articoli
 import { ElencoTeamComponent } from "./pages/elenco-team/elenco-team.component";
 import { DettaglioConfrontoTeamComponent } from "./pages/dettaglio-confronto-team/dettaglio-confronto-team.component";
 import { ClassificaComponent } from "./pages/classifica/classifica.component";
+import { ProfiloComponent } from "./pages/profilo/profilo.component";
 
 const routes: Routes = [
     { path: "home", component: HomePageComponent },
@@ -35,6 +36,10 @@ const routes: Routes = [
     {
         path: "classifica/:stagione",
         component: ClassificaComponent,
+    },
+    {
+        path: "profilo",
+        component: ProfiloComponent,
     },
 
     { path: "", redirectTo: "home", pathMatch: "full" },
