@@ -24,7 +24,7 @@ public class DailyEndpoint {
 
     private StatsGameRepository statsGameRepository;
 
-    @Scheduled(cron = "0 0 5 * * ?")
+    @PostConstruct
     public void init() throws InterruptedException {
         LocalDate today=LocalDate.now();
         System.out.println("Starting daily call");
@@ -39,8 +39,19 @@ public class DailyEndpoint {
             String response = apiCaller.callApi("games", params);
             call+=1;
             redirectJSON.manageJSON(response);
-            System.out.println("Wait for 60 sec!");
-            TimeUnit.MINUTES.sleep(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        totCall+=call;
+        System.out.println("there were made "+call+" calls, total calls "+totCall);
+        call=0;
+        params = Map.ofEntries(
+                Map.entry("league", "standard"),
+                Map.entry("season", season.toString()));
+        try {
+            String response = apiCaller.callApi("standings", params);//2 chiamate
+            call+=1;
+            redirectJSON.manageJSON(response);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -48,43 +59,44 @@ public class DailyEndpoint {
         System.out.println("there were made "+call+" calls, total calls "+totCall);
         call=0;
         List<Integer> idGamesNotCompleted= gameRepository.findAllGameIdsBeforeDateNotCompleted(today);
+        List<Integer> idTeamAlreadyUpdate = new ArrayList<>();
         if (!idGamesNotCompleted.isEmpty()) {
             for (int idGame : idGamesNotCompleted) {
                 List<Integer> idTeams = gameRepository.findIdTeam(idGame);
                 for(Integer idTeam: idTeams){
-                    System.out.println("idTeam: "+idTeam);
-                    params = Map.ofEntries(
-                            Map.entry("season", season.toString()),
-                            Map.entry("team", idTeam.toString()));
-                    try {
-                        String response = apiCaller.callApi("players", params);//120 chiamate
-                        call+=1;
-                        redirectJSON.manageJSON(response);
-                        System.out.println("Wait for 60 sec!");
-                        TimeUnit.MINUTES.sleep(1);
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    if(!idTeamAlreadyUpdate.contains(idTeam)) {
+                        System.out.println("idTeam: " + idTeam);
+                        params = Map.ofEntries(
+                                Map.entry("season", season.toString()),
+                                Map.entry("team", idTeam.toString()));
+                        try {
+                            String response = apiCaller.callApi("players", params);//120 chiamate
+                            call += 1;
+                            redirectJSON.manageJSON(response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            String response = apiCaller.callApi("players/statistics", params);//120 chiamate
+                            call += 1;
+                            redirectJSON.manageJSON(response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        params = Map.ofEntries(
+                                Map.entry("season", season.toString()),
+                                Map.entry("id", idTeam.toString()));
+                        try {
+                            String response = apiCaller.callApi("teams/statistics", params);//120 chiamate
+                            call += 1;
+                            redirectJSON.manageJSON(response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        idTeamAlreadyUpdate.add(idTeam);
                     }
-                    try {
-                        String response = apiCaller.callApi("players/statistics", params);//120 chiamate
-                        call+=1;
-                        redirectJSON.manageJSON(response);
-                        System.out.println("Wait for 60 sec!");
-                        TimeUnit.MINUTES.sleep(1);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    params = Map.ofEntries(
-                            Map.entry("season", season.toString()),
-                            Map.entry("id", idTeam.toString()));
-                    try {
-                        String response = apiCaller.callApi("teams/statistics", params);//120 chiamate
-                        call+=1;
-                        redirectJSON.manageJSON(response);
-                        System.out.println("Wait for 60 sec!");
-                        TimeUnit.MINUTES.sleep(1);
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    else{
+                        System.out.println("idTeam: "+idTeam+" skipped because already up to date");
                     }
                 }
                 totCall+=call;
@@ -96,27 +108,11 @@ public class DailyEndpoint {
                     String response = apiCaller.callApi("games/statistics", params);
                     call+=1;
                     redirectJSON.manageJSON(response);
-                    System.out.println("Wait for 60 sec!");
-                    TimeUnit.MINUTES.sleep(1);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-            totCall+=call;
-            System.out.println("there were made "+call+" calls, total calls "+totCall);
-            call=0;
-            params = Map.ofEntries(
-                    Map.entry("league", "standard"),
-                    Map.entry("season", season.toString()));
-            try {
-                String response = apiCaller.callApi("standings", params);//2 chiamate
-                call+=1;
-                redirectJSON.manageJSON(response);
-                System.out.println("Wait for 60 sec!");
-                TimeUnit.MINUTES.sleep(1);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
         }
         totCall+=call;
         System.out.println("there were made "+call+" calls, total calls "+totCall);
@@ -132,8 +128,6 @@ public class DailyEndpoint {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                System.out.println("Wait for 60 sec!");
-                TimeUnit.MINUTES.sleep(1);
             }
         }
         else {
