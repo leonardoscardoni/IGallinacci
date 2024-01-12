@@ -1,14 +1,15 @@
 package com.IGallinari.LastGame.service;
 
-import com.IGallinari.LastGame.entity.Player;
-import com.IGallinari.LastGame.entity.PlayerTeam;
-import com.IGallinari.LastGame.entity.StatsTeam;
-import com.IGallinari.LastGame.entity.Team;
+import com.IGallinari.LastGame.entity.*;
+import com.IGallinari.LastGame.payload.response.LastFourGames.ViewLastFourGames;
+import com.IGallinari.LastGame.payload.response.LastFourGames.ViewLastGame;
+import com.IGallinari.LastGame.payload.response.LastFourHtH.HeadToHead;
+import com.IGallinari.LastGame.payload.response.LastFourHtH.LastFourHtH;
+import com.IGallinari.LastGame.payload.response.listTeam.*;
+import com.IGallinari.LastGame.payload.response.teamDetails.*;
 import com.IGallinari.LastGame.payload.response.comparison.team.CompareTeamResponse;
 import com.IGallinari.LastGame.payload.response.comparison.team.ViewTeamCompareTeam;
 import com.IGallinari.LastGame.payload.response.comparison.team.ViewTeamComparisonNbaAvgCompareTeam;
-import com.IGallinari.LastGame.payload.response.listTeam.*;
-import com.IGallinari.LastGame.payload.response.teamDetails.*;
 import com.IGallinari.LastGame.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,8 @@ public class TeamService {
     private final StatsGameRepository statsGameRepository;
 
     private final StatsPlayerRepository statsPlayerRepository;
+
+    private final GameRepository gameRepository;
 
     public Team getTeamById(int inputId){
         return teamRepository.findById(inputId);
@@ -161,12 +164,64 @@ public class TeamService {
         );
         return teamDetailsResponse;
     }
+    public List<ViewLastGame> buildListViewLastGame(Team team){
+        List<ViewLastGame> lastGames = new ArrayList<>();
+        List<Game> games= gameRepository.findLastFourGameByTeam(team.getId());
+        Team otherTeam = new Team();
+        for (Game game: games){
+            if(team.equals(game.getHomeTeam())) {
+                otherTeam = game.getVisitorTeam();
+            }else{
+                otherTeam = game.getHomeTeam();
+            }
+            StatsGame statsGameTeam = statsGameRepository.findStatsGameByGameAndTeam(game,team);
+            StatsGame statsGameOtherTeam = statsGameRepository.findStatsGameByGameAndTeam(game,otherTeam);
+            Boolean result = null;
+            if(statsGameTeam.getPoints()>statsGameOtherTeam.getPoints()) {
+                result = Boolean.TRUE;
+            }else{
+                result = Boolean.FALSE;
+            }
+            lastGames.add(
+                    new ViewLastGame(
+                            game.getId(),
+                            result
+                    )
+            );
+        }
+        return lastGames;
+    }
+    public List<HeadToHead> builListHeadToHead(Team teamHome, Team teamVisitor){
+        List<HeadToHead> listHeadToHead = new ArrayList<>();
+        List<Game> games = gameRepository.findLastFourHtH(teamHome.getId(),teamVisitor.getId());
+        for (Game game : games){
+            StatsGame statsGame = statsGameRepository.findStatsGameByGameAndTeam(game,teamHome);
+            listHeadToHead.add(
+                    new HeadToHead(
+                            game.getId(),
+                            statsGame.getPoints()
+                    )
+            );
+        }
+        for (Game game : games){
+            StatsGame statsGame = statsGameRepository.findStatsGameByGameAndTeam(game,teamVisitor);
+            listHeadToHead.add(
+                    new HeadToHead(
+                            game.getId(),
+                            statsGame.getPoints()
+                    )
+            );
+        }
+        return listHeadToHead;
+    }
 
     public CompareTeamResponse buildCompareTeamResponse(int idTeam1, int idTeam2, int season){
+
         Team team1 = teamRepository.findById(idTeam1);
         Team team2 = teamRepository.findById(idTeam2);
-        StatsTeam statsTeam1= statsTeamRepository.findByTeamAndSeason(team1,season);
-        StatsTeam statsTeam2 = statsTeamRepository.findByTeamAndSeason(team2,season);
+        StatsTeam statsTeam1= statsTeamRepository.findByTeamAndSeason(team1, season);
+        StatsTeam statsTeam2 = statsTeamRepository.findByTeamAndSeason(team2, season);
+
         ViewTeamCompareTeam viewTeamCompareTeam1 = new ViewTeamCompareTeam(
                 team1.getName(),
                 team1.getLogo(),
@@ -193,7 +248,31 @@ public class TeamService {
                     )
             );
         }
+        // last 4 games win||loss
+        ViewLastFourGames viewLastFourGamesTeam1 = new ViewLastFourGames(
+                team1.getId(),
+                team1.getName(),
+                team1.getLogo(),
+                buildListViewLastGame(team1));
+        ViewLastFourGames viewLastFourGamesTeam2 = new ViewLastFourGames(
+                team1.getId(),
+                team2.getName(),
+                team2.getLogo(),
+                buildListViewLastGame(team2)
+        );
 
+        // Head to head
+        List<HeadToHead> headToHeadList = builListHeadToHead(team1, team2);
+        LastFourHtH headToHeadListTeam1 = new LastFourHtH(team1.getId(),
+                team1.getCode(),
+                team1.getLogo(),
+                headToHeadList.subList(0, Math.min(4, headToHeadList.size()))
+        );
+        LastFourHtH headToHeadListTeam2 = new LastFourHtH(team1.getId(),
+                team2.getCode(),
+                team2.getLogo(),
+                headToHeadList.subList(0, Math.min(4, headToHeadList.size()))
+        );
         CompareTeamResponse CompareTeamResponse = new CompareTeamResponse(
                 viewTeamCompareTeam1,
                 viewTeamCompareTeam2,
@@ -202,3 +281,4 @@ public class TeamService {
         return CompareTeamResponse;
     }
 }
+

@@ -3,7 +3,6 @@ package com.IGallinari.LastGame.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.IGallinari.LastGame.payload.response.ListPlayerFilter.PlayerFilterResponse;
 import com.IGallinari.LastGame.payload.response.ListPlayerFilter.ViewRolesPlayerFilter;
 import com.IGallinari.LastGame.payload.response.ListPlayerFilter.ViewTeamsPlayerFilter;
@@ -22,8 +21,6 @@ import lombok.RequiredArgsConstructor;
 import com.IGallinari.LastGame.entity.*;
 import com.IGallinari.LastGame.payload.response.PlayerDetailsByGame.*;
 import com.IGallinari.LastGame.repository.*;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 
 @Service

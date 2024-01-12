@@ -1,4 +1,4 @@
-package com.IGallinari.LastGame.payload.response.gameDetails.lastFourHtH;
+package com.IGallinari.LastGame.payload.response.CompareTeam.LastFourGames;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,9 +7,9 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class LastFourHtHGameDetails {
+public class ViewLastFourGames {
     private int idTeam;
     private String code;
     private String logo;
-    private List<HeadToHeadGameDetails> headToHeadGameDetails;
+    private List<ViewLastGame> lastGames;
 }
