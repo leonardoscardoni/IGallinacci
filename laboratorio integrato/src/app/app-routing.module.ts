@@ -13,6 +13,7 @@ import { DettGiocatoreIndipendenteComponent } from "./pages/dett-giocatore-indip
 import { ElencoArticoliComponent } from "./pages/elenco-articoli/elenco-articoli.component";
 import { ElencoTeamComponent } from "./pages/elenco-team/elenco-team.component";
 import { DettaglioConfrontoTeamComponent } from "./pages/dettaglio-confronto-team/dettaglio-confronto-team.component";
+import { ClassificaComponent } from "./pages/classifica/classifica.component";
 
 const routes: Routes = [
     { path: "home", component: HomePageComponent },
@@ -30,6 +31,10 @@ const routes: Routes = [
     {
         path: "dettaglio-confronto-team/:id1/:id2",
         component: DettaglioConfrontoTeamComponent,
+    },
+    {
+        path: "classifica/:stagione",
+        component: ClassificaComponent,
     },
 
     { path: "", redirectTo: "home", pathMatch: "full" },
