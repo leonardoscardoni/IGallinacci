@@ -21,10 +21,10 @@ public class TeamsStatisticsHandler implements Handler{
     @Override
     public void handle(JsonNode jsonNode) {
         JsonNode parametersNode = jsonNode.get("parameters");
-        JsonNode teamsStatisticsNode = (ArrayNode) jsonNode.get("response");
+        ArrayNode teamsStatisticsNode = (ArrayNode) jsonNode.get("response");
         Team team = teamRepository.findById(parametersNode.get("id").asInt());
         int season = parametersNode.get("season").asInt();
-        StatsTeam statsTeam = statsTeamRepository.findByTeamAndSeason(team,season);
+        StatsTeam statsTeam = statsTeamRepository.findByTeamAndSeason(team, season);
         if(statsTeam==null){
             statsTeam = new StatsTeam();
             IdStatsTeam idStatsTeam = new IdStatsTeam();

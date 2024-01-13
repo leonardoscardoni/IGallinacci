@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-@Component
+//@Component
 @AllArgsConstructor
 public class DailyEndpoint {
 
@@ -24,7 +24,7 @@ public class DailyEndpoint {
 
     private StatsGameRepository statsGameRepository;
 
-    @PostConstruct
+    //@PostConstruct
     public void init() throws InterruptedException {
         LocalDate today=LocalDate.now();
         System.out.println("Starting daily call");
@@ -45,6 +45,7 @@ public class DailyEndpoint {
         totCall+=call;
         System.out.println("there were made "+call+" calls, total calls "+totCall);
         call=0;
+        TimeUnit.SECONDS.sleep(7);
         params = Map.ofEntries(
                 Map.entry("league", "standard"),
                 Map.entry("season", season.toString()));
@@ -58,6 +59,7 @@ public class DailyEndpoint {
         totCall+=call;
         System.out.println("there were made "+call+" calls, total calls "+totCall);
         call=0;
+        TimeUnit.SECONDS.sleep(7);
         List<Integer> idGamesNotCompleted= gameRepository.findAllGameIdsBeforeDateNotCompleted(today);
         List<Integer> idTeamAlreadyUpdate = new ArrayList<>();
         if (!idGamesNotCompleted.isEmpty()) {
@@ -76,6 +78,7 @@ public class DailyEndpoint {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+                        TimeUnit.SECONDS.sleep(7);
                         try {
                             String response = apiCaller.callApi("players/statistics", params);//120 chiamate
                             call += 1;
@@ -83,6 +86,7 @@ public class DailyEndpoint {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+                        TimeUnit.SECONDS.sleep(7);
                         params = Map.ofEntries(
                                 Map.entry("season", season.toString()),
                                 Map.entry("id", idTeam.toString()));
@@ -94,6 +98,7 @@ public class DailyEndpoint {
                             e.printStackTrace();
                         }
                         idTeamAlreadyUpdate.add(idTeam);
+                        TimeUnit.SECONDS.sleep(7);
                     }
                     else{
                         System.out.println("idTeam: "+idTeam+" skipped because already up to date");
@@ -111,8 +116,8 @@ public class DailyEndpoint {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                TimeUnit.SECONDS.sleep(7);
             }
-
         }
         totCall+=call;
         System.out.println("there were made "+call+" calls, total calls "+totCall);
@@ -128,6 +133,7 @@ public class DailyEndpoint {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                TimeUnit.SECONDS.sleep(7);
             }
         }
         else {

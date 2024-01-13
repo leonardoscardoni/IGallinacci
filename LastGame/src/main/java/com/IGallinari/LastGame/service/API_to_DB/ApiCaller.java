@@ -17,9 +17,6 @@ public class ApiCaller {
     private static final String RAPIDAPI_KEY = "";
     private static final String baseURL = "https://v2.nba.api-sports.io/";
 
-    private Integer countCall=0;
-
-    private LocalTime firstCall=null;
     private static final HttpClient httpClient = HttpClient.newHttpClient();
 
     private String makeApiCall(URI uri) throws Exception {
@@ -46,23 +43,8 @@ public class ApiCaller {
         URI uri = URI.create(baseURL + endpoint + "?" + paramString);
 
         try {
-            if(firstCall==null){
-                firstCall= LocalTime.now();
-                countCall+=1;
-            } else if (ChronoUnit.SECONDS.between(firstCall,LocalTime.now()) < 60 && countCall<10) {
-                 countCall+=1;
-            }else if (ChronoUnit.SECONDS.between(firstCall,LocalTime.now()) < 60 || countCall>=10) {
-                System.out.println("LIMITE RAGGIUNTO time: "+ChronoUnit.SECONDS.between(firstCall,LocalTime.now())+" sec, countCall: "+countCall);
-                TimeUnit.SECONDS.sleep(ChronoUnit.SECONDS.between(firstCall,LocalTime.now()));
-                firstCall= LocalTime.now();
-                countCall = 1;
-            }else {
-                firstCall=LocalTime.now();
-                countCall=1;
-            }
-            System.out.println("time: "+ChronoUnit.SECONDS.between(firstCall,LocalTime.now())+" sec, countCall: "+countCall);
             // Make the API call and return the response
-            System.out.println("Making a call to: "+endpoint+" endpoint");
+            System.out.println("Making a call to: " + endpoint + " endpoint");
             return makeApiCall(uri);
         } catch (Exception e) {
             e.printStackTrace();
