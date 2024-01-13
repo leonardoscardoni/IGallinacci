@@ -1,8 +1,8 @@
 package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 
 import com.IGallinari.LastGame.entity.Team;
-import com.IGallinari.LastGame.entity.id_class.IdStatsTeam;
 import com.IGallinari.LastGame.entity.StatsTeam;
+import com.IGallinari.LastGame.entity.id_class.IdStatsTeam;
 import com.IGallinari.LastGame.repository.StatsTeamRepository;
 import com.IGallinari.LastGame.repository.TeamRepository;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -21,7 +21,7 @@ public class TeamsStatisticsHandler implements Handler{
     @Override
     public void handle(JsonNode jsonNode) {
         JsonNode parametersNode = jsonNode.get("parameters");
-        JsonNode teamsStatisticsNode = (ArrayNode) jsonNode.get("response");
+        ArrayNode teamsStatisticsNode = (ArrayNode) jsonNode.get("response");
         Team team = teamRepository.findById(parametersNode.get("id").asInt());
         int season = parametersNode.get("season").asInt();
         StatsTeam statsTeam = statsTeamRepository.findByTeamAndSeason(team, season);

@@ -46,21 +46,25 @@ public class Player {
             case "C":
                 return "Centro";
             case "C-F":
-                return "Centro-Ala Grande";
+                return "Centro-Ala";
             case "F":
-                return "Ala Grande";
+                return "Ala";
             case "F-C":
-                return "Ala Grande-Centro";
+                return "Ala-Centro";
             case "F-G":
-                return "Ala Grande-Guardia";
+                return "Ala-Guardia";
             case "G":
                 return "Guardia";
             case "G-F":
-                return "Guardia-Ala Grande";
+                return "Guardia-Ala";
             case "SF":
                 return "Ala Piccola";
             case "SG":
                 return "Guardia Tiratrice";
+            case "PF":
+                return "Ala Grande";
+            case "PG":
+                return "Playmaker";
             default:
                 return "";
         }
