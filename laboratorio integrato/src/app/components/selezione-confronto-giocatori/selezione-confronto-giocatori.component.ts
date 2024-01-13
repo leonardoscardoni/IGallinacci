@@ -97,8 +97,8 @@ ab() {
 constructor(private apiService: ApiService) {}
 
 data2: PlayerTeamFilteredType = {} as PlayerTeamFilteredType
-  ciaociao() {
-      this.apiService.getPlayerFilter().subscribe((data) => {
+  PlayerFilter(idTeam:number) {
+      this.apiService.getPlayerFilter(idTeam).subscribe((data) => {
         this.data2 = data;
         console.log(this.data2)
 

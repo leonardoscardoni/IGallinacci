@@ -2,6 +2,7 @@ export interface PlayerTeamFilteredType {
     idTeam:   number;
     nickname: string;
     name:     string;
+    logo:     string;
     season:   number;
     players:  Player[];
 }

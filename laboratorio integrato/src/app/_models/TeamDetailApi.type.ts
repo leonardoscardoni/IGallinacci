@@ -2,6 +2,7 @@ export interface TeamDetailType {
     idTeam:            number;
     favourite:         boolean;
     name:              string;
+    logo:              string;
     conference:        string;
     division:          string;
     rankConference:    number;

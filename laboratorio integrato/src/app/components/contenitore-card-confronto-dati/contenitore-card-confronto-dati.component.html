@@ -4,7 +4,7 @@
                 <ng-container *ngFor="let tipoDato of data.dataComparisonNba, let i = index">
                     <div class="w-full md:w-[30%] mt-3 ">
                         
-                        <app-card-confronto-dati [titoloCard]="titoli[i]" [nomeSquadra1]="data.name" [nomeSquadra2]="'Media NBA'" [logoSquadra1]="data.name" [logoSquadra2]="logo" [datoSquadra1]="tipoDato.dataTeam"
+                        <app-card-confronto-dati [titoloCard]="titoli[i]" [nomeSquadra1]="data.name" [nomeSquadra2]="'Media NBA'" [logoSquadra1]="data.logo" [logoSquadra2]="logo" [datoSquadra1]="tipoDato.dataTeam"
                         [datoSquadra2]="arrotondaPerDifetto(tipoDato.dataNba)"/>
                         
                     </div>

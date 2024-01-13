@@ -24,7 +24,7 @@ export class ApiService {
   private confrontoTeam = `${'team/getCompareTeam?idTeam1='}`
   private playerMatch = "player/getPlayerDetailsByGame?idGame=11058&idPlayer=4"
   private TeamRolesPlayerFilter = "player/getTeamRolesPlayerFilter"
-  private PlayerFilter = "player/getPlayerTeamFiltered?idTeam=5&season=2022"
+  private PlayerFilter = `${'player/getPlayerTeamFiltered?idTeam='}`
 
   constructor(private http: HttpClient) {}
   getHomeApi() {
@@ -48,8 +48,8 @@ export class ApiService {
     .pipe(map((response:any) => {
         return response as TeamPlayerFilterType}));
   }
-  getPlayerFilter() {
-    return this.http.get(`${this.baseURL}${this.PlayerFilter}`)
+  getPlayerFilter(idTeam:number) {
+    return this.http.get(`${this.baseURL}${this.PlayerFilter}${idTeam}${'&season=2022'}`)
     .pipe(map((response:any) => {
         return response as PlayerTeamFilteredType}));
   }
