@@ -8,6 +8,7 @@ import { TeamDetailType } from "./_models/TeamDetailApi.type";
 import { ConfrontoTeamType } from "./_models/confrontoTeamApi.type";
 import { PlayerMatchType } from "./_models/playerMatchApi.type";
 import { TeamPlayerFilterType } from "./_models/teamPlayerFilter.type";
+import { PlayerTeamFilteredType } from "./_models/PlayerTeamFilteredApi.type";
 
 @Injectable({
   providedIn: "root",
@@ -22,7 +23,8 @@ export class ApiService {
   private team = "team/getTeamsDetails?idTeam=5&season=2022"
   private confrontoTeam = `${'team/getCompareTeam?idTeam1='}`
   private playerMatch = "player/getPlayerDetailsByGame?idGame=11058&idPlayer=4"
-  private TeamPlayerFilter = "player/getTeamRolesPlayerFilter"
+  private TeamRolesPlayerFilter = "player/getTeamRolesPlayerFilter"
+  private PlayerFilter = "player/getPlayerTeamFiltered?idTeam=5&season=2022"
 
   constructor(private http: HttpClient) {}
   getHomeApi() {
@@ -41,10 +43,15 @@ export class ApiService {
     .pipe(map((response:any) => {
         return response as TeamDetailType}));
   }
-  getTeamPlayerFilter() {
-    return this.http.get(`${this.baseURL}${this.TeamPlayerFilter}`)
+  getTeamRolePlayerFilter() {
+    return this.http.get(`${this.baseURL}${this.TeamRolesPlayerFilter}`)
     .pipe(map((response:any) => {
         return response as TeamPlayerFilterType}));
+  }
+  getPlayerFilter() {
+    return this.http.get(`${this.baseURL}${this.PlayerFilter}`)
+    .pipe(map((response:any) => {
+        return response as PlayerTeamFilteredType}));
   }
   getPlayerMatchApi() {
     return this.http.get(`${this.baseURL}${this.playerMatch}`)

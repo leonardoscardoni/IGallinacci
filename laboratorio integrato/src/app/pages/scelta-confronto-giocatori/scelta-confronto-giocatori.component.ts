@@ -12,7 +12,7 @@ export class SceltaConfrontoGiocatoriComponent {
   constructor(private apiService: ApiService) {}
   data: TeamPlayerFilterType = {} as TeamPlayerFilterType
   ngOnInit() {
-      this.apiService.getTeamPlayerFilter().subscribe((data) => {
+      this.apiService.getTeamRolePlayerFilter().subscribe((data) => {
         this.data = data;
         console.log(this.data)
       });

@@ -37,6 +37,7 @@ export interface FoulsBallsBlocks {
 }
 
 export interface Player {
+    ruolo: any;
     firstname: string;
     lastname:  string;
     number:    number | null;
