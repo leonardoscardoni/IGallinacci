@@ -26,7 +26,7 @@ public interface GameRepository extends JpaRepository<Game,Integer> {
     @Query(value = "SELECT g.id FROM Game AS g WHERE g.date <:inputDate ORDER BY g.date DESC; ", nativeQuery = true)
     List<Integer> findAllGameIdsBeforeDate(@Param("inputDate") LocalDate inputDate);
 
-    @Query(value = "SELECT g.id FROM game g WHERE (g.id NOT IN(SELECT sp.idGame FROM statsplayer sp GROUP BY sp.idGame) OR g.id NOT IN(SELECT sg.idGame FROM statsgame sg GROUP BY sg.idGame)) AND g.status=3 AND g.season=:inputDate ", nativeQuery = true)
+    @Query(value = "SELECT g.id FROM game g WHERE (g.id NOT IN(SELECT sp.idGame FROM statsplayer sp GROUP BY sp.idGame) OR g.id NOT IN(SELECT sg.idGame FROM statsgame sg GROUP BY sg.idGame)) AND g.status=3 AND g.date<current_date AND g.season=:inputDate ", nativeQuery = true)
     List<Integer> findAllGameIdsBeforeDateNotCompleted(@Param("inputDate") int inputDate);
 
     List<Game> findGameByDate(LocalDate inputDate);
