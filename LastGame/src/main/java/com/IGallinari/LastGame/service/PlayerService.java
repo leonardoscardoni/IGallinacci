@@ -54,14 +54,14 @@ public class PlayerService {
                     )
             );
         }
-        PlayerTeamFilterResponse playerTeamFilterResponse = new PlayerTeamFilterResponse(
+        return new PlayerTeamFilterResponse(
             team.getId(),
+            team.getLogo(),
             team.getNickname(),
             team.getName(),
             season,
             players
         );
-        return playerTeamFilterResponse;
     }
 
     public PlayerDetailsByGameResponse buildPlayerDetailsByGameResponse (int idGame, int idPlayer){
