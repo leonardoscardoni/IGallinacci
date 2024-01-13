@@ -287,7 +287,7 @@ public class GameService {
                 new ViewTeamDetailsNextGame(
                         teamVisitor.getId(),
                         teamVisitor.getNickname(),
-                        teamHome.getLogo()
+                        teamVisitor.getLogo()
                 )
         );
         ViewLastFourGames viewLastFourGamesNextGameHome = new ViewLastFourGames(
