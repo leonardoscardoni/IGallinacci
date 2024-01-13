@@ -24,12 +24,12 @@ public class StandingsHandler implements Handler{
         for (JsonNode standingNode : standingsNode) {
             Team team = teamRepository.findById(standingNode.get("team").get("id").asInt());
             StatsTeam statsTeam = statsTeamRepository.findByTeamAndSeason(team,standingNode.get("season").asInt());
-            statsTeam.setRankConference(asInteger(standingNode.get("conference").get("rankConference")));
-            statsTeam.setWinConference(asInteger(standingNode.get("conference").get("winConference")));
-            statsTeam.setLossConference(asInteger(standingNode.get("conference").get("lossDivision")));
-            statsTeam.setRankDivision(asInteger(standingNode.get("division").get("rankDivision")));
-            statsTeam.setWinDivision(asInteger(standingNode.get("division").get("winDivision")));
-            statsTeam.setLossDivision(asInteger(standingNode.get("division").get("lossDivision")));
+            statsTeam.setRankConference(asInteger(standingNode.get("conference").get("rank")));
+            statsTeam.setWinConference(asInteger(standingNode.get("conference").get("win")));
+            statsTeam.setLossConference(asInteger(standingNode.get("conference").get("loss")));
+            statsTeam.setRankDivision(asInteger(standingNode.get("division").get("rank")));
+            statsTeam.setWinDivision(asInteger(standingNode.get("division").get("win")));
+            statsTeam.setLossDivision(asInteger(standingNode.get("division").get("loss")));
             statsTeam.setWinHome(asInteger(standingNode.get("win").get("home")));
             statsTeam.setWinAway(asInteger(standingNode.get("win").get("away")));
             statsTeam.setWinPerc(asFloat(standingNode.get("win").get("percentage")));

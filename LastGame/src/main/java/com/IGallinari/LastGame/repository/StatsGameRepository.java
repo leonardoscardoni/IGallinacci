@@ -19,11 +19,11 @@ public interface StatsGameRepository extends JpaRepository<StatsGame,Integer> {
     List<Integer> findAllIds();
     @Query(value = "SELECT sg.idGame FROM statsgame sg WHERE sg.fgm IS NULL GROUP BY sg.idGame; ", nativeQuery = true)
     List<Integer> findAllIdsWhereIsNotComplete();
-    StatsGame findStatsGameByGameAndTeam(Game inputGame,Team inputTeam);
+    StatsGame findStatsGameByGameAndTeam(Game game,Team team);
     @Query(value = "SELECT AVG(sg.points) FROM statsgame sg WHERE sg.idGame IN (SELECT g.id FROM game g WHERE g.idVisitor =:inputIdTeam OR g.idHome =:inputIdTeam) AND sg.idTeam !=:inputIdTeam", nativeQuery = true)
-    Integer findAllowedPoints(@Param("inputIdTeam") int inputIdTeam);
+    Integer findAllowedPoints(@Param("inputIdTeam") int idTeam);
 
     @Query(value = "SELECT AVG(sg.points) FROM statsgame sg WHERE sg.idTeam =:inputIdTeam", nativeQuery = true)
-    Integer findPointsPerGame(@Param("inputIdTeam") int inputIdTeam);
+    Integer findPointsPerGame(@Param("inputIdTeam") int idTeam);
 
 }
