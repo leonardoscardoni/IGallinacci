@@ -17,7 +17,7 @@ public interface StatsGameRepository extends JpaRepository<StatsGame,Integer> {
 
     @Query(value = "SELECT DISTINCT sg.idGame FROM Statsgame sg", nativeQuery = true)
     List<Integer> findAllIds();
-    @Query(value = "SELECT sg.idGame FROM statsgame sg WHERE sg.fgm IS NULL GROUP BY sg.idGame; ", nativeQuery = true)
+    @Query(value = "SELECT sg.idGame FROM statsgame sg WHERE sg.fgm IS NULL GROUP BY sg.idGame DESC; ", nativeQuery = true)
     List<Integer> findAllIdsWhereIsNotComplete();
 
     StatsGame findStatsGameByGameAndTeam(Game game,Team team);
