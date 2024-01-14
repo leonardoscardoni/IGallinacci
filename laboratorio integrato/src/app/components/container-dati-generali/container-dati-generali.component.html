@@ -24,7 +24,6 @@
             { chiave: 'Rimbalzi totali', valore: data.assistRebounds.totalRebounds },
             { chiave: 'Assist', valore: data.assistRebounds.assists },
             ]"
-            [class.hidden]="data.assistRebounds.reboundsOffensive == undefined"
        ></app-dati-generali>
             <app-dati-generali [titolo]="'Punti'" [dati]="[
             { chiave: 'Punti totali', valore: data.points.totalPoints },
@@ -42,12 +41,13 @@
             { chiave: 'Blocchi effettuati', valore: data.foulsBallsBlocks.blocks },
            ]"></app-dati-generali>
         </div>
-        <div class="md:w-1/2">
+        <div class="md:w-1/2" >
             <app-dati-generali [titolo]="'vittorie e sconfitte in casa'" [dati]="[
-            { chiave: 'Vittorie in casa', valore: data.winLoss.victoriesAtHome },
-            { chiave: 'Sconfitte in casa', valore: data.winLoss.defeatsAtHome },
-            ]"></app-dati-generali>
+                { chiave: 'Vittorie in casa', valore: data.winLoss.victoriesAtHome },
+                { chiave: 'Sconfitte in casa', valore: data.winLoss.defeatsAtHome },
+            ]" *ngIf="data && data.winLoss"></app-dati-generali>
         </div>
+        
     </div> 
     
 </div>

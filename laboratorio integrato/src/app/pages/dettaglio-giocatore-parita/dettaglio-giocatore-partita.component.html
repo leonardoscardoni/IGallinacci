@@ -1,38 +1,41 @@
-<!-- <app-header-dettaglio-partita [punteggio]="false" [data]="a"></app-header-dettaglio-partita>
+<app-header-dettaglio-partita [punteggio]="false" [data]="data"></app-header-dettaglio-partita>
     <section class="pt-20">
         <p class="text-center font-inter font-bold text-3xl">
             Ruolo:
-            <span class="font-italic font-thin color-white">{{a.giocatore.ruolo}}</span>
+            <span class="font-italic font-thin color-white">{{data.player.pos}}</span>
         </p>
     </section>
 
 
-<section class="pt-20">
+
+
+
+<section class="p-20">
 <div class="w-full flex flex-wrap lg:flex-nowrap">
     <div class="md:w-1/4 w-1/2">
         <div class="p-2">
-            <app-dati-principali [title]="'partite giocate'" [dato]="a.stats.mins"></app-dati-principali>
+            <app-dati-principali [title]="'partite giocate'" [dato]="data.stats.min"></app-dati-principali>
         </div>
     </div>
     <div class="md:w-1/4 w-1/2">
         <div class=" p-2">
-            <app-dati-principali [title]="'Punti segnati'" [dato]="a.stats.score"></app-dati-principali>
+            <app-dati-principali [title]="'Punti segnati'" [dato]="data.stats.score"></app-dati-principali>
         </div>
     </div>
     <div class="md:w-1/4 w-1/2">
         <div class=" p-2">
-            <app-dati-principali [title]="'Tiri '" [dato]="a.stats.totalRebounds"></app-dati-principali>
+            <app-dati-principali [title]="'Tiri '" [dato]="data.stats.totalRebounds"></app-dati-principali>
         </div>
     </div>
     <div class="md:w-1/4 w-1/2">
         <div class=" p-2">
-            <app-dati-principali [title]="'partite giocate'" [dato]="a.stats.assists"></app-dati-principali>
+            <app-dati-principali [title]="'partite giocate'" [dato]="data.stats.assists"></app-dati-principali>
         </div>
     </div>
 </div>
 </section>
 
-<section class="pt-20">
+<section class="p-20">
 <div class="w-full flex items-center justify-center relative md:mt-100 pt-10">
   <img src="/assets/Star.png" class="absolute md:w-44 w-32 -z-10" alt="" />
   <h2 class="uppercase md:text-3xl text-2xl text-center">
@@ -41,38 +44,38 @@
   </h2>
 </div>
 </section>
-
 <div class="lg:px-20">
     <app-titolo-sezione [numero]="'02'" [titolo]="'I dati'" [spiegazione]="'Lorem ipsum dolor sit amet consectetur. Velit urna vitae scelerisque nullam sed metus dictum pulvinar.'" [spanSpiegazione]="'Consectetur volutpat turpis nec congue.'"/>
 </div>
+
 
 <div class="flex flex-col md:gap-5">
     <div class="w-full flex md:flex-row flex-col justify-center px-10 md:gap-20">
         <div class="md:w-1/2">
             <app-dati-generali [titolo]="'Tiri'" [dati]="[
-            { chiave: 'Tiri da campo segnati', valore: a.tiri.fieldGoalsMade },
-            { chiave: 'Tiri da campo tentati', valore: a.tiri.fieldGoalsAttempted },
-            { chiave: '% tiri da campo segnati', valore: a.tiri.fieldGoalsPercentage },
-            { chiave: 'Tiri liberi segnati', valore: a.tiri.freeThrowsMade },
-            { chiave: 'Tiri liberi tentati', valore: a.tiri.freeThrowsAttempted },
-            { chiave: '% tiri liberi segnati', valore: a.tiri.freeThrowsPercentage },
-            { chiave: 'Tiri da tre segnati', valore: a.tiri.threePointersMade },
-            { chiave: 'Tiri da tre tentati', valore: a.tiri.threePointersAttempted },
-            { chiave: '% tiri da tre segnati', valore: a.tiri.threePointersPercentage }
+            { chiave: 'Tiri da campo segnati', valore: data.shots.fieldGoalsMade },
+            { chiave: 'Tiri da campo tentati', valore: data.shots.fieldGoalsAttempted },
+            { chiave: '% tiri da campo segnati', valore: data.shots.fieldGoalsPercentage },
+            { chiave: 'Tiri liberi segnati', valore: data.shots.freeThrowsMade },
+            { chiave: 'Tiri liberi tentati', valore: data.shots.freeThrowsAttempted },
+            { chiave: '% tiri liberi segnati', valore: data.shots.freeThrowsPercentage },
+            { chiave: 'Tiri da tre segnati', valore: data.shots.threePointersMade },
+            { chiave: 'Tiri da tre tentati', valore: data.shots.threePointersAttempted },
+            { chiave: '% tiri da tre segnati', valore: data.shots.threePointersPercentage }
             ]"></app-dati-generali>
         </div>
         <div class="md:w-1/2">
             <app-dati-generali [titolo]="'Rimbalzi e Assist'" [dati]="[
-            { chiave: 'Rimbalzi in attacco', valore: a.rimabalziAssist.reboundsOffensive },
-            { chiave: 'Rimbalzi in difesa', valore: a.rimabalziAssist.reboundsDefensive },
-            { chiave: 'Rimbalzi totali', valore: a.rimabalziAssist.totalRebounds },
-            { chiave: 'Assist', valore: a.rimabalziAssist.assists },
+            { chiave: 'Rimbalzi in attacco', valore: data.assistRebounds.reboundsOffensive },
+            { chiave: 'Rimbalzi in difesa', valore: data.assistRebounds.reboundsDefensive },
+            { chiave: 'Rimbalzi totali', valore: data.assistRebounds.totalRebounds },
+            { chiave: 'Assist', valore: data.assistRebounds.assists },
             ]"></app-dati-generali>
             <app-dati-generali [titolo]="'Falli, palle e blocchi'" [dati]="[
-            { chiave: 'Falli commessi', valore: a.falliPalleBlocchi.foulsCommitted },
-            { chiave: 'Palle rubate', valore: a.falliPalleBlocchi.steals},
-            { chiave: 'Palle perse', valore: a.falliPalleBlocchi.turnovers},
-            { chiave: 'Blocchi effettuati', valore: a.falliPalleBlocchi.blocks},
+            { chiave: 'Falli commessi', valore: data.foulsBallsBlocks.foulsCommitted },
+            { chiave: 'Palle rubate', valore: data.foulsBallsBlocks.steals},
+            { chiave: 'Palle perse', valore: data.foulsBallsBlocks.turnovers},
+            { chiave: 'Blocchi effettuati', valore: data.foulsBallsBlocks.blocks},
             ]"></app-dati-generali>
         </div>
     </div>
@@ -86,4 +89,3 @@
   
     
     
- -->

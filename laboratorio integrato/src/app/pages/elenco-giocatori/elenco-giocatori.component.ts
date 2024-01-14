@@ -42,6 +42,7 @@ export class ElencoGiocatoriComponent implements OnInit {
 
     squadraSelezionata: any;
     ruoloSelezionato: any;
+    idGiocatore: any;
 
 
 

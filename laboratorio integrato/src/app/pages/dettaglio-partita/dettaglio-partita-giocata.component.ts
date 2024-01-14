@@ -6,6 +6,7 @@ import { Component } from "@angular/core";
     styleUrls: ["./dettaglio-partita-giocata.component.scss"],
 })
 export class DettaglioPartitaGiocataComponent {
+    
     a = {
         stadium: "Little Caesars Arena",
         city: "Detroit",

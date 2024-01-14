@@ -1,6 +1,5 @@
 import { Component } from "@angular/core";
 import { PlayerMatchType } from "src/app/_models/playerMatchApi.type";
-import { TeamPlayerFilterType } from "src/app/_models/teamPlayerFilter.type";
 import { ApiService } from "src/app/api.service";
 
 @Component({
@@ -10,9 +9,9 @@ import { ApiService } from "src/app/api.service";
 })
 export class DettaglioGiocatorePartitaComponent {
     constructor(private apiService: ApiService) {}
-    data: TeamPlayerFilterType = {} as TeamPlayerFilterType
+    data: PlayerMatchType = {} as PlayerMatchType
     ngOnInit() {
-        this.apiService.getTeamRolePlayerFilter().subscribe((data) => {
+        this.apiService.getPlayerMatchApi().subscribe((data) => {
           this.data = data;
           console.log(this.data)
         });

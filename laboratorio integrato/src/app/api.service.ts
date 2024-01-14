@@ -9,6 +9,7 @@ import { ConfrontoTeamType } from "./_models/confrontoTeamApi.type";
 import { PlayerMatchType } from "./_models/playerMatchApi.type";
 import { TeamPlayerFilterType } from "./_models/teamPlayerFilter.type";
 import { PlayerTeamFilteredType } from "./_models/PlayerTeamFilteredApi.type";
+import { PlayerDetailIndType } from "./_models/PlayerDetailInd.type";
 
 @Injectable({
   providedIn: "root",
@@ -24,6 +25,7 @@ export class ApiService {
   private confrontoTeam = `${'team/getCompareTeam?idTeam1='}`
   private playerMatch = "player/getPlayerDetailsByGame?idGame=11058&idPlayer=4"
   private TeamRolesPlayerFilter = "player/getTeamRolesPlayerFilter"
+  private playerIndipendente = "player/getPlayerDetails?idPlayer=18&season=2023"
   private PlayerFilter = `${'player/getPlayerTeamFiltered?idTeam='}`
 
   constructor(private http: HttpClient) {}
@@ -37,6 +39,11 @@ export class ApiService {
     return this.http.get(`${this.baseURL}${this.divisione}`)
     .pipe(map((response:any) => {
         return response as TeamType}));
+  }
+  getPlayerDetailInd() {
+    return this.http.get(`${this.baseURL}${this.playerIndipendente}`)
+    .pipe(map((response:any) => {
+        return response as PlayerDetailIndType}));
   }
   getTeamDetailApi() {
     return this.http.get(`${this.baseURL}${this.team}`)
