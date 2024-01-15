@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-//@Component
 @AllArgsConstructor
 public class DailyEndpoint {
 
@@ -24,7 +23,7 @@ public class DailyEndpoint {
 
     private StatsGameRepository statsGameRepository;
 
-    //@PostConstruct
+    @Scheduled(cron = "0 0 5 * * *") //every day at 05:00:00
     public void init() throws InterruptedException {
         LocalDate today=LocalDate.now();
         System.out.println("Starting daily call");
@@ -60,7 +59,7 @@ public class DailyEndpoint {
         System.out.println("there were made "+call+" calls, total calls "+totCall);
         call=0;
         TimeUnit.SECONDS.sleep(7);
-        List<Integer> idGamesNotCompleted= gameRepository.findAllGameIdsBeforeDateNotCompleted(today);
+        List<Integer> idGamesNotCompleted= gameRepository.findAllGameIdsBeforeDateNotCompleted(season);
         List<Integer> idTeamAlreadyUpdate = new ArrayList<>();
         if (!idGamesNotCompleted.isEmpty()) {
             for (int idGame : idGamesNotCompleted) {
