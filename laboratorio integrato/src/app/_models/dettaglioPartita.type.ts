@@ -2,8 +2,8 @@ export interface DettaglioPartitaType {
     gameDetails: GameDetails;
     viewLastFourGamesHome: LastFourHTHHome;
     viewLastFourGamesVisitor: LastFourHTHHome;
-    lastFourHtHGameDetailsHome: LastFourHTHHome;
-    lastFourHtHGameDetailsVisitor: LastFourHTHHome;
+    lastFourHtHHome: LastFourHTHHome;
+    lastFourHtHVisitor: LastFourHTHHome;
     viewLastFourGamesNextGameHome: LastFourGamesNextGame;
     viewLastFourGamesNextGameVisitor: LastFourGamesNextGame;
     players: Players;
@@ -27,6 +27,7 @@ export interface Team {
     nickname: string;
     logo: string;
     points: number;
+    code: string;
 }
 
 export interface LastFourHTHHome {

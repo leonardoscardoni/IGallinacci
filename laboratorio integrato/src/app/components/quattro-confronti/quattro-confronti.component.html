@@ -1,4 +1,4 @@
-<div class="container grid grid-cols-12 gap-4">
+<div class="container grid grid-cols-5 sm:grid-cols-12 gap-4">
 
     <!-- Indicazione Q1 Q2 Q3 Q4 per tipologia quarti -->
     <ng-container *ngIf="tipologia == 'quarti'">
@@ -6,14 +6,22 @@
             <p 
               class="color-white text-center text-xl"
               [ngClass]="{
-                'col-start-4': i === 0,
-                'col-end-6': i === 0,
-                'col-start-6': i === 1,
-                'col-end-8': i === 1,
-                'col-start-8': i === 2,
-                'col-end-10': i === 2,
-                'col-start-10': i === 3,
-                'col-end-12': i === 3,
+                'col-start-2': i === 0,
+                'col-end-3': i === 0,
+                'col-start-3': i === 1,
+                'col-end-4': i === 1,
+                'col-start-4': i === 2,
+                'col-end-5': i === 2,
+                'col-start-5': i === 3,
+                'col-end-6': i === 3,
+                'sm:col-start-4': i === 0,
+                'sm:col-end-6': i === 0,
+                'sm:col-start-6': i === 1,
+                'sm:col-end-8': i === 1,
+                'sm:col-start-8': i === 2,
+                'sm:col-end-10': i === 2,
+                'sm:col-start-10': i === 3,
+                'sm:col-end-12': i === 3,
                 'md:col-start-7': i === 0,
                 'md:col-end-8': i === 0,
                 'md:col-start-8': i === 1,
@@ -30,9 +38,9 @@
     </ng-container>
 
 
-    <!-- Logo squadra in casa per tutte le tipologie -->
-    <img src="{{homeTeamLogo}}" class="w-[2rem] md:w-[2.5rem] col-start-1 col-end-3 md:col-start-5 md:col-end-6 flex justify-center self-center aspect-square flex-wrap"/>
-    <p class="md:col-start-6 md:col-end-7 flex justify-center content-center aspect-square flex-wrap text-2xl">{{homeTeamName}}</p>
+    <!-- Logo e nome squadra in casa per tutte le tipologie -->
+    <img src="{{homeTeamLogo}}" class="w-[2rem] md:w-[2.5rem] col-start-1 col-end-2 sm:col-start-1 sm:col-end-3 md:col-start-5 md:col-end-6 flex justify-center self-center flex-wrap"/>
+    <p class="hidden sm:flex md:col-start-6 md:col-end-7 justify-center content-center flex-wrap h-full text-2xl">{{homeTeamName}}</p>
 
 
     <!-- Dati per tipologia quarti -->
@@ -40,14 +48,22 @@
       <ng-container *ngFor="let punteggio of data.homeTeam.quarters; index as i">
           <div class="border border-bianco flex justify-center content-center flex-wrap rounded-xl"
           [ngClass]="{
-              'col-start-4': i === 0,
-              'col-end-6': i === 0,
-              'col-start-6': i === 1,
-              'col-end-8': i === 1,
-              'col-start-8': i === 2,
-              'col-end-10': i === 2,
-              'col-start-10': i === 3,
-              'col-end-12': i === 3,
+              'col-start-2': i === 0,
+              'col-end-3': i === 0,
+              'col-start-3': i === 1,
+              'col-end-4': i === 1,
+              'col-start-4': i === 2,
+              'col-end-5': i === 2,
+              'col-start-5': i === 3,
+              'col-end-6': i === 3,
+              'sm:col-start-4': i === 0,
+              'sm:col-end-6': i === 0,
+              'sm:col-start-6': i === 1,
+              'sm:col-end-8': i === 1,
+              'sm:col-start-8': i === 2,
+              'sm:col-end-10': i === 2,
+              'sm:col-start-10': i === 3,
+              'sm:col-end-12': i === 3,
               'md:col-start-7': i === 0,
               'md:col-end-8': i === 0,
               'md:col-start-8': i === 1,
@@ -66,20 +82,28 @@
           </div>
       </ng-container>
 
-      <img src="{{visitorTeamLogo}}" class="w-[2rem] md:w-[2.5rem] col-start-1 col-end-3 md:col-start-5 md:col-end-6 flex justify-center self-center aspect-square flex-wrap"/>
-      <p class="md:col-start-6 md:col-end-7 flex justify-center content-center aspect-square flex-wrap text-2xl">{{visitorTeamName}}</p>
+      <img src="{{visitorTeamLogo}}" class="w-[2rem] md:w-[2.5rem] col-start-1 col-end-2 sm:col-start-1 sm:col-end-3 md:col-start-5 md:col-end-6 flex justify-center self-center flex-wrap"/>
+      <p class="hidden sm:flex md:col-start-6 md:col-end-7 justify-center content-center flex-wrap h-full text-2xl">{{visitorTeamName}}</p>
 
       <ng-container *ngFor="let punteggio of data.visitorTeam.quarters; index as i">
           <div class="border border-bianco flex justify-center content-center flex-wrap rounded-xl"
           [ngClass]="{
-              'col-start-4': i === 0,
-              'col-end-6': i === 0,
-              'col-start-6': i === 1,
-              'col-end-8': i === 1,
-              'col-start-8': i === 2,
-              'col-end-10': i === 2,
-              'col-start-10': i === 3,
-              'col-end-12': i === 3,
+              'col-start-2': i === 0,
+              'col-end-3': i === 0,
+              'col-start-3': i === 1,
+              'col-end-4': i === 1,
+              'col-start-4': i === 2,
+              'col-end-5': i === 2,
+              'col-start-5': i === 3,
+              'col-end-6': i === 3,
+              'sm:col-start-4': i === 0,
+              'sm:col-end-6': i === 0,
+              'sm:col-start-6': i === 1,
+              'sm:col-end-8': i === 1,
+              'sm:col-start-8': i === 2,
+              'sm:col-end-10': i === 2,
+              'sm:col-start-10': i === 3,
+              'sm:col-end-12': i === 3,
               'md:col-start-7': i === 0,
               'md:col-end-8': i === 0,
               'md:col-start-8': i === 1,
@@ -105,14 +129,22 @@
       <ng-container *ngFor="let punteggio of dataHome.headToHeads; index as i">
           <div class="border border-bianco flex justify-center content-center flex-wrap rounded-xl"
           [ngClass]="{
-              'col-start-4': i === 0,
-              'col-end-6': i === 0,
-              'col-start-6': i === 1,
-              'col-end-8': i === 1,
-              'col-start-8': i === 2,
-              'col-end-10': i === 2,
-              'col-start-10': i === 3,
-              'col-end-12': i === 3,
+              'col-start-2': i === 0,
+              'col-end-3': i === 0,
+              'col-start-3': i === 1,
+              'col-end-4': i === 1,
+              'col-start-4': i === 2,
+              'col-end-5': i === 2,
+              'col-start-5': i === 3,
+              'col-end-6': i === 3,
+              'sm:col-start-4': i === 0,
+              'sm:col-end-6': i === 0,
+              'sm:col-start-6': i === 1,
+              'sm:col-end-8': i === 1,
+              'sm:col-start-8': i === 2,
+              'sm:col-end-10': i === 2,
+              'sm:col-start-10': i === 3,
+              'sm:col-end-12': i === 3,
               'md:col-start-7': i === 0,
               'md:col-end-8': i === 0,
               'md:col-start-8': i === 1,
@@ -131,20 +163,28 @@
           </div>
       </ng-container>
 
-      <img src="{{visitorTeamLogo}}" class="w-[2rem] md:w-[2.5rem] col-start-1 col-end-3 md:col-start-5 md:col-end-6 flex justify-center self-center aspect-square flex-wrap"/>
-      <p class="md:col-start-6 md:col-end-7 flex justify-center content-center aspect-square flex-wrap text-2xl">{{visitorTeamName}}</p>
+      <img src="{{visitorTeamLogo}}" class="w-[2rem] md:w-[2.5rem] col-start-1 col-end-2 sm:col-start-1 sm:col-end-3 md:col-start-5 md:col-end-6 flex justify-center self-center flex-wrap"/>
+      <p class="hidden sm:flex md:col-start-6 md:col-end-7 justify-center content-center flex-wrap h-full text-2xl">{{visitorTeamName}}</p>
 
       <ng-container *ngFor="let punteggio of dataVisitor.headToHeads; index as i">
           <div class="border border-bianco flex justify-center content-center flex-wrap rounded-xl"
           [ngClass]="{
-              'col-start-4': i === 0,
-              'col-end-6': i === 0,
-              'col-start-6': i === 1,
-              'col-end-8': i === 1,
-              'col-start-8': i === 2,
-              'col-end-10': i === 2,
-              'col-start-10': i === 3,
-              'col-end-12': i === 3,
+              'col-start-2': i === 0,
+              'col-end-3': i === 0,
+              'col-start-3': i === 1,
+              'col-end-4': i === 1,
+              'col-start-4': i === 2,
+              'col-end-5': i === 2,
+              'col-start-5': i === 3,
+              'col-end-6': i === 3,
+              'sm:col-start-4': i === 0,
+              'sm:col-end-6': i === 0,
+              'sm:col-start-6': i === 1,
+              'sm:col-end-8': i === 1,
+              'sm:col-start-8': i === 2,
+              'sm:col-end-10': i === 2,
+              'sm:col-start-10': i === 3,
+              'sm:col-end-12': i === 3,
               'md:col-start-7': i === 0,
               'md:col-end-8': i === 0,
               'md:col-start-8': i === 1,
@@ -170,14 +210,22 @@
       <ng-container *ngFor="let punteggio of dataHome.lastGames; index as i">
           <div class="border border-bianco flex justify-center content-center flex-wrap rounded-xl"
           [ngClass]="{
-              'col-start-4': i === 0,
-              'col-end-6': i === 0,
-              'col-start-6': i === 1,
-              'col-end-8': i === 1,
-              'col-start-8': i === 2,
-              'col-end-10': i === 2,
-              'col-start-10': i === 3,
-              'col-end-12': i === 3,
+              'col-start-2': i === 0,
+              'col-end-3': i === 0,
+              'col-start-3': i === 1,
+              'col-end-4': i === 1,
+              'col-start-4': i === 2,
+              'col-end-5': i === 2,
+              'col-start-5': i === 3,
+              'col-end-6': i === 3,
+              'sm:col-start-4': i === 0,
+              'sm:col-end-6': i === 0,
+              'sm:col-start-6': i === 1,
+              'sm:col-end-8': i === 1,
+              'sm:col-start-8': i === 2,
+              'sm:col-end-10': i === 2,
+              'sm:col-start-10': i === 3,
+              'sm:col-end-12': i === 3,
               'md:col-start-7': i === 0,
               'md:col-end-8': i === 0,
               'md:col-start-8': i === 1,
@@ -189,33 +237,42 @@
             }">
 
 
-            <div class="w-full h-full flex justify-center items-center">
-              <div class="absolute text-center">
+            <div class="w-full relative" style="width: 100%; padding-top: 100%;">
+              <div class="absolute text-center" style="top: 50%; left: 0; right: 0; transform: translateY(-50%);">
                 <div class="flex justify-center" *ngIf="punteggio.result" >
-                  <img src="./assets/win-icon.png" class="w-4/6" alt="">
+                  <img src="./assets/win-icon.png" class="w-1/2" alt="">
                 </div>
                 <div class="flex justify-center" *ngIf="!punteggio.result">
-                  <img src="./assets/loss-icon.png" class="w-4/6" alt="">
+                  <img src="./assets/loss-icon.png" class="w-1/2" alt="">
                 </div>
               </div>
             </div>
+
           </div>
       </ng-container>
 
-      <img src="{{visitorTeamLogo}}" class="w-[2rem] md:w-[2.5rem] col-start-1 col-end-3 md:col-start-5 md:col-end-6 flex justify-center self-center aspect-square flex-wrap"/>
-      <p class="md:col-start-6 md:col-end-7 flex justify-center content-center aspect-square flex-wrap text-2xl">{{visitorTeamName}}</p>
+     <img src="{{visitorTeamLogo}}" class="w-[2rem] md:w-[2.5rem] col-start-1 col-end-2 sm:col-start-1 sm:col-end-3 md:col-start-5 md:col-end-6 flex justify-center self-center flex-wrap"/>
+      <p class="hidden sm:flex md:col-start-6 md:col-end-7 justify-center content-center flex-wrap h-full text-2xl">{{visitorTeamName}}</p>
 
       <ng-container *ngFor="let punteggio of dataVisitor.lastGames; index as i">
           <div class="border border-bianco flex justify-center content-center flex-wrap rounded-xl"
           [ngClass]="{
-              'col-start-4': i === 0,
-              'col-end-6': i === 0,
-              'col-start-6': i === 1,
-              'col-end-8': i === 1,
-              'col-start-8': i === 2,
-              'col-end-10': i === 2,
-              'col-start-10': i === 3,
-              'col-end-12': i === 3,
+              'col-start-2': i === 0,
+              'col-end-3': i === 0,
+              'col-start-3': i === 1,
+              'col-end-4': i === 1,
+              'col-start-4': i === 2,
+              'col-end-5': i === 2,
+              'col-start-5': i === 3,
+              'col-end-6': i === 3,
+              'sm:col-start-4': i === 0,
+              'sm:col-end-6': i === 0,
+              'sm:col-start-6': i === 1,
+              'sm:col-end-8': i === 1,
+              'sm:col-start-8': i === 2,
+              'sm:col-end-10': i === 2,
+              'sm:col-start-10': i === 3,
+              'sm:col-end-12': i === 3,
               'md:col-start-7': i === 0,
               'md:col-end-8': i === 0,
               'md:col-start-8': i === 1,
@@ -227,13 +284,13 @@
             }">
 
 
-            <div class="w-full h-full flex justify-center items-center">
-              <div class="absolute text-center">
+            <div class="w-full relative" style="width: 100%; padding-top: 100%;">
+              <div class="absolute text-center" style="top: 50%; left: 0; right: 0; transform: translateY(-50%);">
                 <div class="flex justify-center" *ngIf="punteggio.result" >
-                  <img src="./assets/win-icon.png" class="w-4/6" alt="">
+                  <img src="./assets/win-icon.png" class="w-1/2" alt="">
                 </div>
                 <div class="flex justify-center" *ngIf="!punteggio.result">
-                  <img src="./assets/loss-icon.png" class="w-4/6" alt="">
+                  <img src="./assets/loss-icon.png" class="w-1/2" alt="">
                 </div>
               </div>
             </div>
