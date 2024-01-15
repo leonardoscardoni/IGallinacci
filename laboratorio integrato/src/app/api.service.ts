@@ -7,6 +7,7 @@ import { CalendarType } from "./_models/calendarApi.type";
 import { TeamDetailType } from "./_models/TeamDetailApi.type";
 import { ConfrontoTeamType } from "./_models/confrontoTeamApi.type";
 import { ElencoTeamType } from "./_models/elencoTeam.type";
+import { DettaglioPartitaType } from "./_models/dettaglioPartita.type";
 
 @Injectable({
     providedIn: "root",
@@ -20,6 +21,7 @@ export class ApiService {
     private team = "team/getTeamsDetails?idTeam=5&season=2022";
     private confrontoTeam = `${"team/getCompareTeam?idTeam1="}`;
     private elencoTeam = "team/getTeams";
+    private dettaglioPartita = "game/getGameDetails?idGame=";
 
     constructor(private http: HttpClient) {}
     getHomeApi() {
@@ -66,6 +68,14 @@ export class ApiService {
         return this.http.get(`${this.baseURL}${this.elencoTeam}`).pipe(
             map((response: any) => {
                 return response as ElencoTeamType;
+            })
+        );
+    }
+
+    getDettaglioPartita(idPartita: string) {
+        return this.http.get(`${this.baseURL}${this.dettaglioPartita}${idPartita}`).pipe(
+            map((response: any) => {
+                return response as DettaglioPartitaType;
             })
         );
     }

@@ -1,7 +1,7 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { NgModule, inject } from "@angular/core";
+import { ActivatedRouteSnapshot, RouterModule, Routes } from "@angular/router";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
-import { DettaglioPartitaGiocataComponent } from "./pages/dettaglio-partita/dettaglio-partita-giocata.component";
+import { DettaglioPartitaComponent } from "./pages/dettaglio-partita/dettaglio-partita.component";
 import { CalendarioPartiteComponent } from "./pages/calendario-partite/calendario-partite.component";
 import { DettaglioTeamComponent } from "./pages/dettaglio-team/dettaglio-team.component";
 import { DettConfrontoGiocatoriComponent } from "./pages/dett-confronto-giocatori/dett-confronto-giocatori.component";
@@ -13,10 +13,21 @@ import { DettGiocatoreIndipendenteComponent } from "./pages/dett-giocatore-indip
 import { ElencoArticoliComponent } from "./pages/elenco-articoli/elenco-articoli.component";
 import { ElencoTeamComponent } from "./pages/elenco-team/elenco-team.component";
 import { DettaglioConfrontoTeamComponent } from "./pages/dettaglio-confronto-team/dettaglio-confronto-team.component";
+import { getDettaglioPartitaService } from "./_service/getDettaglioPartita.service";
 
 const routes: Routes = [
     { path: "home", component: HomePageComponent },
-    { path: "dett-partita-giocata", component: DettaglioPartitaGiocataComponent },
+    {
+        path: "dettaglio-partita/:idPartita",
+        component: DettaglioPartitaComponent,
+        resolve: {
+            getDettaglioPartita: (route: ActivatedRouteSnapshot) => {
+                return inject(getDettaglioPartitaService).getDettaglioPartita(
+                    route.paramMap.get("idPartita")!
+                );
+            },
+        },
+    },
     { path: "calendario-partite", component: CalendarioPartiteComponent },
     { path: "dettaglio-team", component: DettaglioTeamComponent },
     { path: "dett-confronto-giocatori", component: DettConfrontoGiocatoriComponent },

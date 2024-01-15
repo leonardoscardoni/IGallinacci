@@ -1,10 +1,16 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 @Component({
     selector: "app-giocatori-dettaglio-partita",
     templateUrl: "./giocatori-dettaglio-partita.component.html",
     styleUrls: ["./giocatori-dettaglio-partita.component.scss"],
 })
 export class GiocatoriDettaglioPartitaComponent implements OnInit {
+    @Input() data!: any;
+    @Input() homeTeamLogo!: string;
+    @Input() visitorTeamLogo!: string;
+    @Input() homeTeamName!: string;
+    @Input() visitorTeamName!: string;
+
     a = [
         {
             logo: "/assets/s-l1200.webp",

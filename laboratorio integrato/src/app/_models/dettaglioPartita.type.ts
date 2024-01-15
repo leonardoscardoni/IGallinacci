@@ -2,8 +2,12 @@ export interface DettaglioPartitaType {
     gameDetails: GameDetails;
     viewLastFourGamesHome: LastFourHTHHome;
     viewLastFourGamesVisitor: LastFourHTHHome;
-    lastFourHtHHome: LastFourHTHHome;
-    lastFourHtHVisitor: LastFourHTHHome;
+    lastFourHtHGameDetailsHome: LastFourHTHHome;
+    lastFourHtHGameDetailsVisitor: LastFourHTHHome;
+    players: Players;
+    statistics: Statistic[];
+    bestPlayers: BestPlayers;
+    quartersPerTeam: QuartersPerTeam;
 }
 
 export interface GameDetails {
@@ -20,6 +24,7 @@ export interface Team {
     id: number;
     nickname: string;
     logo: string;
+    points: number;
 }
 
 export interface LastFourHTHHome {
@@ -38,4 +43,46 @@ export interface HeadToHead {
 export interface LastGame {
     idGame: number;
     result: boolean;
+}
+
+export interface Players {
+    homeTeam: PlayersTeam[];
+    visitorTeam: PlayersTeam[];
+}
+
+export interface PlayersTeam {
+    idPlayer: number;
+    firstname: string;
+    lastname: string;
+    number: number | null;
+    role: string;
+}
+
+export interface Statistic {
+    statsType: string;
+    homeTeamStats: number;
+    visitorTeamStats: number;
+}
+
+export interface BestPlayers {
+    homeTeam: BestPlayersHomeTeam[];
+    visitorTeam: BestPlayersHomeTeam[];
+}
+
+export interface BestPlayersHomeTeam {
+    idPlayer: number;
+    firstname: string;
+    lastname: string;
+    number: number;
+    data: number;
+    type: string;
+}
+
+export interface QuartersPerTeam {
+    homeTeam: QuartersPerTeamHomeTeam;
+    visitorTeam: QuartersPerTeamHomeTeam;
+}
+
+export interface QuartersPerTeamHomeTeam {
+    quarters: number[];
 }

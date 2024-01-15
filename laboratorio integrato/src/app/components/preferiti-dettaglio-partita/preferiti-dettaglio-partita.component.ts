@@ -1,10 +1,13 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 @Component({
     selector: "app-preferiti-dettaglio-partita",
     templateUrl: "./preferiti-dettaglio-partita.component.html",
     styleUrls: ["./preferiti-dettaglio-partita.component.scss"],
 })
 export class PreferitiDettaglioPartitaComponent implements OnInit {
+    @Input() homeTeamLogo!: string;
+    @Input() visitorTeamLogo!: string;
+    @Input() data!: any;
     a = [
         {
             logo: "/assets/s-l1200.webp",
@@ -54,5 +57,7 @@ export class PreferitiDettaglioPartitaComponent implements OnInit {
         },
     ];
 
-    ngOnInit() {}
+    ngOnInit() {
+        console.log(this.data);
+    }
 }

@@ -5,7 +5,7 @@ import { AppComponent } from "./app.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
-import { DettaglioPartitaGiocataComponent } from "./pages/dettaglio-partita/dettaglio-partita-giocata.component";
+import { DettaglioPartitaComponent } from "./pages/dettaglio-partita/dettaglio-partita.component";
 import { PerTeComponent } from "./components/per-te/per-te.component";
 import { TodayMatchesComponent } from "./components/today-matches/today-matches.component";
 import { FooterComponent } from "./components/footer/footer.component";
@@ -52,7 +52,7 @@ import { NomeTeamElencoTeamComponent } from "./components/nome-team-elenco-team/
         NavbarComponent,
         HeaderComponent,
         HomePageComponent,
-        DettaglioPartitaGiocataComponent,
+        DettaglioPartitaComponent,
         PerTeComponent,
         TodayMatchesComponent,
         FooterComponent,
