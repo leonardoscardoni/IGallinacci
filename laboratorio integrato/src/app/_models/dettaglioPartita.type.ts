@@ -4,6 +4,8 @@ export interface DettaglioPartitaType {
     viewLastFourGamesVisitor: LastFourHTHHome;
     lastFourHtHGameDetailsHome: LastFourHTHHome;
     lastFourHtHGameDetailsVisitor: LastFourHTHHome;
+    viewLastFourGamesNextGameHome: LastFourGamesNextGame;
+    viewLastFourGamesNextGameVisitor: LastFourGamesNextGame;
     players: Players;
     statistics: Statistic[];
     bestPlayers: BestPlayers;
@@ -85,4 +87,15 @@ export interface QuartersPerTeam {
 
 export interface QuartersPerTeamHomeTeam {
     quarters: number[];
+}
+
+export interface LastFourGamesNextGame {
+    code: string;
+    idTeam: number;
+    lastGames: LastFourGamesNextGameData[];
+}
+
+export interface LastFourGamesNextGameData {
+    idGame: number;
+    result: boolean;
 }

@@ -12,6 +12,17 @@ export class DettaglioPartitaComponent {
     constructor(private route: ActivatedRoute, private apiService: ApiService) {}
     data: DettaglioPartitaType = {} as DettaglioPartitaType;
     idPartita: any;
+    titoli = [
+        "TIRI DA CAMPO SEGNATI",
+        "TIRI LIBERI SEGNATI",
+        "TIRI DA 3 SEGNATI",
+        "ASSIST",
+        "BLOCCHI EFFETTUATI",
+        "RIMBALZI",
+        "PALLE RUBATE",
+        "FALLI COMMESSI",
+        "PALLE PERSI",
+    ];
 
     ngOnInit() {
         this.route.paramMap.subscribe((params) => {

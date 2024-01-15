@@ -15,7 +15,5 @@ export class QuattroConfrontiComponent implements OnInit {
     @Input() homeTeamName!: string;
     @Input() visitorTeamName!: string;
 
-    ngOnInit() {
-        console.log(this.tipologia);
-    }
+    ngOnInit() {}
 }
