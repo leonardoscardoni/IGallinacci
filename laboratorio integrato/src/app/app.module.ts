@@ -39,6 +39,7 @@ import { SelezioneConfrontoSquadreComponent } from "./components/selezione-confr
 import { DettaglioGiocatorePartitaComponent } from "./pages/dettaglio-giocatore-parita/dettaglio-giocatore-partita.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { CustomInterceptor } from "./_services/custom.interceptor";
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
     declarations: [
@@ -75,6 +76,7 @@ import { CustomInterceptor } from "./_services/custom.interceptor";
         SelezioneConfrontoSquadreComponent,
         DettaglioGiocatorePartitaComponent,
         LoginComponent,
+        RegisterComponent,
     ],
     imports: [
         BrowserModule,

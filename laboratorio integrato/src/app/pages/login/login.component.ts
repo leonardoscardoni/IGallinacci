@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Component } from "@angular/core";
+import { Component, ElementRef, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 
 @Component({
@@ -12,7 +12,17 @@ export class LoginComponent {
         EmailId: "",
         Password: "",
     };
+    mostraPassword: boolean = false;
 
+    @ViewChild('passwordInput', { static: true }) passwordInput!: ElementRef;
+    toggleMostraPassword(): void {
+        this.mostraPassword = !this.mostraPassword;
+      
+        // Aggiorna il tipo dell'input a seconda dello stato
+        const inputElement = this.passwordInput.nativeElement as HTMLInputElement;
+        inputElement.type = this.mostraPassword ? 'text' : 'password';
+      }
+      
     constructor(private http: HttpClient, private router: Router) {}
 
     onLogin() {

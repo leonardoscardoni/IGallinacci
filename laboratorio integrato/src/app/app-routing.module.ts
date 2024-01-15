@@ -9,9 +9,11 @@ import { ElencoGiocatoriComponent } from "./pages/elenco-giocatori/elenco-giocat
 import { SceltaConfrontoTeamComponent } from "./pages/scelta-confronto-team/scelta-confronto-team.component";
 import { DettaglioGiocatorePartitaComponent } from "./pages/dettaglio-giocatore-parita/dettaglio-giocatore-partita.component";
 import { LoginComponent } from "./pages/login/login.component";
+import { RegisterComponent } from "./pages/register/register.component";
 
 const routes: Routes = [
     { path: "login", component: LoginComponent },
+    { path: "register", component: RegisterComponent },
     { path: "home", component: HomePageComponent },
     { path: "dett-partita-giocata", component: DettaglioPartitaGiocataComponent },
     { path: "calendario-partite", component: CalendarioPartiteComponent },
