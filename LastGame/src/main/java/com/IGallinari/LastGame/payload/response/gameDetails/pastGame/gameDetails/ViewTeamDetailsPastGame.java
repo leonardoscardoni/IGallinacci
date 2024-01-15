@@ -8,6 +8,7 @@ import lombok.Data;
 public class ViewTeamDetailsPastGame {
     private int id;
     private String nickname;
+    private String code;
     private String logo;
     private Integer points;
 }

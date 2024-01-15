@@ -9,6 +9,7 @@ import lombok.Data;
 @Data @AllArgsConstructor
 public class PlayerTeamFilterResponse {
     private int idTeam;
+    private String logo;
     private String nickname;
     private String name;
     private Integer season;
