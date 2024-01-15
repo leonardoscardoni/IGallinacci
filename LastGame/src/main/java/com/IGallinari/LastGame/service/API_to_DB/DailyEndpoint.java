@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-@Component
+
 @AllArgsConstructor
 public class DailyEndpoint {
 
@@ -23,7 +23,7 @@ public class DailyEndpoint {
 
     private StatsGameRepository statsGameRepository;
 
-    @PostConstruct
+    @Scheduled(cron = "0 0 5 * * *") //every day at 05:00:00
     public void init() throws InterruptedException {
         LocalDate today=LocalDate.now();
         System.out.println("Starting daily call");
