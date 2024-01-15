@@ -15,6 +15,7 @@ import { ElencoTeamComponent } from "./pages/elenco-team/elenco-team.component";
 import { DettaglioConfrontoTeamComponent } from "./pages/dettaglio-confronto-team/dettaglio-confronto-team.component";
 import { ClassificaComponent } from "./pages/classifica/classifica.component";
 import { ProfiloComponent } from "./pages/profilo/profilo.component";
+import { DettaglioArticoloComponent } from "./pages/dettaglio-articolo/dettaglio-articolo.component";
 
 const routes: Routes = [
     { path: "home", component: HomePageComponent },
@@ -41,7 +42,10 @@ const routes: Routes = [
         path: "profilo",
         component: ProfiloComponent,
     },
-
+    {
+        path: "dettaglio-articolo",
+        component: DettaglioArticoloComponent,
+    },
     { path: "", redirectTo: "home", pathMatch: "full" },
 ];
 

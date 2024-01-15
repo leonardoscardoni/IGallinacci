@@ -16,6 +16,10 @@ $nero:#130B02;
     font-family: 'inter';
     src: url('/assets/Inter/Inter-VariableFont_slnt\,wght.ttf') format('woff');
 }
+@font-face {
+    font-family: 'inter-bold-italic';
+    src: url('/assets/Inter/static/Inter-BoldItalic.woff2') format('woff');
+}
 
 body , .linea{
     background-color: $nero;
@@ -28,6 +32,9 @@ body , .linea{
 
 .font-inter{
     font-family: inter;
+}
+.font-inter-bold-italic{
+    font-family: "inter-bold-italic";
 }
 .font-antonio{
     font-family: MioFont;
