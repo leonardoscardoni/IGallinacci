@@ -25,7 +25,7 @@ export class ApiService {
   private confrontoTeam = `${'team/getCompareTeam?idTeam1='}`
   private playerMatch = "player/getPlayerDetailsByGame?idGame=11058&idPlayer=4"
   private TeamRolesPlayerFilter = "player/getTeamRolesPlayerFilter"
-  private playerIndipendente = "player/getPlayerDetails?idPlayer=18&season=2023"
+  private playerIndipendente = `${'player/getPlayerDetails?idPlayer='}`
   private PlayerFilter = `${'player/getPlayerTeamFiltered?idTeam='}`
 
   constructor(private http: HttpClient) {}
@@ -40,8 +40,8 @@ export class ApiService {
     .pipe(map((response:any) => {
         return response as TeamType}));
   }
-  getPlayerDetailInd() {
-    return this.http.get(`${this.baseURL}${this.playerIndipendente}`)
+  getPlayerDetailInd(id:string) {
+    return this.http.get(`${this.baseURL}${this.playerIndipendente}${id}${'&season=2023'}`)
     .pipe(map((response:any) => {
         return response as PlayerDetailIndType}));
   }

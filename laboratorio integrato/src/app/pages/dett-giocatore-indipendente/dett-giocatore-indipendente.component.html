@@ -4,7 +4,7 @@
             <div class="lg:w-20 md:w-14 h-full w-10">
                 <img src={{data.logo}} class="w-full" alt="">
             </div>
-            <p class="md:text-5xl lg:text-8xl uppercase md:pe-10 text-4xl">{{data.firstName}} {{data.lastName}}</p>
+            <p class="md:text-5xl lg:text-7xl uppercase md:pe-10 text-4xl">{{data.firstName}} {{data.lastName}}</p>
         </div>
         <div class="w-full flex justify-center">
             <div class="border border-[#E5CFB5] py-1 md:px-3 px-2 rounded-full md:h-12 h-8 flex gap-2 items-center justify-center lg:absolute right-20 top-14 w-fit">
@@ -20,16 +20,16 @@
 <section class="p-6 md:p-20 flex flex-col lg:flex-row ">
     <div class="flex lg:w-1/2 flex-wrap">
         <div class="w-1/2 p-3">
-            <app-dati-principali [title]="'partite giocate'" [dato]="data.games.gamesPlayed"></app-dati-principali>
+            <app-dati-principali [title]="'PARTITE GIOCATE 2023'" [dato]="data.games.gamesPlayed"></app-dati-principali>
         </div>
         <div class="w-1/2 p-3">
             <app-dati-principali [title]="'Numero maglia'" [dato]="data.games.jerseyNumber"></app-dati-principali>
         </div>
         <div class="w-1/2 p-3">
-            <app-dati-principali [title]="'partite giocate'" [dato]="data.games.averageScore"></app-dati-principali>
+            <app-dati-principali [title]="'MINUTAGGIO MEDIO'" [dato]="data.games.averageScore.toFixed(2)"></app-dati-principali>
         </div>
         <div class="w-1/2 p-3">
-            <app-dati-principali [title]="'partite giocate'" [dato]="data.games.seasonScore"></app-dati-principali>
+            <app-dati-principali [title]="'PUNTI 2023'" [dato]="data.games.seasonScore"></app-dati-principali>
         </div>
        
     </div>

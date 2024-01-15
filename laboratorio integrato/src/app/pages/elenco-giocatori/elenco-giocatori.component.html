@@ -20,7 +20,7 @@
         <table class="min-w-full table-fixed">
             <thead class="w-full ">
                 <tr class="bg-white/5 text-left border-r-2">
-                    <th class="sticky left-0 top-0 py-2 px-4">
+                    <th class="sticky left-0 top-0 py-2 px-4" >
                         <p class="text-base md:text-lg">NOME</p>
                     </th>
                 </tr>
@@ -29,7 +29,7 @@
                 <ng-container *ngFor="let giocatore of data2.players">
                     <ng-container *ngIf="squadraSelezionata && !ruoloSelezionato || squadraSelezionata && (ruoloSelezionato.name == giocatore.ruolo)">
                         <tr class="bg-[#130B02]">
-                            <td class="sticky left-0 top-0 py-2 px-4 text-base md:text-lg">
+                            <td class="sticky left-0 top-0 py-2 px-4 text-base md:text-lg" [routerLink]="['/dett-giocatore-ind', giocatore.idPlayer]">
                                 {{ giocatore.name }}
                             </td>
                         </tr>
