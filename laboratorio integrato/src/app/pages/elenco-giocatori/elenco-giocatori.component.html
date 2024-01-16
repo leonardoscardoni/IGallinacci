@@ -29,7 +29,7 @@
                 <ng-container *ngFor="let giocatore of data2.players">
                     <ng-container *ngIf="squadraSelezionata && !ruoloSelezionato || squadraSelezionata && (ruoloSelezionato.name == giocatore.ruolo)">
                         <tr class="bg-[#130B02]">
-                            <td class="sticky left-0 top-0 py-2 px-4 text-base md:text-lg">
+                            <td class="sticky left-0 top-0 py-2 px-4 text-base md:text-lg" [routerLink]="['/dett-giocatore-ind', giocatore.idPlayer]">
                                 {{ giocatore.name }}
                             </td>
                         </tr>
