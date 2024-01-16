@@ -45,7 +45,6 @@ export class ElencoGiocatoriComponent implements OnInit {
     idGiocatore: any;
 
 
-
     constructor(private apiService: ApiService) {}
   data: TeamPlayerFilterType = {} as TeamPlayerFilterType
   ngOnInit() {
@@ -62,4 +61,8 @@ export class ElencoGiocatoriComponent implements OnInit {
 
       });
     }
+
+
+
+    
 }

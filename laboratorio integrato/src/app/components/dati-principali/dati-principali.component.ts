@@ -9,4 +9,8 @@ export class DatiPrincipaliComponent {
   @Input() title: string = '';
   @Input() dato: any;
   @Input() percentuale: string = '';
+
+
+
+
 }
