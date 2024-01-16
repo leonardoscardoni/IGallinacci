@@ -1,0 +1,15 @@
+.tessera-giocatore {
+    .freccia img:last-child {
+      display: none;  
+    }
+}
+
+
+.tessera-giocatore:hover {
+    .freccia img:last-child {
+      display: block;  
+    }
+    .freccia img:first-child {
+      display: none;  
+    }
+}

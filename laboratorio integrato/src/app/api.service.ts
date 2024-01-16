@@ -11,6 +11,7 @@ import { PlayerMatchType } from "./_models/playerMatchApi.type";
 import { TeamPlayerFilterType } from "./_models/teamPlayerFilter.type";
 import { PlayerTeamFilteredType } from "./_models/PlayerTeamFilteredApi.type";
 import { PlayerDetailIndType } from "./_models/PlayerDetailInd.type";
+import { DettaglioPartitaType } from "./_models/dettaglioPartita.type";
 
 @Injectable({
     providedIn: "root",
@@ -27,6 +28,7 @@ export class ApiService {
     private TeamRolesPlayerFilter = "player/getTeamRolesPlayerFilter";
     private playerIndipendente = `${"player/getPlayerDetails?idPlayer="}`;
     private PlayerFilter = `${"player/getPlayerTeamFiltered?idTeam="}`;
+    private dettaglioPartita = "game/getGameDetails?idGame=";
 
     constructor(private http: HttpClient) {}
     getHomeApi() {
@@ -109,6 +111,14 @@ export class ApiService {
         return this.http.get(`${this.baseURL}${this.elencoTeam}`).pipe(
             map((response: any) => {
                 return response as ElencoTeamType;
+            })
+        );
+    }
+
+    getDettaglioPartita(idPartita: string) {
+        return this.http.get(`${this.baseURL}${this.dettaglioPartita}${idPartita}`).pipe(
+            map((response: any) => {
+                return response as DettaglioPartitaType;
             })
         );
     }

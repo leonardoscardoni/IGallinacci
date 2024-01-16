@@ -2,18 +2,18 @@
 
 <div class="flex flex-wrap p-5 rounded-b-xl bg-bianco color-nero text-center gap-5">
 
-  <div class="flex w-full">
+  <div class="flex w-full" [ngClass]="getBackgroundColor(datoSquadra1,datoSquadra2)">
       <img src="{{logoSquadra1}}" alt="" class="w-2/12">
       <p class="w-10/12 self-center text-base sm:text-l md:text-2xl">{{nomeSquadra1.toUpperCase()}}</p>
   </div>
-  <div class="w-full mt-2">
+  <div class="w-full mt-2" [ngClass]="getBackgroundColor(datoSquadra1,datoSquadra2)">
       <p class="font-inter font-black text-4xl sm:text-5xl md:text-5xl">{{datoSquadra1}}</p>
   </div>
   
-  <div class="w-full mt-2">
+  <div class="w-full mt-2" [ngClass]="getBackgroundColor(datoSquadra2,datoSquadra1)">
       <p class="font-inter font-black text-4xl sm:text-5xl md:text-5xl">{{datoSquadra2}}</p>
   </div>
-  <div class="flex w-full">
+  <div class="flex w-full" [ngClass]="getBackgroundColor(datoSquadra2,datoSquadra1)">
       <img src="{{logoSquadra2}}" alt="" class="w-2/12">
       <p class="w-10/12 self-center text-base sm:text-xl md:text-2xl">{{nomeSquadra2.toUpperCase()}}</p>
   </div>

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat"; // Importa il plugin per il formato localizzato
 import "dayjs/locale/it"; // Importa la lingua italiana
+import { DettaglioPartitaType } from "src/app/_models/dettaglioPartita.type";
 
 @Component({
     selector: "app-header-dettaglio-partita",
@@ -9,8 +10,7 @@ import "dayjs/locale/it"; // Importa la lingua italiana
     styleUrls: ["./header-dettaglio-partita.component.scss"],
 })
 export class HeaderDettaglioPartitaComponent implements OnInit {
-    @Input() data!: any;
-    @Input() punteggio!: boolean;
+    @Input() data: any;
 
     date = "";
     hour = "";
