@@ -44,7 +44,7 @@ public interface StatsPlayerRepository extends JpaRepository<StatsPlayer,Integer
     @Query(value = "SELECT SUM(st.points)FROM StatsPlayer st LEFT JOIN game g ON st.idGame = g.id WHERE st.idPlayer = 40 AND g.season = 2023;", nativeQuery = true)
     Float findSumPointsByIdPlayerAndSeason(@Param("inputIdPlayer")int idPlayer, @Param("inputSeason")int season);
 
-    @Query(value = "SELECT sp.idTeam FROM statsplayer sp left JOIN game g on sp.idGame = g.id where sp.idPlayer=:inputIdPlayer AND g.season=:inputSeason ORDER by g.date DESC LIMIT 1")
+    @Query(value = "SELECT sp.idTeam FROM statsplayer sp left JOIN game g on sp.idGame = g.id where sp.idPlayer=:inputIdPlayer AND g.season=:inputSeason ORDER by g.date DESC LIMIT 1", nativeQuery = true)
     Integer findLastTeamPlayer(@Param("inputIdPlayer") int idPlayer, @Param("inputSeason") int season);
 
     StatsPlayer findByPlayerAndGame(Player player, Game game);

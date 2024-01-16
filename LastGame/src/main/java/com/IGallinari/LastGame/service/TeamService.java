@@ -115,8 +115,8 @@ public class TeamService {
                 statsTeam.getTotReb(),
                 statsTeam.getAssists()
         );
-        Integer allowedPoints= statsGameRepository.findAllowedPoints(team.getId(),season);
-        Integer pointsPerGame= statsGameRepository.findPointsPerGame(team.getId(),season);
+        Float allowedPoints= statsGameRepository.findAllowedPoints(team.getId(),season);
+        Float pointsPerGame= statsGameRepository.findPointsPerGame(team.getId(),season);
         ViewPointsTeamDetails viewPointsTeamDetails = new ViewPointsTeamDetails(
                 statsTeam.getPoints(),
                 pointsPerGame,
