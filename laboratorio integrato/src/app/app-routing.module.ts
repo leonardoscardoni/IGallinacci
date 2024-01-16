@@ -16,8 +16,12 @@ import { DettaglioConfrontoTeamComponent } from "./pages/dettaglio-confronto-tea
 import { ClassificaComponent } from "./pages/classifica/classifica.component";
 import { ProfiloComponent } from "./pages/profilo/profilo.component";
 import { DettaglioArticoloComponent } from "./pages/dettaglio-articolo/dettaglio-articolo.component";
+import { LoginComponent } from "./pages/login/login.component";
+import { RegisterComponent } from "./pages/register/register.component";
 
 const routes: Routes = [
+    { path: "login", component: LoginComponent },
+    { path: "register", component: RegisterComponent },
     { path: "home", component: HomePageComponent },
     { path: "dett-partita-giocata", component: DettaglioPartitaGiocataComponent },
     { path: "calendario-partite", component: CalendarioPartiteComponent },

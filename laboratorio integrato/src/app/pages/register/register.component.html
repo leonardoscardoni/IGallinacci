@@ -1,0 +1,62 @@
+
+<div class="bg container flex justify-center items-center lg:p-20 py-20 p-6">
+    <div class="bg-bianco color-nero p-10  rounded-2xl xl:w-[40%] lg:w-[50%] md:w-[60%] w-full">
+    <p class="capitalize font-inter text-center pb-6">welcome to last shot!</p>
+    <div class="w-[80%] border border-arancio p-2 rounded-full mx-auto my-0 flex mb-10">
+        <a class="bg-transparent  px-5 py-2 rounded-full w-[50%] text-center color-arancio font-inter cursor-pointer" [routerLink]="['/login']">Login</a>
+        <a class="bg-arancio px-5 py-2 rounded-full w-[50%] text-center color-white font-inter cursor-pointer">Registrati</a>
+    </div>
+    <form method="post" class="flex flex-col gap-5">
+    
+        <div class="flex flex-col gap-4">
+        <label for="EmailId" class="font-inter">Email</label>
+        <input type="email" placeholder="Enter Email" name="EmailId" [(ngModel)]="loginObj.EmailId" required class="border border-arancio p-3 rounded-full bg-transparent font-inter">
+        </div>
+        <div class="flex flex-col gap-4">
+        <label for="UsernameId" class="font-inter">username</label>
+        <input type="username" placeholder="Enter Username" name="UsernamelId" [(ngModel)]="loginObj.UsernameId" required class="border border-arancio p-3 rounded-full bg-transparent font-inter">
+        </div>
+    
+        <div class="flex flex-col gap-4">
+        <label for="Password" class="font-inter">Password</label>
+        <div class="border border-arancio p-3 rounded-full bg-transparent font-inter relative">
+            <input #passwordInput type="{{ mostraPassword ? 'text' : 'password' }}" placeholder="Enter Password" name="Password" [(ngModel)]="loginObj.Password" required class="bg-transparent w-full">
+            <div class="absolute right-[5%] top-[50%] translate-y-[-50%] cursor-pointer" (click)="toggleMostraPassword()">
+                <ng-container *ngIf="mostraPassword; else nascondiPassword">
+                  <img src="assets/eye-open-svgrepo-com.svg" alt="" class="w-5">
+                </ng-container>
+                <ng-template #nascondiPassword>
+                  <img src="assets/eye-close-svgrepo-com.svg" alt="" class="w-5">
+                </ng-template>
+              </div>
+              
+        </div>
+        </div>
+        <div class="flex flex-col gap-4">
+        <label for="Password" class="font-inter">Password</label>
+        <div class="border border-arancio p-3 rounded-full bg-transparent font-inter relative">
+            <input #passwordInput type="{{ mostraPassword ? 'text' : 'password' }}" placeholder="Enter Password" name="Password" [(ngModel)]="loginObj.Password" required class="bg-transparent w-full">
+            <div class="absolute right-[5%] top-[50%] translate-y-[-50%] cursor-pointer" (click)="toggleMostraPassword()">
+                <ng-container *ngIf="mostraPassword; else nascondiPassword">
+                  <img src="assets/eye-open-svgrepo-com.svg" alt="" class="w-5">
+                </ng-container>
+                <ng-template #nascondiPassword>
+                  <img src="assets/eye-close-svgrepo-com.svg" alt="" class="w-5">
+                </ng-template>
+              </div>
+              
+        </div>
+        </div>
+        <div class="flex justify-between">
+            <div>
+                <input type="checkbox" id="Ricordami" name="Ricordami" />
+                <label for="Ricordami" class="font-inter font-light text-xs ml-2">Rememebr me</label>
+              </div>
+              <div class="flex items-end">
+                <p class="font-inter font-light text-xs ml-2">forgot password ?</p>
+            </div>
+        </div>
+        <button (click)="onLogin()" class="bg-arancio px-5 py-2 rounded-full w-[60%] self-end font-inter color-white">Register</button>
+    </form>
+</div>
+</div>

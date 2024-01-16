@@ -27,7 +27,7 @@ import { ContainerDatiGeneraliComponent } from "./components/container-dati-gene
 import { HeaderConfrontoDettaglioComponent } from "./components/header-confronto-dettaglio/header-confronto-dettaglio.component";
 import { DettConfrontoGiocatoriComponent } from "./pages/dett-confronto-giocatori/dett-confronto-giocatori.component";
 import { BioGiocatoreComponent } from "./components/bio-giocatore/bio-giocatore.component";
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { UltimiRisultatiHomeComponent } from "./components/ultimi-risultati-home/ultimi-risultati-home.component";
 import { ElencoGiocatoriComponent } from "./pages/elenco-giocatori/elenco-giocatori.component";
 import { DropdownModule } from "primeng/dropdown";
@@ -48,6 +48,9 @@ import { NomeTeamElencoTeamComponent } from "./components/nome-team-elenco-team/
 import { ClassificaComponent } from "./pages/classifica/classifica.component";
 import { ProfiloComponent } from "./pages/profilo/profilo.component";
 import { DettaglioArticoloComponent } from "./pages/dettaglio-articolo/dettaglio-articolo.component";
+import { LoginComponent } from "./pages/login/login.component";
+import { CustomInterceptor } from "./_services/custom.interceptor";
+import { RegisterComponent } from "./pages/register/register.component";
 
 @NgModule({
     declarations: [
@@ -94,6 +97,8 @@ import { DettaglioArticoloComponent } from "./pages/dettaglio-articolo/dettaglio
         ClassificaComponent,
         ProfiloComponent,
         DettaglioArticoloComponent,
+        LoginComponent,
+        RegisterComponent,
     ],
     imports: [
         BrowserModule,
@@ -108,7 +113,13 @@ import { DettaglioArticoloComponent } from "./pages/dettaglio-articolo/dettaglio
         HttpClientModule,
         FormsModule,
     ],
-    providers: [],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: CustomInterceptor,
+            multi: true,
+        },
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
