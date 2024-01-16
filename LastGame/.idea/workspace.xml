@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c37c9620-1c6a-4a8f-b566-00dea8a53df4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/header-bg-titolo/header-bg-titolo.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/header-bg-titolo/header-bg-titolo.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/header-bg-titolo/header-bg-titolo.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratorio integrato/src/app/components/header-bg-titolo/header-bg-titolo.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/IGallinari/LastGame/service/API_to_DB/DailyEndpoint.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/IGallinari/LastGame/service/API_to_DB/HandleJSON/GamesHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/IGallinari/LastGame/service/API_to_DB/HandleJSON/GamesStatisticsHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/IGallinari/LastGame/service/API_to_DB/HandleJSON/PlayersStatisticsHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/IGallinari/LastGame/service/API_to_DB/PopulateDB.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/IGallinari/LastGame/service/GameService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/IGallinari/LastGame/service/TeamService.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
