@@ -242,15 +242,15 @@ public class TeamService {
         );
         List<ViewTeamComparisonNbaAvgCompareTeam> TeamCompareNba= new ArrayList<>();
         List<String > dataNames = List.of("points","rebounds","assist","fieldShotsMade","freeTrowMade","treePointsMade");
-        List<Integer[]> datasTeam1 = statsTeamRepository.findDataTeamByIdTeamAndSeason(idTeam1,season);
-        List<Integer[]> datasTeam2 = statsTeamRepository.findDataTeamByIdTeamAndSeason(idTeam2,season);
+        List<Integer[]> dataTeam1 = statsTeamRepository.findDataTeamByIdTeamAndSeason(idTeam1,season);
+        List<Integer[]> dataTeam2 = statsTeamRepository.findDataTeamByIdTeamAndSeason(idTeam2,season);
         LocalDate today = LocalDate.now();
         for(int i=0;i<dataNames.size();i++){
             TeamCompareNba.add(
                     new ViewTeamComparisonNbaAvgCompareTeam(
                             dataNames.get(i),
-                            datasTeam1.get(0)[i],
-                            datasTeam2.get(0)[i]
+                            dataTeam1.get(0)[i],
+                            dataTeam2.get(0)[i]
                     )
             );
         }

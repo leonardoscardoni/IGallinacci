@@ -1,11 +1,17 @@
 package com.IGallinari.LastGame.service;
 
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
 
 import com.IGallinari.LastGame.payload.response.playerDetails.*;
+import com.IGallinari.LastGame.payload.response.comparison.player.ComparePlayerResponse;
+import com.IGallinari.LastGame.payload.response.comparison.player.ViewDataPlayerComparePlayer;
+import com.IGallinari.LastGame.payload.response.comparison.player.ViewHeaderComparePlayer;
+import com.IGallinari.LastGame.payload.response.comparison.player.ViewPlayerComparePlayer;
 import com.IGallinari.LastGame.payload.response.listPlayerFilter.PlayerFilterResponse;
 import com.IGallinari.LastGame.payload.response.listPlayerFilter.ViewRolesPlayerFilter;
 import com.IGallinari.LastGame.payload.response.listPlayerFilter.ViewTeamsPlayerFilter;
@@ -13,14 +19,6 @@ import com.IGallinari.LastGame.payload.response.playerDetailsByGame.*;
 import com.IGallinari.LastGame.payload.response.playerTeamFilter.PlayerTeamFilterResponse;
 import com.IGallinari.LastGame.payload.response.playerTeamFilter.ViewPlayersPlayerTeamFilter;
 import org.springframework.stereotype.Service;
-
-import com.IGallinari.LastGame.entity.Player;
-import com.IGallinari.LastGame.entity.PlayerTeam;
-import com.IGallinari.LastGame.entity.Team;
-
-import com.IGallinari.LastGame.repository.PlayerRepository;
-import com.IGallinari.LastGame.repository.PlayerTeamRepository;
-import com.IGallinari.LastGame.repository.TeamRepository;
 
 import lombok.RequiredArgsConstructor;
 import com.IGallinari.LastGame.entity.*;
@@ -227,4 +225,68 @@ public class PlayerService {
                 viewFoulsBallsBlocksPlayerDetails,
                 viewPointsPlayerDetails
         );
-    }}
+    }
+
+    public ComparePlayerResponse buildComparePlayerResponse(int idPlayer1, int idPlayer2, int season){
+        Player player1 = playerRepository.findById(idPlayer1);
+        Player player2 = playerRepository.findById(idPlayer2);
+        PlayerTeam playerTeam1 = playerTeamRepository.findByPlayerAndSeason(player1,season);
+        PlayerTeam playerTeam2 = playerTeamRepository.findByPlayerAndSeason(player2,season);
+        Team team1 = playerTeam1.getTeam();
+        Team team2 = playerTeam2.getTeam();
+
+
+        ViewHeaderComparePlayer viewHeaderComparePlayer1 = new ViewHeaderComparePlayer(
+                player1.getId(),
+                player1.getFirstname(),
+                team1.getLogo());
+        ViewHeaderComparePlayer viewHeaderComparePlayer2 = new ViewHeaderComparePlayer(
+                player2.getId(),
+                player2.getFirstname(),
+                team2.getLogo());
+        
+        List<ViewPlayerComparePlayer> playerCompare = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+                Player currentPlayer;
+                Team currentTeam;
+                if (i == 0) {
+                        currentPlayer = player1;
+                        currentTeam = team1;
+                } else {
+                        currentPlayer = player2;
+                        currentTeam = team2;
+                }
+                // age calculation
+                LocalDate today = LocalDate.now();
+                LocalDate dateBirthPlayer = currentPlayer.getDateOfBirth();
+                Integer age = Period.between(dateBirthPlayer, today).getYears();
+
+                playerCompare.add(new ViewPlayerComparePlayer(
+                        currentPlayer.getFirstname(),
+                        age,
+                        currentPlayer.getCountry(),
+                        currentPlayer.getWeight(),
+                        currentPlayer.getHeight(),
+                        currentTeam.getName(),
+                        currentPlayer.getStartYear(),
+                        currentPlayer.getCollege(),
+                        currentPlayer.getAffiliation(),
+                        Player.getRole(currentPlayer.getPos())
+                )
+                );
+        }
+        
+        List<ViewDataPlayerComparePlayer> dataPlayersCompare = new ArrayList<>();
+        List<String> dataNames = List.of("points", "threePointsAttempts", "freeTrowMade", "steals", "rebounds", "threePointsMade");
+        List<Integer[]> dataPlayer1 = statsPlayerRepository.findSumDataIdPlayerAndSeason(idPlayer1, season);
+        List<Integer[]> dataPlayer2 = statsPlayerRepository.findSumDataIdPlayerAndSeason(idPlayer2, season);
+        for(int i = 0; i<dataNames.size();i++){
+                dataPlayersCompare.add(
+                        new ViewDataPlayerComparePlayer(dataNames.get(i), dataPlayer1.get(0)[i], dataPlayer2.get(0)[i])
+                );
+        }
+
+        ComparePlayerResponse comparePlayerResponse = new ComparePlayerResponse(viewHeaderComparePlayer1, viewHeaderComparePlayer2, playerCompare, dataPlayersCompare);
+        return comparePlayerResponse;
+        }
+}
