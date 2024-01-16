@@ -7,7 +7,7 @@ import { TeamDetailType } from "src/app/_models/TeamDetailApi.type";
 })
 export class ContenitoreCardConfrontoDatiComponent {
     @Input() data: any
-    logo= "/assets/s-l1200.webp"
+    logo= "/assets/NBA-Logo.png"
     titoli = [
         'PUNTEGGIO',
         'RIMBALZI',

@@ -64,47 +64,43 @@
 
 
         <div class="container">
-            <div class="flex flex-col md:flex-row gap-4 my-4">
-                <p-dropdown [options]="a.squadre" [(ngModel)]="squadraSelezionata" [showClear]="true" placeholder="Tutte le squadre" [style]="{'width':'100%'}" class="md:w-1/5 md:mr-5"></p-dropdown>
-                <p-dropdown [options]="a.ruoli" [(ngModel)]="ruoloSelezionato" [showClear]="true" placeholder="Tutti i ruoli" [style]="{'width':'100%'}" class="md:w-1/5"></p-dropdown>
-            </div>
+          <div class="flex flex-col md:flex-row gap-4 my-4">
+            <p-dropdown [options]="data.teamList" [(ngModel)]="squadraSelezionata" [showClear]="true" placeholder="Tutte le squadre" [style]="{'width':'100%'}" class="md:w-1/5 md:mr-5" optionLabel="name" (click)="PlayerFilter(squadraSelezionata.idTeam)"></p-dropdown>
+            <p-dropdown [options]="data.rolePlayer" [(ngModel)]="ruoloSelezionato" [showClear]="true" placeholder="Tutti i ruoli" [style]="{'width':'100%'}" class="md:w-1/5" optionLabel="name" (click)="ab()" [disabled]="!squadraSelezionata"></p-dropdown>
+
+          </div>
         </div>
-       
+      
          <div class="container grid grid-cols-12 gap-x-3 gap-y-6 pt-6 pb-10">
-            <ng-container *ngFor="let giocatore of a.giocatori;let i = index">
-              <div *ngIf="squadraSelezionata == undefined && ruoloSelezionato == undefined" [class.hidden]="i>=1" class="w-72">
-                <p class="text-xl color-arancio">Applica un filtro!</p>
-            </div>
-               
-        
-                <ng-container *ngIf="squadraSelezionata == giocatore.nomeSquadra && ruoloSelezionato == undefined">
-                    <div class="col-span-1">
-                        <img [src]="giocatore.logoSquadra" alt="" class="w-7">
+           <div *ngIf="!squadraSelezionata && !ruoloSelezionato" class="w-72">
+             <p class="text-xl color-arancio">Applica un filtro!</p>
+         </div>
+           
+            <ng-container *ngFor="let giocatore of data2.players ;let i = index">
+              
+
+                <ng-container *ngIf="squadraSelezionata && !ruoloSelezionato">
+                    <div class="col-span-1 bg-white w-7 h-7 rounded-full p-1">
+                        <img [src]="data2.logo" alt="" class="w-full">
                     </div>
-                    <div class="col-span-3" (click)="selectTeam({ nome: giocatore.nomeGiocatore, immagine: giocatore.logoSquadra })">
+                    <div class="col-span-3" (click)="selectTeam({ nome: giocatore.name, immagine: data2.logo })">
                         <p class="text-base md:text-lg inline prova"
-                        >{{giocatore.nomeGiocatore}}</p>
+                        >{{giocatore.name}}</p>
                     </div>
                     
                 </ng-container>
         
-                <ng-container *ngIf="squadraSelezionata == giocatore.nomeSquadra && ruoloSelezionato == giocatore.ruolo">
-                    <div class="col-span-1">
-                        <img [src]="giocatore.logoSquadra" alt="" class="w-7">
-                    </div>
-                    <div class="col-span-3" (click)="selectTeam({ nome: giocatore.nomeGiocatore, immagine: giocatore.logoSquadra })">
-                        <p class="text-base md:text-lg inline prova">{{giocatore.nomeGiocatore}}</p>
+                <ng-container *ngIf="squadraSelezionata && ruoloSelezionato && ruoloSelezionato.name === giocatore.ruolo" class="cursor-pointer">
+                  <div class="col-span-1 bg-white w-7 h-7 rounded-full p-1">
+                    <img [src]="data2.logo" alt="" class="w-full">
+                </div>
+                    <div class="col-span-3" (click)="selectTeam({ nome: giocatore.name, immagine: data2.logo }) ">
+                        <p class="text-base md:text-lg inline prova">{{giocatore.name}}</p>
                     </div>
                 </ng-container>
         
-                <ng-container *ngIf="squadraSelezionata == undefined && ruoloSelezionato == giocatore.ruolo">
-                    <div class="col-span-1">
-                        <img [src]="giocatore.logoSquadra" alt="" class="w-7">
-                    </div>
-                    <div class="col-span-3" (click)="selectTeam({ nome: giocatore.nomeGiocatore, immagine: giocatore.logoSquadra })">
-                        <p class="text-base md:text-lg inline prova">{{giocatore.nomeGiocatore}}</p>
-                    </div>
-                </ng-container>
+              
+                
         
             </ng-container>
         </div>

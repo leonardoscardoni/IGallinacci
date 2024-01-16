@@ -2,9 +2,9 @@
     <div class="relative bg-white/5 border-y border-[#E5CFB5] flex items-center justify-center p-10 flex-wrap gap-8">
         <div class="flex lg:gap-14 md:gap-8 lg:items-end flex-col md:flex-row items-center gap-5">
             <div class="lg:w-20 md:w-14 h-full w-10">
-                <img src="/assets/s-l1200.webp" class="w-full" alt="">
+                <img src={{data.logo}} class="w-full" alt="">
             </div>
-            <p class="md:text-5xl lg:text-8xl uppercase md:pe-10 text-4xl">Nome cognome</p>
+            <p class="md:text-5xl lg:text-8xl uppercase md:pe-10 text-4xl">{{data.firstName}} {{data.lastName}}</p>
         </div>
         <div class="w-full flex justify-center">
             <div class="border border-[#E5CFB5] py-1 md:px-3 px-2 rounded-full md:h-12 h-8 flex gap-2 items-center justify-center lg:absolute right-20 top-14 w-fit">
@@ -20,35 +20,35 @@
 <section class="p-6 md:p-20 flex flex-col lg:flex-row ">
     <div class="flex lg:w-1/2 flex-wrap">
         <div class="w-1/2 p-3">
-            <app-dati-principali [title]="'partite giocate'" [dato]="data[0].stats.gamesPlayed"></app-dati-principali>
+            <app-dati-principali [title]="'partite giocate'" [dato]="data.games.gamesPlayed"></app-dati-principali>
         </div>
         <div class="w-1/2 p-3">
-            <app-dati-principali [title]="'Numero maglia'" [dato]="data[0].stats.gamesPlayed"></app-dati-principali>
+            <app-dati-principali [title]="'Numero maglia'" [dato]="data.games.jerseyNumber"></app-dati-principali>
         </div>
         <div class="w-1/2 p-3">
-            <app-dati-principali [title]="'partite giocate'" [dato]="data[0].stats.gamesPlayed"></app-dati-principali>
+            <app-dati-principali [title]="'partite giocate'" [dato]="data.games.averageScore"></app-dati-principali>
         </div>
         <div class="w-1/2 p-3">
-            <app-dati-principali [title]="'partite giocate'" [dato]="data[0].stats.gamesPlayed"></app-dati-principali>
+            <app-dati-principali [title]="'partite giocate'" [dato]="data.games.seasonScore"></app-dati-principali>
         </div>
        
     </div>
+
     <div class="container lg:w-1/2">
         <div class="flex justify-center sm:justify-between w-full flex-wrap">
-            <ng-container *ngFor="let giocatore of a.confrontoGiocatori; index as i">
+            <ng-container>
                 <div class="w-full md:px-10 pt-3">
                     <app-bio-giocatore
-                        [nomeGiocatore]="a.confrontoGiocatori[i].nomeGiocatore"
-                        [eta]="a.confrontoGiocatori[i].eta"
-                        [peso]="a.confrontoGiocatori[i].peso"
-                        [stato]="a.confrontoGiocatori[i].stato"
-                        [altezza]="a.confrontoGiocatori[i].altezza"
-                        [squadra]="a.confrontoGiocatori[i].squadra"
-                        [annoIngressoNBA]="a.confrontoGiocatori[i].annoIngressoNBA"
-                        [college]="a.confrontoGiocatori[i].college"
-                        [affiliation]="a.confrontoGiocatori[i].affiliation"
+                        [nomeGiocatore]="data.firstName"
+                        [eta]="data.playerBio.age"
+                        [peso]="data.playerBio.weight"
+                        [stato]="data.playerBio.country"
+                        [altezza]="data.playerBio.height"
+                        [squadra]="data.nameTeam"
+                        [annoIngressoNBA]="data.playerBio.startYearNba"
+                        [college]="data.playerBio.college"
+                        [affiliation]="data.playerBio.affiliation"
                         class="w-[4/5] sm:w-[45%]"
-                        [ngClass]="i == 0 ? 'mb-10 sm:mb-0' : ''"
                     ></app-bio-giocatore>
                 </div>
             </ng-container>
@@ -57,6 +57,7 @@
 
     
 </section>
+
 <section class="pb-20">
     <app-container-dati-generali [data]="data"></app-container-dati-generali>
 </section>

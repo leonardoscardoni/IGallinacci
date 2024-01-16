@@ -1,4 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { PlayerTeamFilteredType } from 'src/app/_models/PlayerTeamFilteredApi.type';
+import { PlayerMatchType } from 'src/app/_models/playerMatchApi.type';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-selezione-confronto-giocatori',
@@ -82,8 +85,23 @@ export class SelezioneConfrontoGiocatoriComponent {
     ],
 };
 
-squadraSelezionata: undefined | string = undefined;
-ruoloSelezionato: undefined | string = undefined;
+squadraSelezionata: any;
+ruoloSelezionato: any;
 
-ngOnInit() {}
+
+ab() {
+  console.log('Valore di a:', this.ruoloSelezionato);
+  console.log('Valore di ruoloSelezionato:', this.squadraSelezionata);
+}
+
+constructor(private apiService: ApiService) {}
+
+data2: PlayerTeamFilteredType = {} as PlayerTeamFilteredType
+  PlayerFilter(idTeam:number) {
+      this.apiService.getPlayerFilter(idTeam).subscribe((data) => {
+        this.data2 = data;
+        console.log(this.data2)
+
+      });
+    }
 }

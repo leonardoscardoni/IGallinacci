@@ -1,4 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { PlayerTeamFilteredType } from "src/app/_models/PlayerTeamFilteredApi.type";
+import { TeamPlayerFilterType } from "src/app/_models/teamPlayerFilter.type";
+import { ApiService } from "src/app/api.service";
 
 @Component({
     selector: "app-elenco-giocatori",
@@ -37,8 +40,26 @@ export class ElencoGiocatoriComponent implements OnInit {
         ],
     };
 
-    squadraSelezionata: undefined | string = undefined;
-    ruoloSelezionato: undefined | string = undefined;
+    squadraSelezionata: any;
+    ruoloSelezionato: any;
+    idGiocatore: any;
 
-    ngOnInit() {}
+
+
+    constructor(private apiService: ApiService) {}
+  data: TeamPlayerFilterType = {} as TeamPlayerFilterType
+  ngOnInit() {
+      this.apiService.getTeamRolePlayerFilter().subscribe((data) => {
+        this.data = data;
+        console.log(this.data)
+      });
+    }
+    data2: PlayerTeamFilteredType = {} as PlayerTeamFilteredType
+  PlayerFilter(idTeam:number) {
+      this.apiService.getPlayerFilter(idTeam).subscribe((data) => {
+        this.data2 = data;
+        console.log(this.data2)
+
+      });
+    }
 }

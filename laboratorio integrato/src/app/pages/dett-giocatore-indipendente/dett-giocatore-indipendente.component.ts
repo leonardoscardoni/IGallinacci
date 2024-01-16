@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { PlayerDetailIndType } from 'src/app/_models/PlayerDetailInd.type';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-dett-giocatore-indipendente',
@@ -6,7 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./dett-giocatore-indipendente.component.scss']
 })
 export class DettGiocatoreIndipendenteComponent {
-  data: any = [
+ /*  data: any = [
     {
       team: "Trail Brazers",
       conference: "West",
@@ -104,7 +106,7 @@ export class DettGiocatoreIndipendenteComponent {
       
     }
     // Aggiungi altri oggetti dati se necessario
-  ];
+  ]; */
 
   a = {
     bgImg: "/assets/confronto-giocatori-header.jpg",
@@ -128,4 +130,15 @@ export class DettGiocatoreIndipendenteComponent {
 
     ],
 };
+
+
+
+constructor(private apiService: ApiService) {}
+data: PlayerDetailIndType = {} as PlayerDetailIndType
+ngOnInit() {
+    this.apiService.getPlayerDetailInd().subscribe((data) => {
+      this.data = data;
+      console.log(this.data)
+    });
+  }
 }
