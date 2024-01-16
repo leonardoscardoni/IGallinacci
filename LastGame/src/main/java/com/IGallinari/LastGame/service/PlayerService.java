@@ -230,10 +230,10 @@ public class PlayerService {
     public ComparePlayerResponse buildComparePlayerResponse(int idPlayer1, int idPlayer2, int season){
         Player player1 = playerRepository.findById(idPlayer1);
         Player player2 = playerRepository.findById(idPlayer2);
-        PlayerTeam playerTeam1 = playerTeamRepository.findByPlayerAndSeason(player1,season);
-        PlayerTeam playerTeam2 = playerTeamRepository.findByPlayerAndSeason(player2,season);
-        Team team1 = playerTeam1.getTeam();
-        Team team2 = playerTeam2.getTeam();
+        Integer idteam1 = statsPlayerRepository.findLastTeamPlayer(idPlayer1, season);
+        Integer idteam2 = statsPlayerRepository.findLastTeamPlayer(idPlayer1, season);
+        Team team1 = teamRepository.findById(idteam1.intValue());
+        Team team2 = teamRepository.findById(idteam2.intValue());
 
 
         ViewHeaderComparePlayer viewHeaderComparePlayer1 = new ViewHeaderComparePlayer(
