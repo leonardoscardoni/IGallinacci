@@ -49,10 +49,6 @@ public interface StatsPlayerRepository extends JpaRepository<StatsPlayer,Integer
 
     StatsPlayer findByPlayerAndGame(Player player, Game game);
 
-    /*  SELECT AVG(sp.fgm), AVG(sp.tpa), AVG(sp.totReb), AVG(sp.ftm), AVG(sp.steals), AVG(sp.totReb), AVG(sp.tpm)
-        FROM statsplayer sp
-        LEFT JOIN game g ON g.id = sp.idGame
-        WHERE idPlayer = 265 AND g.season = 2022; avg o totale */
     @Query(value = "SELECT SUM(sp.points), SUM(sp.totReb), SUM(sp.assists), SUM(sp.fgm),SUM(sp.ftm), SUM(sp.tpm)  FROM statsplayer sp left JOIN game g ON g.id = sp.idGame WHERE idPlayer=:inputIdPlayer AND g.season=:inputSeason", nativeQuery = true)
     List<Integer[]> findSumDataIdPlayerAndSeason(@Param("inputIdPlayer") int idPlayer, @Param("inputSeason") int season);
 }
