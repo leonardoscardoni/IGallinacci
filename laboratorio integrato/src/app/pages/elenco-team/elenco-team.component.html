@@ -7,7 +7,7 @@
     </div>
 
     <ng-container *ngFor="let squadra of data.east.atlantic.teams">
-      <app-nome-team-elenco-team [logo]="squadra.logo" [nomeTeam]="squadra.nickname" [preferito]="squadra.favourite"></app-nome-team-elenco-team>
+      <app-nome-team-elenco-team [logo]="squadra.logo" [nomeTeam]="squadra.nickname" [preferito]="squadra.favourite"[routerLink]="['/dettaglio-team/', squadra.id]"></app-nome-team-elenco-team>
     </ng-container>
 
     <div class="border-y border-[#e98a15] text-[1.5rem] text-center mt-5">
@@ -15,7 +15,7 @@
     </div>
 
     <ng-container *ngFor="let squadra of data.east.central.teams">
-      <app-nome-team-elenco-team [logo]="squadra.logo" [nomeTeam]="squadra.nickname" [preferito]="squadra.favourite"></app-nome-team-elenco-team>
+      <app-nome-team-elenco-team [logo]="squadra.logo" [nomeTeam]="squadra.nickname" [preferito]="squadra.favourite" [routerLink]="['/dettaglio-team/', squadra.id]"></app-nome-team-elenco-team>
     </ng-container>
 
     <div class="border-y border-[#e98a15] text-[1.5rem] text-center mt-5">
@@ -23,7 +23,7 @@
     </div>
 
     <ng-container *ngFor="let squadra of data.east.southeast.teams">
-      <app-nome-team-elenco-team [logo]="squadra.logo" [nomeTeam]="squadra.nickname" [preferito]="squadra.favourite"></app-nome-team-elenco-team>
+      <app-nome-team-elenco-team [logo]="squadra.logo" [nomeTeam]="squadra.nickname" [preferito]="squadra.favourite" [routerLink]="['/dettaglio-team/', squadra.id]"></app-nome-team-elenco-team>
     </ng-container>
 
   </div>
@@ -35,7 +35,7 @@
     </div>
 
     <ng-container *ngFor="let squadra of data.west.northwest.teams">
-      <app-nome-team-elenco-team [logo]="squadra.logo" [nomeTeam]="squadra.nickname" [preferito]="squadra.favourite"></app-nome-team-elenco-team>
+      <app-nome-team-elenco-team [logo]="squadra.logo" [nomeTeam]="squadra.nickname" [preferito]="squadra.favourite" [routerLink]="['/dettaglio-team/', squadra.id]"></app-nome-team-elenco-team>
     </ng-container>
 
     <div class="border-y border-[#e98a15] text-[1.5rem] text-center mt-5">
@@ -43,7 +43,7 @@
     </div>
 
     <ng-container *ngFor="let squadra of data.west.pacific.teams">
-      <app-nome-team-elenco-team [logo]="squadra.logo" [nomeTeam]="squadra.nickname" [preferito]="squadra.favourite"></app-nome-team-elenco-team>
+      <app-nome-team-elenco-team [logo]="squadra.logo" [nomeTeam]="squadra.nickname" [preferito]="squadra.favourite" [routerLink]="['/dettaglio-team/', squadra.id]"></app-nome-team-elenco-team>
     </ng-container>
 
     <div class="border-y border-[#e98a15] text-[1.5rem] text-center mt-5">
@@ -51,7 +51,7 @@
     </div>
 
     <ng-container *ngFor="let squadra of data.west.southwest.teams">
-      <app-nome-team-elenco-team [logo]="squadra.logo" [nomeTeam]="squadra.nickname" [preferito]="squadra.favourite"></app-nome-team-elenco-team>
+      <app-nome-team-elenco-team [logo]="squadra.logo" [nomeTeam]="squadra.nickname" [preferito]="squadra.favourite" [routerLink]="['/dettaglio-team/', squadra.id]"></app-nome-team-elenco-team>
     </ng-container>
 
   </div>

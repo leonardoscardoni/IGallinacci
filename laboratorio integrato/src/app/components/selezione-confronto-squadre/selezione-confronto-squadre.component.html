@@ -46,7 +46,9 @@
       </div>
     </div>
 
-<button class="bg-arancio rounded-full py-3 px-4 w-fit uppercase font-inter font-bold" (click)="goToConfrontoTeam()">Vai al Confronto</button>
+<button class="bg-arancio rounded-full py-3 px-4 w-fit uppercase font-inter font-bold " (click)="goToConfrontoTeam()" [disabled]="!selectedTeam2.nome || !selectedTeam1.nome"
+[class.cursor-not-allowed]="!selectedTeam2.nome || !selectedTeam1.nome"
+>Vai al Confronto</button>
   
     <div
       *ngIf="isModalOpen"
