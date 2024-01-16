@@ -232,17 +232,18 @@ public class PlayerService {
         Player player2 = playerRepository.findById(idPlayer2);
         Integer idteam1 = statsPlayerRepository.findLastTeamPlayer(idPlayer1, season);
         Integer idteam2 = statsPlayerRepository.findLastTeamPlayer(idPlayer1, season);
+        Team team = teamRepository.findById((statsPlayerRepository.findLastTeamPlayer(idPlayer2, season)).intValue());
         Team team1 = teamRepository.findById(idteam1.intValue());
         Team team2 = teamRepository.findById(idteam2.intValue());
 
 
         ViewHeaderComparePlayer viewHeaderComparePlayer1 = new ViewHeaderComparePlayer(
                 player1.getId(),
-                player1.getFirstname(),
+                player1.getFirstname()+" "+player1.getLastname(),
                 team1.getLogo());
         ViewHeaderComparePlayer viewHeaderComparePlayer2 = new ViewHeaderComparePlayer(
                 player2.getId(),
-                player2.getFirstname(),
+                player2.getFirstname()+" "+player2.getLastname(),
                 team2.getLogo());
         
         List<ViewPlayerComparePlayer> playerCompare = new ArrayList<>();
@@ -262,7 +263,7 @@ public class PlayerService {
                 Integer age = Period.between(dateBirthPlayer, today).getYears();
 
                 playerCompare.add(new ViewPlayerComparePlayer(
-                        currentPlayer.getFirstname(),
+                        currentPlayer.getFirstname()+" "+player1.getLastname(),
                         age,
                         currentPlayer.getCountry(),
                         currentPlayer.getWeight(),
