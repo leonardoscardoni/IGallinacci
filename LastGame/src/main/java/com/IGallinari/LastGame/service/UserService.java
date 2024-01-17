@@ -1,15 +1,20 @@
 package com.IGallinari.LastGame.service;
 
+import com.IGallinari.LastGame.entity.Team;
 import com.IGallinari.LastGame.entity.User;
 import com.IGallinari.LastGame.payload.request.user.LoginRequest;
 import com.IGallinari.LastGame.payload.request.user.SigninRequest;
 import com.IGallinari.LastGame.payload.response.user.LoginResponse;
 import com.IGallinari.LastGame.payload.response.user.SigninResponse;
+import com.IGallinari.LastGame.payload.response.user.profile.ProfileResponse;
+import com.IGallinari.LastGame.payload.response.user.profile.ViewFavoritePlayerProfileResponse;
 import com.IGallinari.LastGame.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -53,4 +58,5 @@ public class UserService {
             return new SigninResponse(false, "Email already exists");
         }
     }
+
 }
