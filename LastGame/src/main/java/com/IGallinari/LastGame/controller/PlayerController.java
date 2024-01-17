@@ -3,6 +3,7 @@ package com.IGallinari.LastGame.controller;
 
 
 import com.IGallinari.LastGame.payload.response.playerDetails.PlayerDetailsResponse;
+import com.IGallinari.LastGame.payload.response.comparison.player.ComparePlayerResponse;
 import com.IGallinari.LastGame.payload.response.listPlayerFilter.PlayerFilterResponse;
 import com.IGallinari.LastGame.payload.response.playerDetailsByGame.PlayerDetailsByGameResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,4 +34,7 @@ public class PlayerController {
 
     @RequestMapping("getPlayerDetails")
     public PlayerDetailsResponse getPlayerDetails(@RequestParam int idPlayer, int season){return this.service.buildDetailsPlayerIndependentByGameResponse(idPlayer, season);}
+
+    @RequestMapping("getPlayerCompare")
+    public ComparePlayerResponse getPlayerCompare(@RequestParam int idPlayer1,@RequestParam int idPlayer2,@RequestParam int season){return this.service.buildComparePlayerResponse(idPlayer1, idPlayer2, season);}
 }
