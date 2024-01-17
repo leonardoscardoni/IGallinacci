@@ -37,7 +37,7 @@ const routes: Routes = [
     },
     { path: "calendario-partite", component: CalendarioPartiteComponent },
     { path: "dettaglio-team/:id", component: DettaglioTeamComponent },
-    { path: "dett-confronto-giocatori", component: DettConfrontoGiocatoriComponent },
+    { path: "dett-confronto-giocatori/:id1/:id2", component: DettConfrontoGiocatoriComponent },
     { path: "dett-giocatore-ind/:id", component: DettGiocatoreIndipendenteComponent },
     { path: "elenco-giocatori", component: ElencoGiocatoriComponent },
     { path: "elenco-articoli", component: ElencoArticoliComponent },

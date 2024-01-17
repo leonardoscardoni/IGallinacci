@@ -12,6 +12,7 @@ import { TeamPlayerFilterType } from "./_models/teamPlayerFilter.type";
 import { PlayerTeamFilteredType } from "./_models/PlayerTeamFilteredApi.type";
 import { PlayerDetailIndType } from "./_models/PlayerDetailInd.type";
 import { DettaglioPartitaType } from "./_models/dettaglioPartita.type";
+import { ConfrontoPlayerType } from "./_models/confrotoPlayerApi.type";
 
 @Injectable({
     providedIn: "root",
@@ -24,6 +25,7 @@ export class ApiService {
     private calendar = "game/getCalendar?date=";
     private team = `${'team/getTeamsDetails?idTeam='}`;
     private confrontoTeam = `${"team/getCompareTeam?idTeam1="}`;
+    private confrontoPlayer = `${"player/getPlayerCompare?idPlayer1="}`;
     private playerMatch = "player/getPlayerDetailsByGame?idGame=11058&idPlayer=4";
     private TeamRolesPlayerFilter = "player/getTeamRolesPlayerFilter";
     private playerIndipendente = `${"player/getPlayerDetails?idPlayer="}`;
@@ -95,6 +97,15 @@ export class ApiService {
             .pipe(
                 map((response: any) => {
                     return response as ConfrontoTeamType;
+                })
+            );
+    }
+    getConfrontoPlayerApi(id1: string, id2: string) {
+        return this.http
+            .get(`${this.baseURL}${this.confrontoPlayer}${id1}${"&idPlayer2="}${id2}${"&season=2022"}`)
+            .pipe(
+                map((response: any) => {
+                    return response as ConfrontoPlayerType;
                 })
             );
     }

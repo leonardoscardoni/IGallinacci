@@ -45,9 +45,9 @@
   
       </div>
     </div>
-    <button class="bg-arancio rounded-full py-3 px-4 w-fit uppercase font-inter font-bold " [disabled]="!selectedTeam2.nome || !selectedTeam1.nome"
-    [class.cursor-not-allowed]="!selectedTeam2.nome || !selectedTeam1.nome"
-    >Vai al Confronto</button>
+    <button class="bg-arancio rounded-full py-3 px-4 w-fit uppercase font-inter font-bold " (click)="goToConfrontoTeam()" [disabled]="!selectedTeam2.nome || !selectedTeam1.nome"
+[class.cursor-not-allowed]="!selectedTeam2.nome || !selectedTeam1.nome"
+>Vai al Confronto</button>
   
     <div
       *ngIf="isModalOpen"
@@ -85,7 +85,7 @@
                     <div class="col-span-1 bg-white w-7 h-7 rounded-full p-1">
                         <img [src]="data2.logo" alt="" class="w-full">
                     </div>
-                    <div class="col-span-3" (click)="selectTeam({ nome: giocatore.name, immagine: data2.logo })">
+                    <div class="col-span-3" (click)="selectTeam({ nome: giocatore.name, immagine: data2.logo, id:giocatore.idPlayer })">
                         <p class="text-base md:text-lg inline prova"
                         >{{giocatore.name}}</p>
                     </div>
@@ -96,7 +96,7 @@
                   <div class="col-span-1 bg-white w-7 h-7 rounded-full p-1">
                     <img [src]="data2.logo" alt="" class="w-full">
                 </div>
-                    <div class="col-span-3" (click)="selectTeam({ nome: giocatore.name, immagine: data2.logo }) ">
+                    <div class="col-span-3" (click)="selectTeam({ nome: giocatore.name, immagine: data2.logo, id:giocatore.idPlayer }) ">
                         <p class="text-base md:text-lg inline prova">{{giocatore.name}}</p>
                     </div>
                 </ng-container>
