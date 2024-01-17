@@ -42,7 +42,17 @@ const routes: Routes = [
     { path: "elenco-giocatori", component: ElencoGiocatoriComponent },
     { path: "elenco-articoli", component: ElencoArticoliComponent },
     { path: "scelta-confronto-team", component: SceltaConfrontoTeamComponent },
-    { path: "dett-giocatore-partita", component: DettaglioGiocatorePartitaComponent },
+    {
+        path: "dett-giocatore-partita/:idGame/:idPlayer",
+        component: DettaglioGiocatorePartitaComponent,
+        resolve: {
+            getDettaglioPartita: (route: ActivatedRouteSnapshot) => {
+                return inject(getDettaglioPartitaService).getDettaglioPartita(
+                    route.paramMap.get("idPartita")!
+                );
+            },
+        },
+    },
     { path: "scelta-confronto-giocatori", component: SceltaConfrontoGiocatoriComponent },
     { path: "elenco-team", component: ElencoTeamComponent },
     {

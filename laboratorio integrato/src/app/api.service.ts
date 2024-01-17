@@ -24,7 +24,7 @@ export class ApiService {
     private calendar = "game/getCalendar?date=";
     private team = "team/getTeamsDetails?idTeam=5&season=2022";
     private confrontoTeam = `${"team/getCompareTeam?idTeam1="}`;
-    private playerMatch = "player/getPlayerDetailsByGame?idGame=11058&idPlayer=4";
+    private playerMatch = "player/getPlayerDetailsByGame?idGame=";
     private TeamRolesPlayerFilter = "player/getTeamRolesPlayerFilter";
     private playerIndipendente = `${"player/getPlayerDetails?idPlayer="}`;
     private PlayerFilter = `${"player/getPlayerTeamFiltered?idTeam="}`;
@@ -81,12 +81,14 @@ export class ApiService {
         );
     }
 
-    getPlayerMatchApi() {
-        return this.http.get(`${this.baseURL}${this.playerMatch}`).pipe(
-            map((response: any) => {
-                return response as PlayerMatchType;
-            })
-        );
+    getPlayerMatchApi(idGame: string, idPlayer: string) {
+        return this.http
+            .get(`${this.baseURL}${this.playerMatch}${idGame}&idPlayer=${idPlayer}`)
+            .pipe(
+                map((response: any) => {
+                    return response as PlayerMatchType;
+                })
+            );
     }
 
     getConfrontoTeamApi(id1: string, id2: string) {
