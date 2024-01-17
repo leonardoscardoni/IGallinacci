@@ -8,5 +8,6 @@ import lombok.Data;
 public class ViewTeamDetailsNextGame {
     private int id;
     private String nickname;
+    private String code;
     private String logo;
 }

@@ -160,18 +160,20 @@ public class GameService {
                 new ViewTeamDetailsPastGame(
                         homeTeam.getId(),
                         homeTeam.getNickname(),
+                        homeTeam.getCode(),
                         homeTeam.getLogo(),
                         statsGameHome.getPoints()
                 ),
                 new ViewTeamDetailsPastGame(
                         visitorTeam.getId(),
                         visitorTeam.getNickname(),
+                        visitorTeam.getCode(),
                         visitorTeam.getLogo(),
                         statsGameVisitor.getPoints()
                 )
         );
         Integer[] quartersHome= convertStringToArray(statsGameHome.getPointsPeriod());
-        Integer[] quartersVisitor= convertStringToArray(statsGameHome.getPointsPeriod());
+        Integer[] quartersVisitor= convertStringToArray(statsGameVisitor.getPointsPeriod());
         ViewQuartersPastGame viewQuartersPastGame = new ViewQuartersPastGame(
                 new ViewQuartersTeamPastGame(
                         quartersHome
@@ -282,11 +284,13 @@ public class GameService {
                 new ViewTeamDetailsNextGame(
                         teamHome.getId(),
                         teamHome.getNickname(),
+                        teamHome.getCode(),
                         teamHome.getLogo()
                 ),
                 new ViewTeamDetailsNextGame(
                         teamVisitor.getId(),
                         teamVisitor.getNickname(),
+                        teamVisitor.getCode(),
                         teamVisitor.getLogo()
                 )
         );

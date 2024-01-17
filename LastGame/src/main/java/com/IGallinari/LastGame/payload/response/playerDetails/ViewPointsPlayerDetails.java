@@ -7,5 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class ViewPointsPlayerDetails {
     private Integer totalPoints;
-    private Float pointsByGame;
+    private Float pointsPerGame;
 }
