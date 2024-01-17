@@ -156,7 +156,6 @@ public class PlayerService {
     public PlayerDetailsResponse buildDetailsPlayerIndependentByGameResponse(int idPlayer, int season) {
         Player player = playerRepository.findById(idPlayer);
         List<Object[]> sumStatsPlayerAndAvgPointsArray = statsPlayerRepository.findSumStatsPlayerAndAvgPointsByIdPlayerAndSeason(idPlayer, season);
-        PlayerTeam playerTeam = playerTeamRepository.findByPlayerAndSeason(player,season);
         Team team= teamRepository.findById((int)statsPlayerRepository.findLastTeamPlayer(idPlayer,season));
         boolean favourite = false;
         String firstName = player.getFirstname();
@@ -228,10 +227,10 @@ public class PlayerService {
     public ComparePlayerResponse buildComparePlayerResponse(int idPlayer1, int idPlayer2, int season){
         Player player1 = playerRepository.findById(idPlayer1);
         Player player2 = playerRepository.findById(idPlayer2);
-        Integer idteam1 = statsPlayerRepository.findLastTeamPlayer(idPlayer1, season);
-        Integer idteam2 = statsPlayerRepository.findLastTeamPlayer(idPlayer2, season);
-        Team team1 = teamRepository.findById(idteam1.intValue());
-        Team team2 = teamRepository.findById(idteam2.intValue());
+        Integer idTeam1 = statsPlayerRepository.findLastTeamPlayer(idPlayer1, season);
+        Integer idTeam2 = statsPlayerRepository.findLastTeamPlayer(idPlayer2, season);
+        Team team1 = teamRepository.findById(idTeam1.intValue());
+        Team team2 = teamRepository.findById(idTeam2.intValue());
 
 
         ViewHeaderComparePlayer viewHeaderComparePlayer1 = new ViewHeaderComparePlayer(
