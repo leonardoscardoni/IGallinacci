@@ -229,19 +229,20 @@ public class PlayerService {
         Player player1 = playerRepository.findById(idPlayer1);
         Player player2 = playerRepository.findById(idPlayer2);
         Integer idteam1 = statsPlayerRepository.findLastTeamPlayer(idPlayer1, season);
-        Integer idteam2 = statsPlayerRepository.findLastTeamPlayer(idPlayer1, season);
-        Team team = teamRepository.findById((statsPlayerRepository.findLastTeamPlayer(idPlayer2, season)).intValue());
+        Integer idteam2 = statsPlayerRepository.findLastTeamPlayer(idPlayer2, season);
         Team team1 = teamRepository.findById(idteam1.intValue());
         Team team2 = teamRepository.findById(idteam2.intValue());
 
 
         ViewHeaderComparePlayer viewHeaderComparePlayer1 = new ViewHeaderComparePlayer(
                 player1.getId(),
-                player1.getFirstname()+" "+player1.getLastname(),
+                player1.getFirstname(),
+                player1.getLastname(),
                 team1.getLogo());
         ViewHeaderComparePlayer viewHeaderComparePlayer2 = new ViewHeaderComparePlayer(
                 player2.getId(),
-                player2.getFirstname()+" "+player2.getLastname(),
+                player2.getFirstname(),
+                player2.getLastname(),
                 team2.getLogo());
         
         List<ViewPlayerComparePlayer> playerCompare = new ArrayList<>();
@@ -255,13 +256,13 @@ public class PlayerService {
                         currentPlayer = player2;
                         currentTeam = team2;
                 }
-                // age calculation
                 LocalDate today = LocalDate.now();
                 LocalDate dateBirthPlayer = currentPlayer.getDateOfBirth();
                 Integer age = Period.between(dateBirthPlayer, today).getYears();
 
                 playerCompare.add(new ViewPlayerComparePlayer(
-                        currentPlayer.getFirstname()+" "+player1.getLastname(),
+                        currentPlayer.getFirstname(),
+                        currentPlayer.getLastname(),
                         age,
                         currentPlayer.getCountry(),
                         currentPlayer.getWeight(),

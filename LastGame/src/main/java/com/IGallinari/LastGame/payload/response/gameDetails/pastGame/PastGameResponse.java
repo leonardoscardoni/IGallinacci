@@ -19,7 +19,7 @@ public class PastGameResponse {
     private ViewQuartersPastGame quartersPerTeam;
     private List<ViewStatisticsPastGame> statistics;
     private ViewBestPlayersPerTeamPastGame bestPlayers;
-    private LastFourHtH lastFourHtHGameDetailsHome;
-    private LastFourHtH lastFourHtHGameDetailsVisitor;
+    private LastFourHtH lastFourHtHHome;
+    private LastFourHtH lastFourHtHVisitor;
     private ViewPlayerPerTeamPastGame players;
 }
