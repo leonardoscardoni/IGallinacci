@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { PlayerMatchType } from "src/app/_models/playerMatchApi.type";
 import { ApiService } from "src/app/api.service";
 
@@ -8,14 +9,23 @@ import { ApiService } from "src/app/api.service";
     styleUrls: ["./dettaglio-giocatore-partita.component.scss"],
 })
 export class DettaglioGiocatorePartitaComponent {
-    constructor(private apiService: ApiService) {}
-    data: PlayerMatchType = {} as PlayerMatchType
-    ngOnInit() {
-        this.apiService.getPlayerMatchApi().subscribe((data) => {
-          this.data = data;
-          console.log(this.data)
-        });
-      }
+    constructor(private route: ActivatedRoute, private apiService: ApiService) {}
+    data: PlayerMatchType = {} as PlayerMatchType;
+    idGame: any;
+    idPlayer: any;
 
-    
+    ngOnInit() {
+        this.route.paramMap.subscribe((params) => {
+            this.idGame = params.get("idGame");
+            console.log("idPartita:", this.idGame);
+
+            this.idPlayer = params.get("idPlayer");
+            console.log("idPartita:", this.idPlayer);
+
+            this.route.data.subscribe(({ getPlayerMatch }) => {
+                this.data = getPlayerMatch;
+                console.log(this.data);
+            });
+        });
+    }
 }

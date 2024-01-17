@@ -5,12 +5,12 @@ import { ActivatedRoute } from "@angular/router";
 @Injectable({
     providedIn: "root",
 })
-export class getDettaglioPartitaService implements OnInit {
+export class getPlayerMatchApiService implements OnInit {
     constructor(private apiService: ApiService) {}
 
     ngOnInit(): void {}
 
-    getDettaglioGiocatorePartita(idGame: string, idPlayer: string) {
-        return this.apiService.getDettaglioGiocatorePartita(idGame, idPlayer);
+    getPlayerMatchApi(idGame: string, idPlayer: string) {
+        return this.apiService.getPlayerMatchApi(idGame, idPlayer);
     }
 }

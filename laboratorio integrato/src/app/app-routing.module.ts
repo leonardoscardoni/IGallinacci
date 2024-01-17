@@ -18,7 +18,8 @@ import { ProfiloComponent } from "./pages/profilo/profilo.component";
 import { DettaglioArticoloComponent } from "./pages/dettaglio-articolo/dettaglio-articolo.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { RegisterComponent } from "./pages/register/register.component";
-import { getDettaglioPartitaService } from "./_service/getDettaglioPartita.service";
+import { getDettaglioPartitaService } from "./_services/getDettaglioPartitaService.service";
+import { getPlayerMatchApiService } from "./_services/getPlayerMatchApiService.service";
 
 const routes: Routes = [
     { path: "login", component: LoginComponent },
@@ -47,8 +48,9 @@ const routes: Routes = [
         component: DettaglioGiocatorePartitaComponent,
         resolve: {
             getDettaglioPartita: (route: ActivatedRouteSnapshot) => {
-                return inject(getDettaglioPartitaService).getDettaglioPartita(
-                    route.paramMap.get("idPartita")!
+                return inject(getPlayerMatchApiService).getPlayerMatchApi(
+                    route.paramMap.get("idGame")!,
+                    route.paramMap.get("idPlayer")!
                 );
             },
         },
