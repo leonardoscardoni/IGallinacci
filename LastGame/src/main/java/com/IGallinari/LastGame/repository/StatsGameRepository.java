@@ -27,5 +27,11 @@ public interface StatsGameRepository extends JpaRepository<StatsGame,Integer> {
 
     @Query(value = "SELECT AVG(sg.points) FROM statsgame sg WHERE sg.idTeam =:inputIdTeam", nativeQuery = true)
     Integer findPointsPerGame(@Param("inputIdTeam") int idTeam);
+    
+    @Query(value = "SELECT AVG(sg.points) FROM statsgame sg WHERE sg.idGame IN (SELECT g.id FROM game g WHERE (g.idVisitor =:inputIdTeam OR g.idHome =:inputIdTeam) AND g.season=:inputSeason ) AND sg.idTeam !=:inputIdTeam", nativeQuery = true)
+    Float findAllowedPoints(@Param("inputIdTeam") int idTeam,@Param("inputSeason") int season);
+
+    @Query(value = "SELECT AVG(sg.points) FROM statsgame sg LEFT JOIN game g on sg.idGame=g.id WHERE sg.idTeam =:inputIdTeam AND g.season=:inputSeason ", nativeQuery = true)
+    Float findPointsPerGame(@Param("inputIdTeam") int idTeam, @Param("inputSeason") int season);
 
 }

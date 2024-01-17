@@ -18,7 +18,7 @@ public interface PlayerTeamRepository extends JpaRepository<PlayerTeam,Integer> 
     List<PlayerTeam> findByTeamAndSeason(Team team, int season);
 
     @Query(value ="SELECT DISTINCT pt.idTeam FROM playerteam AS pt WHERE season LIKE :inputSeason GROUP BY  idTeam",  nativeQuery = true)
-    List<Integer> findDistinctIdTeams(@Param("inputSeason") Integer inputSeason);
+    List<Integer> findDistinctIdTeams(@Param("inputSeason") Integer season);
 
     PlayerTeam findByPlayerAndSeason(Player player,int season);
 }
