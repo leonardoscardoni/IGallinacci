@@ -7,10 +7,9 @@ import com.IGallinari.LastGame.payload.response.user.LoginResponse;
 import com.IGallinari.LastGame.payload.response.user.SigninResponse;
 import com.IGallinari.LastGame.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +26,7 @@ public class UserService {
             boolean passwordMatch = BCrypt.checkpw(loginRequest.getPassword(), user.getPassword());
             if (passwordMatch) {
                 String token = jwtService.generateToken(user.getId(), user.getEmail(), user.getRole());
-                LocalDate expireDate = jwtService.getExpireDate(token);
+                LocalDateTime expireDate = jwtService.getExpireDate(token);
                 return new LoginResponse(true, "Login successful", token, expireDate, user.getName());
             } else {
                 return new LoginResponse(false, "Password not valid", null, null, null);

@@ -7,7 +7,8 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 
 @Service
@@ -59,19 +60,24 @@ public class JwtService {
         return jwt.getClaim("role").asInt();
     }
 
-    public LocalDate getExpireDate(String token) {
+    public LocalDateTime getExpireDate(String token) {
         DecodedJWT jwt = decodedJWT(token);
-        return LocalDate.parse(jwt.getExpiresAt().toString());
+        Instant instant = jwt.getExpiresAt().toInstant();
+        LocalDateTime expireDate = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+        return expireDate;
     }
 
+
     public boolean isTokenValid(String token) {
-        try {
-            Algorithm algorithm = Algorithm.HMAC256(secretKey);
-            JWTVerifier verifier = JWT.require(algorithm).build();
-            verifier.verify(token);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(token!=null) {
+            try {
+                Algorithm algorithm = Algorithm.HMAC256(secretKey);
+                JWTVerifier verifier = JWT.require(algorithm).build();
+                verifier.verify(token);
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }
