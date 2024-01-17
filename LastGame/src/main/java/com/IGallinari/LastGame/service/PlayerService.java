@@ -94,7 +94,7 @@ public class PlayerService {
                 player.getFirstname(),
                 player.getLastname(),
                 teamOfPlayer.getLogo(),
-                player.getPos()
+                Player.getRole(player.getPos())
 
         );
         ViewStatsPlayerDetailsByGame viewStatsPlayerDetailsByGame = new ViewStatsPlayerDetailsByGame(
@@ -145,7 +145,6 @@ public class PlayerService {
                     team.getName()
             ));
             }
-
             List<ViewRolesPlayerFilter> allRoles = new ArrayList<>();
             List<String> roles = playerRepository.findRoles();
             for (String role : roles
@@ -159,7 +158,7 @@ public class PlayerService {
         Player player = playerRepository.findById(idPlayer);
         List<Object[]> sumStatsPlayerAndAvgPointsArray = statsPlayerRepository.findSumStatsPlayerAndAvgPointsByIdPlayerAndSeason(idPlayer, season);
         PlayerTeam playerTeam = playerTeamRepository.findByPlayerAndSeason(player,season);
-        Team team= playerTeam.getTeam();
+        Team team= teamRepository.findById((int)statsPlayerRepository.findLastTeamPlayer(idPlayer,season));
         boolean favourite = false;
         String firstName = player.getFirstname();
         String lastName = player.getLastname();

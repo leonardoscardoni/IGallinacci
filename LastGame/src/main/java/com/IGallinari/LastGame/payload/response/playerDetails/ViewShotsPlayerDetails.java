@@ -6,13 +6,13 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ViewShotsPlayerDetails {
-    private Integer fieldShotsScored;
-    private Integer fieldShotsAttempted;
-    private Float fieldShotsPercentage;
-    private Integer freeThrowsScored;
-    private Integer freeThrowsAttempted;
-    private Float freeThrowsPercentage;
-    private Integer threePointersShotsScored;
-    private Integer threePointersShotsAttempted;
-    private Float threePointersShotsPercentage;
+    private Integer fieldGoalsMade;
+    private Integer fieldGoalsAttempted;
+    private Float fieldGoalsPercentage;
+    private Integer freeTrowMade;
+    private Integer freeTrowAttempted;
+    private Float freeTrowPercentage;
+    private Integer threePointersMade;
+    private Integer threePointersAttempted;
+    private Float threePointersPercentage;
 }

@@ -284,12 +284,14 @@ public class GameService {
                 new ViewTeamDetailsNextGame(
                         teamHome.getId(),
                         teamHome.getNickname(),
+                        teamHome.getCode(),
                         teamHome.getLogo()
                 ),
                 new ViewTeamDetailsNextGame(
                         teamVisitor.getId(),
                         teamVisitor.getNickname(),
-                        teamHome.getLogo()
+                        teamVisitor.getCode(),
+                        teamVisitor.getLogo()
                 )
         );
         ViewLastFourGames viewLastFourGamesNextGameHome = new ViewLastFourGames(
