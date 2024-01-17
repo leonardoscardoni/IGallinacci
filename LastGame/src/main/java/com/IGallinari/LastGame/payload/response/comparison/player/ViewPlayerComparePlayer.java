@@ -5,7 +5,8 @@ import lombok.Data;
 
 @Data @AllArgsConstructor
 public class ViewPlayerComparePlayer {
-    private String name;
+    private String firstname;
+    private String lastname;
     private Integer age;
     private String country;
     private Float weight;

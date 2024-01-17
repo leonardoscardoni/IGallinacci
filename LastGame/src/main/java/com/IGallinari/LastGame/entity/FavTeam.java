@@ -9,7 +9,7 @@ import lombok.Data;
 public class FavTeam {
     
     @EmbeddedId
-    private IdFavTeam idFavPlayer;
+    private IdFavTeam idFavTeam;
 
     @ManyToOne
     @JoinColumn(name = "idUser", insertable = false, updatable = false)
