@@ -8,19 +8,19 @@
     </div>
     <form method="post" class="flex flex-col gap-5">
     
-        <div class="flex flex-col gap-4">
-        <label for="EmailId" class="font-inter">Email</label>
-        <input type="email" placeholder="Enter Email" name="EmailId" [(ngModel)]="loginObj.EmailId" required class="border border-arancio p-3 rounded-full bg-transparent font-inter">
+      <div class="flex flex-col gap-4">
+        <label for="Email" class="font-inter">Email</label>
+        <input type="text" placeholder="Enter Username" name="UsernameId" [(ngModel)]="loginObj.EmailId" required class="border border-arancio p-3 rounded-full bg-transparent font-inter">
         </div>
         <div class="flex flex-col gap-4">
         <label for="UsernameId" class="font-inter">username</label>
-        <input type="username" placeholder="Enter Username" name="UsernamelId" [(ngModel)]="loginObj.UsernameId" required class="border border-arancio p-3 rounded-full bg-transparent font-inter">
+        <input type="text" placeholder="Enter Username" name="UsernameId" [(ngModel)]="loginObj.UsernameId" required class="border border-arancio p-3 rounded-full bg-transparent font-inter">
         </div>
     
         <div class="flex flex-col gap-4">
         <label for="Password" class="font-inter">Password</label>
-        <div class="border border-arancio p-3 rounded-full bg-transparent font-inter relative">
-            <input #passwordInput type="{{ mostraPassword ? 'text' : 'password' }}" placeholder="Enter Password" name="Password" [(ngModel)]="loginObj.Password" required class="bg-transparent w-full">
+        <div class="border border-arancio rounded-full bg-transparent font-inter relative">
+            <input #passwordInput type="{{ mostraPassword ? 'text' : 'password' }}" placeholder="Enter Password" name="Password" [(ngModel)]="loginObj.Password" required class="bg-transparent w-full border-0 p-3 rounded-full">
             <div class="absolute right-[5%] top-[50%] translate-y-[-50%] cursor-pointer" (click)="toggleMostraPassword()">
                 <ng-container *ngIf="mostraPassword; else nascondiPassword">
                   <img src="assets/eye-open-svgrepo-com.svg" alt="" class="w-5">
@@ -28,14 +28,13 @@
                 <ng-template #nascondiPassword>
                   <img src="assets/eye-close-svgrepo-com.svg" alt="" class="w-5">
                 </ng-template>
-              </div>
-              
+              </div> 
         </div>
         </div>
         <div class="flex flex-col gap-4">
         <label for="Password" class="font-inter">Password</label>
-        <div class="border border-arancio p-3 rounded-full bg-transparent font-inter relative">
-            <input #passwordInput type="{{ mostraPassword ? 'text' : 'password' }}" placeholder="Enter Password" name="Password" [(ngModel)]="loginObj.Password" required class="bg-transparent w-full">
+        <div class="border border-arancio rounded-full bg-transparent font-inter relative">
+            <input #passwordInput type="{{ mostraPassword ? 'text' : 'password' }}" placeholder="Enter Password" name="Password" [(ngModel)]="loginObj.RepetPassword" required class="bg-transparent w-full border-0 p-3 rounded-full">
             <div class="absolute right-[5%] top-[50%] translate-y-[-50%] cursor-pointer" (click)="toggleMostraPassword()">
                 <ng-container *ngIf="mostraPassword; else nascondiPassword">
                   <img src="assets/eye-open-svgrepo-com.svg" alt="" class="w-5">
@@ -43,8 +42,7 @@
                 <ng-template #nascondiPassword>
                   <img src="assets/eye-close-svgrepo-com.svg" alt="" class="w-5">
                 </ng-template>
-              </div>
-              
+              </div> 
         </div>
         </div>
         <div class="flex justify-between">
