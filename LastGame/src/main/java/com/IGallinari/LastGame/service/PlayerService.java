@@ -70,8 +70,7 @@ public class PlayerService {
         StatsPlayer statsPlayer = statsPlayerRepository.findByPlayerAndGame(player,game);
         StatsGame statsGameHome = statsGameRepository.findStatsGameByGameAndTeam(game,teamHome);
         StatsGame statsGameVisitor = statsGameRepository.findStatsGameByGameAndTeam(game, teamVisitor);
-        PlayerTeam playerTeam = playerTeamRepository.findByPlayerAndSeason(player,game.getSeason());
-        Team teamOfPlayer= playerTeam.getTeam();
+        Team teamOfPlayer = teamRepository.findById((statsPlayerRepository.findidTeamByPlayerAndGame(idPlayer,idGame)).intValue());
         Arena arena = game.getArena();
         ViewHeaderPlayerDetailsByGame viewHeaderPlayerDetailsByGame = new ViewHeaderPlayerDetailsByGame(
                 arena.getName(),
