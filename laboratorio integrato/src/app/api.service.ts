@@ -125,6 +125,7 @@ export class ApiService {
             })
         );
     }
+    
 
     getDettaglioPartita(idPartita: string) {
         return this.http.get(`${this.baseURL}${this.dettaglioPartita}${idPartita}`).pipe(
