@@ -1,4 +1,4 @@
-<div class="container my-10">
+<div class=" md:px-20 px-6 my-10">
     <div class="mt-10 color-arancio">
         <h2>GIOCATORI 2023</h2>
     </div>
@@ -12,7 +12,7 @@
     </ng-container>
 </div>
 
-<div class="container">
+<div class="md:px-20">
     <div class="flex overflow-x-auto">
 
         <!-- Tabella fissa -->
@@ -29,7 +29,7 @@
                 <ng-container *ngFor="let giocatore of data2.players">
                     <ng-container *ngIf="squadraSelezionata && !ruoloSelezionato || squadraSelezionata && (ruoloSelezionato.name == giocatore.ruolo)">
                         <tr class="bg-[#130B02]">
-                            <td class="sticky left-0 top-0 py-2 px-4 text-base md:text-lg" [routerLink]="['/dett-giocatore-ind', giocatore.idPlayer]">
+                            <td class="sticky left-0 top-0 py-2 px-4 text-base md:text-lg cursor-pointer hover:bg-[#E5CFB5] hover:text-[#E98A15]" [routerLink]="['/dett-giocatore-ind', giocatore.idPlayer]">
                                 {{ giocatore.name }}
                             </td>
                         </tr>
@@ -62,7 +62,7 @@
             <tbody>
                 <ng-container *ngFor="let giocatore of data2.players">
                     <ng-container *ngIf="squadraSelezionata && !ruoloSelezionato || squadraSelezionata && (ruoloSelezionato.name == giocatore.ruolo)">
-                        <tr>
+                        <tr [routerLink]="['/dett-giocatore-ind', giocatore.idPlayer]" class="cursor-pointer">
                             <td colspan="2" class="py-2 px-4 text-base md:text-lg">
                                 {{ data2.name }}
                             </td>

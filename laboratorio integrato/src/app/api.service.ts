@@ -22,7 +22,7 @@ export class ApiService {
     private elencoTeam = "team/getTeams";
     private divisione = "team/getTeams";
     private calendar = "game/getCalendar?date=";
-    private team = "team/getTeamsDetails?idTeam=5&season=2022";
+    private team = `${'team/getTeamsDetails?idTeam='}`;
     private confrontoTeam = `${"team/getCompareTeam?idTeam1="}`;
     private playerMatch = "player/getPlayerDetailsByGame?idGame=11058&idPlayer=4";
     private TeamRolesPlayerFilter = "player/getTeamRolesPlayerFilter";
@@ -57,8 +57,8 @@ export class ApiService {
             );
     }
 
-    getTeamDetailApi() {
-        return this.http.get(`${this.baseURL}${this.team}`).pipe(
+    getTeamDetailApi(id:string) {
+        return this.http.get(`${this.baseURL}${this.team}${id}${'&season=2022'}`).pipe(
             map((response: any) => {
                 return response as TeamDetailType;
             })

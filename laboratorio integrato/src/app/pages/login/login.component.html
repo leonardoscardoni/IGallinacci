@@ -5,7 +5,7 @@
         <a class="bg-arancio px-5 py-2 rounded-full w-[50%] text-center color-white font-inter cursor-pointer">Login</a>
         <a class="bg-transparent px-5 py-2 rounded-full w-[50%] text-center color-arancio font-inter cursor-pointer" [routerLink]="['/register']">Registrati</a>
     </div>
-    <form method="post" class="flex flex-col gap-5">
+    <form method="post"  class="flex flex-col gap-5">
     
         <div class="flex flex-col gap-4">
         <label for="EmailId" class="font-inter">Email</label>
@@ -14,8 +14,8 @@
     
         <div class="flex flex-col gap-4">
         <label for="Password" class="font-inter">Password</label>
-        <div class="border border-arancio p-3 rounded-full bg-transparent font-inter relative">
-            <input #passwordInput type="{{ mostraPassword ? 'text' : 'password' }}" placeholder="Enter Password" name="Password" [(ngModel)]="loginObj.Password" required class="bg-transparent w-full">
+        <div class="border border-arancio rounded-full bg-transparent font-inter relative">
+            <input #passwordInput type="{{ mostraPassword ? 'text' : 'password' }}" placeholder="Enter Password" name="Password" [(ngModel)]="loginObj.Password" required class="bg-transparent w-full border-0 p-3 rounded-full" >
             <div class="absolute right-[5%] top-[50%] translate-y-[-50%] cursor-pointer" (click)="toggleMostraPassword()">
                 <ng-container *ngIf="mostraPassword; else nascondiPassword">
                   <img src="assets/eye-open-svgrepo-com.svg" alt="" class="w-5">
@@ -24,9 +24,8 @@
                   <img src="assets/eye-close-svgrepo-com.svg" alt="" class="w-5">
                 </ng-template>
               </div>
-              
-        </div>
-        </div>
+            </div>
+          </div>
         <div class="flex justify-between">
             <div>
                 <input type="checkbox" id="Ricordami" name="Ricordami" />
@@ -40,3 +39,6 @@
     </form>
 </div>
 </div>
+
+
+

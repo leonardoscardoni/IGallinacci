@@ -9,12 +9,15 @@ input::placeholder{
 }
 
 input:focus {
-    outline: none;
+  outline: transparent !important;
   }
 
+  
 
   .bg{
     background-image: url(/assets/bg-login.png)!important;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
+
   }
