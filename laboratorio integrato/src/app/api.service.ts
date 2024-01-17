@@ -83,16 +83,6 @@ export class ApiService {
         );
     }
 
-    getPlayerMatchApi(idGame: string, idPlayer: string) {
-        return this.http
-            .get(`${this.baseURL}${this.playerMatch}${idGame}&idPlayer=${idPlayer}`)
-            .pipe(
-                map((response: any) => {
-                    return response as PlayerMatchType;
-                })
-            );
-    }
-
     getConfrontoTeamApi(id1: string, id2: string) {
         return this.http
             .get(`${this.baseURL}${this.confrontoTeam}${id1}${"&idTeam2="}${id2}${"&season=2022"}`)
@@ -138,5 +128,15 @@ export class ApiService {
                 return response as DettaglioPartitaType;
             })
         );
+    }
+
+    getPlayerMatchApi(idGame: string, idPlayer: string) {
+        return this.http
+            .get(`${this.baseURL}${this.playerMatch}${idGame}&idPlayer=${idPlayer}`)
+            .pipe(
+                map((response: any) => {
+                    return response as PlayerMatchType;
+                })
+            );
     }
 }

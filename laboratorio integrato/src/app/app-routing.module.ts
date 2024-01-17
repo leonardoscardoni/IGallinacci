@@ -47,7 +47,7 @@ const routes: Routes = [
         path: "dett-giocatore-partita/:idGame/:idPlayer",
         component: DettaglioGiocatorePartitaComponent,
         resolve: {
-            getDettaglioPartita: (route: ActivatedRouteSnapshot) => {
+            getPlayerMatchApi: (route: ActivatedRouteSnapshot) => {
                 return inject(getPlayerMatchApiService).getPlayerMatchApi(
                     route.paramMap.get("idGame")!,
                     route.paramMap.get("idPlayer")!

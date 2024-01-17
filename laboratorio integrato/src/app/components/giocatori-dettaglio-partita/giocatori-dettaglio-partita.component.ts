@@ -10,6 +10,7 @@ export class GiocatoriDettaglioPartitaComponent implements OnInit {
     @Input() visitorTeamLogo!: string;
     @Input() homeTeamName!: string;
     @Input() visitorTeamName!: string;
+    @Input() idGame!: number;
 
     a = [
         {

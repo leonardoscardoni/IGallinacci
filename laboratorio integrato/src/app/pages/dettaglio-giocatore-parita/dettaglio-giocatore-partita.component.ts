@@ -15,12 +15,13 @@ export class DettaglioGiocatorePartitaComponent {
     idPlayer: any;
 
     ngOnInit() {
+        console.log(this.data);
         this.route.paramMap.subscribe((params) => {
             this.idGame = params.get("idGame");
             console.log("idPartita:", this.idGame);
 
             this.idPlayer = params.get("idPlayer");
-            console.log("idPartita:", this.idPlayer);
+            console.log("idPlayer:", this.idPlayer);
 
             this.route.data.subscribe(({ getPlayerMatch }) => {
                 this.data = getPlayerMatch;
