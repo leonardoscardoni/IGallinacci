@@ -1,7 +1,15 @@
 package com.IGallinari.LastGame.service;
 
 import com.IGallinari.LastGame.entity.*;
+import com.IGallinari.LastGame.payload.request.HomeRequest;
+import com.IGallinari.LastGame.payload.request.TokenRequest;
 import com.IGallinari.LastGame.payload.response.calendar.ViewTeamCalendar;
+import com.IGallinari.LastGame.payload.response.home.blog.ViewBlogHome;
+import com.IGallinari.LastGame.payload.response.home.nextGame.ViewNextGame;
+import com.IGallinari.LastGame.payload.response.home.nextGame.ViewNextTeam;
+import com.IGallinari.LastGame.payload.response.home.pastGame.ViewPastGame;
+import com.IGallinari.LastGame.payload.response.home.pastGame.ViewPastTeam;
+import com.IGallinari.LastGame.payload.response.home.standigs.ViewTeamStandingHome;
 import com.IGallinari.LastGame.payload.response.lastFourGames.ViewLastFourGames;
 import com.IGallinari.LastGame.payload.response.lastFourGames.ViewLastGame;
 import com.IGallinari.LastGame.payload.response.lastFourHtH.HeadToHead;
@@ -41,23 +49,113 @@ public class GameService {
 
     private final StatsPlayerRepository statsPlayerRepository;
 
+    private final StatsTeamRepository statsTeamRepository;
+
     private final PlayerRepository playerRepository;
 
-    public HomeResponse buildHomeUnLogged(){
-        LocalDate todoayDate = LocalDate.now();
-        LocalDate yesterdayDate = todoayDate.minusDays(1);
-        List<Game> yesterdayGames = gameRepository.findGameByDate(yesterdayDate);
-        List<Game> todayGames = gameRepository.findGameByDate(todoayDate);
-        List<com.IGallinari.LastGame.payload.response.home.ViewPastGame> viewPastGames = new ArrayList<>();
-        List<com.IGallinari.LastGame.payload.response.home.ViewNextGame> viewNextGames = new ArrayList<>();
-        for(Game yesterdayGame: yesterdayGames){
-            Team teamHome=yesterdayGame.getHomeTeam();
-            Team teamVisitors= yesterdayGame.getVisitorTeam();
-            StatsGame statsGameTeamHome= statsGameRepository.findStatsGameByGameAndTeam(yesterdayGame,teamHome);
-            StatsGame statsGameTeamVisitor= statsGameRepository.findStatsGameByGameAndTeam(yesterdayGame,teamVisitors);
+    private final TeamRepository teamRepository;
+
+    private final UserRepository userRepository;
+
+    private final BlogRepository blogRepository;
+
+    private final FavTeamRepository favTeamRepository;
+
+    private final JwtService jwtService;
+
+    public ResponseEntity<?> buildHome(HomeRequest homeRequest){
+        String token = homeRequest.getToken();
+        LocalDate date = homeRequest.getDate();
+        if(jwtService.isTokenValid(token)){
+            int idUser = jwtService.getIdUser(token);
+            User user = userRepository.findById(idUser);
+            return ResponseEntity.ok(buildHomeLogged(user,date));
+        }else{
+            return ResponseEntity.ok(buildHomeUnLogged(date));
+        }
+    }
+
+    public HomeLoggedResponse buildHomeLogged(User user,LocalDate date){
+        LocalDate pastDate = date.minusDays(1);
+        List<Game> pastGames = gameRepository.findGameByDate(pastDate);
+        List<Game> nextGames = gameRepository.findGameByDate(date);
+        List<Integer> favTeams = favTeamRepository.findFavTeamsByUser(user.getId());
+        List<Game> favPastGame = new ArrayList<>();
+        List<Game> favNextGame = new ArrayList<>();
+        List<ViewTeamStandingHome> eastStandings= new ArrayList<>();
+        List<ViewTeamStandingHome> westStandings= new ArrayList<>();
+        int season = gameRepository.findCurrentSeason();
+        for(Integer idTeam: favTeams){
+            favPastGame.add(gameRepository.findPastGameByIdTeam(idTeam));
+            favNextGame.add(gameRepository.findNextGameByIdTeam(idTeam));
+            Team team = teamRepository.findById((int)idTeam);
+            StatsTeam  statsTeam = statsTeamRepository.findByTeamAndSeason(team,season);
+            if(team.getDivision().equals("East")){
+                eastStandings.add(
+                        new ViewTeamStandingHome(
+                                team.getId(),
+                                team.getNickname(),
+                                team.getLogo(),
+                                statsTeam.getRankConference()
+                        )
+                );
+            }else{
+                westStandings.add(
+                        new ViewTeamStandingHome(
+                                team.getId(),
+                                team.getNickname(),
+                                team.getLogo(),
+                                statsTeam.getRankConference()
+                        )
+                );
+            }
+        }
+        List<ViewPastGame> viewPastGames = buildPastGame(pastGames);
+        List<ViewPastGame> viewFavPastGame = buildPastGame(favPastGame);
+        List<ViewNextGame> viewNextGames = buildNextGame(nextGames);
+        List<ViewNextGame> viewFavNextGame = buildNextGame(favNextGame);
+        List<ViewBlogHome> viewBlogHomes = buildBlogHome();
+
+        return new HomeLoggedResponse(true,viewPastGames, viewFavPastGame,viewNextGames,viewFavNextGame,eastStandings,westStandings,viewBlogHomes);
+    }
+
+    public HomeUnLoggedResponse buildHomeUnLogged(LocalDate date){
+        LocalDate pastDate = date.minusDays(1);
+        List<Game> pastGames = gameRepository.findGameByDate(pastDate);
+        List<Game> nextGames = gameRepository.findGameByDate(date);
+        List<ViewPastGame> viewPastGames = buildPastGame(pastGames);
+        List<ViewNextGame> viewNextGames = buildNextGame(nextGames);
+        List<ViewBlogHome> viewBlogHomes = buildBlogHome();
+        return new HomeUnLoggedResponse(false,viewPastGames, viewNextGames,viewBlogHomes);
+    }
+
+    public List<ViewBlogHome> buildBlogHome(){
+        List<Blog> lastFourBlogs = blogRepository.findLastFourBlogs();
+        List<ViewBlogHome> viewBlogHomes = new ArrayList<>();
+        for(Blog blog: lastFourBlogs){
+            viewBlogHomes.add(
+                    new ViewBlogHome(
+                            blog.getId(),
+                            blog.getTitle(),
+                            blog.getSubtitle(),
+                            blog.getImg(),
+                            blog.getDate()
+                    )
+            );
+        }
+        return viewBlogHomes;
+    }
+
+    public List<ViewPastGame> buildPastGame(List<Game> games){
+        List<ViewPastGame> viewPastGames = new ArrayList<>();
+        for(Game game: games){
+            Team teamHome=game.getHomeTeam();
+            Team teamVisitors= game.getVisitorTeam();
+            StatsGame statsGameTeamHome= statsGameRepository.findStatsGameByGameAndTeam(game,teamHome);
+            StatsGame statsGameTeamVisitor= statsGameRepository.findStatsGameByGameAndTeam(game,teamVisitors);
             viewPastGames.add(
                     new ViewPastGame(
-                            yesterdayGame.getId(),
+                            game.getId(),
                             new ViewPastTeam(
                                     teamHome.getId(),
                                     teamHome.getNickname(),
@@ -73,13 +171,18 @@ public class GameService {
                     )
             );
         }
-        for(Game todayGame: todayGames){
-            Team teamHome=todayGame.getHomeTeam();
-            Team teamVisitors= todayGame.getVisitorTeam();
+        return viewPastGames;
+    }
+
+    public List<ViewNextGame> buildNextGame(List<Game> games){
+        List<ViewNextGame> viewNextGames = new ArrayList<>();
+        for(Game game: games){
+            Team teamHome=game.getHomeTeam();
+            Team teamVisitors= game.getVisitorTeam();
             viewNextGames.add(
                     new ViewNextGame(
-                            todayGame.getId(),
-                            todayGame.getTime(),
+                            game.getId(),
+                            game.getTime(),
                             new ViewNextTeam(
                                     teamHome.getId(),
                                     teamHome.getNickname(),
@@ -93,8 +196,7 @@ public class GameService {
                     )
             );
         }
-        //aggiungere la parte di blog
-        return new HomeResponse(viewPastGames, viewNextGames);
+        return viewNextGames;
     }
 
     public CalendarResponse buildCalendar(LocalDate inputDate){
@@ -269,7 +371,7 @@ public class GameService {
             ));
         }
         ViewPlayerPerTeamPastGame  viewPlayerPerTeamPastGame = new ViewPlayerPerTeamPastGame(homeplayerPastGameList,visitorplayerPastGameList);
-        return new PastGameResponse(viewGameDetailsPastGame,viewQuartersPastGame,statisticsPastGames,bestPlayersPerTeamPastGame,lastFourHtHHome,lastFourHtHVisitor,viewPlayerPerTeamPastGame);
+        return new PastGameResponse(true,viewGameDetailsPastGame,viewQuartersPastGame,statisticsPastGames,bestPlayersPerTeamPastGame,lastFourHtHHome,lastFourHtHVisitor,viewPlayerPerTeamPastGame);
     }
     public NextGameResponse buildNextGame(Game game){
         Arena arena = game.getArena();
@@ -319,7 +421,7 @@ public class GameService {
                 teamVisitor.getLogo(),
                 listHeadToHeadGameDetails.subList(Math.max(0, listHeadToHeadGameDetails.size() - 4), listHeadToHeadGameDetails.size())
         );
-        return new NextGameResponse(viewGameDetailsNextGame, viewLastFourGamesNextGameHome, viewLastFourGamesNextGameVisitor, lastFourHtHGameDetailsHome, lastFourHtHGameDetailsVisitor);
+        return new NextGameResponse(false,viewGameDetailsNextGame, viewLastFourGamesNextGameHome, viewLastFourGamesNextGameVisitor, lastFourHtHGameDetailsHome, lastFourHtHGameDetailsVisitor);
     }
     public List<HeadToHead> builListHeadToHead(Team teamHome, Team teamVisitor,LocalDate gameDate){
         List<HeadToHead> listHeadToHeadGameDetails = new ArrayList<>();
