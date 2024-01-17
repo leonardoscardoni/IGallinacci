@@ -6,6 +6,8 @@ import com.IGallinari.LastGame.payload.response.lastFourGames.ViewLastGame;
 import com.IGallinari.LastGame.payload.response.lastFourHtH.HeadToHead;
 import com.IGallinari.LastGame.payload.response.lastFourHtH.LastFourHtH;
 import com.IGallinari.LastGame.payload.response.listTeam.*;
+import com.IGallinari.LastGame.payload.response.ranking.RankingResponse;
+import com.IGallinari.LastGame.payload.response.ranking.ViewTeamRanking;
 import com.IGallinari.LastGame.payload.response.teamDetails.*;
 import com.IGallinari.LastGame.payload.response.comparison.team.CompareTeamResponse;
 import com.IGallinari.LastGame.payload.response.comparison.team.ViewTeamCompareTeam;
@@ -115,8 +117,8 @@ public class TeamService {
                 statsTeam.getTotReb(),
                 statsTeam.getAssists()
         );
-        Integer allowedPoints= statsGameRepository.findAllowedPoints(team.getId());
-        Integer pointsPerGame= statsGameRepository.findPointsPerGame(team.getId());
+        Float allowedPoints= statsGameRepository.findAllowedPoints(team.getId(),season);
+        Float pointsPerGame= statsGameRepository.findPointsPerGame(team.getId(),season);
         ViewPointsTeamDetails viewPointsTeamDetails = new ViewPointsTeamDetails(
                 statsTeam.getPoints(),
                 pointsPerGame,
@@ -242,15 +244,15 @@ public class TeamService {
         );
         List<ViewTeamComparisonNbaAvgCompareTeam> TeamCompareNba= new ArrayList<>();
         List<String > dataNames = List.of("points","rebounds","assist","fieldShotsMade","freeTrowMade","treePointsMade");
-        List<Integer[]> datasTeam1 = statsTeamRepository.findDataTeamByIdTeamAndSeason(idTeam1,season);
-        List<Integer[]> datasTeam2 = statsTeamRepository.findDataTeamByIdTeamAndSeason(idTeam2,season);
+        List<Integer[]> dataTeam1 = statsTeamRepository.findDataTeamByIdTeamAndSeason(idTeam1,season);
+        List<Integer[]> dataTeam2 = statsTeamRepository.findDataTeamByIdTeamAndSeason(idTeam2,season);
         LocalDate today = LocalDate.now();
         for(int i=0;i<dataNames.size();i++){
             TeamCompareNba.add(
                     new ViewTeamComparisonNbaAvgCompareTeam(
                             dataNames.get(i),
-                            datasTeam1.get(0)[i],
-                            datasTeam2.get(0)[i]
+                            dataTeam1.get(0)[i],
+                            dataTeam2.get(0)[i]
                     )
             );
         }
@@ -289,5 +291,60 @@ public class TeamService {
         );
         return CompareTeamResponse;
     }
+
+    public RankingResponse buildRankingResponse(int season) {
+        List<ViewTeamRanking> eastTeamsRanking = new ArrayList<>();
+        List<ViewTeamRanking> westTeamsRanking = new ArrayList<>();
+
+        List<Team> eastTeams = teamRepository.findByConference("East");
+        List<Team> westTeams = teamRepository.findByConference("West");
+
+        for (Team team : eastTeams) {
+            StatsTeam statsTeam = statsTeamRepository.findByTeamAndSeason(team, season);
+            Float avgPointsPerGame = statsGameRepository.findPointsPerGame(team.getId(), season);
+            Float avgPointsAllowedPerGame = statsGameRepository.findAllowedPoints(team.getId(), season);
+            eastTeamsRanking.add(
+                    new ViewTeamRanking(
+                            statsTeam.getRankConference(),
+                            team.getId(),
+                            team.getLogo(),
+                            team.getNickname(),
+                            statsTeam.getWinConference(),
+                            statsTeam.getLossConference(),
+                            statsTeam.getWinHome(),
+                            statsTeam.getWinAway(),
+                            avgPointsPerGame,
+                            avgPointsAllowedPerGame,
+                            statsTeam.getStreak()
+
+                    )
+            );
+        }
+
+        for (Team team : westTeams) {
+            StatsTeam statsTeam = statsTeamRepository.findByTeamAndSeason(team, season);
+            Float avgPointsPerGame = statsGameRepository.findPointsPerGame(team.getId(), season);
+            Float avgPointsAllowedPerGame = statsGameRepository.findAllowedPoints(team.getId(), season);
+            westTeamsRanking.add(
+                    new ViewTeamRanking(
+                            statsTeam.getRankConference(),
+                            team.getId(),
+                            team.getLogo(),
+                            team.getNickname(),
+                            statsTeam.getWinConference(),
+                            statsTeam.getLossConference(),
+                            statsTeam.getWinHome(),
+                            statsTeam.getWinAway(),
+                            avgPointsPerGame,
+                            avgPointsAllowedPerGame,
+                            statsTeam.getStreak()
+                    )
+            );
+        }
+
+        return new RankingResponse(eastTeamsRanking, westTeamsRanking);
+    }
+
+
 }
 
