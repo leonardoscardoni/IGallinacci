@@ -59,7 +59,7 @@ public class DailyEndpoint {
         System.out.println("there were made "+call+" calls, total calls "+totCall);
         call=0;
         TimeUnit.SECONDS.sleep(7);
-        List<Integer> idGamesNotCompleted= gameRepository.findAllGameIdsBeforeDateNotCompleted(season);
+        List<Integer> idGamesNotCompleted= gameRepository.findAllGameIdsBeforeDateNotCompleted(today);
         List<Integer> idTeamAlreadyUpdate = new ArrayList<>();
         if (!idGamesNotCompleted.isEmpty()) {
             for (int idGame : idGamesNotCompleted) {
