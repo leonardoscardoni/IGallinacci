@@ -23,10 +23,10 @@ export class ApiService {
     private elencoTeam = "team/getTeams";
     private divisione = "team/getTeams";
     private calendar = "game/getCalendar?date=";
-    private team = `${'team/getTeamsDetails?idTeam='}`;
+    private team = `${"team/getTeamsDetails?idTeam="}`;
     private confrontoTeam = `${"team/getCompareTeam?idTeam1="}`;
     private confrontoPlayer = `${"player/getPlayerCompare?idPlayer1="}`;
-    private playerMatch = "player/getPlayerDetailsByGame?idGame=11058&idPlayer=4";
+    private playerMatch = "player/getPlayerDetailsByGame?idGame=";
     private TeamRolesPlayerFilter = "player/getTeamRolesPlayerFilter";
     private playerIndipendente = `${"player/getPlayerDetails?idPlayer="}`;
     private PlayerFilter = `${"player/getPlayerTeamFiltered?idTeam="}`;
@@ -59,8 +59,8 @@ export class ApiService {
             );
     }
 
-    getTeamDetailApi(id:string) {
-        return this.http.get(`${this.baseURL}${this.team}${id}${'&season=2022'}`).pipe(
+    getTeamDetailApi(id: string) {
+        return this.http.get(`${this.baseURL}${this.team}${id}${"&season=2022"}`).pipe(
             map((response: any) => {
                 return response as TeamDetailType;
             })
@@ -83,12 +83,14 @@ export class ApiService {
         );
     }
 
-    getPlayerMatchApi() {
-        return this.http.get(`${this.baseURL}${this.playerMatch}`).pipe(
-            map((response: any) => {
-                return response as PlayerMatchType;
-            })
-        );
+    getPlayerMatchApi(idGame: string, idPlayer: string) {
+        return this.http
+            .get(`${this.baseURL}${this.playerMatch}${idGame}&idPlayer=${idPlayer}`)
+            .pipe(
+                map((response: any) => {
+                    return response as PlayerMatchType;
+                })
+            );
     }
 
     getConfrontoTeamApi(id1: string, id2: string) {
@@ -102,7 +104,11 @@ export class ApiService {
     }
     getConfrontoPlayerApi(id1: string, id2: string) {
         return this.http
-            .get(`${this.baseURL}${this.confrontoPlayer}${id1}${"&idPlayer2="}${id2}${"&season=2022"}`)
+            .get(
+                `${this.baseURL}${
+                    this.confrontoPlayer
+                }${id1}${"&idPlayer2="}${id2}${"&season=2022"}`
+            )
             .pipe(
                 map((response: any) => {
                     return response as ConfrontoPlayerType;
@@ -125,7 +131,6 @@ export class ApiService {
             })
         );
     }
-    
 
     getDettaglioPartita(idPartita: string) {
         return this.http.get(`${this.baseURL}${this.dettaglioPartita}${idPartita}`).pipe(

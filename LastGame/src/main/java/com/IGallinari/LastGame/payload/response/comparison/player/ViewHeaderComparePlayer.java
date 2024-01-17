@@ -6,6 +6,7 @@ import lombok.Data;
 @Data @AllArgsConstructor
 public class ViewHeaderComparePlayer {
     private int idPlayer;
-    private String name;
+    private String firstname;
+    private String lastname;
     private String logo;
 }

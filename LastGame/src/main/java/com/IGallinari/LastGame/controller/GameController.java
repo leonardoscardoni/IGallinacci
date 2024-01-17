@@ -1,7 +1,9 @@
 package com.IGallinari.LastGame.controller;
 
+import com.IGallinari.LastGame.payload.request.HomeRequest;
+import com.IGallinari.LastGame.payload.request.TokenRequest;
 import com.IGallinari.LastGame.payload.response.calendar.CalendarResponse;
-import com.IGallinari.LastGame.payload.response.home.HomeResponse;
+import com.IGallinari.LastGame.payload.response.home.HomeUnLoggedResponse;
 import com.IGallinari.LastGame.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +19,8 @@ public class GameController {
     @Autowired
     private GameService service;
 
-    @RequestMapping("/getHomeUnLogged")
-    public HomeResponse getHomeUnLogged(){return this.service.buildHomeUnLogged();}
+    @PostMapping("/getHome")
+    public ResponseEntity<?> getHome(@RequestBody HomeRequest homeRequest){return this.service.buildHome(homeRequest);}
 
     @RequestMapping("/getCalendar")
     public CalendarResponse getCalendar(@RequestParam LocalDate date){
