@@ -48,6 +48,7 @@ import { NomeTeamElencoTeamComponent } from "./components/nome-team-elenco-team/
 import { ClassificaComponent } from "./pages/classifica/classifica.component";
 import { ProfiloComponent } from "./pages/profilo/profilo.component";
 import { DettaglioArticoloComponent } from "./pages/dettaglio-articolo/dettaglio-articolo.component";
+import { ArticoloElencoArticoliComponent } from "./components/articolo-elenco-articoli/articolo-elenco-articoli.component";
 
 @NgModule({
     declarations: [
@@ -94,6 +95,7 @@ import { DettaglioArticoloComponent } from "./pages/dettaglio-articolo/dettaglio
         ClassificaComponent,
         ProfiloComponent,
         DettaglioArticoloComponent,
+        ArticoloElencoArticoliComponent,
     ],
     imports: [
         BrowserModule,

@@ -1,1 +1,6 @@
-<app-header-elenco-articoli></app-header-elenco-articoli>
+<app-header-elenco-articoli [data]="a.ultimoArticolo"></app-header-elenco-articoli>
+<div class="container p-10">
+    <ng-container *ngFor="let articolo of a.articoli">
+        <app-articolo-elenco-articoli [data]="articolo"></app-articolo-elenco-articoli>
+    </ng-container>
+</div>

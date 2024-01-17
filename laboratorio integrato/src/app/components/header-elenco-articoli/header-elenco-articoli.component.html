@@ -1,13 +1,19 @@
 <div class="p-10 ">
     <div class="container border rounded-xl relative overflow-hidden h-[30rem]">
-        <img src="/assets/Blog-1.jpg" class="w-full h-full object-cover" alt="">
+        <img [src]="data.img" class="w-full h-full object-cover" alt="">
         <p class="absolute top-10 color-arancio px-20 font-inter text-xl">Ultima pubblicazione</p>
         <div class="absolute z-50 bottom-14 md:px-20 flex flex-wrap gap-x-20">
             <h3 class="font-inter pb-5">
-                <span class="font-bold text-6xl color-white">Titolo articolo</span>
+                <span class="font-bold text-6xl color-white">{{data.titolo}}</span>
             </h3>
-                <p class="font-inter font-light leading-[1.4] w-[80%] text-xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus expedita qui quam<span class="color-white opacity-40">spanSpiegazione</span>
+                <p class="font-inter font-light leading-[1.4] w-[80%] text-xl">{{data.sottotitolo}}
                 </p>
+                <div class="w-[80%] h-auto mt-3">
+                    <ng-container *ngFor="let tag of data.tags">
+                        <p class="font-inter font-light text-md inline">{{"#" + tag + " "}}
+                        </p>
+                    </ng-container>
+                </div>
                 <div class="relative z-30 w-10 h-10 self-end hidden md:block">
                     <img src="/assets/arrow-right-svgrepo-com.svg" class="w-full h-full" alt="">
                 </div>

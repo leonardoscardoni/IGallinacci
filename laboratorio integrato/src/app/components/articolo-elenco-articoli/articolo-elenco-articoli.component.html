@@ -1,0 +1,18 @@
+<div class="grid grid-cols-12 w-full h-[12rem] gap-4">
+    <div class="col-start-1 col-end-4 font-inter color-arancio">
+        {{date}}
+    </div>
+    <div class="col-start-4 col-end-8 h-[12rem] bg-center bg-no-repeat bg-cover" style="background-image: url('{{data.img}}')">
+       
+    </div>
+    <div class="col-start-8 col-end-13 font-inter flex flex-wrap justify-between">
+        <p class="w-full text-2xl">{{data.titolo}}</p>
+        <div>
+            <p class="text-sm font-light">{{data.sottotitolo}}</p>
+            <ng-container *ngFor="let tag of data.tags">
+                <p class="font-light text-xs inline">{{"#" + tag + " "}}</p>
+            </ng-container>
+        </div>
+    </div>
+</div>
+<hr class="my-7 opacity-20">
