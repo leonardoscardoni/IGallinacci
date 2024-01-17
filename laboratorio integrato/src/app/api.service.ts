@@ -13,13 +13,14 @@ import { PlayerTeamFilteredType } from "./_models/PlayerTeamFilteredApi.type";
 import { PlayerDetailIndType } from "./_models/PlayerDetailInd.type";
 import { DettaglioPartitaType } from "./_models/dettaglioPartita.type";
 import { ConfrontoPlayerType } from "./_models/confrotoPlayerApi.type";
+import { ClassificaType } from "./_models/classificaApi.type";
 
 @Injectable({
     providedIn: "root",
 })
 export class ApiService {
     private baseURL = "http://localhost:8090/";
-    private homeUrl = "games/getHomeUnLogged";
+    private homeUrl = "game/getHomeUnLogged";
     private elencoTeam = "team/getTeams";
     private divisione = "team/getTeams";
     private calendar = "game/getCalendar?date=";
@@ -31,6 +32,7 @@ export class ApiService {
     private playerIndipendente = `${"player/getPlayerDetails?idPlayer="}`;
     private PlayerFilter = `${"player/getPlayerTeamFiltered?idTeam="}`;
     private dettaglioPartita = "game/getGameDetails?idGame=";
+    private classifica = `${'team/getRanking?season='}`;
 
     constructor(private http: HttpClient) {}
     getHomeApi() {
@@ -45,6 +47,13 @@ export class ApiService {
         return this.http.get(`${this.baseURL}${this.divisione}`).pipe(
             map((response: any) => {
                 return response as TeamType;
+            })
+        );
+    }
+    getClassifica(stagione:string) {
+        return this.http.get(`${this.baseURL}${this.classifica}${stagione}`).pipe(
+            map((response: any) => {
+                return response as ClassificaType;
             })
         );
     }

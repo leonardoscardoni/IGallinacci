@@ -1,18 +1,19 @@
-<div class="fixed">
+<!-- <div class="fixed">
     <div class="block sm:hidden">XS</div>
     <div class="hidden sm:block md:hidden">SM</div>
     <div class="hidden md:block lg:hidden">MD</div>
     <div class="hidden md:hidden lg:block xl:hidden">LG</div>
     <div class="hidden lg:hidden xl:block">XL</div>
-</div>
+</div> -->
 
-<div class="container my-10">
-    <h1 class="mb-5 color-arancio text-3xl">EASTERN</h1>
-    <div class="w-full overflow-x-scroll">
+<div class="ps-6 md:px-10 my-10">
+    <h1 class="color-arancio md:text-5xl text-3xl pb-10 font-inter uppercase">Classifica {{stagione}}</h1>
+    <h2 class="mb-5 color-arancio text-3xl">EASTERN</h2>
+    <div class="w-full overflow-x-scroll hide-scrollbar">
         <table class="w-full table-auto border-collapse">
             <thead>
             <tr class="bg-[#231D13] border-y text-left">
-                <th class="sticky left-0 h-fit font-light py-2 bg-[#231D13]">
+                <th class="sticky left-0 h-fit font-light py-2 pe-40 bg-[#231D13]">
                     NOME
                 </th>
                 <th class="font-light p-2 border-x md:border-none">VITTORIE</th>
@@ -25,30 +26,30 @@
             </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let squadra of a.squadreEst" class="h-10">
+                <tr *ngFor="let squadra of data.eastTeams" class="h-10">
                     <td class="sticky left-0 h-fit bg-nero border-r sm:border-none">
-                        <p class="inline mr-4">{{squadra.posizioneClassifica}}</p>
+                        <p class="inline mr-4">{{squadra.rank}}</p>
                         <img [src]="squadra.logo" alt="" class="w-5 inline mr-4">
-                        {{ squadra.nickName.toUpperCase() }}
+                        {{ squadra.nickname.toUpperCase() }}
                     </td>
-                    <td class="bg-nero p-2">{{ squadra.vittorie }}</td>
-                    <td class="bg-nero p-2">{{ squadra.sconfitte }}</td>
-                    <td class="bg-nero p-2">{{ squadra.vittorieInCasa }}</td>
-                    <td class="bg-nero p-2">{{ squadra.vittorieFuoriCasa }}</td>
-                    <td class="bg-nero p-2">{{ squadra.mediaPuntiPerPartita }}</td>
-                    <td class="bg-nero p-2">{{ squadra.mediaPuntiSubitiPerPartita }}</td>
-                    <td class="bg-nero p-2">{{ squadra.vittorieOSconfitteConsecutive }}</td>
+                    <td class="bg-nero p-2 pe-20">{{ squadra.win }}</td>
+                    <td class="bg-nero p-2 pe-20">{{ squadra.loss }}</td>
+                    <td class="bg-nero p-2 pe-20">{{ squadra.winHome }}</td>
+                    <td class="bg-nero p-2 pe-20">{{ squadra.winAway }}</td>
+                    <td class="bg-nero p-2 pe-20">{{ squadra.averagePointsByGame }}</td>
+                    <td class="bg-nero p-2 pe-20">{{ squadra.averagePointsConcededByGame }}</td>
+                    <td class="bg-nero p-2 pe-20">{{ squadra.consecutiveWinsOrLosses }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
     <h1 class="mt-10 mb-5 color-arancio text-3xl">WESTER</h1>
-    <div class="w-full overflow-x-scroll">
+    <div class="w-full overflow-x-scroll hide-scrollbar">
         <table class="w-full table-auto border-collapse">
             <thead>
             <tr class="bg-[#231D13] border-y text-left">
-                <th class="sticky left-0 h-fit font-light py-2 bg-[#231D13]">
+                <th class="sticky left-0 h-fit font-light py-2 pe-40 bg-[#231D13]">
                     NOME
                 </th>
                 <th class="font-light p-2 border-x md:border-none">VITTORIE</th>
@@ -61,20 +62,19 @@
             </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let squadra of a.squadreOvest" class="h-10">
+                <tr *ngFor="let squadra of data.westTeams" class="h-10">
                     <td class="sticky left-0 h-fit bg-nero border-r sm:border-none">
-                        <p class="inline mr-4">{{squadra.posizioneClassifica}}</p>
+                        <p class="inline mr-4">{{squadra.rank}}</p>
                         <img [src]="squadra.logo" alt="" class="w-5 inline mr-4">
-                        {{ squadra.nickName.toUpperCase() }}
+                        {{ squadra.nickname.toUpperCase() }}
                     </td>
-                    <td class="bg-nero p-2">{{ squadra.vittorie }}</td>
-                    <td class="bg-nero p-2">{{ squadra.sconfitte }}</td>
-                    <td class="bg-nero p-2">{{ squadra.vittorieInCasa }}</td>
-                    <td class="bg-nero p-2">{{ squadra.vittorieFuoriCasa }}</td>
-                    <td class="bg-nero p-2">{{ squadra.mediaPuntiPerPartita }}</td>
-                    <td class="bg-nero p-2">{{ squadra.mediaPuntiSubitiPerPartita }}</td>
-                    <td class="bg-nero p-2">{{ squadra.vittorieOSconfitteConsecutive }}</td>
-                </tr>
+                    <td class="bg-nero p-2 pe-20">{{ squadra.win }}</td>
+                    <td class="bg-nero p-2 pe-20">{{ squadra.loss }}</td>
+                    <td class="bg-nero p-2 pe-20">{{ squadra.winHome }}</td>
+                    <td class="bg-nero p-2 pe-20">{{ squadra.winAway }}</td>
+                    <td class="bg-nero p-2 pe-20">{{ squadra.averagePointsByGame }}</td>
+                    <td class="bg-nero p-2 pe-20">{{ squadra.averagePointsConcededByGame }}</td>
+                    <td class="bg-nero p-2 pe-20">{{ squadra.consecutiveWinsOrLosses }}</td>
             </tbody>
         </table>
     </div>
