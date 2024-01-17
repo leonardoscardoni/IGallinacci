@@ -1,4 +1,4 @@
-package com.IGallinari.LastGame.payload.response.home;
+package com.IGallinari.LastGame.payload.response.home.nextGame;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

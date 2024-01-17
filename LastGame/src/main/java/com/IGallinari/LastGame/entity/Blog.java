@@ -2,6 +2,7 @@ package com.IGallinari.LastGame.entity;
 
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import jakarta.persistence.*;
@@ -21,7 +22,7 @@ public class Blog {
 
     private String subtitle;
 
-    private Date dateBlog; // ...
+    private LocalDate date;
 
     private String img;
 
