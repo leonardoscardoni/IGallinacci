@@ -258,8 +258,8 @@ public class GameService {
         boolean favVisitor= false;
         if(idUser!=null){
             logged = true;
-            favHome = favTeamRepository.existsByIdUserAndIdTeam(idUser,homeTeam.getId());
-            favVisitor = favTeamRepository.existsByIdUserAndIdTeam(idUser,visitorTeam.getId());
+            favHome = favTeamRepository.existsByIdUserAndIdTeam(idUser,homeTeam.getId()) ==1;
+            favVisitor = favTeamRepository.existsByIdUserAndIdTeam(idUser,visitorTeam.getId()) ==1;
         }
         StatsGame statsGameHome= statsGameRepository.findByTeamAndGame(homeTeam,game);
         StatsGame statsGameVisitor= statsGameRepository.findByTeamAndGame(visitorTeam,game);
@@ -365,7 +365,7 @@ public class GameService {
             Player player = playerRepository.findById(statsPlayer.getPlayer().getId());
             boolean favourite= false;
             if (idUser!=null){
-                favourite = favPlayerRepository.existsByIdUserAndIdPlayer(idUser,player.getId());
+                favourite = favPlayerRepository.existsByIdUserAndIdPlayer(idUser,player.getId()) ==1;
             }
             homeplayerPastGameList.add(new ViewPlayerPastGame(
                     favourite,
@@ -381,7 +381,7 @@ public class GameService {
             Player player = playerRepository.findById(statsPlayer.getPlayer().getId());
             boolean favourite= false;
             if (idUser!=null){
-                favourite = favPlayerRepository.existsByIdUserAndIdPlayer(idUser,player.getId());
+                favourite = favPlayerRepository.existsByIdUserAndIdPlayer(idUser,player.getId()) ==1;
             }
             visitorplayerPastGameList.add(new ViewPlayerPastGame(
                     favourite,
@@ -404,8 +404,8 @@ public class GameService {
         boolean favVisitor= false;
         if(idUser!=null){
             logged = true;
-            favHome = favTeamRepository.existsByIdUserAndIdTeam(idUser,homeTeam.getId());
-            favVisitor = favTeamRepository.existsByIdUserAndIdTeam(idUser,visitorTeam.getId());
+            favHome = favTeamRepository.existsByIdUserAndIdTeam(idUser,homeTeam.getId()) ==1;
+            favVisitor = favTeamRepository.existsByIdUserAndIdTeam(idUser,visitorTeam.getId()) ==1;
         }
         ViewGameDetailsNextGame viewGameDetailsNextGame = new ViewGameDetailsNextGame(
                 game.getId(),
