@@ -1,4 +1,4 @@
-package com.IGallinari.LastGame.payload.response.ranking;
+package com.IGallinari.LastGame.payload.response.standings;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,7 +6,8 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 
-public class ViewTeamRanking {
+public class ViewTeamStanding {
+    private boolean favourite;
     private Integer rank;
     private int idTeam;
     private String logo;
