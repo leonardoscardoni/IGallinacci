@@ -17,10 +17,10 @@ public class TeamController {
     @Autowired
     private TeamService service;
 
-    @RequestMapping("/getTeams")
+    @PostMapping("/getTeams")
     public TeamsResponse getTeams(@RequestBody TokenRequest tokenRequest){return this.service.buildTeams(tokenRequest);}
-    @RequestMapping("/getTeamsDetails")
-    public TeamDetailsResponse getTeamDetails(@RequestParam int idTeam,@RequestParam int season){return this.service.buildTeamDetailsResponse(idTeam,season);}
+    @PostMapping("/getTeamsDetails")
+    public TeamDetailsResponse getTeamDetails(@RequestBody TokenRequest tokenRequest,@RequestParam int idTeam,@RequestParam int season){return this.service.buildTeamDetailsResponse(tokenRequest,idTeam,season);}
     @RequestMapping("/getCompareTeam")
     public CompareTeamResponse getCompareTeam(@RequestParam int idTeam1, @RequestParam int idTeam2, @RequestParam int season){return  this.service.buildCompareTeamResponse(idTeam1,idTeam2,season);}
     @RequestMapping("/getRanking")

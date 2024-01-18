@@ -83,7 +83,14 @@ public class TeamService {
         return new ViewDivision(listViewTeams);
     }
 
-    public TeamDetailsResponse buildTeamDetailsResponse(int idTeam, int season){
+    public TeamDetailsResponse buildTeamDetailsResponse(TokenRequest tokenRequest, int idTeam, int season){
+        String token = tokenRequest.getToken();
+        boolean logged= jwtService.isTokenValid(token);
+        boolean favourite= false;
+        if(logged){
+            int idUser = jwtService.getIdUser(token);
+            favourite= favTeamRepository.existsByUserIdAndTeamId(idUser, idTeam);
+        }
         Team team = teamRepository.findById(idTeam);
         StatsTeam statsTeam = statsTeamRepository.findByTeamAndSeason(team, season);
         ViewStatsTeamDetails viewStatsTeamDetails = new ViewStatsTeamDetails(
@@ -161,8 +168,9 @@ public class TeamService {
             );
         }
         TeamDetailsResponse teamDetailsResponse = new TeamDetailsResponse(
+                logged,
                 team.getId(),
-                false,//DA IMPLEMENTARE QUANDO AVRO I PREFERITI
+                favourite,
                 team.getName(),
                 team.getLogo(),
                 team.getConference(),
@@ -177,9 +185,6 @@ public class TeamService {
                 viewFoulsBallsBlocksTeamDetails,
                 viewWinLossTeamDetails,
                 playerComparisonNbaAvg
-
-
-
         );
         return teamDetailsResponse;
     }

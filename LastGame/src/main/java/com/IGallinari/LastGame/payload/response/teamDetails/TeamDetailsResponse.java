@@ -8,6 +8,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class TeamDetailsResponse {
+    private boolean logged;
     private int idTeam;
     private boolean favourite;
     private String name;

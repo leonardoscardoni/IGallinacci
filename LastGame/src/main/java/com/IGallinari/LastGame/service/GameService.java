@@ -1,8 +1,7 @@
 package com.IGallinari.LastGame.service;
 
 import com.IGallinari.LastGame.entity.*;
-import com.IGallinari.LastGame.payload.request.HomeRequest;
-import com.IGallinari.LastGame.payload.request.TokenRequest;
+import com.IGallinari.LastGame.payload.request.home.HomeRequest;
 import com.IGallinari.LastGame.payload.response.calendar.ViewTeamCalendar;
 import com.IGallinari.LastGame.payload.response.home.blog.ViewBlogHome;
 import com.IGallinari.LastGame.payload.response.home.nextGame.ViewNextGame;

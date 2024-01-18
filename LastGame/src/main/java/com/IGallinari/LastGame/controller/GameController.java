@@ -1,9 +1,7 @@
 package com.IGallinari.LastGame.controller;
 
-import com.IGallinari.LastGame.payload.request.HomeRequest;
-import com.IGallinari.LastGame.payload.request.TokenRequest;
+import com.IGallinari.LastGame.payload.request.home.HomeRequest;
 import com.IGallinari.LastGame.payload.response.calendar.CalendarResponse;
-import com.IGallinari.LastGame.payload.response.home.HomeUnLoggedResponse;
 import com.IGallinari.LastGame.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
