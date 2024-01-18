@@ -24,8 +24,8 @@ public class PlayerController {
     @PostMapping("/getPlayerFilteredByTeam")
     public PlayerTeamFilterResponse getPlayerTeamFilter(@RequestBody  TokenRequest tokenRequest, @RequestParam int idTeam, @RequestParam int season){return this.service.buildPlayerTeamFilterResponse(tokenRequest,idTeam, season);}
 
-    @RequestMapping("/getPlayerDetailsByGame")
-    public PlayerDetailsByGameResponse getPlayerDetailsByGame (@RequestParam int idGame, @RequestParam int idPlayer){return this.service.buildPlayerDetailsByGameResponse(idGame, idPlayer);}
+    @PostMapping("/getPlayerDetailsByGame")
+    public PlayerDetailsByGameResponse getPlayerDetailsByGame (@RequestBody TokenRequest tokenRequest,@RequestParam int idGame, @RequestParam int idPlayer){return this.service.buildPlayerDetailsByGameResponse(tokenRequest,idGame, idPlayer);}
 
     @RequestMapping("getTeamRolesPlayerFilter")
     public PlayerFilterResponse getTeamRolesPlayerFilter(){return this.service.buildCompareFilterResponse();}

@@ -90,7 +90,14 @@ public class PlayerService {
         );
     }
 
-    public PlayerDetailsByGameResponse buildPlayerDetailsByGameResponse (int idGame, int idPlayer){
+    public PlayerDetailsByGameResponse buildPlayerDetailsByGameResponse (TokenRequest tokenRequest,int idGame, int idPlayer){
+        String token = tokenRequest.getToken();
+        boolean logged = jwtService.isTokenValid(token);
+        boolean favourite = false;
+        if (logged){
+            int idUser = jwtService.getIdUser(token);
+            favourite = favPlayerRepository.existsByIdUserAndIdPlayer(idUser, idPlayer);
+        }
         Game game = gameRepository.findById(idGame);
         Team teamHome = game.getHomeTeam();
         Team teamVisitor = game.getVisitorTeam();
@@ -121,6 +128,7 @@ public class PlayerService {
                 statsGameVisitor.getPoints()
         );
         ViewPlayerInfoPlayerDetailsByGame viewPlayerInfoPlayerDetailsByGame = new ViewPlayerInfoPlayerDetailsByGame(
+                favourite,
                 teamHome.getId(),
                 player.getFirstname(),
                 player.getLastname(),
@@ -157,8 +165,11 @@ public class PlayerService {
                 statsPlayer.getTurnovers(),
                 statsPlayer.getBlocks()
         );
-        return new PlayerDetailsByGameResponse(game.getId(),
-                viewHeaderPlayerDetailsByGame,viewHomeTeamPlayerDetailsByGame,
+        return new PlayerDetailsByGameResponse(
+                logged,
+                game.getId(),
+                viewHeaderPlayerDetailsByGame,
+                viewHomeTeamPlayerDetailsByGame,
                 viewVisitorTeamPlayerDetailsByGame,
                 viewPlayerInfoPlayerDetailsByGame,
                 viewStatsPlayerDetailsByGame,

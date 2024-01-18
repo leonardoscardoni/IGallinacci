@@ -7,6 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 
 public class PlayerDetailsByGameResponse {
+    private boolean logged;
     private int idGame;
     private ViewHeaderPlayerDetailsByGame header;
     private ViewTeamPlayerDetailsByGame homeTeam;

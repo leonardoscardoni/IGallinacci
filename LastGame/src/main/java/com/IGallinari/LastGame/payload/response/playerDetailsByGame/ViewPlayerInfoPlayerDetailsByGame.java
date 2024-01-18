@@ -7,6 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 
 public class ViewPlayerInfoPlayerDetailsByGame {
+    private boolean favourite;
     private int idTeam;
     private String firstname;
     private String lastname;
