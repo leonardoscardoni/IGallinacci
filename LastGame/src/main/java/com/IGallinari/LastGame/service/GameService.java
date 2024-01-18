@@ -206,14 +206,9 @@ public class GameService {
         for(Game game: gamesByDate){
             Team teamHome=game.getHomeTeam();
             Team teamVisitors= game.getVisitorTeam();
-            boolean played=false;
-            if(game.getStatus()==3){
-                played=true;
-            }
             viewGameCalendars.add(
                     new ViewGameCalendar(
                             game.getId(),
-                            played,
                             game.getDate(),
                             game.getTime(),
                             new ViewTeamCalendar(
