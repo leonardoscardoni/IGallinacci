@@ -8,6 +8,8 @@ import lombok.Data;
 
 @Data @AllArgsConstructor
 public class PlayerTeamFilterResponse {
+    private boolean logged;
+    private boolean favourite;
     private int idTeam;
     private String logo;
     private String nickname;

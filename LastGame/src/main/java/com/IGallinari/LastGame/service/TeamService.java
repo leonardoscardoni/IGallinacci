@@ -71,7 +71,7 @@ public class TeamService {
         List<Team> teamsByDivision= teamRepository.findByDivision(division);
         List<ViewTeam> listViewTeams= new ArrayList<>();
         for (Team team: teamsByDivision){
-            boolean favourite= idUser != null && favTeamRepository.existsByUserIdAndTeamId(idUser, team.getId());
+            boolean favourite= idUser != null && favTeamRepository.existsByIdUserAndIdTeam(idUser, team.getId());
             listViewTeams.add(
                     new ViewTeam(
                             team.getId(),
@@ -91,7 +91,7 @@ public class TeamService {
         boolean favourite= false;
         if(logged){
             int idUser = jwtService.getIdUser(token);
-            favourite= favTeamRepository.existsByUserIdAndTeamId(idUser, idTeam);
+            favourite= favTeamRepository.existsByIdUserAndIdTeam(idUser, idTeam);
         }
         Team team = teamRepository.findById(idTeam);
         StatsTeam statsTeam = statsTeamRepository.findByTeamAndSeason(team, season);
@@ -253,8 +253,8 @@ public class TeamService {
         Team team2 = teamRepository.findById(idTeam2);
         StatsTeam statsTeam1= statsTeamRepository.findByTeamAndSeason(team1, season);
         StatsTeam statsTeam2 = statsTeamRepository.findByTeamAndSeason(team2, season);
-        boolean favouriteTeam1= favTeamRepository.existsByUserIdAndTeamId(idUser, idTeam1);
-        boolean favouriteTeam2= favTeamRepository.existsByUserIdAndTeamId(idUser, idTeam2);
+        boolean favouriteTeam1= favTeamRepository.existsByIdUserAndIdTeam(idUser, idTeam1);
+        boolean favouriteTeam2= favTeamRepository.existsByIdUserAndIdTeam(idUser, idTeam2);
         ViewTeamCompareTeam viewTeamCompareTeam1 = new ViewTeamCompareTeam(
                 favouriteTeam1,
                 team1.getId(),
@@ -337,7 +337,7 @@ public class TeamService {
             Float avgPointsAllowedPerGame = statsGameRepository.findAllowedPoints(team.getId(), season);
             boolean favourite = false;
             if(logged){
-                favourite = favTeamRepository.existsByUserIdAndTeamId(jwtService.getIdUser(token), team.getId());
+                favourite = favTeamRepository.existsByIdUserAndIdTeam(jwtService.getIdUser(token), team.getId());
             }
             eastTeamsRanking.add(
                     new ViewTeamStanding(
@@ -364,7 +364,7 @@ public class TeamService {
             Float avgPointsAllowedPerGame = statsGameRepository.findAllowedPoints(team.getId(), season);
             boolean favourite = false;
             if(logged){
-                favourite = favTeamRepository.existsByUserIdAndTeamId(jwtService.getIdUser(token), team.getId());
+                favourite = favTeamRepository.existsByIdUserAndIdTeam(jwtService.getIdUser(token), team.getId());
             }
             westTeamsRanking.add(
                     new ViewTeamStanding(

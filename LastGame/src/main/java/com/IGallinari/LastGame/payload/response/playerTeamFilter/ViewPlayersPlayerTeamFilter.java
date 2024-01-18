@@ -5,10 +5,11 @@ import lombok.Data;
 
 @Data @AllArgsConstructor
 public class ViewPlayersPlayerTeamFilter {
+    private boolean favourite;
     private Integer idPlayer;
-    private String name;
-    private String ruolo;
+    private String firstname;
+    private String lastname;
+    private String role;
     private Integer number;
     private String country;
-    private boolean favourite;
 }

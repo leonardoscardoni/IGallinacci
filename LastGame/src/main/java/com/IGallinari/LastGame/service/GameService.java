@@ -258,8 +258,8 @@ public class GameService {
         boolean favVisitor= false;
         if(idUser!=null){
             logged = true;
-            favHome = favTeamRepository.existsByUserIdAndTeamId(idUser,homeTeam.getId());
-            favVisitor = favTeamRepository.existsByUserIdAndTeamId(idUser,visitorTeam.getId());
+            favHome = favTeamRepository.existsByIdUserAndIdTeam(idUser,homeTeam.getId());
+            favVisitor = favTeamRepository.existsByIdUserAndIdTeam(idUser,visitorTeam.getId());
         }
         StatsGame statsGameHome= statsGameRepository.findByTeamAndGame(homeTeam,game);
         StatsGame statsGameVisitor= statsGameRepository.findByTeamAndGame(visitorTeam,game);
@@ -404,8 +404,8 @@ public class GameService {
         boolean favVisitor= false;
         if(idUser!=null){
             logged = true;
-            favHome = favTeamRepository.existsByUserIdAndTeamId(idUser,homeTeam.getId());
-            favVisitor = favTeamRepository.existsByUserIdAndTeamId(idUser,visitorTeam.getId());
+            favHome = favTeamRepository.existsByIdUserAndIdTeam(idUser,homeTeam.getId());
+            favVisitor = favTeamRepository.existsByIdUserAndIdTeam(idUser,visitorTeam.getId());
         }
         ViewGameDetailsNextGame viewGameDetailsNextGame = new ViewGameDetailsNextGame(
                 game.getId(),

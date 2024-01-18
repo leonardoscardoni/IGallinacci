@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import com.IGallinari.LastGame.payload.request.TokenRequest;
 import com.IGallinari.LastGame.payload.response.playerDetails.*;
 import com.IGallinari.LastGame.payload.response.comparison.player.ComparePlayerResponse;
 import com.IGallinari.LastGame.payload.response.comparison.player.ViewDataPlayerComparePlayer;
@@ -29,30 +30,57 @@ import com.IGallinari.LastGame.repository.*;
 @RequiredArgsConstructor
 public class PlayerService {
     private final PlayerRepository playerRepository;
+
     private final TeamRepository teamRepository;
+
     private final PlayerTeamRepository playerTeamRepository;
+
     private final GameRepository gameRepository;
+
     private final StatsPlayerRepository statsPlayerRepository;
+
     private final StatsGameRepository statsGameRepository;
 
-    public PlayerTeamFilterResponse buildPlayerTeamFilterResponse(int idTeam, int season){
+    private final FavPlayerRepository favPlayerRepository;
+
+    private final FavTeamRepository favTeamRepository;
+
+    private final JwtService jwtService;
+
+    public PlayerTeamFilterResponse buildPlayerTeamFilterResponse(TokenRequest tokenRequest,int idTeam, int season){
+        String token = tokenRequest.getToken();
+        boolean logged = jwtService.isTokenValid(token);
+        Integer idUser= null;
+        if (logged){
+            idUser = jwtService.getIdUser(token);
+        }
         Team team = teamRepository.findById(idTeam);
         List<ViewPlayersPlayerTeamFilter> players = new ArrayList<>();
         List<PlayerTeam> playersTeam = playerTeamRepository.findByTeamAndSeason(team, season);
+        boolean favourite = false;
         for (PlayerTeam playerTeam: playersTeam){
             Player player = playerTeam.getPlayer();
+            if(idUser!=null){
+                favourite = favPlayerRepository.existsByIdUserAndIdPlayer(idUser, player.getId());
+            }
             players.add(
                     new ViewPlayersPlayerTeamFilter(
+                        favourite,
                         player.getId(),
-                        player.getFirstname() +" "+ player.getLastname(),
+                        player.getFirstname(),
+                        player.getLastname(),
                         Player.getRole(player.getPos()),
                         player.getJersey(),
-                        player.getCountry(),
-                        false
+                        player.getCountry()
                     )
             );
         }
+        if (idUser!=null){
+            favourite = favTeamRepository.existsByIdUserAndIdTeam(idUser, team.getId());
+        }
         return new PlayerTeamFilterResponse(
+            logged,
+            favourite,
             team.getId(),
             team.getLogo(),
             team.getNickname(),
@@ -157,14 +185,22 @@ public class PlayerService {
             return  playerFilterResponse;
         }
 
-    public PlayerDetailsResponse buildDetailsPlayerIndependentByGameResponse(int idPlayer, int season) {
+    public PlayerDetailsResponse buildDetailsPlayerIndependentByGameResponse(TokenRequest tokenRequest, int idPlayer, int season) {
         Player player = playerRepository.findById(idPlayer);
         List<Object[]> sumStatsPlayerAndAvgPointsArray = statsPlayerRepository.findSumStatsPlayerAndAvgPointsByIdPlayerAndSeason(idPlayer, season);
         Team team= teamRepository.findById((int)statsPlayerRepository.findLastTeamPlayer(idPlayer,season));
-        boolean favourite = false;
+        int idTeam = team.getId();
+        String token = tokenRequest.getToken();
+        boolean logged = jwtService.isTokenValid(token);
+        boolean favouritePlayer = false;
+        boolean favouriteTeam = false;
+        if(logged){
+            int idUser = jwtService.getIdUser(token);
+            favouritePlayer = favPlayerRepository.existsByIdUserAndIdPlayer(idUser,idPlayer);
+            favouriteTeam = favTeamRepository.existsByIdUserAndIdTeam(idUser,idTeam);
+        }
         String firstName = player.getFirstname();
         String lastName = player.getLastname();
-        int idTeam = team.getId();
         String logo = team.getLogo();
         String nameTeam = team.getName();
         ViewGamePlayerDetails viewGamePlayerDetails = new ViewGamePlayerDetails(
@@ -212,10 +248,12 @@ public class PlayerService {
         );
 
         return new PlayerDetailsResponse(
-                favourite,
+                logged,
+                favouritePlayer,
                 idPlayer,
                 firstName,
                 lastName,
+                favouriteTeam,
                 idTeam,
                 logo,
                 nameTeam,

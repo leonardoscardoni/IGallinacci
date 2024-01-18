@@ -16,5 +16,5 @@ public interface FavTeamRepository extends JpaRepository<FavTeam,Integer> {
     List<Integer> findFavTeamsByUser(@Param("inputIdUser") int idUser);
 
     @Query(value = "SELECT EXISTS(SELECT 1 FROM favteam WHERE idUser = :inputIdUser AND idTeam = :inputIdTeam)", nativeQuery = true)
-    boolean existsByUserIdAndTeamId(@Param("inputIdUser") int idUser, @Param("inputIdTeam") int idTeam);
+    boolean existsByIdUserAndIdTeam(@Param("inputIdUser") int idUser, @Param("inputIdTeam") int idTeam);
 }
