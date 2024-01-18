@@ -18,7 +18,7 @@ import { ProfiloComponent } from "./pages/profilo/profilo.component";
 import { DettaglioArticoloComponent } from "./pages/dettaglio-articolo/dettaglio-articolo.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { RegisterComponent } from "./pages/register/register.component";
-import { getDettaglioPartitaService } from "./_service/getDettaglioPartita.service";
+import { getDettaglioPartitaService } from "./_services/getDettaglioPartitaService.service";
 
 const routes: Routes = [
     { path: "login", component: LoginComponent },
@@ -37,12 +37,15 @@ const routes: Routes = [
     },
     { path: "calendario-partite", component: CalendarioPartiteComponent },
     { path: "dettaglio-team/:id", component: DettaglioTeamComponent },
-    { path: "dett-confronto-giocatori", component: DettConfrontoGiocatoriComponent },
+    { path: "dett-confronto-giocatori/:id1/:id2", component: DettConfrontoGiocatoriComponent },
     { path: "dett-giocatore-ind/:id", component: DettGiocatoreIndipendenteComponent },
     { path: "elenco-giocatori", component: ElencoGiocatoriComponent },
     { path: "blog", component: ElencoArticoliComponent },
     { path: "scelta-confronto-team", component: SceltaConfrontoTeamComponent },
-    { path: "dett-giocatore-partita", component: DettaglioGiocatorePartitaComponent },
+    {
+        path: "dett-giocatore-partita/:idGame/:idPlayer",
+        component: DettaglioGiocatorePartitaComponent,
+    },
     { path: "scelta-confronto-giocatori", component: SceltaConfrontoGiocatoriComponent },
     { path: "elenco-team", component: ElencoTeamComponent },
     {

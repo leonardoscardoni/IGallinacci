@@ -1,6 +1,10 @@
 package com.IGallinari.LastGame.entity;
 
 import lombok.Data;
+
+import java.time.LocalDate;
+import java.util.Date;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -18,7 +22,7 @@ public class Blog {
 
     private String subtitle;
 
-    private String content; // ...
+    private LocalDate date;
 
     private String img;
 

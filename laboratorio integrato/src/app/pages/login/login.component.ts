@@ -11,8 +11,8 @@ import { Router } from "@angular/router";
 })
 export class LoginComponent {
     loginObj: any = {
-        EmailId: "",
-        Password: "",
+        email: "",
+        password: "",
     };
     mostraPassword: boolean = false;
 
@@ -30,7 +30,7 @@ export class LoginComponent {
     onLogin() {
         this.http
             /* this.loginObj contiene i dati inseriti dall'utente nel form e infatti sono i dati che vengono inviati in post a quell url */
-            .post("https://freeapi.miniprojectideas.com/api/User/Login", this.loginObj)
+            .post("http://localhost:8090/user/login", this.loginObj)
             /* Il response body è questo in caso di pw sbagliata
             {
                 "message": "UserName or Password is Wrong",
@@ -52,15 +52,21 @@ export class LoginComponent {
             }
             */
             .subscribe((res: any) => {
-                if (res.result) {
+                if (res.success) {
+                    console.log("entraaaa");
                     alert("login ok");
+                    console.log(res);
                     /* In questo modo ti salvi nel local storage il token che hai nel response body e lo chiami loginToken.
                     Per vedere il loginToken salvato vado in ispeziona, application, localstorage, localhost*/
-                    localStorage.setItem("loginToken", res.data.token);
+                    localStorage.setItem("loginToken", res.token);
+                    localStorage.setItem("name", res.name);
+                    localStorage.setItem("scadenzaToken", res.expireDate);
                     /* Ti porta alla route home */
                     this.router.navigateByUrl("/home");
                 } else {
-                    alert(res.message);
+                    if (res.message == "Email not found") {
+                        this.router.navigateByUrl("/register");
+                    }
                 }
             });
     }

@@ -1,35 +1,53 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { HttpClient } from "@angular/common/http";
+import { Component, ElementRef, ViewChild } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+    selector: "app-register",
+    templateUrl: "./register.component.html",
+    styleUrls: ["./register.component.scss"],
 })
 export class RegisterComponent {
-  loginObj: any = {
-    EmailId: "",
-    Password: "",
-};
-mostraPassword: boolean = false;
+    loginObj: any = {
+        email: "",
+        password: "",
+        name: "",
+    };
+    mostraPassword: boolean = false;
+    emailNonValida: boolean = false;
+    passwordNonValida: boolean = false;
 
-@ViewChild('passwordInput', { static: true }) passwordInput!: ElementRef;
-toggleMostraPassword(): void {
-    this.mostraPassword = !this.mostraPassword;
-  
-    // Aggiorna il tipo dell'input a seconda dello stato
-    const inputElement = this.passwordInput.nativeElement as HTMLInputElement;
-    inputElement.type = this.mostraPassword ? 'text' : 'password';
-  }
-  
-constructor(private http: HttpClient, private router: Router) {}
+    @ViewChild("passwordInput", { static: true }) passwordInput!: ElementRef;
+    toggleMostraPassword(): void {
+        this.mostraPassword = !this.mostraPassword;
 
-onLogin() {
-    this.http
-        /* this.loginObj contiene i dati inseriti dall'utente nel form e infatti sono i dati che vengono inviati in post a quell url */
-        .post("https://freeapi.miniprojectideas.com/api/User/Login", this.loginObj)
-        /* Il response body è questo in caso di pw sbagliata
+        // Aggiorna il tipo dell'input a seconda dello stato
+        const inputElement = this.passwordInput.nativeElement as HTMLInputElement;
+        inputElement.type = this.mostraPassword ? "text" : "password";
+    }
+
+    constructor(private http: HttpClient, private router: Router) {}
+
+    onLogin() {
+        console.log(this.loginObj);
+
+        // Verifica formato dell'indirizzo email utilizzando una espressione regolare
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(this.loginObj.email)) {
+            this.emailNonValida = true;
+            return;
+        }
+
+        // Verifica lunghezza minima della password
+        if (this.loginObj.password.length < 8) {
+            this.passwordNonValida = true;
+            return;
+        }
+
+        this.http
+            /* this.loginObj contiene i dati inseriti dall'utente nel form e infatti sono i dati che vengono inviati in post a quell url */
+            .post("http://localhost:8090/user/signin", this.loginObj)
+            /* Il response body è questo in caso di pw sbagliata
         {
             "message": "UserName or Password is Wrong",
             "result": false,
@@ -49,17 +67,18 @@ onLogin() {
             "Password": "admin"
         }
         */
-        .subscribe((res: any) => {
-            if (res.result) {
-                alert("login ok");
-                /* In questo modo ti salvi nel local storage il token che hai nel response body e lo chiami loginToken.
+            .subscribe((res: any) => {
+                if (res.success) {
+                    alert("register ok");
+                    /* In questo modo ti salvi nel local storage il token che hai nel response body e lo chiami loginToken.
                 Per vedere il loginToken salvato vado in ispeziona, application, localstorage, localhost*/
-                localStorage.setItem("loginToken", res.data.token);
-                /* Ti porta alla route home */
-                this.router.navigateByUrl("/home");
-            } else {
-                alert(res.message);
-            }
-        });
-}
+                    /* Ti porta alla route home */
+                    this.router.navigateByUrl("/home");
+                } else {
+                    if (res.message == "Email already exists") {
+                        this.router.navigateByUrl("/login");
+                    }
+                }
+            });
+    }
 }

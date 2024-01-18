@@ -6,22 +6,22 @@
     <div class="hidden lg:hidden xl:block">XL</div>
 </div> -->
 
-<app-header-confronto-dettaglio [bgImg]="a.bgImg" [nome1]="a.nome1" [nome2]="a.nome2" [logo1]="a.logo1" [logo2]="a.logo2"></app-header-confronto-dettaglio>
+<app-header-confronto-dettaglio [bgImg]="a.bgImg" [nome1]="data.player1.name" [nome2]="data.player2.name" [logo1]="data.player1.logo" [logo2]="data.player2.logo"></app-header-confronto-dettaglio>
 
-<section class="p-20">
-    <div class="container">
+<section class="md:p-20 p-6">
+    <div>
         <div class="flex justify-center sm:justify-between w-full flex-wrap">
-            <ng-container *ngFor="let giocatore of a.confrontoGiocatori; index as i">
+            <ng-container *ngFor="let giocatore of data.comparisonPlayers; index as i">
                 <app-bio-giocatore
-                    [nomeGiocatore]="a.confrontoGiocatori[i].nomeGiocatore"
-                    [eta]="a.confrontoGiocatori[i].eta"
-                    [peso]="a.confrontoGiocatori[i].peso"
-                    [stato]="a.confrontoGiocatori[i].stato"
-                    [altezza]="a.confrontoGiocatori[i].altezza"
-                    [squadra]="a.confrontoGiocatori[i].squadra"
-                    [annoIngressoNBA]="a.confrontoGiocatori[i].annoIngressoNBA"
-                    [college]="a.confrontoGiocatori[i].college"
-                    [affiliation]="a.confrontoGiocatori[i].affiliation"
+                    [nomeGiocatore]="giocatore.name"
+                    [eta]="giocatore.age"
+                    [peso]="giocatore.weight"
+                    [stato]="giocatore.country"
+                    [altezza]="giocatore.height"
+                    [squadra]="giocatore.team"
+                    [annoIngressoNBA]="giocatore.debut"
+                    [college]="giocatore.college"
+                    [affiliation]="giocatore.affiliation"
                     class="w-[4/5] sm:w-[45%]"
                     [ngClass]="i == 0 ? 'mb-10 sm:mb-0' : ''"
                 ></app-bio-giocatore>
@@ -31,9 +31,9 @@
     
     <app-titolo-sezione [numero]="'01'" [titolo]="'Ruolo'" [spiegazione]="'Lorem ipsum dolor sit amet consectetur. Velit urna vitae scelerisque nullam sed metus dictum pulvinar.'" [spanSpiegazione]="'Consectetur volutpat turpis nec congue.'"/>
     
-    <div class="container">
+    <div>
         <div class="grid grid-cols-12 gap-4">
-            <ng-container *ngFor="let giocatore of a.confrontoGiocatori; index as i">
+            <ng-container *ngFor="let giocatore of data.comparisonPlayers; index as i">
                 <div [ngClass]="{
                     'col-start-2': i === 0 || i === 1,
                     'col-span-10': i === 0 || i === 1,
@@ -49,16 +49,29 @@
                   }"
                   class="border border-[#E5CFB5] rounded-2xl p-3 text-center hover:bg-[#E5CFB5] hover:text-black"
                 >
-                    <p class="text-base md:text-lg">{{a.confrontoGiocatori[i].nomeGiocatore.toUpperCase()}}</p>
-                    <p class="font-inter text-2lg md:text-3xl font-black">{{a.confrontoGiocatori[i].ruolo.toUpperCase()}}</p>
+                    <p class="text-base md:text-lg">{{giocatore.name.toUpperCase()}}</p>
+                    <p class="font-inter text-2lg md:text-3xl font-black">{{giocatore.role.toUpperCase()}}</p>
                 </div>
             </ng-container>
         </div>
     </div>
 </section>
     
-    <section class="px-20 pb-20">
+    <section class="md:px-20 px-6 pb-20">
         <app-titolo-sezione [numero]="'02'" [titolo]="'Dati'" [spiegazione]="'Lorem ipsum dolor sit amet consectetur. Velit urna vitae scelerisque nullam sed metus dictum pulvinar.'" [spanSpiegazione]="'Consectetur volutpat turpis nec congue.'"/>
     
-        <app-contenitore-card-confronto-dati/>
+        <div class="container grid grid-cols-12 gap-4">
+            <div class="col-start-0 col-span-12 md:col-start-1 lg:col-start-2 md:col-span-12 lg:col-span-10">
+                <div class="flex justify-between flex-wrap flex-col md:flex-row">
+                    <ng-container *ngFor="let tipoDato of data.dataPlayers, let i = index">
+                        <div class="w-full md:w-[30%] mt-3 ">
+                            
+                            <app-card-confronto-dati [titoloCard]="titoli[i]" [nomeSquadra1]="data.player1.name" [nomeSquadra2]="data.player2.name" [logoSquadra1]="data.player2.logo" [logoSquadra2]="data.player1.logo" [datoSquadra1]="tipoDato.dataPlayer1"
+                            [datoSquadra2]="tipoDato.dataPlayer2"/>
+                            
+                        </div>
+                    </ng-container>
+                </div>
+           </div>
+        </div>
     </section>

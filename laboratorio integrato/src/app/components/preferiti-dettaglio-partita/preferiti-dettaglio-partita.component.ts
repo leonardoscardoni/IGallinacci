@@ -8,6 +8,7 @@ export class PreferitiDettaglioPartitaComponent implements OnInit {
     @Input() homeTeamLogo!: string;
     @Input() visitorTeamLogo!: string;
     @Input() data!: any;
+    @Input() idGame!: number;
     a = [
         {
             logo: "/assets/s-l1200.webp",

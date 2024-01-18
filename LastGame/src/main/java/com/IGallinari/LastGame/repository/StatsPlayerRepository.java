@@ -51,4 +51,7 @@ public interface StatsPlayerRepository extends JpaRepository<StatsPlayer,Integer
 
     @Query(value = "SELECT SUM(sp.points), SUM(sp.totReb), SUM(sp.assists), SUM(sp.fgm),SUM(sp.ftm), SUM(sp.tpm)  FROM statsplayer sp left JOIN game g ON g.id = sp.idGame WHERE idPlayer=:inputIdPlayer AND g.season=:inputSeason", nativeQuery = true)
     List<Integer[]> findSumDataIdPlayerAndSeason(@Param("inputIdPlayer") int idPlayer, @Param("inputSeason") int season);
+
+    @Query(value="SELECT sp.idTeam FROM statsplayer sp WHERE sp.idPlayer=:inputIdPlayer and sp.idGame=:inputIdGame",nativeQuery = true)
+    Integer findidTeamByPlayerAndGame(@Param("inputIdPlayer") int idPlayer, @Param("inputIdGame") int idGame);
 }

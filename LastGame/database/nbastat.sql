@@ -247,7 +247,7 @@ CREATE TABLE `user` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `role` varchar(50) NOT NULL,
+  `role` smallint(5) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -275,9 +275,19 @@ CREATE TABLE `blog` (
   `idUser` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `subtitle` varchar(255) DEFAULT NULL,
-  `content` text NOT NULL,
+  `dateBlog` date NOT NULL,
   `img` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Struttura della tabella 'paragraph'
+--
+CREATE TABLE `paragraph` (
+  `idBlog` int(11) NOT NULL,
+  `index` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -386,6 +396,13 @@ ALTER TABLE `blog`
   ADD KEY `fk_blog_user` (`idUser`);
 
 --
+-- Indici per le tabelle `paragraph`
+--
+ALTER TABLE `paragraph`
+  ADD PRIMARY KEY (`idBlog`,`index`),
+  ADD KEY `fk_paragraph_blog` (`idBlog`);
+
+--
 -- Indici per la tabella 'tagTeam'
 --
 ALTER TABLE `tagTeam`
@@ -478,6 +495,13 @@ ALTER TABLE `tagplayer`
 --
 ALTER TABLE `blog`
   ADD CONSTRAINT `fk_blog_user` FOREIGN KEY (`idUser`) REFERENCES `user` (`id`);
+
+--
+-- Limiti per la tabella `paragraph`
+--
+ALTER TABLE `paragraph`
+  ADD CONSTRAINT `fk_paragraph_blog` FOREIGN KEY (`idBlog`) REFERENCES `blog` (`id`);
+
 
 
 

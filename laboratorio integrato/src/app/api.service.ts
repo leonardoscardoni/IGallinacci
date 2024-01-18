@@ -12,6 +12,7 @@ import { TeamPlayerFilterType } from "./_models/teamPlayerFilter.type";
 import { PlayerTeamFilteredType } from "./_models/PlayerTeamFilteredApi.type";
 import { PlayerDetailIndType } from "./_models/PlayerDetailInd.type";
 import { DettaglioPartitaType } from "./_models/dettaglioPartita.type";
+import { ConfrontoPlayerType } from "./_models/confrotoPlayerApi.type";
 
 @Injectable({
     providedIn: "root",
@@ -22,9 +23,10 @@ export class ApiService {
     private elencoTeam = "team/getTeams";
     private divisione = "team/getTeams";
     private calendar = "game/getCalendar?date=";
-    private team = `${'team/getTeamsDetails?idTeam='}`;
+    private team = `${"team/getTeamsDetails?idTeam="}`;
     private confrontoTeam = `${"team/getCompareTeam?idTeam1="}`;
-    private playerMatch = "player/getPlayerDetailsByGame?idGame=11058&idPlayer=4";
+    private confrontoPlayer = `${"player/getPlayerCompare?idPlayer1="}`;
+    private playerMatch = "player/getPlayerDetailsByGame?idGame=";
     private TeamRolesPlayerFilter = "player/getTeamRolesPlayerFilter";
     private playerIndipendente = `${"player/getPlayerDetails?idPlayer="}`;
     private PlayerFilter = `${"player/getPlayerTeamFiltered?idTeam="}`;
@@ -57,8 +59,8 @@ export class ApiService {
             );
     }
 
-    getTeamDetailApi(id:string) {
-        return this.http.get(`${this.baseURL}${this.team}${id}${'&season=2022'}`).pipe(
+    getTeamDetailApi(id: string) {
+        return this.http.get(`${this.baseURL}${this.team}${id}${"&season=2022"}`).pipe(
             map((response: any) => {
                 return response as TeamDetailType;
             })
@@ -81,20 +83,25 @@ export class ApiService {
         );
     }
 
-    getPlayerMatchApi() {
-        return this.http.get(`${this.baseURL}${this.playerMatch}`).pipe(
-            map((response: any) => {
-                return response as PlayerMatchType;
-            })
-        );
-    }
-
     getConfrontoTeamApi(id1: string, id2: string) {
         return this.http
             .get(`${this.baseURL}${this.confrontoTeam}${id1}${"&idTeam2="}${id2}${"&season=2022"}`)
             .pipe(
                 map((response: any) => {
                     return response as ConfrontoTeamType;
+                })
+            );
+    }
+    getConfrontoPlayerApi(id1: string, id2: string) {
+        return this.http
+            .get(
+                `${this.baseURL}${
+                    this.confrontoPlayer
+                }${id1}${"&idPlayer2="}${id2}${"&season=2022"}`
+            )
+            .pipe(
+                map((response: any) => {
+                    return response as ConfrontoPlayerType;
                 })
             );
     }
@@ -121,5 +128,15 @@ export class ApiService {
                 return response as DettaglioPartitaType;
             })
         );
+    }
+
+    getPlayerMatchApi(idGame: string, idPlayer: string) {
+        return this.http
+            .get(`${this.baseURL}${this.playerMatch}${idGame}&idPlayer=${idPlayer}`)
+            .pipe(
+                map((response: any) => {
+                    return response as PlayerMatchType;
+                })
+            );
     }
 }

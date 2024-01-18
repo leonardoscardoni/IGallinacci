@@ -9,18 +9,19 @@
     <form method="post" class="flex flex-col gap-5">
     
       <div class="flex flex-col gap-4">
-        <label for="Email" class="font-inter">Email</label>
-        <input type="text" placeholder="Enter Username" name="UsernameId" [(ngModel)]="loginObj.EmailId" required class="border border-arancio p-3 rounded-full bg-transparent font-inter">
+        <label for="email" class="font-inter">Email</label>
+        <input type="text" placeholder="Enter Email" name="email" [(ngModel)]="loginObj.email" required class="border border-arancio p-3 rounded-full bg-transparent font-inter">
+        <span *ngIf="emailNonValida" class="font-inter color-nero ">Email non valida!</span>
         </div>
         <div class="flex flex-col gap-4">
-        <label for="UsernameId" class="font-inter">username</label>
-        <input type="text" placeholder="Enter Username" name="UsernameId" [(ngModel)]="loginObj.UsernameId" required class="border border-arancio p-3 rounded-full bg-transparent font-inter">
+        <label for="name" class="font-inter">Nome</label>
+        <input type="text" placeholder="Enter Name" name="name" [(ngModel)]="loginObj.name" required class="border border-arancio p-3 rounded-full bg-transparent font-inter">
         </div>
     
         <div class="flex flex-col gap-4">
         <label for="Password" class="font-inter">Password</label>
         <div class="border border-arancio rounded-full bg-transparent font-inter relative">
-            <input #passwordInput type="{{ mostraPassword ? 'text' : 'password' }}" placeholder="Enter Password" name="Password" [(ngModel)]="loginObj.Password" required class="bg-transparent w-full border-0 p-3 rounded-full">
+            <input #passwordInput type="{{ mostraPassword ? 'text' : 'password' }}" placeholder="Enter Password" name="Password" [(ngModel)]="loginObj.password" required class="bg-transparent w-full border-0 p-3 rounded-full">
             <div class="absolute right-[5%] top-[50%] translate-y-[-50%] cursor-pointer" (click)="toggleMostraPassword()">
                 <ng-container *ngIf="mostraPassword; else nascondiPassword">
                   <img src="assets/eye-open-svgrepo-com.svg" alt="" class="w-5">
@@ -29,6 +30,7 @@
                   <img src="assets/eye-close-svgrepo-com.svg" alt="" class="w-5">
                 </ng-template>
               </div> 
+              <span *ngIf="passwordNonValida" class="font-inter color-nero ">Inserisci almeno 8 caratteri</span>
         </div>
         </div>
         <div class="flex flex-col gap-4">

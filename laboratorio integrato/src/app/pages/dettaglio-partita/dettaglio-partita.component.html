@@ -28,13 +28,13 @@
 </div>
 
 <app-titolo-sezione *ngIf="data.gameDetails.homeTeam.points" [numero]="'03'" [titolo]="'I nostri preferiti'" [spiegazione]="'In questa sezione abbiamo analizzato i 3 migliori giocatori per ciascun team.'" [spanSpiegazione]="'È presente un giocatore per ciascuno dei 3 fattori principali: punti, rimbalzi e assists.'"/>
-<app-preferiti-dettaglio-partita *ngIf="data.gameDetails.homeTeam.points" [data]="data.bestPlayers" [homeTeamLogo]="data.gameDetails.homeTeam.logo" [visitorTeamLogo]="data.gameDetails.visitorTeam.logo"/>
+<app-preferiti-dettaglio-partita *ngIf="data.gameDetails.homeTeam.points" [data]="data.bestPlayers" [homeTeamLogo]="data.gameDetails.homeTeam.logo" [visitorTeamLogo]="data.gameDetails.visitorTeam.logo" [idGame]="data.gameDetails.id"/>
 
 <app-titolo-sezione [numero]="data.gameDetails.homeTeam.points ? '04' : '01'" [titolo]="'Head to head'" [spiegazione]="'Gli head to head rappresentano i risultati delle partite giocate tra due squadre durante la stagione.'" [spanSpiegazione]="'Questi risultati sono considerati significativi in situazioni in cui le due squadre hanno lo stesso numero di punti in classifica.'"/>
 <app-quattro-confronti [tipologia]="'headToHead'" [dataHome]="data.lastFourHtHHome" [dataVisitor]="data.lastFourHtHVisitor" [homeTeamLogo]="data.gameDetails.homeTeam.logo" [visitorTeamLogo]="data.gameDetails.visitorTeam.logo" [homeTeamName]="data.gameDetails.homeTeam.code" [visitorTeamName]="data.gameDetails.visitorTeam.code"/>
 
 <app-titolo-sezione *ngIf="data.gameDetails.homeTeam.points" [numero]="'05'" [titolo]="'Giocatori'" [spiegazione]="'Elenco di tutti i giocatori convocati per la partita.'"/>
-<app-giocatori-dettaglio-partita *ngIf="data.gameDetails.homeTeam.points" [data]="data.players" [homeTeamLogo]="data.gameDetails.homeTeam.logo" [visitorTeamLogo]="data.gameDetails.visitorTeam.logo" [homeTeamName]="data.gameDetails.homeTeam.nickname" [visitorTeamName]="data.gameDetails.visitorTeam.nickname"/>
+<app-giocatori-dettaglio-partita *ngIf="data.gameDetails.homeTeam.points" [data]="data.players" [homeTeamLogo]="data.gameDetails.homeTeam.logo" [visitorTeamLogo]="data.gameDetails.visitorTeam.logo" [homeTeamName]="data.gameDetails.homeTeam.nickname" [visitorTeamName]="data.gameDetails.visitorTeam.nickname" [idGame]="data.gameDetails.id"/>
 
 <app-titolo-sezione *ngIf="!data.gameDetails.homeTeam.points" [numero]="'02'" [titolo]="'Ultimi 4 incontri'" [spiegazione]="'Il confronto degli ultimi 4 match della stagione è utile per capire come le squadre stanno performando e quali sono le loro probabilità di vittoria.'"/>
 <app-quattro-confronti *ngIf="!data.gameDetails.homeTeam.points" class="mb-5" [tipologia]="'ultimi4Incontri'" [dataHome]="data.viewLastFourGamesNextGameHome" [dataVisitor]="data.viewLastFourGamesNextGameVisitor" [homeTeamLogo]="data.gameDetails.homeTeam.logo" [visitorTeamLogo]="data.gameDetails.visitorTeam.logo" [homeTeamName]="data.gameDetails.homeTeam.code" [visitorTeamName]="data.gameDetails.visitorTeam.code"/>
