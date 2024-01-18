@@ -1,6 +1,7 @@
 package com.IGallinari.LastGame.service;
 
 import com.IGallinari.LastGame.entity.*;
+import com.IGallinari.LastGame.payload.request.TokenRequest;
 import com.IGallinari.LastGame.payload.response.lastFourGames.ViewLastFourGames;
 import com.IGallinari.LastGame.payload.response.lastFourGames.ViewLastGame;
 import com.IGallinari.LastGame.payload.response.lastFourHtH.HeadToHead;
@@ -25,6 +26,7 @@ import java.util.List;
 public class TeamService {
 
     private final TeamRepository teamRepository;
+
     private final StatsTeamRepository statsTeamRepository;
 
     private final PlayerTeamRepository playerTeamRepository;
@@ -35,35 +37,46 @@ public class TeamService {
 
     private final GameRepository gameRepository;
 
+    private final FavTeamRepository favTeamRepository;
+
+    private final JwtService jwtService;
+
     public Team getTeamById(int inputId){
         return teamRepository.findById(inputId);
     }
 
-    public TeamsResponse buildTeams(){
+    public TeamsResponse buildTeams(TokenRequest tokenRequest){
+        String token = tokenRequest.getToken();
+        boolean logged= jwtService.isTokenValid(token);
+        Integer idUser= null;
+        if(logged){
+            idUser = jwtService.getIdUser(token);
+        }
         ViewConferenceEast conferenceEast = new ViewConferenceEast(
-                buildViewDivision("Atlantic"),
-                buildViewDivision("Central"),
-                buildViewDivision("Southeast")
+                buildViewDivision("Atlantic",idUser),
+                buildViewDivision("Central",idUser),
+                buildViewDivision("Southeast",idUser)
         );
         ViewConferenceWest conferenceWest = new ViewConferenceWest(
-                buildViewDivision("Northwest"),
-                buildViewDivision("Pacific"),
-                buildViewDivision("Southwest")
+                buildViewDivision("Northwest",idUser),
+                buildViewDivision("Pacific",idUser),
+                buildViewDivision("Southwest",idUser)
         );
-        return new TeamsResponse(conferenceWest, conferenceEast);
+        return new TeamsResponse(logged, conferenceWest, conferenceEast);
     }
 
-    public ViewDivision buildViewDivision(String division){
+    public ViewDivision buildViewDivision(String division, Integer idUser){
         List<Team> teamsByDivision= teamRepository.findByDivision(division);
         List<ViewTeam> listViewTeams= new ArrayList<>();
         for (Team team: teamsByDivision){
+            boolean favourite= idUser != null && favTeamRepository.existsByUserIdAndTeamId(idUser, team.getId());
             listViewTeams.add(
                     new ViewTeam(
                             team.getId(),
                             team.getNickname(),
                             team.getName(),
                             team.getLogo(),
-                            false//DA IMPLEMENTARE QUANDO AVRO I PREFERITI
+                            favourite
                     )
             );
         }

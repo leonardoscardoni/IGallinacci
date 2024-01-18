@@ -1,13 +1,12 @@
 package com.IGallinari.LastGame.service;
 
 import com.IGallinari.LastGame.entity.Player;
-import com.IGallinari.LastGame.entity.StatsPlayer;
 import com.IGallinari.LastGame.entity.Team;
 import com.IGallinari.LastGame.entity.User;
 import com.IGallinari.LastGame.payload.request.TokenRequest;
 import com.IGallinari.LastGame.payload.request.user.LoginRequest;
 import com.IGallinari.LastGame.payload.request.user.SigninRequest;
-import com.IGallinari.LastGame.payload.response.AccessDeniedResponse;
+import com.IGallinari.LastGame.payload.response.NeedToBeLoggedResponse;
 import com.IGallinari.LastGame.payload.response.user.LoginResponse;
 import com.IGallinari.LastGame.payload.response.user.SigninResponse;
 import com.IGallinari.LastGame.payload.response.user.profile.ProfileResponse;
@@ -17,9 +16,9 @@ import com.IGallinari.LastGame.payload.response.user.profile.ViewStatisticsFavPl
 import com.IGallinari.LastGame.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.mindrot.jbcrypt.BCrypt;
-import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,12 +79,11 @@ public class UserService {
             User user = userRepository.findById(idUser);
             return ResponseEntity.ok(buildLoggedProfile(user));
         }else {
-            return ResponseEntity.ok(buildProfileUnLogged());
+            return ResponseEntity.ok(needToBeLogged());
         }
     }
-    public AccessDeniedResponse buildProfileUnLogged(){
-        AccessDeniedResponse accessDeniedResponse = new AccessDeniedResponse();
-        return accessDeniedResponse;
+    public NeedToBeLoggedResponse needToBeLogged(){
+        return new NeedToBeLoggedResponse();
     }
     public ProfileResponse buildLoggedProfile(User user) {
         List<ViewFavoritePlayerProfileResponse> favPlayers = new ArrayList<>();

@@ -1,5 +1,5 @@
 package com.IGallinari.LastGame.payload.response;
-public class AccessDeniedResponse {
+public class NeedToBeLoggedResponse {
     private final boolean logged=false;
-    private final String message="Access denied";
+    private final String message="Need to be logged";
 }

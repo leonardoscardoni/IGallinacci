@@ -1,15 +1,13 @@
 package com.IGallinari.LastGame.controller;
 
+import com.IGallinari.LastGame.payload.request.TokenRequest;
 import com.IGallinari.LastGame.payload.response.comparison.team.CompareTeamResponse;
 import com.IGallinari.LastGame.payload.response.listTeam.TeamsResponse;
 import com.IGallinari.LastGame.payload.response.ranking.RankingResponse;
 import com.IGallinari.LastGame.payload.response.teamDetails.TeamDetailsResponse;
 import com.IGallinari.LastGame.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/team")
@@ -20,7 +18,7 @@ public class TeamController {
     private TeamService service;
 
     @RequestMapping("/getTeams")
-    public TeamsResponse getTeams(){return this.service.buildTeams();}
+    public TeamsResponse getTeams(@RequestBody TokenRequest tokenRequest){return this.service.buildTeams(tokenRequest);}
     @RequestMapping("/getTeamsDetails")
     public TeamDetailsResponse getTeamDetails(@RequestParam int idTeam,@RequestParam int season){return this.service.buildTeamDetailsResponse(idTeam,season);}
     @RequestMapping("/getCompareTeam")
