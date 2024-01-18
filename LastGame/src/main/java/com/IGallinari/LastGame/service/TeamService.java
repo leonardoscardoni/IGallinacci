@@ -259,6 +259,7 @@ public class TeamService {
                 favouriteTeam1,
                 team1.getId(),
                 team1.getName(),
+                team1.getCode(),
                 team1.getLogo(),
                 team1.getConference(),
                 statsTeam1.getRankConference()
@@ -267,6 +268,7 @@ public class TeamService {
                 favouriteTeam2,
                 team2.getId(),
                 team2.getName(),
+                team2.getCode(),
                 team2.getLogo(),
                 team1.getConference(),
                 statsTeam2.getRankConference()

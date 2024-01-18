@@ -79,12 +79,16 @@ public class PlayerService {
                 game.getTime()
         );
         ViewTeamPlayerDetailsByGame viewHomeTeamPlayerDetailsByGame = new ViewTeamPlayerDetailsByGame(
+                teamHome.getId(),
                 teamHome.getName(),
+                teamHome.getNickname(),
                 teamHome.getLogo(),
                 statsGameHome.getPoints()
         );
         ViewTeamPlayerDetailsByGame viewVisitorTeamPlayerDetailsByGame = new ViewTeamPlayerDetailsByGame(
+                teamVisitor.getId(),
                 teamVisitor.getName(),
+                teamVisitor.getNickname(),
                 teamVisitor.getLogo(),
                 statsGameVisitor.getPoints()
         );
