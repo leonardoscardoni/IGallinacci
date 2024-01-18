@@ -1,0 +1,109 @@
+$arancio:#e98a15;
+$bianco:#E5CFB5;
+$nero:#130B02;
+.border-bianco{
+    border-color:$bianco;
+}
+.border-arancio{
+    border-color:$arancio;
+}
+
+@font-face {
+    font-family: 'MioFont';
+    src: url('/assets/Antonio/Antonio-VariableFont_wght.ttf') format('woff');
+}
+@font-face {
+    font-family: 'inter';
+    src: url('/assets/Inter/Inter-VariableFont_slnt\,wght.ttf') format('woff');
+}
+@font-face {
+    font-family: 'inter-bold-italic';
+    src: url('/assets/Inter/static/Inter-BoldItalic.woff2') format('woff');
+}
+
+body , .linea{
+    background-color: $nero;
+    background-image: url('./assets/Rough-bg.png');
+    background-size: contain;
+    background-attachment: fixed;
+    color:$bianco;
+    font-family: MioFont;
+}
+
+.font-inter{
+    font-family: inter;
+}
+.font-inter-bold-italic{
+    font-family: "inter-bold-italic";
+}
+.font-antonio{
+    font-family: MioFont;
+}
+
+.bg-arancio{
+    background-color:$arancio;
+}
+.bg-bianco{
+    background-color:$bianco;
+}
+.bg-nero{
+    background-color:$nero;
+}
+.color-arancio{
+    color: $arancio;
+}
+.color-white{
+    color: $bianco;
+}
+.color-nero{
+    color: $nero;
+}
+.border-arancio{
+    border-color: $arancio;
+}
+.border-bianco{
+    border-color: $bianco;
+}
+.font-italic{
+    font-style: italic;
+    -webkit-text-stroke-width: 1px; 
+    -webkit-text-stroke-color: $bianco;
+    font-variation-settings: "ital" 1;
+    font-synthesis: none;
+}
+
+h1{
+    font-family: MioFont;
+}
+span{
+    color: $arancio;
+}
+
+/* Classe per nascondere le barre di scorrimento */
+.hide-scrollbar {
+    scrollbar-width: none; /* Per Firefox */
+    -ms-overflow-style: none; /* Per Internet Explorer e Microsoft Edge */
+}
+  
+.hide-scrollbar::-webkit-scrollbar {
+display: none; /* Per WebKit (Chrome, Safari) */
+}
+  
+h2{
+    font-size: 1.5rem!important;
+}
+
+
+@media screen and (min-width: 768px) {
+    h2 {
+        font-size:2.5rem!important;
+    }
+}
+
+@import "~primeng/resources/themes/saga-blue/theme.css";
+@import "~primeng/resources/primeng.min.css";
+
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

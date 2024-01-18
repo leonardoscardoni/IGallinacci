@@ -1,0 +1,31 @@
+<div class="h-[20rem] w-full grid place-items-center">
+        <div class="border-t border-bianco w-full absolute"></div>
+        <div class="lg:w-40 lg:h-40 h-20 w-20 border border-bianco rounded-full absolute grid place-items-center">
+            <p class="lg:text-[8rem] text-8xl font-inter font-black leading-7 text-center absolute">{{ data.rankConference }}</p>
+        </div>
+        <p class="lg:text-3xl text-lg font-inter place-self-end w-full text-center pb-10">Posizione In Classifica [ {{data.conference}} ]</p>
+</div>
+
+<div class="w-full flex flex-wrap lg:flex-nowrap lg:p-20 px-6">
+    <div class="md:w-1/4 w-1/2">
+        <div class="p-2">
+            <app-dati-principali [title]="'partite giocate'" [dato]="data.stats.gamePlayed"></app-dati-principali>
+        </div>
+    </div>
+    <div class="md:w-1/4 w-1/2">
+        <div class=" p-2">
+            <app-dati-principali [title]="'Punteggio'" [dato]="data.stats.points"></app-dati-principali>
+        </div>
+    </div>
+    <div class="md:w-1/4 w-1/2">
+        <div class=" p-2">
+            <app-dati-principali [title]="'Tiri da 2 segnati'" [dato]='data.stats.freeTrowMadePercentage' [percentuale]="'%'"></app-dati-principali>
+        </div>
+    </div>
+    <div class="md:w-1/4 w-1/2">
+        <div class=" p-2">
+            <app-dati-principali [title]="'Tiri da 3 segnati'" [dato]="data.stats.threePointersMadePercentage" [percentuale]="'%'"></app-dati-principali>
+        </div>
+    </div> 
+   
+</div>

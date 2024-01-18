@@ -1,0 +1,42 @@
+
+
+<section class="md:ps-20 md:py-20 ps-8 py-8">
+    <div class="w-full flex justify-between pe-20 pb-8 cursor-pointer ">
+        <h2 class="uppercase font-extrabold md:text-[2.5rem] text-[1.5rem] color-arancio">ultimi risultati</h2>
+        <div class="items-end justify-center gap-4 hidden md:flex">
+            <img src='/assets/circle-arrow-left-svgrepo-com.svg' class="w-10" alt="" (click)="scroll(-1)">
+            <img src='/assets/circle-arrow-right-svgrepo-com.svg' class="w-10" alt="" (click)="scroll(1)">
+        </div>
+    </div>
+    
+    <div class="carousel-container">
+      <div class="carousel-content flex gap-4 overflow-scroll hide-scrollbar" #carouselContent>
+        <div *ngFor="let match of data.pastGames" class="carousel-item border border-[#E5CFB5] md:w-[19rem] md:h-[21rem] w-[12rem] h-[14rem] rounded-2xl p-3 flex-none cursor-pointer hover:bg-[#E5CFB5] hover:text-black">
+          <div class="w-[100%] h-full">
+            <div class="h-[50%] flex flex-col justify-center items-center align-bottom" [ngClass]="getBackgroundColor(match.homeTeam.points, match.visitorTeam.points)">
+              <div class="flex justify-around w-full gap-7 py-5">
+                <div class="w-8 h-8 bg-white rounded-full p-1 overflow-hidden"><img src={{match.homeTeam.logo}} class="w-full h-full object-contain" alt="">
+                </div>
+                <h3 class="text-center md:text-2xl text-[1rem] uppercase">{{ match.homeTeam.nickname }}</h3>
+              </div>
+              <div class="w-full px-10">
+                <h3 class="md:text-8xl text-5xl font-black font-inter">{{ match.homeTeam.points }}</h3>
+              </div>
+            </div>
+            <div class="h-[50%] flex flex-col justify-center items-center" [ngClass]="getBackgroundColor(match.visitorTeam.points, match.homeTeam.points)">
+              <div class="w-full px-10">
+                <h3 class="md:text-8xl text-5xl font-black font-inter">{{match.visitorTeam.points}}</h3>
+              </div>
+              <div class="flex justify-around w-full md:py-5 py-2">
+                <div class="w-8 h-8 bg-white rounded-full p-1 overflow-hidden"><img src={{match.visitorTeam.logo}} class="w-full h-full object-contain" alt="">
+                </div>
+                <h3 class="text-center md:text-2xl text-[1rem] uppercase">{{match.visitorTeam.nickname}}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </section>
+  

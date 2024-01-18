@@ -1,0 +1,26 @@
+<div class="px-0 py-10 sm:p-10 ">
+    <div class="container sm:border sm:rounded-xl relative overflow-hidden h-[30rem] cursor-pointer">
+        <img [src]="data.img" class="w-full h-full object-cover" alt="">
+        <p class="absolute top-10 color-arancio px-8 sm:px-10 md:px-15 md:px-20 font-inter text-xl">Ultima pubblicazione</p>
+        <div class="absolute z-50 bottom-14 px-8 sm:px-10 md:px-15 md:px-20 flex flex-wrap gap-x-20">
+            <h3 class="font-inter pb-5">
+                <span class="font-bold text-2xl sm:text-3xl md:text-4xl color-white">{{data.titolo}}</span>
+            </h3>
+                <p class="font-inter font-light leading-[1.4] w-[80%] text-sm sm:text-base md:text-xl">{{data.sottotitolo}}
+                </p>
+                <div class="flex justify-between w-full h-auto mt-3">
+
+                    <div>
+                        <ng-container *ngFor="let tag of data.tags">
+                            <p class="font-inter font-light text-md inline">{{"#" + tag + " "}}
+                            </p>
+                        </ng-container>
+                    </div>
+
+                    <div class="relative z-30 w-10 h-10 self-end hidden sm:block">
+                        <img src="/assets/arrow-right-svgrepo-com.svg" class="w-full h-full" alt="">
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

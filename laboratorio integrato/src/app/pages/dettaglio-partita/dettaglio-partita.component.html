@@ -1,0 +1,40 @@
+<div class="fixed">
+    <div class="block sm:hidden">XS</div>
+    <div class="hidden sm:block md:hidden">SM</div>
+    <div class="hidden md:block lg:hidden">MD</div>
+    <div class="hidden md:hidden lg:block xl:hidden">LG</div>
+    <div class="hidden lg:hidden xl:block">XL</div>
+</div>
+
+<app-header-dettaglio-partita [data]="data.gameDetails"></app-header-dettaglio-partita>
+
+<app-titolo-sezione *ngIf="data.gameDetails.homeTeam.points" [numero]="'01'" [titolo]="'Quarters'" [spiegazione]="'I quarters di NBA sono i quarti di gioco di una partita di basket. Sono quattro, ciascuno di 12 minuti.'" [spanSpiegazione]="'La squadra con più punti alla fine dei quarters vince la partita.'"/>
+<app-quattro-confronti *ngIf="data.gameDetails.homeTeam.points" [tipologia]="'quarti'" [data]="data.quartersPerTeam" [homeTeamLogo]="data.gameDetails.homeTeam.logo" [visitorTeamLogo]="data.gameDetails.visitorTeam.logo" [homeTeamName]="data.gameDetails.homeTeam.code" [visitorTeamName]="data.gameDetails.visitorTeam.code"/>
+
+<app-titolo-sezione *ngIf="data.gameDetails.homeTeam.points" [numero]="'02'" [titolo]="'Statistiche'" [spiegazione]="'Le statistiche post partita forniscono informazioni sulle prestazioni delle squadre e dei giocatori.'" [spanSpiegazione]="'Analizzare le statistiche esplicita le tendenze di prestazioni di un giocatore e di una squadra.'"/>
+<div *ngIf="data.gameDetails.homeTeam.points" class="container grid grid-cols-12 gap-4">
+        <div class="col-start-0 col-span-12 md:col-start-1 lg:col-start-2 md:col-span-12 lg:col-span-10">
+            <div class="flex justify-between flex-wrap flex-col md:flex-row">
+                <ng-container *ngFor="let tipoDato of data.statistics, let i = index">
+                    <div class="w-full md:w-[30%] mt-3 ">
+                        
+                        <app-card-confronto-dati [titoloCard]="titoli[i]" [nomeSquadra1]="data.gameDetails.homeTeam.nickname" [nomeSquadra2]="data.gameDetails.visitorTeam.nickname" [logoSquadra1]="data.gameDetails.homeTeam.logo" [logoSquadra2]="data.gameDetails.visitorTeam.logo" [datoSquadra1]="tipoDato.homeTeamStats"
+                        [datoSquadra2]="tipoDato.visitorTeamStats"/>
+                        
+                    </div>
+                </ng-container>
+            </div>
+       </div>
+</div>
+
+<app-titolo-sezione *ngIf="data.gameDetails.homeTeam.points" [numero]="'03'" [titolo]="'I nostri preferiti'" [spiegazione]="'In questa sezione abbiamo analizzato i 3 migliori giocatori per ciascun team.'" [spanSpiegazione]="'È presente un giocatore per ciascuno dei 3 fattori principali: punti, rimbalzi e assists.'"/>
+<app-preferiti-dettaglio-partita *ngIf="data.gameDetails.homeTeam.points" [data]="data.bestPlayers" [homeTeamLogo]="data.gameDetails.homeTeam.logo" [visitorTeamLogo]="data.gameDetails.visitorTeam.logo" [idGame]="data.gameDetails.id"/>
+
+<app-titolo-sezione [numero]="data.gameDetails.homeTeam.points ? '04' : '01'" [titolo]="'Head to head'" [spiegazione]="'Gli head to head rappresentano i risultati delle partite giocate tra due squadre durante la stagione.'" [spanSpiegazione]="'Questi risultati sono considerati significativi in situazioni in cui le due squadre hanno lo stesso numero di punti in classifica.'"/>
+<app-quattro-confronti [tipologia]="'headToHead'" [dataHome]="data.lastFourHtHHome" [dataVisitor]="data.lastFourHtHVisitor" [homeTeamLogo]="data.gameDetails.homeTeam.logo" [visitorTeamLogo]="data.gameDetails.visitorTeam.logo" [homeTeamName]="data.gameDetails.homeTeam.code" [visitorTeamName]="data.gameDetails.visitorTeam.code"/>
+
+<app-titolo-sezione *ngIf="data.gameDetails.homeTeam.points" [numero]="'05'" [titolo]="'Giocatori'" [spiegazione]="'Elenco di tutti i giocatori convocati per la partita.'"/>
+<app-giocatori-dettaglio-partita *ngIf="data.gameDetails.homeTeam.points" [data]="data.players" [homeTeamLogo]="data.gameDetails.homeTeam.logo" [visitorTeamLogo]="data.gameDetails.visitorTeam.logo" [homeTeamName]="data.gameDetails.homeTeam.nickname" [visitorTeamName]="data.gameDetails.visitorTeam.nickname" [idGame]="data.gameDetails.id"/>
+
+<app-titolo-sezione *ngIf="!data.gameDetails.homeTeam.points" [numero]="'02'" [titolo]="'Ultimi 4 incontri'" [spiegazione]="'Il confronto degli ultimi 4 match della stagione è utile per capire come le squadre stanno performando e quali sono le loro probabilità di vittoria.'"/>
+<app-quattro-confronti *ngIf="!data.gameDetails.homeTeam.points" class="mb-5" [tipologia]="'ultimi4Incontri'" [dataHome]="data.viewLastFourGamesNextGameHome" [dataVisitor]="data.viewLastFourGamesNextGameVisitor" [homeTeamLogo]="data.gameDetails.homeTeam.logo" [visitorTeamLogo]="data.gameDetails.visitorTeam.logo" [homeTeamName]="data.gameDetails.homeTeam.code" [visitorTeamName]="data.gameDetails.visitorTeam.code"/>

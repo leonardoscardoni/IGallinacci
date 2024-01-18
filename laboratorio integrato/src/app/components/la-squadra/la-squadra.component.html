@@ -1,0 +1,43 @@
+<app-titolo-sezione [numero]="'01'" [titolo]="'LA squadra'" [spiegazione]="'Lorem ipsum dolor sit amet consectetur. Velit urna vitae scelerisque nullam sed metus dictum pulvinar.'" [spanSpiegazione]="'Consectetur volutpat turpis nec congue.'"/>
+<div class="lg:px-20 px-6">
+  
+  <div class="w-full flex flex-wrap justify-center lg:justify-normal">
+    <div class="lg:w-1/3 md:w-1/2 p-1" *ngFor="let player of slicedPlayers">
+      <div class="border border-bianco rounded-t-xl p-4 flex flex-wrap font-inter">
+        <div class="w-full flex justify-between items-end">
+          <p class="text-2xl font-antonio">{{ player.firstname }} {{ player.lastname }}</p>
+          <p class="font-thin">
+            {{ player.number ? '[' + player.number + ']' : '[ND]' }}
+          </p>
+          
+        </div>
+        <div class="w-1/2 flex justify-between pe-4 font-thin items-end mt-3">
+          <span>Punti</span>
+          <span class="font-bold text-lg">{{ player.stats.pointsForGame | number:'1.1-1' }}</span>
+        </div>
+        <div class="w-1/2 flex justify-between pe-4 font-thin items-end">
+          <span>Rimbalzi</span>
+          <span class="font-bold text-lg">{{ player.stats.rebounds | number:'1.1-1' }}</span>
+        </div>
+        <div class="w-1/2 flex justify-between pe-4 font-thin items-end">
+          <span>Assist</span>
+          <span class="font-bold text-lg">{{ player.stats.assist | number:'1.1-1' }}</span>
+        </div>
+        <div class="w-1/2 flex justify-between pe-4 font-thin items-end">
+          <span>Palle Rubate</span>
+          <span class="font-bold text-lg">{{ player.stats.steals | number:'1.1-1' }}</span>
+        </div>
+        
+      </div>
+      <div class="w-full bg-arancio border rounded-b-xl text-center font-inter font-semibold p-2">
+        Ruolo: {{ player.position ? player.position : '[ND]' }}
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full p-10 grid place-items-center">
+    <button *ngIf="slicedPlayers.length < (data.players.length)" (click)="mostraAltri()" class="border border-arancio px-4 py-1 rounded-full font-inter">Vedi tutti</button>
+
+    <button *ngIf="slicedPlayers.length > 3" (click)="nascondi()" class="border border-arancio px-4 py-1 rounded-full font-inter">Nascondi</button>
+  </div>
+</div>

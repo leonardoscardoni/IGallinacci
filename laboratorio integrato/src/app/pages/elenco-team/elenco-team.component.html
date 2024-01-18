@@ -1,0 +1,63 @@
+<div class="flex flex-col md:flex-row p-14 gap-6">
+
+  <div class="md:w-1/2 w-full flex flex-col gap-8">
+    <h2 class="color-arancio">EASTERN</h2>
+    <div class="border-y border-[#e98a15] text-[1.5rem] text-center">
+      ATLANTIC
+    </div>
+
+    <ng-container *ngFor="let squadra of data.east.atlantic.teams">
+      <app-nome-team-elenco-team [logo]="squadra.logo" [nomeTeam]="squadra.nickname" [preferito]="squadra.favourite"[routerLink]="['/dettaglio-team/', squadra.id]"></app-nome-team-elenco-team>
+    </ng-container>
+
+    <div class="border-y border-[#e98a15] text-[1.5rem] text-center mt-5">
+      CENTRAL
+    </div>
+
+    <ng-container *ngFor="let squadra of data.east.central.teams">
+      <app-nome-team-elenco-team [logo]="squadra.logo" [nomeTeam]="squadra.nickname" [preferito]="squadra.favourite" [routerLink]="['/dettaglio-team/', squadra.id]"></app-nome-team-elenco-team>
+    </ng-container>
+
+    <div class="border-y border-[#e98a15] text-[1.5rem] text-center mt-5">
+      SOUTHEAST
+    </div>
+
+    <ng-container *ngFor="let squadra of data.east.southeast.teams">
+      <app-nome-team-elenco-team [logo]="squadra.logo" [nomeTeam]="squadra.nickname" [preferito]="squadra.favourite" [routerLink]="['/dettaglio-team/', squadra.id]"></app-nome-team-elenco-team>
+    </ng-container>
+
+  </div>
+
+  <div class="md:w-1/2 w-full flex flex-col gap-8">
+    <h2 class="color-arancio mt-10 md:mt-0">WESTERN</h2>
+    <div class="border-y border-[#e98a15] text-[1.5rem] text-center">
+      NORTHWEST
+    </div>
+
+    <ng-container *ngFor="let squadra of data.west.northwest.teams">
+      <app-nome-team-elenco-team [logo]="squadra.logo" [nomeTeam]="squadra.nickname" [preferito]="squadra.favourite" [routerLink]="['/dettaglio-team/', squadra.id]"></app-nome-team-elenco-team>
+    </ng-container>
+
+    <div class="border-y border-[#e98a15] text-[1.5rem] text-center mt-5">
+      PACIFIC
+    </div>
+
+    <ng-container *ngFor="let squadra of data.west.pacific.teams">
+      <app-nome-team-elenco-team [logo]="squadra.logo" [nomeTeam]="squadra.nickname" [preferito]="squadra.favourite" [routerLink]="['/dettaglio-team/', squadra.id]"></app-nome-team-elenco-team>
+    </ng-container>
+
+    <div class="border-y border-[#e98a15] text-[1.5rem] text-center mt-5">
+      SOUTHWEST
+    </div>
+
+    <ng-container *ngFor="let squadra of data.west.southwest.teams">
+      <app-nome-team-elenco-team [logo]="squadra.logo" [nomeTeam]="squadra.nickname" [preferito]="squadra.favourite" [routerLink]="['/dettaglio-team/', squadra.id]"></app-nome-team-elenco-team>
+    </ng-container>
+
+  </div>
+</div>
+
+<div routerLink="/scelta-confronto-team" class="w-full flex items-center justify-center relative pt-10 mb-20 cursor-pointer">
+  <img src="/assets/Star.png" class="absolute md:w-44 w-32 -z-10" alt="">
+  <h2 class="uppercase md:text-3xl text-2xl text-center">Confronto <br> <span class="md:text-6xl text-4xl font-bold">squadre</span></h2>
+</div>
