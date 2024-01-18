@@ -33,7 +33,6 @@ public class UserService {
     private final UserRepository userRepository;
     private final FavPlayerRepository favPlayersRepository;
     private final FavTeamRepository favTeamRepository;
-
     private final PlayerRepository playerRepository;
     private final StatsPlayerRepository statsPlayerRepository;
     private final TeamRepository teamRepository;
@@ -41,7 +40,7 @@ public class UserService {
     private boolean emailIsValid(String email) {
         String EMAIL_REGEX = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
         Pattern pattern = Pattern.compile(EMAIL_REGEX);
-        return pattern.matcher(email).matches();
+        return pattern.matcher(email.trim()).matches();
     }
 
     public LoginResponse login(LoginRequest loginRequest) {
@@ -64,7 +63,7 @@ public class UserService {
     }
 
     public SigninResponse signin(SigninRequest signinRequest) {
-        if(emailIsValid(signinRequest.getEmail())) {
+        if(!emailIsValid(signinRequest.getEmail())) {
             return new SigninResponse(false, "Email not valid");
         }
         if (!userRepository.existsByEmail(signinRequest.getEmail())) {
