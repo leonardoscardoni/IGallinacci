@@ -2,6 +2,7 @@ package com.IGallinari.LastGame.service;
 
 import com.IGallinari.LastGame.entity.*;
 import com.IGallinari.LastGame.payload.request.TokenRequest;
+import com.IGallinari.LastGame.payload.response.NeedToBeLoggedResponse;
 import com.IGallinari.LastGame.payload.response.lastFourGames.ViewLastFourGames;
 import com.IGallinari.LastGame.payload.response.lastFourGames.ViewLastGame;
 import com.IGallinari.LastGame.payload.response.lastFourHtH.HeadToHead;
@@ -15,6 +16,7 @@ import com.IGallinari.LastGame.payload.response.comparison.team.ViewTeamCompareT
 import com.IGallinari.LastGame.payload.response.comparison.team.ViewTeamComparisonNbaAvgCompareTeam;
 import com.IGallinari.LastGame.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -239,14 +241,22 @@ public class TeamService {
         return listHeadToHead;
     }
 
-    public CompareTeamResponse buildCompareTeamResponse(int idTeam1, int idTeam2, int season){
-
+    public ResponseEntity<?> buildCompareTeamResponse(TokenRequest tokenRequest, int idTeam1, int idTeam2, int season){
+        String token = tokenRequest.getToken();
+        boolean logged= jwtService.isTokenValid(token);
+        boolean favourite= false;
+        if(!logged){
+            return ResponseEntity.ok(new NeedToBeLoggedResponse());
+        }
+        int idUser = jwtService.getIdUser(token);
         Team team1 = teamRepository.findById(idTeam1);
         Team team2 = teamRepository.findById(idTeam2);
         StatsTeam statsTeam1= statsTeamRepository.findByTeamAndSeason(team1, season);
         StatsTeam statsTeam2 = statsTeamRepository.findByTeamAndSeason(team2, season);
-
+        boolean favouriteTeam1= favTeamRepository.existsByUserIdAndTeamId(idUser, idTeam1);
+        boolean favouriteTeam2= favTeamRepository.existsByUserIdAndTeamId(idUser, idTeam2);
         ViewTeamCompareTeam viewTeamCompareTeam1 = new ViewTeamCompareTeam(
+                favouriteTeam1,
                 team1.getId(),
                 team1.getName(),
                 team1.getLogo(),
@@ -254,6 +264,7 @@ public class TeamService {
                 statsTeam1.getRankConference()
         );
         ViewTeamCompareTeam viewTeamCompareTeam2 = new ViewTeamCompareTeam(
+                favouriteTeam2,
                 team2.getId(),
                 team2.getName(),
                 team2.getLogo(),
@@ -307,7 +318,7 @@ public class TeamService {
                 lastFourHtHTeam1,
                 lastFourHtHTeam2
         );
-        return CompareTeamResponse;
+        return ResponseEntity.ok(CompareTeamResponse);
     }
 
     public RankingResponse buildRankingResponse(int season) {
