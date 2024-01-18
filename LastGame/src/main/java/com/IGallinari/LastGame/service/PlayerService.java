@@ -8,8 +8,9 @@ import java.util.List;
 
 
 import com.IGallinari.LastGame.payload.request.TokenRequest;
+import com.IGallinari.LastGame.payload.response.NeedToBeLoggedResponse;
 import com.IGallinari.LastGame.payload.response.playerDetails.*;
-import com.IGallinari.LastGame.payload.response.comparison.player.ComparePlayerResponse;
+import com.IGallinari.LastGame.payload.response.comparison.player.ComparePlayersResponse;
 import com.IGallinari.LastGame.payload.response.comparison.player.ViewDataPlayerComparePlayer;
 import com.IGallinari.LastGame.payload.response.comparison.player.ViewHeaderComparePlayer;
 import com.IGallinari.LastGame.payload.response.comparison.player.ViewPlayerComparePlayer;
@@ -19,6 +20,7 @@ import com.IGallinari.LastGame.payload.response.listPlayerFilter.ViewTeamsPlayer
 import com.IGallinari.LastGame.payload.response.playerDetailsByGame.*;
 import com.IGallinari.LastGame.payload.response.playerTeamFilter.PlayerTeamFilterResponse;
 import com.IGallinari.LastGame.payload.response.playerTeamFilter.ViewPlayersPlayerTeamFilter;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -277,21 +279,30 @@ public class PlayerService {
         );
     }
 
-    public ComparePlayerResponse buildComparePlayerResponse(int idPlayer1, int idPlayer2, int season){
+    public ResponseEntity<?> buildComparePlayersResponse(TokenRequest tokenRequest, int idPlayer1, int idPlayer2, int season){
+        String token = tokenRequest.getToken();
+        boolean logged = jwtService.isTokenValid(token);
+        if(!logged){
+            return ResponseEntity.ok(new NeedToBeLoggedResponse());
+        }
+        int idUser = jwtService.getIdUser(token);
         Player player1 = playerRepository.findById(idPlayer1);
         Player player2 = playerRepository.findById(idPlayer2);
         Integer idTeam1 = statsPlayerRepository.findLastTeamPlayer(idPlayer1, season);
         Integer idTeam2 = statsPlayerRepository.findLastTeamPlayer(idPlayer2, season);
         Team team1 = teamRepository.findById(idTeam1.intValue());
         Team team2 = teamRepository.findById(idTeam2.intValue());
-
+        boolean favouritePlayer1 = favPlayerRepository.existsByIdUserAndIdPlayer(idUser, idPlayer1);
+        boolean favouritePlayer2 = favPlayerRepository.existsByIdUserAndIdPlayer(idUser, idPlayer2);
 
         ViewHeaderComparePlayer viewHeaderComparePlayer1 = new ViewHeaderComparePlayer(
+                favouritePlayer1,
                 player1.getId(),
                 player1.getFirstname(),
                 player1.getLastname(),
                 team1.getLogo());
         ViewHeaderComparePlayer viewHeaderComparePlayer2 = new ViewHeaderComparePlayer(
+                favouritePlayer2,
                 player2.getId(),
                 player2.getFirstname(),
                 player2.getLastname(),
@@ -338,7 +349,7 @@ public class PlayerService {
                 );
         }
 
-        ComparePlayerResponse comparePlayerResponse = new ComparePlayerResponse(viewHeaderComparePlayer1, viewHeaderComparePlayer2, playerCompare, dataPlayersCompare);
-        return comparePlayerResponse;
+        ComparePlayersResponse comparePlayersResponse = new ComparePlayersResponse(viewHeaderComparePlayer1, viewHeaderComparePlayer2, playerCompare, dataPlayersCompare);
+        return ResponseEntity.ok(comparePlayersResponse);
         }
 }

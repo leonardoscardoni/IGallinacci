@@ -6,8 +6,9 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ViewFavoritePlayerProfileResponse {
-    private String firstName;
-    private String lastName;
+    private int idPlayer;
+    private String firstname;
+    private String lastname;
     private Integer numShirt;
     private String pos;
     private ViewStatisticsFavPlayerProfileResponse statFavPlayer;

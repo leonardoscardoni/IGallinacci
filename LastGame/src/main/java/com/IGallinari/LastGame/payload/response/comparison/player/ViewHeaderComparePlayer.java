@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data @AllArgsConstructor
 public class ViewHeaderComparePlayer {
+    private boolean favourite;
     private int idPlayer;
     private String firstname;
     private String lastname;

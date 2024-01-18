@@ -102,6 +102,7 @@ public class UserService {
             );
             Player player = playerRepository.findById(idPlayer);
             favPlayers.add(new ViewFavoritePlayerProfileResponse(
+                    player.getId(),
                     player.getFirstname(),
                     player.getLastname(),
                     player.getJersey(),

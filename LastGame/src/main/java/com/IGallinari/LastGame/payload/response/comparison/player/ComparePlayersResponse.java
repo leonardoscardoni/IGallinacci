@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class ComparePlayerResponse {
+public class ComparePlayersResponse {
     private ViewHeaderComparePlayer player1;
     private ViewHeaderComparePlayer player2;
     private List<ViewPlayerComparePlayer> comparisonPlayers;

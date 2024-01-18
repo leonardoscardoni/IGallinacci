@@ -11,7 +11,7 @@ import com.IGallinari.LastGame.payload.response.listTeam.*;
 import com.IGallinari.LastGame.payload.response.standings.StandingsResponse;
 import com.IGallinari.LastGame.payload.response.standings.ViewTeamStanding;
 import com.IGallinari.LastGame.payload.response.teamDetails.*;
-import com.IGallinari.LastGame.payload.response.comparison.team.CompareTeamResponse;
+import com.IGallinari.LastGame.payload.response.comparison.team.CompareTeamsResponse;
 import com.IGallinari.LastGame.payload.response.comparison.team.ViewTeamCompareTeam;
 import com.IGallinari.LastGame.payload.response.comparison.team.ViewTeamComparisonNbaAvgCompareTeam;
 import com.IGallinari.LastGame.repository.*;
@@ -244,7 +244,6 @@ public class TeamService {
     public ResponseEntity<?> buildCompareTeamResponse(TokenRequest tokenRequest, int idTeam1, int idTeam2, int season){
         String token = tokenRequest.getToken();
         boolean logged= jwtService.isTokenValid(token);
-        boolean favourite= false;
         if(!logged){
             return ResponseEntity.ok(new NeedToBeLoggedResponse());
         }
@@ -311,7 +310,7 @@ public class TeamService {
                 team2.getLogo(),
                 headToHeadList.subList(Math.max(0, headToHeadList.size() - 4), headToHeadList.size())
         );
-        CompareTeamResponse CompareTeamResponse = new CompareTeamResponse(
+        CompareTeamsResponse CompareTeamsResponse = new CompareTeamsResponse(
                 viewTeamCompareTeam1,
                 viewTeamCompareTeam2,
                 TeamCompareNba,
@@ -320,7 +319,7 @@ public class TeamService {
                 lastFourHtHTeam1,
                 lastFourHtHTeam2
         );
-        return ResponseEntity.ok(CompareTeamResponse);
+        return ResponseEntity.ok(CompareTeamsResponse);
     }
 
     public StandingsResponse buildStandingsResponse(TokenRequest tokenRequest, int season) {
