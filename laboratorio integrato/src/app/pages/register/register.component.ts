@@ -14,6 +14,8 @@ export class RegisterComponent {
         name: "",
     };
     mostraPassword: boolean = false;
+    emailNonValida: boolean = false;
+    passwordNonValida: boolean = false;
 
     @ViewChild("passwordInput", { static: true }) passwordInput!: ElementRef;
     toggleMostraPassword(): void {
@@ -28,6 +30,20 @@ export class RegisterComponent {
 
     onLogin() {
         console.log(this.loginObj);
+
+        // Verifica formato dell'indirizzo email utilizzando una espressione regolare
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(this.loginObj.email)) {
+            this.emailNonValida = true;
+            return;
+        }
+
+        // Verifica lunghezza minima della password
+        if (this.loginObj.password.length < 8) {
+            this.passwordNonValida = true;
+            return;
+        }
+
         this.http
             /* this.loginObj contiene i dati inseriti dall'utente nel form e infatti sono i dati che vengono inviati in post a quell url */
             .post("http://localhost:8090/user/signin", this.loginObj)
@@ -53,13 +69,15 @@ export class RegisterComponent {
         */
             .subscribe((res: any) => {
                 if (res.success) {
-                    alert("login ok");
+                    alert("register ok");
                     /* In questo modo ti salvi nel local storage il token che hai nel response body e lo chiami loginToken.
                 Per vedere il loginToken salvato vado in ispeziona, application, localstorage, localhost*/
                     /* Ti porta alla route home */
-                    this.router.navigateByUrl("/login");
+                    this.router.navigateByUrl("/home");
                 } else {
-                    alert(res.message);
+                    if (res.message == "Email already exists") {
+                        this.router.navigateByUrl("/login");
+                    }
                 }
             });
     }

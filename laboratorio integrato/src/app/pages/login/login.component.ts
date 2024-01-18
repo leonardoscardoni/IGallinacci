@@ -64,7 +64,9 @@ export class LoginComponent {
                     /* Ti porta alla route home */
                     this.router.navigateByUrl("/home");
                 } else {
-                    alert(res.message);
+                    if (res.message == "Email not found") {
+                        this.router.navigateByUrl("/register");
+                    }
                 }
             });
     }
