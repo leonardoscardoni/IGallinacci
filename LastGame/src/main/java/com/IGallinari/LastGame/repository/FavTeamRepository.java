@@ -2,6 +2,8 @@ package com.IGallinari.LastGame.repository;
 
 import com.IGallinari.LastGame.entity.FavTeam;
 
+import com.IGallinari.LastGame.entity.Team;
+import com.IGallinari.LastGame.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,6 +13,8 @@ import java.util.List;
 
 @Repository
 public interface FavTeamRepository extends JpaRepository<FavTeam,Integer> {
+
+    FavTeam findByUserAndTeam(User user, Team team);
 
     @Query(value = "SELECT ft.idTeam FROM favteam ft WHERE ft.idUser=:inputIdUser", nativeQuery = true)
     List<Integer> findFavTeamsByUser(@Param("inputIdUser") int idUser);
