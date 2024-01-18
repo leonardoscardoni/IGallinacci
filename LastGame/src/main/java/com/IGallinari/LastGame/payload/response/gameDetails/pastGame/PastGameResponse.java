@@ -14,6 +14,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class PastGameResponse {
+    private boolean logged;
     private boolean played;
     private ViewGameDetailsPastGame gameDetails;
     private ViewQuartersPastGame quartersPerTeam;

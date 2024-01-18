@@ -1,5 +1,6 @@
 package com.IGallinari.LastGame.controller;
 
+import com.IGallinari.LastGame.payload.request.TokenRequest;
 import com.IGallinari.LastGame.payload.request.home.HomeRequest;
 import com.IGallinari.LastGame.payload.response.calendar.CalendarResponse;
 import com.IGallinari.LastGame.service.GameService;
@@ -25,6 +26,6 @@ public class GameController {
         return this.service.buildCalendar(date);
     }
 
-    @RequestMapping("/getGameDetails")
-    public ResponseEntity<?> getGameDetails(@RequestParam int idGame){return this.service.buildGameDetails(idGame);}
+    @PostMapping("/getGameDetails")
+    public ResponseEntity<?> getGameDetails(@RequestBody TokenRequest tokenRequest, @RequestParam int idGame){return this.service.buildGameDetails(tokenRequest,idGame);}
 }

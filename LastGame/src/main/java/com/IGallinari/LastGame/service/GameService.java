@@ -1,6 +1,7 @@
 package com.IGallinari.LastGame.service;
 
 import com.IGallinari.LastGame.entity.*;
+import com.IGallinari.LastGame.payload.request.TokenRequest;
 import com.IGallinari.LastGame.payload.request.home.HomeRequest;
 import com.IGallinari.LastGame.payload.response.calendar.ViewTeamCalendar;
 import com.IGallinari.LastGame.payload.response.home.blog.ViewBlogHome;
@@ -231,12 +232,12 @@ public class GameService {
         return new CalendarResponse(viewGameCalendars);
     }
 
-    public ResponseEntity<?> buildGameDetails(int id){
+    public ResponseEntity<?> buildGameDetails(TokenRequest tokenRequest, int id){
         Game game = gameRepository.findById(id);
         if (game.getStatus()<3){
-            return ResponseEntity.ok(buildNextGame(game));
+            return ResponseEntity.ok(buildNextGame(tokenRequest,game));
         }else{
-            return ResponseEntity.ok(buildPastGame(game));
+            return ResponseEntity.ok(buildPastGame(tokenRequest,game));
         }
     }
     public static Integer[] convertStringToArray(String numbers) {
@@ -246,10 +247,19 @@ public class GameService {
                 .toArray(Integer[]::new);
     }
 
-    public PastGameResponse buildPastGame(Game game){
+    public PastGameResponse buildPastGame(TokenRequest tokenRequest, Game game){
+        String token = tokenRequest.getToken();
+        boolean logged = jwtService.isTokenValid(token);
         Arena arena= game.getArena();
         Team homeTeam= game.getHomeTeam();
         Team visitorTeam= game.getVisitorTeam();
+        boolean favHome= false;
+        boolean favVisitor= false;
+        if(logged){
+            int idUser = jwtService.getIdUser(token);
+            favHome = favTeamRepository.existsByUserIdAndTeamId(idUser,homeTeam.getId());
+            favVisitor = favTeamRepository.existsByUserIdAndTeamId(idUser,visitorTeam.getId());
+        }
         StatsGame statsGameHome= statsGameRepository.findByTeamAndGame(homeTeam,game);
         StatsGame statsGameVisitor= statsGameRepository.findByTeamAndGame(visitorTeam,game);
         ViewGameDetailsPastGame viewGameDetailsPastGame= new ViewGameDetailsPastGame(
@@ -259,6 +269,7 @@ public class GameService {
                 game.getDate(),
                 game.getTime(),
                 new ViewTeamDetailsPastGame(
+                        favHome,
                         homeTeam.getId(),
                         homeTeam.getNickname(),
                         homeTeam.getCode(),
@@ -266,6 +277,7 @@ public class GameService {
                         statsGameHome.getPoints()
                 ),
                 new ViewTeamDetailsPastGame(
+                        favVisitor,
                         visitorTeam.getId(),
                         visitorTeam.getNickname(),
                         visitorTeam.getCode(),
@@ -370,12 +382,21 @@ public class GameService {
             ));
         }
         ViewPlayerPerTeamPastGame  viewPlayerPerTeamPastGame = new ViewPlayerPerTeamPastGame(homeplayerPastGameList,visitorplayerPastGameList);
-        return new PastGameResponse(true,viewGameDetailsPastGame,viewQuartersPastGame,statisticsPastGames,bestPlayersPerTeamPastGame,lastFourHtHHome,lastFourHtHVisitor,viewPlayerPerTeamPastGame);
+        return new PastGameResponse(logged,true,viewGameDetailsPastGame,viewQuartersPastGame,statisticsPastGames,bestPlayersPerTeamPastGame,lastFourHtHHome,lastFourHtHVisitor,viewPlayerPerTeamPastGame);
     }
-    public NextGameResponse buildNextGame(Game game){
+    public NextGameResponse buildNextGame(TokenRequest tokenRequest, Game game){
+        String token = tokenRequest.getToken();
+        boolean logged = jwtService.isTokenValid(token);
         Arena arena = game.getArena();
-        Team teamHome = game.getHomeTeam();
-        Team teamVisitor = game.getVisitorTeam();
+        Team homeTeam = game.getHomeTeam();
+        Team visitorTeam = game.getVisitorTeam();
+        boolean favHome= false;
+        boolean favVisitor= false;
+        if(logged){
+            int idUser = jwtService.getIdUser(token);
+            favHome = favTeamRepository.existsByUserIdAndTeamId(idUser,homeTeam.getId());
+            favVisitor = favTeamRepository.existsByUserIdAndTeamId(idUser,visitorTeam.getId());
+        }
         ViewGameDetailsNextGame viewGameDetailsNextGame = new ViewGameDetailsNextGame(
                 game.getId(),
                 arena.getName(),
@@ -383,44 +404,46 @@ public class GameService {
                 game.getDate(),
                 game.getTime(),
                 new ViewTeamDetailsNextGame(
-                        teamHome.getId(),
-                        teamHome.getNickname(),
-                        teamHome.getCode(),
-                        teamHome.getLogo()
+                        favHome,
+                        homeTeam.getId(),
+                        homeTeam.getNickname(),
+                        homeTeam.getCode(),
+                        homeTeam.getLogo()
                 ),
                 new ViewTeamDetailsNextGame(
-                        teamVisitor.getId(),
-                        teamVisitor.getNickname(),
-                        teamVisitor.getCode(),
-                        teamVisitor.getLogo()
+                        favVisitor,
+                        visitorTeam.getId(),
+                        visitorTeam.getNickname(),
+                        visitorTeam.getCode(),
+                        visitorTeam.getLogo()
                 )
         );
         ViewLastFourGames viewLastFourGamesNextGameHome = new ViewLastFourGames(
-                teamHome.getId(),
-                teamHome.getCode(),
-                teamHome.getLogo(),
-                buildListViewLastGame(teamHome,game.getDate())
+                homeTeam.getId(),
+                homeTeam.getCode(),
+                homeTeam.getLogo(),
+                buildListViewLastGame(homeTeam,game.getDate())
         );
         ViewLastFourGames viewLastFourGamesNextGameVisitor = new ViewLastFourGames(
-                teamVisitor.getId(),
-                teamVisitor.getCode(),
-                teamVisitor.getLogo(),
-                buildListViewLastGame(teamVisitor,game.getDate())
+                visitorTeam.getId(),
+                visitorTeam.getCode(),
+                visitorTeam.getLogo(),
+                buildListViewLastGame(visitorTeam,game.getDate())
         );
-        List<HeadToHead> listHeadToHeadGameDetails = builListHeadToHead(teamHome,teamVisitor,game.getDate());
+        List<HeadToHead> listHeadToHeadGameDetails = builListHeadToHead(homeTeam,visitorTeam,game.getDate());
         LastFourHtH lastFourHtHGameDetailsHome = new LastFourHtH(
-                teamHome.getId(),
-                teamHome.getCode(),
-                teamHome.getLogo(),
+                homeTeam.getId(),
+                homeTeam.getCode(),
+                homeTeam.getLogo(),
                 listHeadToHeadGameDetails.subList(0, Math.min(4, listHeadToHeadGameDetails.size()))
         );
         LastFourHtH lastFourHtHGameDetailsVisitor = new LastFourHtH(
-                teamVisitor.getId(),
-                teamVisitor.getCode(),
-                teamVisitor.getLogo(),
+                visitorTeam.getId(),
+                visitorTeam.getCode(),
+                visitorTeam.getLogo(),
                 listHeadToHeadGameDetails.subList(Math.max(0, listHeadToHeadGameDetails.size() - 4), listHeadToHeadGameDetails.size())
         );
-        return new NextGameResponse(false,viewGameDetailsNextGame, viewLastFourGamesNextGameHome, viewLastFourGamesNextGameVisitor, lastFourHtHGameDetailsHome, lastFourHtHGameDetailsVisitor);
+        return new NextGameResponse(logged,false,viewGameDetailsNextGame, viewLastFourGamesNextGameHome, viewLastFourGamesNextGameVisitor, lastFourHtHGameDetailsHome, lastFourHtHGameDetailsVisitor);
     }
     public List<HeadToHead> builListHeadToHead(Team teamHome, Team teamVisitor,LocalDate gameDate){
         List<HeadToHead> listHeadToHeadGameDetails = new ArrayList<>();

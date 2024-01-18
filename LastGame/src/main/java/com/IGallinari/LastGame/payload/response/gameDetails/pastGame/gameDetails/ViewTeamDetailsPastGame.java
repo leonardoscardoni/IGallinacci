@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ViewTeamDetailsPastGame {
+    private boolean favourite;
     private int id;
     private String nickname;
     private String code;

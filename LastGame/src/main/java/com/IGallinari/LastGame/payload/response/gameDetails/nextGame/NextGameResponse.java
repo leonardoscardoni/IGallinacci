@@ -9,6 +9,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class NextGameResponse {
+    private boolean logged;
     private boolean played;
     private ViewGameDetailsNextGame gameDetails;
     private ViewLastFourGames viewLastFourGamesNextGameHome;
