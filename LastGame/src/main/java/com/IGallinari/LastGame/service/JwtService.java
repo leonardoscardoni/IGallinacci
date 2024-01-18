@@ -76,7 +76,7 @@ public class JwtService {
                 verifier.verify(token);
                 return true;
             } catch (Exception e) {
-                e.printStackTrace();
+                return false;
             }
         }
         return false;
