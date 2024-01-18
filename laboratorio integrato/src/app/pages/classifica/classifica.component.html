@@ -28,9 +28,11 @@
             <tbody>
                 <tr *ngFor="let squadra of data.eastTeams" class="h-10">
                     <td class="sticky left-0 h-fit bg-nero border-r sm:border-none">
-                        <p class="inline mr-4">{{squadra.rank}}</p>
-                        <img [src]="squadra.logo" alt="" class="w-5 inline mr-4">
-                        {{ squadra.nickname.toUpperCase() }}
+                        <div class="flex justify-between">
+                            <p class="inline w-1/12 mr-4">{{squadra.rank}}</p>
+                            <img [src]="squadra.logo" alt="" class="w-7 inline mr-4">
+                            <div class="w-32 ps-5">{{ squadra.nickname.toUpperCase() }}</div>
+                        </div>
                     </td>
                     <td class="bg-nero p-2 pe-20">{{ squadra.win }}</td>
                     <td class="bg-nero p-2 pe-20">{{ squadra.loss }}</td>
@@ -64,9 +66,11 @@
             <tbody>
                 <tr *ngFor="let squadra of data.westTeams" class="h-10">
                     <td class="sticky left-0 h-fit bg-nero border-r sm:border-none">
-                        <p class="inline mr-4">{{squadra.rank}}</p>
-                        <img [src]="squadra.logo" alt="" class="w-5 inline mr-4">
-                        {{ squadra.nickname.toUpperCase() }}
+                        <div class="flex justify-between">
+                            <p class="inline w-1/12 mr-4">{{squadra.rank}}</p>
+                            <img [src]="squadra.logo" alt="" class="w-7 inline mr-4">
+                            <div class="w-32 ps-5">{{ squadra.nickname.toUpperCase() }}</div>
+                        </div>
                     </td>
                     <td class="bg-nero p-2 pe-20">{{ squadra.win }}</td>
                     <td class="bg-nero p-2 pe-20">{{ squadra.loss }}</td>
