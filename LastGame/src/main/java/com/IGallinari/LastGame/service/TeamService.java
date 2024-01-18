@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -71,7 +72,7 @@ public class TeamService {
         List<Team> teamsByDivision= teamRepository.findByDivision(division);
         List<ViewTeam> listViewTeams= new ArrayList<>();
         for (Team team: teamsByDivision){
-            boolean favourite= idUser != null && favTeamRepository.existsByIdUserAndIdTeam(idUser, team.getId());
+            boolean favourite= idUser != null && favTeamRepository.existsByIdUserAndIdTeam(idUser, team.getId()) ==1;
             listViewTeams.add(
                     new ViewTeam(
                             team.getId(),
@@ -91,7 +92,7 @@ public class TeamService {
         boolean favourite= false;
         if(logged){
             int idUser = jwtService.getIdUser(token);
-            favourite= favTeamRepository.existsByIdUserAndIdTeam(idUser, idTeam);
+            favourite= favTeamRepository.existsByIdUserAndIdTeam(idUser, idTeam) ==1;
         }
         Team team = teamRepository.findById(idTeam);
         StatsTeam statsTeam = statsTeamRepository.findByTeamAndSeason(team, season);
@@ -252,8 +253,8 @@ public class TeamService {
         Team team2 = teamRepository.findById(idTeam2);
         StatsTeam statsTeam1= statsTeamRepository.findByTeamAndSeason(team1, season);
         StatsTeam statsTeam2 = statsTeamRepository.findByTeamAndSeason(team2, season);
-        boolean favouriteTeam1= favTeamRepository.existsByIdUserAndIdTeam(idUser, idTeam1);
-        boolean favouriteTeam2= favTeamRepository.existsByIdUserAndIdTeam(idUser, idTeam2);
+        boolean favouriteTeam1= favTeamRepository.existsByIdUserAndIdTeam(idUser, idTeam1) ==1;
+        boolean favouriteTeam2= favTeamRepository.existsByIdUserAndIdTeam(idUser, idTeam2) ==1;
         ViewTeamCompareTeam viewTeamCompareTeam1 = new ViewTeamCompareTeam(
                 favouriteTeam1,
                 team1.getId(),
@@ -336,7 +337,7 @@ public class TeamService {
             Float avgPointsAllowedPerGame = statsGameRepository.findAllowedPoints(team.getId(), season);
             boolean favourite = false;
             if(logged){
-                favourite = favTeamRepository.existsByIdUserAndIdTeam(jwtService.getIdUser(token), team.getId());
+                favourite = favTeamRepository.existsByIdUserAndIdTeam(jwtService.getIdUser(token), team.getId())==1;
             }
             eastTeamsRanking.add(
                     new ViewTeamStanding(
@@ -363,7 +364,7 @@ public class TeamService {
             Float avgPointsAllowedPerGame = statsGameRepository.findAllowedPoints(team.getId(), season);
             boolean favourite = false;
             if(logged){
-                favourite = favTeamRepository.existsByIdUserAndIdTeam(jwtService.getIdUser(token), team.getId());
+                favourite = favTeamRepository.existsByIdUserAndIdTeam(jwtService.getIdUser(token), team.getId())==1;
             }
             westTeamsRanking.add(
                     new ViewTeamStanding(
@@ -382,7 +383,8 @@ public class TeamService {
                     )
             );
         }
-
+        eastTeamsRanking.sort(Comparator.comparing(ViewTeamStanding::getRank));
+        westTeamsRanking.sort(Comparator.comparing(ViewTeamStanding::getRank));
         return new StandingsResponse(logged,eastTeamsRanking, westTeamsRanking);
     }
 

@@ -63,7 +63,7 @@ public class PlayerService {
         for (PlayerTeam playerTeam: playersTeam){
             Player player = playerTeam.getPlayer();
             if(idUser!=null){
-                favourite = favPlayerRepository.existsByIdUserAndIdPlayer(idUser, player.getId());
+                favourite = favPlayerRepository.existsByIdUserAndIdPlayer(idUser, player.getId()) ==1;
             }
             players.add(
                     new ViewPlayersPlayerTeamFilter(
@@ -78,7 +78,7 @@ public class PlayerService {
             );
         }
         if (idUser!=null){
-            favourite = favTeamRepository.existsByIdUserAndIdTeam(idUser, team.getId());
+            favourite = favTeamRepository.existsByIdUserAndIdTeam(idUser, team.getId()) ==1;
         }
         return new PlayerTeamFilterResponse(
             logged,
@@ -98,7 +98,7 @@ public class PlayerService {
         boolean favourite = false;
         if (logged){
             int idUser = jwtService.getIdUser(token);
-            favourite = favPlayerRepository.existsByIdUserAndIdPlayer(idUser, idPlayer);
+            favourite = favPlayerRepository.existsByIdUserAndIdPlayer(idUser, idPlayer) ==1;
         }
         Game game = gameRepository.findById(idGame);
         Team teamHome = game.getHomeTeam();
@@ -209,8 +209,8 @@ public class PlayerService {
         boolean favouriteTeam = false;
         if(logged){
             int idUser = jwtService.getIdUser(token);
-            favouritePlayer = favPlayerRepository.existsByIdUserAndIdPlayer(idUser,idPlayer);
-            favouriteTeam = favTeamRepository.existsByIdUserAndIdTeam(idUser,idTeam);
+            favouritePlayer = favPlayerRepository.existsByIdUserAndIdPlayer(idUser,idPlayer) ==1;
+            favouriteTeam = favTeamRepository.existsByIdUserAndIdTeam(idUser,idTeam) ==1;
         }
         String firstName = player.getFirstname();
         String lastName = player.getLastname();
@@ -292,8 +292,8 @@ public class PlayerService {
         Integer idTeam2 = statsPlayerRepository.findLastTeamPlayer(idPlayer2, season);
         Team team1 = teamRepository.findById(idTeam1.intValue());
         Team team2 = teamRepository.findById(idTeam2.intValue());
-        boolean favouritePlayer1 = favPlayerRepository.existsByIdUserAndIdPlayer(idUser, idPlayer1);
-        boolean favouritePlayer2 = favPlayerRepository.existsByIdUserAndIdPlayer(idUser, idPlayer2);
+        boolean favouritePlayer1 = favPlayerRepository.existsByIdUserAndIdPlayer(idUser, idPlayer1) ==1;
+        boolean favouritePlayer2 = favPlayerRepository.existsByIdUserAndIdPlayer(idUser, idPlayer2) ==1;
 
         ViewHeaderComparePlayer viewHeaderComparePlayer1 = new ViewHeaderComparePlayer(
                 favouritePlayer1,
