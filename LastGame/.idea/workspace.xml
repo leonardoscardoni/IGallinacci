@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c37c9620-1c6a-4a8f-b566-00dea8a53df4" name="Changes" comment="" />
+    <list default="true" id="c37c9620-1c6a-4a8f-b566-00dea8a53df4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../laboratorio integrato/src/app/pages/dettaglio-team/dettaglio-team.component.spec.ts" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
