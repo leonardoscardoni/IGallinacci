@@ -8,8 +8,9 @@ import { Component, Input } from "@angular/core";
 export class ElencoArticoliComponent {
     a = {
         ultimoArticolo: {
-            titolo: "Lorem ipsum",
-            sottotitolo: "Lorem ipsum più lungo",
+            titolo: "Jaime Jaquez Jr. parteciperà allo Slam Dunk Contest.",
+            sottotitolo:
+                "Lorem ipsum più lungo Jaime Jaquez Jr. parteciperà allo Slam Dunk Contest.",
             img: "/assets/Blog-1.jpg",
             tags: ["tag1", "tag2"],
         },
