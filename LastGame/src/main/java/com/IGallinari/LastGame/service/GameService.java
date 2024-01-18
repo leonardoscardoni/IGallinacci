@@ -61,6 +61,8 @@ public class GameService {
 
     private final FavTeamRepository favTeamRepository;
 
+    private final FavPlayerRepository favPlayerRepository;
+
     private final JwtService jwtService;
 
     public ResponseEntity<?> buildHome(HomeRequest homeRequest){
@@ -229,10 +231,15 @@ public class GameService {
 
     public ResponseEntity<?> buildGameDetails(TokenRequest tokenRequest, int id){
         Game game = gameRepository.findById(id);
+        String token = tokenRequest.getToken();
+        Integer idUser=null;
+        if (jwtService.isTokenValid(token)){
+            idUser = jwtService.getIdUser(token);
+        }
         if (game.getStatus()<3){
-            return ResponseEntity.ok(buildNextGame(tokenRequest,game));
+            return ResponseEntity.ok(buildNextGame(idUser,game));
         }else{
-            return ResponseEntity.ok(buildPastGame(tokenRequest,game));
+            return ResponseEntity.ok(buildPastGame(idUser,game));
         }
     }
     public static Integer[] convertStringToArray(String numbers) {
@@ -242,16 +249,15 @@ public class GameService {
                 .toArray(Integer[]::new);
     }
 
-    public PastGameResponse buildPastGame(TokenRequest tokenRequest, Game game){
-        String token = tokenRequest.getToken();
-        boolean logged = jwtService.isTokenValid(token);
+    public PastGameResponse buildPastGame(Integer idUser, Game game){
         Arena arena= game.getArena();
         Team homeTeam= game.getHomeTeam();
         Team visitorTeam= game.getVisitorTeam();
+        boolean logged = false;
         boolean favHome= false;
         boolean favVisitor= false;
-        if(logged){
-            int idUser = jwtService.getIdUser(token);
+        if(idUser!=null){
+            logged = true;
             favHome = favTeamRepository.existsByUserIdAndTeamId(idUser,homeTeam.getId());
             favVisitor = favTeamRepository.existsByUserIdAndTeamId(idUser,visitorTeam.getId());
         }
@@ -357,7 +363,12 @@ public class GameService {
         List<ViewPlayerPastGame> homeplayerPastGameList = new ArrayList<>();
         for (StatsPlayer statsPlayer: statsPlayerHomeList){
             Player player = playerRepository.findById(statsPlayer.getPlayer().getId());
+            boolean favourite= false;
+            if (idUser!=null){
+                favourite = favPlayerRepository.existsByIdUserAndIdPlayer(idUser,player.getId());
+            }
             homeplayerPastGameList.add(new ViewPlayerPastGame(
+                    favourite,
                     player.getId(),
                     player.getFirstname(),
                     player.getLastname(),
@@ -368,7 +379,12 @@ public class GameService {
         List<ViewPlayerPastGame> visitorplayerPastGameList = new ArrayList<>();
         for (StatsPlayer statsPlayer: statsPlayerVisitorList){
             Player player = playerRepository.findById(statsPlayer.getPlayer().getId());
+            boolean favourite= false;
+            if (idUser!=null){
+                favourite = favPlayerRepository.existsByIdUserAndIdPlayer(idUser,player.getId());
+            }
             visitorplayerPastGameList.add(new ViewPlayerPastGame(
+                    favourite,
                     player.getId(),
                     player.getFirstname(),
                     player.getLastname(),
@@ -379,16 +395,15 @@ public class GameService {
         ViewPlayerPerTeamPastGame  viewPlayerPerTeamPastGame = new ViewPlayerPerTeamPastGame(homeplayerPastGameList,visitorplayerPastGameList);
         return new PastGameResponse(logged,true,viewGameDetailsPastGame,viewQuartersPastGame,statisticsPastGames,bestPlayersPerTeamPastGame,lastFourHtHHome,lastFourHtHVisitor,viewPlayerPerTeamPastGame);
     }
-    public NextGameResponse buildNextGame(TokenRequest tokenRequest, Game game){
-        String token = tokenRequest.getToken();
-        boolean logged = jwtService.isTokenValid(token);
+    public NextGameResponse buildNextGame(Integer idUser, Game game){
         Arena arena = game.getArena();
         Team homeTeam = game.getHomeTeam();
         Team visitorTeam = game.getVisitorTeam();
+        boolean logged = false;
         boolean favHome= false;
         boolean favVisitor= false;
-        if(logged){
-            int idUser = jwtService.getIdUser(token);
+        if(idUser!=null){
+            logged = true;
             favHome = favTeamRepository.existsByUserIdAndTeamId(idUser,homeTeam.getId());
             favVisitor = favTeamRepository.existsByUserIdAndTeamId(idUser,visitorTeam.getId());
         }
