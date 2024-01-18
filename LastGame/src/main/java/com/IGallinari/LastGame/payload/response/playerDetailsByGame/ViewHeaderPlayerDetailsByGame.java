@@ -10,7 +10,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 
 public class ViewHeaderPlayerDetailsByGame {
-    private String nameArena;
+    private String arena;
     private String city;
     private LocalDate date;
     private LocalTime time;

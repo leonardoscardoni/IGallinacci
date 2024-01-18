@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
@@ -37,8 +38,16 @@ public class UserService {
     private final StatsPlayerRepository statsPlayerRepository;
     private final TeamRepository teamRepository;
 
+    private boolean emailIsValid(String email) {
+        String EMAIL_REGEX = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+        Pattern pattern = Pattern.compile(EMAIL_REGEX);
+        return pattern.matcher(email).matches();
+    }
 
     public LoginResponse login(LoginRequest loginRequest) {
+        if(!emailIsValid(loginRequest.getEmail())) {
+            return new LoginResponse(false, "Email not valid", null, null, null);
+        }
         User user = userRepository.findByEmail(loginRequest.getEmail());
         if (user != null) {
             boolean passwordMatch = BCrypt.checkpw(loginRequest.getPassword(), user.getPassword());
@@ -55,6 +64,9 @@ public class UserService {
     }
 
     public SigninResponse signin(SigninRequest signinRequest) {
+        if(emailIsValid(signinRequest.getEmail())) {
+            return new SigninResponse(false, "Email not valid");
+        }
         if (!userRepository.existsByEmail(signinRequest.getEmail())) {
             User user = new User();
             user.setEmail(signinRequest.getEmail());
