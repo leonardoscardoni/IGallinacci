@@ -30,11 +30,10 @@
    </div>
 </div>
 
-<app-titolo-sezione [numero]="'03'" [titolo]="'Ultimi 4 incontri'" [spiegazione]="'Lorem ipsum dolor sit amet consectetur. Velit urna vitae scelerisque nullam sed metus dictum pulvinar.'" [spanSpiegazione]="'Consectetur volutpat turpis nec congue.'"/>
-<app-quattro-confronti [tipologia]="'ultimi4Incontri'"/>
+<app-titolo-sezione [numero]="'03'" [titolo]="'Ultimi 4 incontri'" [spiegazione]="'Il confronto degli ultimi 4 match della stagione è utile per capire come le squadre stanno performando e quali sono le loro probabilità di vittoria.'"/>
+<app-quattro-confronti class="mb-5" [tipologia]="'ultimi4Incontri'" [dataHome]="data.lastFourGamesTeam1" [dataVisitor]="data.lastFourGamesTeam2" [homeTeamLogo]="data.team1.logo" [visitorTeamLogo]="data.team2.logo" [homeTeamName]="data.team1.name" [visitorTeamName]="data.team1.name"/>
 
-<app-titolo-sezione [numero]="'04'" [titolo]="'Head to head'" [spiegazione]="'Lorem ipsum dolor sit amet consectetur. Velit urna vitae scelerisque nullam sed metus dictum pulvinar.'" [spanSpiegazione]="'Consectetur volutpat turpis nec congue.'"/>
-<app-quattro-confronti [tipologia]="'headToHead'"/>
-</div>
+<app-titolo-sezione [numero]="'04'" [titolo]="'Head to head'" [spiegazione]="'Gli head to head rappresentano i risultati delle partite giocate tra due squadre durante la stagione.'" [spanSpiegazione]="'Questi risultati sono considerati significativi in situazioni in cui le due squadre hanno lo stesso numero di punti in classifica.'"/>
+<app-quattro-confronti [tipologia]="'headToHead'" [dataHome]="data.lastFourHtHTeam1" [dataVisitor]="data.lastFourHtHTeam2" [homeTeamLogo]="data.team1.logo" [visitorTeamLogo]="data.team2.logo" [homeTeamName]="data.team1.name" [visitorTeamName]="data.team1.name"/>
 
 

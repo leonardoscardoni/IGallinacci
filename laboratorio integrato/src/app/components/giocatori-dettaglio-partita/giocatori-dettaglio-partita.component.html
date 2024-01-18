@@ -7,7 +7,7 @@
             </div>
             <hr class="w-full border-bianco">
             <ng-container *ngFor="let giocatore of data.homeTeam" >
-                <div [routerLink]="['/dett-giocatore-partita/' + idGame + '/' + giocatore.idPlayer]" class="mt-3 p-2 flex justify-between border-bianco border-solid border-[1px] rounded-lg font-inter tessera-giocatore hover:bg-[#E5CFB5] hover:text-black">
+                <div [routerLink]="['/dett-giocatore-partita/' + idGame + '/' + giocatore.idPlayer]" class="mt-3 p-2 flex justify-between border-bianco border-solid border-[1px] rounded-lg font-inter tessera-giocatore hover:bg-[#E5CFB5] hover:text-black cursor-pointer">
                     <div>
                         <p class="font-extralight text-xs">{{giocatore.role.toUpperCase()}}</p>
                         <p class="font-light text-base hidden md:inline">{{giocatore.firstname + ' ' + giocatore.lastname}}</p>
@@ -33,7 +33,7 @@
             <hr class="w-full border-bianco">
 
             <ng-container *ngFor="let giocatore of data.visitorTeam" >
-                <div class="mt-3 p-2 flex justify-between border-bianco border-solid border-[1px] rounded-lg font-inter tessera-giocatore hover:bg-[#E5CFB5] hover:text-black">
+                <div [routerLink]="['/dett-giocatore-partita/' + idGame + '/' + giocatore.idPlayer]" class="mt-3 p-2 flex justify-between border-bianco border-solid border-[1px] rounded-lg font-inter tessera-giocatore hover:bg-[#E5CFB5] hover:text-black cursor-pointer">
                     <div>
                         <p class="font-extralight text-xs">{{giocatore.role.toUpperCase()}}</p>
                         <p class="font-light text-base hidden md:inline">{{giocatore.firstname + ' ' + giocatore.lastname}}</p>
