@@ -40,7 +40,7 @@ const routes: Routes = [
     { path: "dett-confronto-giocatori", component: DettConfrontoGiocatoriComponent },
     { path: "dett-giocatore-ind/:id", component: DettGiocatoreIndipendenteComponent },
     { path: "elenco-giocatori", component: ElencoGiocatoriComponent },
-    { path: "elenco-articoli", component: ElencoArticoliComponent },
+    { path: "blog", component: ElencoArticoliComponent },
     { path: "scelta-confronto-team", component: SceltaConfrontoTeamComponent },
     { path: "dett-giocatore-partita", component: DettaglioGiocatorePartitaComponent },
     { path: "scelta-confronto-giocatori", component: SceltaConfrontoGiocatoriComponent },

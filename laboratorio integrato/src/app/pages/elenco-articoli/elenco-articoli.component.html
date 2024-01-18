@@ -1,1 +1,14 @@
-<app-header-elenco-articoli></app-header-elenco-articoli>
+<div class="fixed">
+    <div class="block sm:hidden">XS</div>
+    <div class="hidden sm:block md:hidden">SM</div>
+    <div class="hidden md:block lg:hidden">MD</div>
+    <div class="hidden md:hidden lg:block xl:hidden">LG</div>
+    <div class="hidden lg:hidden xl:block">XL</div>
+</div>
+
+<app-header-elenco-articoli [data]="a.ultimoArticolo"></app-header-elenco-articoli>
+<div class="container p-10">
+    <ng-container *ngFor="let articolo of a.articoli">
+        <app-articolo-elenco-articoli [data]="articolo"></app-articolo-elenco-articoli>
+    </ng-container>
+</div>

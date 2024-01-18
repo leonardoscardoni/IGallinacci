@@ -51,6 +51,7 @@ import { DettaglioArticoloComponent } from "./pages/dettaglio-articolo/dettaglio
 import { LoginComponent } from "./pages/login/login.component";
 import { CustomInterceptor } from "./_services/custom.interceptor";
 import { RegisterComponent } from "./pages/register/register.component";
+import { ArticoloElencoArticoliComponent } from "./components/articolo-elenco-articoli/articolo-elenco-articoli.component";
 
 @NgModule({
     declarations: [
@@ -99,6 +100,7 @@ import { RegisterComponent } from "./pages/register/register.component";
         DettaglioArticoloComponent,
         LoginComponent,
         RegisterComponent,
+        ArticoloElencoArticoliComponent,
     ],
     imports: [
         BrowserModule,

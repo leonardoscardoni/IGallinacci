@@ -1,0 +1,18 @@
+<div class="grid grid-cols-12 w-full md:h-[15rem] lg:h-[12rem] gap-4 cursor-pointer">
+    <div class="col-start-1 col-end-13 md:col-start-1 md:col-end-4 font-inter color-arancio">
+        {{date}}
+    </div>
+    <div class="col-start-1 col-end-13 md:col-start-4 md:col-end-8 h-[10rem] md:h-[15rem] lg:h-[12rem] bg-center bg-no-repeat bg-cover" style="background-image: url('{{data.img}}')">
+       
+    </div>
+    <div class="col-start-1 col-end-13 md:col-start-8 md:col-end-13 font-inter flex flex-wrap justify-between">
+        <p class="w-full mb-2 md:mb-0 text-lg md:text-xl lg:text-2xl font-bold">{{data.titolo}}</p>
+        <div>
+            <p class="text-sm font-light">{{data.sottotitolo}}</p>
+            <ng-container *ngFor="let tag of data.tags">
+                <p class="font-light text-xs inline">{{"#" + tag + " "}}</p>
+            </ng-container>
+        </div>
+    </div>
+</div>
+<hr class="my-7 opacity-20">
