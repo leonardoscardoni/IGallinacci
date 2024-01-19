@@ -1,24 +1,30 @@
 export interface TypeHome {
+    logged: boolean;
     pastGames: PastGame[];
+    favTeamsPastGame: any[];
     nextGames: NextGame[];
+    favTeamsNextGame: any[];
+    eastStandings: any[];
+    westStandings: any[];
+    blogs: any[];
 }
 
-interface NextGame {
-    id:          number;
-    time:        string;
-    homeTeam:    Team;
+export interface NextGame {
+    id: number;
+    time: string;
+    homeTeam: Team;
     visitorTeam: Team;
 }
 
-interface Team {
-    id:       number;
+export interface Team {
+    id: number;
     nickname: string;
-    logo:     string;
-    points?:  number;
+    logo: string;
+    points?: number;
 }
 
-interface PastGame {
-    id:          number;
-    homeTeam:    Team;
+export interface PastGame {
+    id: number;
+    homeTeam: Team;
     visitorTeam: Team;
 }

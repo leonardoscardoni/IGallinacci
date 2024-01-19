@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable, map } from "rxjs";
+import { Observable, catchError, map } from "rxjs";
 import { TypeHome } from "./_models/homeApi.type";
 import { TeamType } from "./_models/divisionTeamApi.type";
 import { CalendarType } from "./_models/calendarApi.type";
@@ -14,13 +14,14 @@ import { PlayerDetailIndType } from "./_models/PlayerDetailInd.type";
 import { DettaglioPartitaType } from "./_models/dettaglioPartita.type";
 import { ConfrontoPlayerType } from "./_models/confrotoPlayerApi.type";
 import { ClassificaType } from "./_models/classificaApi.type";
+import { HomeRequestType } from "./_models/postCalls.type";
 
 @Injectable({
     providedIn: "root",
 })
 export class ApiService {
     private baseURL = "http://localhost:8090/";
-    private homeUrl = "game/getHomeUnLogged";
+    private homeUrl = "game/getHome";
     private elencoTeam = "team/getTeams";
     private divisione = "team/getTeams";
     private calendar = "game/getCalendar?date=";
@@ -32,15 +33,77 @@ export class ApiService {
     private playerIndipendente = `${"player/getPlayerDetails?idPlayer="}`;
     private PlayerFilter = `${"player/getPlayerTeamFiltered?idTeam="}`;
     private dettaglioPartita = "game/getGameDetails?idGame=";
-    private classifica = `${'team/getRanking?season='}`;
+    private classifica = `${"team/getRanking?season="}`;
 
     constructor(private http: HttpClient) {}
+
+    token: string | null = "";
+    todayDate: string = "";
+    HomeRequest: HomeRequestType = {} as HomeRequestType;
+
+    ngOnInit() {
+        console.log("entra nell onit di api service");
+        this.token = localStorage.getItem("loginToken");
+        this.todayDate = "2024-01-19";
+
+        this.HomeRequest = {
+            token: this.token || null,
+            date: this.todayDate,
+        };
+    }
+
     getHomeApi() {
-        return this.http.get(`${this.baseURL}${this.homeUrl}`).pipe(
-            map((response: any) => {
-                return response as TypeHome;
+        return this.http
+            .post(`${this.baseURL}${this.homeUrl}`, {
+                token: localStorage.getItem("loginToken"),
+                date: "2024-01-18",
             })
-        );
+            .pipe(
+                map((response: any) => {
+                    console.log(response);
+                    return response as TypeHome;
+                }),
+                catchError((error: any) => {
+                    console.error("Error:", error);
+                    throw error;
+                })
+            );
+    }
+
+    getDettaglioPartita(idPartita: string) {
+        return this.http
+            .post(`${this.baseURL}${this.dettaglioPartita}${idPartita}`, {
+                token: localStorage.getItem("loginToken"),
+            })
+            .pipe(
+                map((response: any) => {
+                    return response as DettaglioPartitaType;
+                })
+            );
+    }
+
+    getElencoTeam() {
+        return this.http
+            .post(`${this.baseURL}${this.elencoTeam}`, {
+                token: localStorage.getItem("loginToken"),
+            })
+            .pipe(
+                map((response: any) => {
+                    return response as ElencoTeamType;
+                })
+            );
+    }
+
+    getTeamDetailApi(id: string) {
+        return this.http
+            .post(`${this.baseURL}${this.team}${id}${"&season=2022"}`, {
+                token: localStorage.getItem("loginToken"),
+            })
+            .pipe(
+                map((response: any) => {
+                    return response as TeamDetailType;
+                })
+            );
     }
 
     getDivisionApi() {
@@ -50,7 +113,7 @@ export class ApiService {
             })
         );
     }
-    getClassifica(stagione:string) {
+    getClassifica(stagione: string) {
         return this.http.get(`${this.baseURL}${this.classifica}${stagione}`).pipe(
             map((response: any) => {
                 return response as ClassificaType;
@@ -66,14 +129,6 @@ export class ApiService {
                     return response as PlayerDetailIndType;
                 })
             );
-    }
-
-    getTeamDetailApi(id: string) {
-        return this.http.get(`${this.baseURL}${this.team}${id}${"&season=2022"}`).pipe(
-            map((response: any) => {
-                return response as TeamDetailType;
-            })
-        );
     }
 
     getTeamRolePlayerFilter() {
@@ -119,22 +174,6 @@ export class ApiService {
         return this.http.get(`${this.baseURL}${this.calendar}${data}`).pipe(
             map((response: any) => {
                 return response as CalendarType;
-            })
-        );
-    }
-
-    getElencoTeam() {
-        return this.http.get(`${this.baseURL}${this.elencoTeam}`).pipe(
-            map((response: any) => {
-                return response as ElencoTeamType;
-            })
-        );
-    }
-
-    getDettaglioPartita(idPartita: string) {
-        return this.http.get(`${this.baseURL}${this.dettaglioPartita}${idPartita}`).pipe(
-            map((response: any) => {
-                return response as DettaglioPartitaType;
             })
         );
     }

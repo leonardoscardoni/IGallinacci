@@ -1,6 +1,7 @@
 export interface ElencoTeamType {
     west: West;
     east: East;
+    logged: false;
 }
 
 export interface East {

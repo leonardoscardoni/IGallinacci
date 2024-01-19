@@ -9,6 +9,7 @@ export class NomeTeamElencoTeamComponent implements OnInit {
     @Input() logo: string = "";
     @Input() nomeTeam: string = "";
     @Input() preferito: boolean = false;
+    @Input() logged!: boolean;
 
     ngOnInit() {}
 }
