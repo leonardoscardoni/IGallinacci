@@ -13,7 +13,7 @@
   
   >
     <ng-container *ngIf="selectedTeam1.nome; else plusSign">
-      <p class="text-3xl uppercase">{{ selectedTeam1.nome }}</p>
+      <p class="text-3xl uppercase">{{ selectedTeam1.nome }} {{ selectedTeam1.cognome }}</p>
     </ng-container>
     <ng-template #plusSign>
       +
@@ -35,7 +35,7 @@
   
   >
     <ng-container *ngIf="selectedTeam2.nome; else plusSign">
-      <p class="text-3xl uppercase">{{ selectedTeam2.nome }}</p>
+      <p class="text-3xl uppercase">{{ selectedTeam2.nome }} {{ selectedTeam2.cognome }}</p>
     </ng-container>
     <ng-template #plusSign>
       +
@@ -85,19 +85,19 @@
                     <div class="col-span-1 bg-white w-7 h-7 rounded-full p-1">
                         <img [src]="data2.logo" alt="" class="w-full">
                     </div>
-                    <div class="col-span-3" (click)="selectTeam({ nome: giocatore.name, immagine: data2.logo, id:giocatore.idPlayer })">
+                    <div class="col-span-3" (click)="selectTeam({ nome: giocatore.firstname,cognome: giocatore.lastname, immagine: data2.logo, id:giocatore.idPlayer })">
                         <p class="text-base md:text-lg inline prova"
-                        >{{giocatore.name}}</p>
+                        >{{giocatore.firstname}} {{giocatore.lastname}}</p>
                     </div>
                     
                 </ng-container>
         
-                <ng-container *ngIf="squadraSelezionata && ruoloSelezionato && ruoloSelezionato.name === giocatore.ruolo" class="cursor-pointer">
+                <ng-container *ngIf="squadraSelezionata && ruoloSelezionato && ruoloSelezionato.name === giocatore.role" class="cursor-pointer">
                   <div class="col-span-1 bg-white w-7 h-7 rounded-full p-1">
                     <img [src]="data2.logo" alt="" class="w-full">
                 </div>
-                    <div class="col-span-3" (click)="selectTeam({ nome: giocatore.name, immagine: data2.logo, id:giocatore.idPlayer }) ">
-                        <p class="text-base md:text-lg inline prova">{{giocatore.name}}</p>
+                    <div class="col-span-3" (click)="selectTeam({ nome: giocatore.firstname,cognome: giocatore.lastname, immagine: data2.logo, id:giocatore.idPlayer }) ">
+                        <p class="text-base md:text-lg inline prova">{{giocatore.firstname}} {{giocatore.lastname}}</p>
                     </div>
                 </ng-container>
         

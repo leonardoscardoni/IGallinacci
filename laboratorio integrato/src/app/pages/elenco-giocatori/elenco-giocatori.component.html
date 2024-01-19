@@ -27,10 +27,11 @@
             </thead>
             <tbody>
                 <ng-container *ngFor="let giocatore of data2.players">
-                    <ng-container *ngIf="squadraSelezionata && !ruoloSelezionato || squadraSelezionata && (ruoloSelezionato.name == giocatore.ruolo)">
+                    <ng-container *ngIf="squadraSelezionata && !ruoloSelezionato || squadraSelezionata && (ruoloSelezionato.firstname == giocatore.role)">
                         <tr class="bg-[#130B02]">
                             <td class="sticky left-0 top-0 py-2 px-4 text-base md:text-lg cursor-pointer hover:bg-[#E5CFB5] hover:text-[#E98A15]" [routerLink]="['/dett-giocatore-ind', giocatore.idPlayer]">
-                                {{ giocatore.name }}
+                                {{ giocatore.firstname }}
+                                {{ giocatore.lastname }}
                             </td>
                         </tr>
                     </ng-container>
@@ -61,13 +62,13 @@
             </thead>
             <tbody>
                 <ng-container *ngFor="let giocatore of data2.players">
-                    <ng-container *ngIf="squadraSelezionata && !ruoloSelezionato || squadraSelezionata && (ruoloSelezionato.name == giocatore.ruolo)">
+                    <ng-container *ngIf="squadraSelezionata && !ruoloSelezionato || squadraSelezionata && (ruoloSelezionato.name == giocatore.role)">
                         <tr [routerLink]="['/dett-giocatore-ind', giocatore.idPlayer]" class="cursor-pointer">
                             <td colspan="2" class="py-2 px-4 text-base md:text-lg">
                                 {{ data2.name }}
                             </td>
                             <td colspan="2" class="py-2 px-4 text-base md:text-lg">
-                                {{ giocatore.ruolo }}
+                                {{ giocatore.role }}
                             </td>
                             <td colspan="2" class="py-2 px-4 text-base md:text-lg">
                                 {{ giocatore.country }}

@@ -6,7 +6,7 @@
           <p class="text-black uppercase text-2xl text-center leading-10">prima squadra</p>
         </div>
         <div
-    class="w-56 h-56 lg:w-72 lg:h-72 rounded-3xl border-t-0 border border-dashed border-bianco text-8xl flex flex-col-reverse items-center justify-center relative gap-5"
+    class="w-56 h-56 lg:w-72 lg:h-72 rounded-3xl border-t-0 border border-dashed border-bianco text-8xl flex flex-col-reverse items-center justify-center relative gap-5 cursor-pointer"
     (click)="openModal(plusNumber1)"
     [class.bg-bianco]="selectedTeam1.nome"
     [class.text-black]="selectedTeam1.nome"
@@ -28,7 +28,7 @@
           <p class="text-black uppercase text-2xl text-center leading-10">seconda squadra</p>
         </div>
         <div
-    class="w-56 h-56 lg:w-72 lg:h-72 rounded-3xl border-t-0 border border-dashed border-bianco text-8xl flex flex-col-reverse items-center justify-center relative gap-5"
+    class="w-56 h-56 lg:w-72 lg:h-72 rounded-3xl border-t-0 border border-dashed border-bianco text-8xl flex flex-col-reverse items-center justify-center relative gap-5 cursor-pointer"
     (click)="openModal(plusNumber2)"
     [class.bg-bianco]="selectedTeam2.nome"
     [class.text-black]="selectedTeam2.nome"
@@ -46,7 +46,10 @@
       </div>
     </div>
 
-<button class="bg-arancio rounded-full py-3 px-4 w-fit uppercase font-inter font-bold " (click)="goToConfrontoTeam()" [disabled]="!selectedTeam2.nome || !selectedTeam1.nome"
+<button *ngIf="data.logged" class="bg-arancio rounded-full py-3 px-4 w-fit uppercase font-inter font-bold " (click)="goToConfrontoTeam()" [disabled]="!selectedTeam2.nome || !selectedTeam1.nome"
+[class.cursor-not-allowed]="!selectedTeam2.nome || !selectedTeam1.nome"
+>Vai al Confronto</button>
+<button *ngIf="!data.logged" class="bg-arancio rounded-full py-3 px-4 w-fit uppercase font-inter font-bold " [disabled]="!selectedTeam2.nome || !selectedTeam1.nome"(click)="openModal2()"
 [class.cursor-not-allowed]="!selectedTeam2.nome || !selectedTeam1.nome"
 >Vai al Confronto</button>
   
@@ -58,7 +61,8 @@
         class="bg-black border border-bianco w-[90%] h-[90%] p-8 pt-20 rounded-lg relative flex flex-wrap gap-y-2 overflow-y-scroll hide-scrollbar"
         >
         <h3 class="absolute top-3 text-2xl color-arancio uppercase">Scegli Squadra</h3>
-        <input type="text" placeholder="Cerca..." class="lg:absolute static outline-none top-3 rounded-2xl px-3 py-1 left-[50%] lg:translate-x-[-50%] text-xl bg-transparent border border-arancio uppercase h-fit" [(ngModel)]="searchInput" (input)="onSearchInputChange()" />        <div class="absolute w-10 h-10 p-2 top-3 right-2"
+        <input type="text" placeholder="Cerca..." class="lg:absolute static outline-none top-3 rounded-2xl px-3 py-1 left-[50%] lg:translate-x-[-50%] text-xl bg-transparent border border-arancio uppercase h-fit" [(ngModel)]="searchInput" (input)="onSearchInputChange()" />     
+           <div class="absolute w-10 h-10 p-2 top-3 right-2 cursor-pointer"
         (click)="closeModal()"
         >
           <img src="/assets/close-svgrepo-com.svg" class="w-full" alt="">
@@ -66,17 +70,17 @@
         <div class="w-full h-fit px-4">
           <h3 class="w-full border-y border-arancio text-2xl uppercase leading-10 ps-2 my-3" [class.filtered]="searchInput">East</h3>
           <div class="flex flex-col lg:flex-row flex-wrap gap-5 gap-x-10">
-            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl" *ngFor="let a of data.east.atlantic.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo,id:a.id })"
+            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl cursor-pointer" *ngFor="let a of data.east.atlantic.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo,id:a.id })"
             [class.filtered]="searchInput && !a.nickname.toUpperCase().includes(searchInput)">
               <p class="text-lg">{{a.nickname}}</p>
               <img src={{a.logo}} class="w-8 h-8 bg-white rounded-full object-contain p-1" alt="">
             </div>
-            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl" *ngFor="let a of data.east.central.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo,id:a.id })"
+            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl cursor-pointer" *ngFor="let a of data.east.central.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo,id:a.id })"
             [class.filtered]="searchInput && !a.nickname.toUpperCase().includes(searchInput)">
               <p class="text-lg">{{a.nickname}}</p>
               <img src={{a.logo}} class="w-8 h-8 bg-white rounded-full object-contain p-1" alt="">
             </div>
-            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl" *ngFor="let a of data.east.southeast.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo,id:a.id })"
+            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl cursor-pointer" *ngFor="let a of data.east.southeast.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo,id:a.id })"
             [class.filtered]="searchInput && !a.nickname.toUpperCase().includes(searchInput)">
               <p class="text-lg">{{a.nickname}}</p>
               <img src={{a.logo}} class="w-8 h-8 bg-white rounded-full object-contain p-1" alt="">
@@ -86,19 +90,19 @@
         [class.filtered]="searchInput"
         >West</h3>
           <div class="flex flex-col lg:flex-row flex-wrap gap-5 gap-x-10">
-            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl" *ngFor="let a of data.west.northwest.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo,id:a.id })"
+            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl cursor-pointer" *ngFor="let a of data.west.northwest.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo,id:a.id })"
             [class.filtered]="searchInput && !a.nickname.toUpperCase().includes(searchInput)"
             >
               <p class="text-lg">{{a.nickname}}</p>
               <img src={{a.logo}} class="w-8 h-8 bg-white rounded-full object-contain p-1" alt="">
             </div>
-            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl" *ngFor="let a of data.west.pacific.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo,id:a.id })"
+            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl cursor-pointer" *ngFor="let a of data.west.pacific.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo,id:a.id })"
             [class.filtered]="searchInput && !a.nickname.toUpperCase().includes(searchInput)"
             >
               <p class="text-lg">{{a.nickname}}</p>
               <img src={{a.logo}} class="w-8 h-8 bg-white rounded-full object-contain p-1" alt="">
             </div>
-            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl" *ngFor="let a of data.west.southwest.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo,id:a.id })"
+            <div class="lg:w-1/6 w-full flex justify-between items-center py-2 px-6 border border-bianco rounded-2xl cursor-pointer" *ngFor="let a of data.west.southwest.teams" (click)="selectTeam({ nome: a.nickname, immagine: a.logo,id:a.id })"
             [class.filtered]="searchInput && !a.nickname.toUpperCase().includes(searchInput)"
             >
               <p class="text-lg">{{a.nickname}}</p>
@@ -108,4 +112,50 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div *ngIf="isModal2Open" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
+
+<div class="lg:px-20 px-6 pb-20 flex flex-col items-center lg:w-[50%] md:w-[60%] w-full">
+  <div class="bg-bianco color-nero p-10  rounded-2xl w-full">
+    <p class="capitalize font-inter text-center pb-6">welcome to last shot!</p>
+    <div class="w-[80%] border border-arancio p-2 rounded-full mx-auto my-0 flex mb-10">
+        <a class="bg-arancio px-5 py-2 rounded-full w-[50%] text-center color-white font-inter cursor-pointer">Login</a>
+        <a class="bg-transparent px-5 py-2 rounded-full w-[50%] text-center color-arancio font-inter cursor-pointer" [routerLink]="['/register']">Registrati</a>
+    </div>
+    <form method="post"  class="flex flex-col gap-5">
+    
+        <div class="flex flex-col gap-4">
+          <label for="email" class="font-inter">Email</label>
+          <input type="email" placeholder="Enter Email" name="email" [(ngModel)]="loginObj.email" required class="border border-arancio p-3 rounded-full bg-transparent font-inter">
+        </div>
+    
+        <div class="flex flex-col gap-4">
+        <label for="password" class="font-inter">Password</label>
+        <div class="border border-arancio rounded-full bg-transparent font-inter relative">
+            <input #passwordInput type="{{ mostraPassword ? 'text' : 'password' }}" placeholder="Enter Password" name="password" [(ngModel)]="loginObj.password" required class="bg-transparent w-full border-0 p-3 rounded-full" >
+            <div class="absolute right-[5%] top-[50%] translate-y-[-50%] cursor-pointer" (click)="toggleMostraPassword()">
+                <ng-container *ngIf="mostraPassword; else nascondiPassword">
+                  <img src="assets/eye-open-svgrepo-com.svg" alt="" class="w-5">
+                </ng-container>
+                <ng-template #nascondiPassword>
+                  <img src="assets/eye-close-svgrepo-com.svg" alt="" class="w-5">
+                </ng-template>
+              </div>
+            </div>
+          </div>
+        <div class="flex justify-between">
+            <div>
+                <input type="checkbox" id="Ricordami" name="Ricordami" />
+                <label for="Ricordami" class="font-inter font-light text-xs ml-2">Rememebr me</label>
+              </div>
+              <div class="flex items-end">
+                <p class="font-inter font-light text-xs ml-2">forgot password ?</p>
+            </div>
+        </div>
+        <button (click)="onLogin()" class="bg-arancio px-5 py-2 rounded-full w-[60%] self-end font-inter color-white">Login</button>
+    </form>
+</div>
+</div>
+
   </div>

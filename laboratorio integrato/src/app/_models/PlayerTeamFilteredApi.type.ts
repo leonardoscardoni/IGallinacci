@@ -1,19 +1,22 @@
 export interface PlayerTeamFilteredType {
-    idTeam:   number;
-    nickname: string;
-    name:     string;
-    logo:     string;
-    season:   number;
-    players:  Player[];
+    logged:    boolean;
+    favourite: boolean;
+    idTeam:    number;
+    logo:      string;
+    nickname:  string;
+    name:      string;
+    season:    number;
+    players:   Player[];
 }
 
 export interface Player {
+    favourite: boolean;
     idPlayer:  number;
-    name:      string;
-    ruolo:     string;
+    firstname: string;
+    lastname:  string;
+    role:      Role;
     number:    number | null;
     country:   Country | null;
-    favourite: boolean;
 }
 
 export enum Country {
@@ -22,7 +25,7 @@ export enum Country {
     Usa = "USA",
 }
 
-export enum Ruolo {
+export enum Role {
     Ala = "Ala",
     Centro = "Centro",
     Guardia = "Guardia",

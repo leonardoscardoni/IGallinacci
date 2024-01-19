@@ -14,12 +14,14 @@ export class SelezioneConfrontoGiocatoriComponent {
   searchInput: string = '';
 
   isModalOpen = false;
-  selectedTeam1: { nome: string; immagine: string; id:number } = {
+  selectedTeam1: { nome: string;cognome: string; immagine: string; id:number } = {
     nome: '', immagine: '',
+    cognome:'',
     id: 0
   };
-  selectedTeam2: { nome: string; immagine: string; id:number } = {
+  selectedTeam2: { nome: string;cognome: string; immagine: string; id:number } = {
     nome: '', immagine: '',
+    cognome:'',
     id: 0
   };
   selectedPlus: string | null = null;
@@ -31,7 +33,7 @@ export class SelezioneConfrontoGiocatoriComponent {
     this.isModalOpen = true;
   }
 
-  selectTeam(team: { nome: string; immagine: string ; id:number}) {
+  selectTeam(team: { nome: string; immagine: string ; id:number; cognome: string;}) {
     if (this.selectedPlus === 'plus1') {
       this.selectedTeam1 = team;
     } else if (this.selectedPlus === 'plus2') {

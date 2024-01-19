@@ -53,6 +53,7 @@ import { CustomInterceptor } from "./_services/custom.interceptor";
 import { RegisterComponent } from "./pages/register/register.component";
 import { ArticoloElencoArticoliComponent } from "./components/articolo-elenco-articoli/articolo-elenco-articoli.component";
 import { HeaderDettaglioGiocatorePartitaComponent } from "./components/header-dettaglio-giocatore-partita/header-dettaglio-giocatore-partita.component";
+import { ModalLoginComponent } from './modal-login/modal-login.component';
 
 @NgModule({
     declarations: [
@@ -103,6 +104,7 @@ import { HeaderDettaglioGiocatorePartitaComponent } from "./components/header-de
         RegisterComponent,
         ArticoloElencoArticoliComponent,
         HeaderDettaglioGiocatorePartitaComponent,
+        ModalLoginComponent,
     ],
     imports: [
         BrowserModule,
