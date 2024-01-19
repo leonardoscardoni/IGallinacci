@@ -15,6 +15,7 @@ import { DettaglioPartitaType } from "./_models/dettaglioPartita.type";
 import { ConfrontoPlayerType } from "./_models/confrotoPlayerApi.type";
 import { ClassificaType } from "./_models/classificaApi.type";
 import { HomeRequestType } from "./_models/postCalls.type";
+import { ProfileType } from "./_models/profile.type";
 
 @Injectable({
     providedIn: "root",
@@ -34,6 +35,7 @@ export class ApiService {
     private PlayerFilter = `${"player/getPlayerTeamFiltered?idTeam="}`;
     private dettaglioPartita = "game/getGameDetails?idGame=";
     private classifica = `${"team/getRanking?season="}`;
+    private userDetail = `user/getUserProfile`;
 
     constructor(private http: HttpClient) {}
 
@@ -184,6 +186,18 @@ export class ApiService {
             .pipe(
                 map((response: any) => {
                     return response as PlayerMatchType;
+                })
+            );
+    }
+
+    getUserDetail() {
+        return this.http
+            .post(`${this.baseURL}${this.userDetail}`, {
+                token: localStorage.getItem("loginToken"),
+            })
+            .pipe(
+                map((response: any) => {
+                    return response as ProfileType;
                 })
             );
     }

@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";
 import { ApiService } from "../../api.service";
+import { ProfileType } from "src/app/_models/profile.type";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "app-profilo",
@@ -7,10 +9,12 @@ import { ApiService } from "../../api.service";
     styleUrls: ["./profilo.component.scss"],
 })
 export class ProfiloComponent {
-    constructor(private apiService: ApiService) {}
+    constructor(private apiService: ApiService, private router: Router) {}
 
+    data: ProfileType = {} as ProfileType;
     numeroGiocatoriDaVisualizzare = 3;
     numeroSquadreDaVisualizzare = 3;
+    nomeUtente: string | null = "";
 
     a = {
         nicknameUtente: "Clara",
@@ -76,9 +80,21 @@ export class ProfiloComponent {
         ],
     };
 
+    ngOnInit() {
+        this.apiService.getUserDetail().subscribe((data: ProfileType) => {
+            this.data = data;
+            console.log(this.data);
+        });
+
+        this.nomeUtente = localStorage.getItem("name");
+
+        if (!this.data.idUser) {
+            this.router.navigateByUrl("/login");
+        }
+    }
+
     get slicedPlayers(): any[] {
         if (this.a && this.a.giocatoriPreferiti.length > 0) {
-            console.log("ok");
             return this.a.giocatoriPreferiti.slice(0, this.numeroGiocatoriDaVisualizzare);
         } else {
             return [];
@@ -97,7 +113,6 @@ export class ProfiloComponent {
 
     get slicedTeams(): any[] {
         if (this.a && this.a.squadrePreferite.length > 0) {
-            console.log("ok");
             return this.a.squadrePreferite.slice(0, this.numeroSquadreDaVisualizzare);
         } else {
             return [];
