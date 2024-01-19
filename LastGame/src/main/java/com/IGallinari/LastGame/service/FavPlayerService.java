@@ -4,7 +4,7 @@ import com.IGallinari.LastGame.entity.FavPlayer;
 import com.IGallinari.LastGame.entity.Player;
 import com.IGallinari.LastGame.entity.User;
 import com.IGallinari.LastGame.entity.id_class.IdFavPlayer;
-import com.IGallinari.LastGame.payload.request.favourite.player.AddFavPlayerRequest;
+import com.IGallinari.LastGame.payload.request.favourite.player.FavPlayerRequest;
 import com.IGallinari.LastGame.payload.response.NeedToBeLoggedResponse;
 import com.IGallinari.LastGame.payload.response.favourite.player.FavPlayerResponse;
 import com.IGallinari.LastGame.repository.FavPlayerRepository;
@@ -24,14 +24,14 @@ public class FavPlayerService {
     private final UserRepository userRepository;
 
 
-    public ResponseEntity<?> buildFavPlayerResponse (AddFavPlayerRequest addFavPlayerRequest){
-        String token = addFavPlayerRequest.getToken();
+    public ResponseEntity<?> buildFavPlayerResponse (FavPlayerRequest favPlayerRequest){
+        String token = favPlayerRequest.getToken();
         boolean logged= jwtService.isTokenValid(token);
         if(!logged){
             return ResponseEntity.ok(new NeedToBeLoggedResponse());
         }
         int idUser = jwtService.getIdUser(token);
-        int idPlayer = addFavPlayerRequest.getIdPlayer();
+        int idPlayer = favPlayerRequest.getIdPlayer();
 
         User user = userRepository.findById(idUser);
         Player player = playerRepository.findById(idPlayer);
@@ -44,11 +44,13 @@ public class FavPlayerService {
             favourite=false;
         }
         else {
-            IdFavPlayer idFavPlayer = new IdFavPlayer(idUser, idPlayer);
+            IdFavPlayer idFavPlayer = new IdFavPlayer();
+            idFavPlayer.setIdUser(idUser);
+            idFavPlayer.setPlayerId(idPlayer);
             FavPlayer favPlayer = new FavPlayer();
             favPlayer.setIdFavPlayer(idFavPlayer);
             favPlayerRepository.save(favPlayer);
-            favourite=false;
+            favourite=true;
         }
         return ResponseEntity.ok(new FavPlayerResponse(idPlayer, favourite));
     }

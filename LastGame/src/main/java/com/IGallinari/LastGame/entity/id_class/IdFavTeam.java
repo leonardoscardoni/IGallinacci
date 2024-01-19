@@ -7,7 +7,6 @@ import lombok.Data;
 
 @Data
 @Embeddable
-@AllArgsConstructor
 public class IdFavTeam implements Serializable{
 
     @Column(name = "idUser")

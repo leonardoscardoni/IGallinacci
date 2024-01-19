@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class AddFavTeamRequest {
+public class FavTeamRequest {
     private String token;
     private int idTeam;
 }

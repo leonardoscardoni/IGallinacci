@@ -24,6 +24,6 @@ public class UserController {
     @PostMapping("/signin")
     public SigninResponse signin(@RequestBody SigninRequest signinRequest){return this.service.signin(signinRequest);}
 
-    @RequestMapping("getUserProfile")
+    @RequestMapping("/getUserProfile")
     public ResponseEntity<?> getUserProfile(@RequestBody TokenRequest tokenRequest){return this.service.buildProfile(tokenRequest);}
 }
