@@ -8,7 +8,6 @@ import lombok.Data;
 
 @Data
 @Embeddable
-@AllArgsConstructor
 public class IdFavPlayer implements Serializable{
     
     @Column(name = "idUser")
