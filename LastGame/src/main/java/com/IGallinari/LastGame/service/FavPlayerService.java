@@ -32,8 +32,10 @@ public class FavPlayerService {
         }
         int idUser = jwtService.getIdUser(token);
         int idPlayer = addFavPlayerRequest.getIdPlayer();
+
         User user = userRepository.findById(idUser);
         Player player = playerRepository.findById(idPlayer);
+
         boolean favourite;
         boolean exist = favPlayerRepository.existsByIdUserAndIdPlayer(idUser, idPlayer)==1;
         if (exist){
