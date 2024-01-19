@@ -6,15 +6,16 @@ import { Component, OnInit, Input } from "@angular/core";
     styleUrls: ["./bio-giocatore.component.scss"],
 })
 export class BioGiocatoreComponent implements OnInit {
-    @Input() nomeGiocatore!: any;
+    @Input() nomeGiocatore!: string;
+    @Input() cognomeGiocatore!: string;
     @Input() eta!: any;
-    @Input() peso!: any;
-    @Input() stato!: any;
-    @Input() altezza!: any;
-    @Input() squadra!: any;
-    @Input() annoIngressoNBA!: any;
-    @Input() college!: any;
-    @Input() affiliation!: any;
+    @Input() peso!: number;
+    @Input() stato!: string;
+    @Input() altezza!: number;
+    @Input() squadra!: string;
+    @Input() annoIngressoNBA!: number;
+    @Input() college!: string;
+    @Input() affiliation!: string;
 
     ngOnInit() {}
 }

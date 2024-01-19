@@ -1,8 +1,9 @@
-<div class="w-full lg:h-[13rem] border border-bianco rounded-xl flex flex-col items-end justify-center px-3 py-2 md:px-6 gap-3"
->
+<div class="w-full lg:h-[13rem] border border-bianco rounded-xl flex flex-col items-end justify-center px-3 py-2 md:px-6 gap-3">
     <p class="lg:text-2xl text-lg uppercase">{{ title }}</p>
-    <p class="font-black text-5xl font-inter"
-    [class.lg:text-5xl]="dato.toString().length >= 3"
-    [class.lg:text-4xl]="dato.toString().length >= 5"
-    >{{ dato }}{{percentuale}}</p>
+    <p class="font-black text-5xl font-inter" *ngIf="dato"
+        [class.lg:text-5xl]="dato.toString().length >= 3"
+        [class.lg:text-4xl]="dato.toString().length >= 5">
+        {{ dato }}{{ percentuale }}
+    </p>
+    <p class="font-black text-5xl font-inter" *ngIf="!dato">Nd</p>
 </div>

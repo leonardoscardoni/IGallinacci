@@ -33,7 +33,7 @@ export class ApiService {
     private playerIndipendente = `${"player/getPlayerDetails?idPlayer="}`;
     private PlayerFilter = `${'player/getPlayerFilteredByTeam?idTeam='}`;
     private dettaglioPartita = "game/getGameDetails?idGame=";
-    private classifica = `${"team/getRanking?season="}`;
+    private classifica = `${"team/getStandings?season="}`;
 
     constructor(private http: HttpClient) {}
 
@@ -116,7 +116,9 @@ export class ApiService {
         );
     }
     getClassifica(stagione: string) {
-        return this.http.get(`${this.baseURL}${this.classifica}${stagione}`).pipe(
+        return this.http.post(`${this.baseURL}${this.classifica}${stagione}`,{
+            token: localStorage.getItem("loginToken"),
+        }).pipe(
             map((response: any) => {
                 return response as ClassificaType;
             })
@@ -125,7 +127,9 @@ export class ApiService {
 
     getPlayerDetailInd(id: string) {
         return this.http
-            .get(`${this.baseURL}${this.playerIndipendente}${id}${"&season=2023"}`)
+            .post(`${this.baseURL}${this.playerIndipendente}${id}${"&season=2023"}`, {
+                token: localStorage.getItem("loginToken"),
+            })
             .pipe(
                 map((response: any) => {
                     return response as PlayerDetailIndType;
@@ -188,7 +192,9 @@ export class ApiService {
 
     getPlayerMatchApi(idGame: string, idPlayer: string) {
         return this.http
-            .get(`${this.baseURL}${this.playerMatch}${idGame}&idPlayer=${idPlayer}`)
+            .post(`${this.baseURL}${this.playerMatch}${idGame}&idPlayer=${idPlayer}`,{
+                token: localStorage.getItem("loginToken"),
+            })
             .pipe(
                 map((response: any) => {
                     return response as PlayerMatchType;

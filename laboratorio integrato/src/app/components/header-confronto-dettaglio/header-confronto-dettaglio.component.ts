@@ -8,7 +8,9 @@ import { Component, Input } from "@angular/core";
 export class HeaderConfrontoDettaglioComponent {
     @Input() bgImg!: string;
     @Input() nome1!: string;
+    @Input() cognome1!: string;
     @Input() nome2!: string;
+    @Input() cognome2!: string;
     @Input() logo1!: string;
     @Input() logo2!: string;
 }
