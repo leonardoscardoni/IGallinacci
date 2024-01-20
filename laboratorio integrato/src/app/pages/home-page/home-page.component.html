@@ -1,7 +1,9 @@
 <app-header></app-header>
-<app-ultimi-risultati-home [data]="data"></app-ultimi-risultati-home>
+<app-ultimi-risultati-home [data]="data" [title]="'Per te'"></app-ultimi-risultati-home>
+<app-ultimi-risultati-home *ngIf="data.logged == true" [data]="data" [title]="'Ultimi risultati'"></app-ultimi-risultati-home>
 
-<div
+
+<div *ngIf="data.logged == false"
   class="bg-white/5 w-full min-h-[50vh] border-y flex flex-col items-center md:ps-6 ps-0 md:p-0 pb-5"
 >
   <h2 class="w-full text-[2.5rem] uppercase text-center font-extrabold py-8 pb-20">
@@ -13,14 +15,14 @@
       Sembra che tu non abbia ancora effettuato l’accesso.
     </p>
     <p>
-      Effettua il <span>login</span> o <span>iscriviti</span> per selezionare <br> le tue squadre preferite e
+      Effettua il <span routerLink="/login" class="cursor-pointer">login</span> o <span routerLink="/register" class="cursor-pointer">iscriviti</span> per selezionare <br> le tue squadre preferite e
       seguire i loro aggiornamenti!
     </p>
   </div>
 </div>
 
-<div
-  class="sm:hidden bg-white/5 w-full min-h-[65vh] border-y flex flex-col items-center md:ps-6 ps-0 md:p-0 pb-5"
+<div *ngIf="data.logged == true"
+  class="bg-white/5 w-full min-h-[65vh] border-y flex flex-col items-center md:ps-6 ps-0 md:p-0 pb-5"
 >
   <h2 class="w-full text-[2.5rem] uppercase text-center font-extrabold py-8">
     Following
@@ -41,7 +43,7 @@
       <h3 class="leading-10">12</h3>
     </div>
   </div>
-  <button
+  <button routerLink="/elenco-team"
     class="border rounded-3xl px-5 py-[0.3rem] mt-10 border-amber-600 font-inter text-lg w-fit"
   >
     Modifica
