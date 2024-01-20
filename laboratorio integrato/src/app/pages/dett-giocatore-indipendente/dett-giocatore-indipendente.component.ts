@@ -15,6 +15,9 @@ export class DettGiocatoreIndipendenteComponent {
 
 constructor(private route: ActivatedRoute, private apiService: ApiService) {}
 data: PlayerDetailIndType = {} as PlayerDetailIndType
+data2: any = {} as any;
+isFavourite!: boolean;
+
 id:any
 ngOnInit() {
   this.route.paramMap.subscribe((params) => {
@@ -27,10 +30,12 @@ ngOnInit() {
 }
 
 
-/* ngOnInit() {
-    this.apiService.getPlayerDetailInd().subscribe((data) => {
-      this.data = data;
-      console.log(this.data)
-    });
-  } */
+toggleFavourite(id:any) {
+  this.apiService.getFavouritePlayer(id).subscribe((data) => {
+      this.data2 = data;
+      console.log(this.data);
+      console.log(id);
+  });
+  this.isFavourite = !this.isFavourite;
+}
 }

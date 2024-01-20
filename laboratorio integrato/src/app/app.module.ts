@@ -55,6 +55,7 @@ import { ArticoloElencoArticoliComponent } from "./components/articolo-elenco-ar
 import { HeaderDettaglioGiocatorePartitaComponent } from "./components/header-dettaglio-giocatore-partita/header-dettaglio-giocatore-partita.component";
 import { ModalLoginComponent } from './modal-login/modal-login.component';
 
+
 @NgModule({
     declarations: [
         AppComponent,

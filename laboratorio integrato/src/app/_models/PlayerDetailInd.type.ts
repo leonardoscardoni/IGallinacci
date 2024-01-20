@@ -1,5 +1,6 @@
 export interface PlayerDetailIndType {
-    favourite:        boolean;
+    logged: boolean;
+    favouritePlayer:  boolean;
     idPlayer:         number;
     firstName:        string;
     lastName:         string;

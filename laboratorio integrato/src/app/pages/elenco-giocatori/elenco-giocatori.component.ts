@@ -9,41 +9,12 @@ import { ApiService } from "src/app/api.service";
     styleUrls: ["./elenco-giocatori.component.scss"],
 })
 export class ElencoGiocatoriComponent implements OnInit {
-    a = {
-        squadre: ["squadrettina", "squadrona"],
-        ruoli: ["attaccante", "difensore"],
-        giocatori: [
-            {
-                logoSquadra: "/assets/s-l1200.webp",
-                nomeGiocatore: "Clara Cosentino",
-                nomeSquadra: "squadrettina",
-                ruolo: "attaccante",
-                provenienza: "italia",
-                preferiti: false,
-            },
-            {
-                logoSquadra: "/assets/s-l1200.webp",
-                nomeGiocatore: "Lisa Bertinotti",
-                nomeSquadra: "squadrona",
-                ruolo: "difensore",
-                provenienza: "italia",
-                preferiti: false,
-            },
-            {
-                logoSquadra: "/assets/s-l1200.webp",
-                nomeGiocatore: "Nomignolino",
-                nomeSquadra: "squadrettina",
-                ruolo: "difensore",
-                provenienza: "italia",
-                preferiti: false,
-            },
-        ],
-    };
-
+   
+isFavourite! : boolean
     squadraSelezionata: any;
     ruoloSelezionato: any;
     idGiocatore: any;
-
+data3:any
 
     constructor(private apiService: ApiService) {}
   data: TeamPlayerFilterType = {} as TeamPlayerFilterType
@@ -54,17 +25,26 @@ export class ElencoGiocatoriComponent implements OnInit {
       });
     }
     data2: PlayerTeamFilteredType = {} as PlayerTeamFilteredType
-  PlayerFilter(idTeam:number) {
-    console.log(this.ruoloSelezionato)
-
+    PlayerFilter(idTeam:number) {
+      console.log(this.ruoloSelezionato)
+      
       this.apiService.getPlayerFilter(idTeam).subscribe((data) => {
         this.data2 = data;
         console.log(this.data2)
-
+        
       });
     }
+    
 
+    toggleFavourite(id:any) {
 
+      this.apiService.getFavouritePlayer(id).subscribe((data) => {
+          this.data3 = data;
+          console.log(this.data);
+          console.log(id);
+      });
+      this.isFavourite = !this.isFavourite;
+  }
 
     
 }

@@ -1,92 +1,174 @@
-<div class=" md:px-20 px-6 my-10">
-    <div class="mt-10 color-arancio">
-        <h2>GIOCATORI 2023</h2>
-    </div>
-    <div class="flex my-5">
-        <p-dropdown [options]="data.teamList" [(ngModel)]="squadraSelezionata" [showClear]="true" placeholder="Tutte le squadre" [style]="{'width':'100%'}" class="w-full md:w-1/5 mr-5" optionLabel="name" (click)="PlayerFilter(squadraSelezionata.idTeam)"></p-dropdown>
-        <p-dropdown [options]="data.rolePlayer" [(ngModel)]="ruoloSelezionato" [showClear]="true" placeholder="Tutti i ruoli" [style]="{'width':'100%'}" class="w-full md:w-1/5" optionLabel="name"></p-dropdown>
-    </div>
-    
-    <ng-container *ngIf="squadraSelezionata == undefined && ruoloSelezionato == undefined">
-        <p class="text-lg color-arancio">Applica un filtro per cercare i giocatori</p>
-    </ng-container>
+<div class="md:px-20 px-6 my-10">
+  <div class="mt-10 color-arancio">
+    <h2>GIOCATORI 2023</h2>
+  </div>
+  <div class="flex my-5">
+    <p-dropdown
+      [options]="data.teamList"
+      [(ngModel)]="squadraSelezionata"
+      [showClear]="true"
+      placeholder="Tutte le squadre"
+      [style]="{ width: '100%' }"
+      class="w-full md:w-1/5 mr-5"
+      optionLabel="name"
+      (click)="PlayerFilter(squadraSelezionata.idTeam)"
+    ></p-dropdown>
+    <p-dropdown
+      [options]="data.rolePlayer"
+      [(ngModel)]="ruoloSelezionato"
+      [showClear]="true"
+      placeholder="Tutti i ruoli"
+      [style]="{ width: '100%' }"
+      class="w-full md:w-1/5"
+      optionLabel="name"
+    ></p-dropdown>
+  </div>
+
+  <ng-container
+    *ngIf="squadraSelezionata == undefined && ruoloSelezionato == undefined"
+  >
+    <p class="text-lg color-arancio">
+      Applica un filtro per cercare i giocatori
+    </p>
+  </ng-container>
 </div>
 
 <div class="md:px-20 ps-6">
-    <div class="flex overflow-x-auto">
-
-        <!-- Tabella fissa -->
-        <div class="min-w-[50%] md:min-w-[25%] overflow-hidden">
-        <table class="min-w-full table-fixed">
-            <thead class="w-full ">
-                <tr class="bg-white/5 text-left border-r-2">
-                    <th class="sticky left-0 top-0 py-2 px-4" >
-                        <p class="text-base md:text-lg">NOME</p>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <ng-container *ngFor="let giocatore of data2.players">
-                    <ng-container *ngIf="squadraSelezionata && !ruoloSelezionato || squadraSelezionata && (ruoloSelezionato.firstname == giocatore.role)">
-                        <tr class="bg-[#130B02]">
-                            <td class="sticky left-0 top-0 py-2 px-4 text-base md:text-lg cursor-pointer hover:bg-[#E5CFB5] hover:text-[#E98A15]" [routerLink]="['/dett-giocatore-ind', giocatore.idPlayer]">
-                                {{ giocatore.firstname }}
-                                {{ giocatore.lastname }}
-                            </td>
-                        </tr>
-                    </ng-container>
-                </ng-container>
-            </tbody>
-        </table>
-        </div>
-
-
-        <!-- Tabella con scroll -->
-        <div class="w-full overflow-x-scroll hide-scrollbar">
-        <table class="min-w-[1000px] md:min-w-full">
-            <thead>
-                <tr class="bg-white/5 text-left">
-                    <th colspan="2" class="py-2 px-4 ">
-                        <p class="text-base md:text-lg">SQUADRA</p>
-                    </th>
-                    <th colspan="2" class="py-2 px-4">
-                        <p class="text-base md:text-lg">RUOLO</p>
-                    </th>
-                    <th colspan="2" class="py-2 px-4">
-                        <p class="text-base md:text-lg">ORIGINE</p>
-                    </th>
-                    <th colspan="1" class="py-2 px-4">
-                        <p class="text-base md:text-lg">&nbsp;</p>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <ng-container *ngFor="let giocatore of data2.players">
-                    <ng-container *ngIf="squadraSelezionata && !ruoloSelezionato || squadraSelezionata && (ruoloSelezionato.name == giocatore.role)">
-                        <tr [routerLink]="['/dett-giocatore-ind', giocatore.idPlayer]" class="cursor-pointer">
-                            <td colspan="2" class="py-2 px-4 text-base md:text-lg">
-                                {{ data2.name }}
-                            </td>
-                            <td colspan="2" class="py-2 px-4 text-base md:text-lg">
-                                {{ giocatore.role }}
-                            </td>
-                            <td colspan="2" class="py-2 px-4 text-base md:text-lg">
-                                {{ giocatore.country }}
-                            </td>
-                            <td colspan="1" class="py-2 px-4">
-                                <img src="/assets/star-outlined-svgrepo-com.svg" alt="" class="w-7">
-                            </td>
-                        </tr>
-                    </ng-container>
-                </ng-container>
-            </tbody>
-        </table>
-        </div>
+  <div class="flex overflow-x-auto">
+    <!-- Tabella fissa -->
+    <div class="min-w-[50%] md:min-w-[25%] overflow-hidden">
+      <table class="min-w-full table-fixed">
+        <thead class="w-full">
+          <tr class="bg-white/5 text-left border-r-2">
+            <th class="sticky left-0 top-0 py-2 px-4">
+              <p class="text-base md:text-lg">NOME</p>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let giocatore of data2.players">
+            <ng-container
+              *ngIf="
+                (squadraSelezionata && !ruoloSelezionato) ||
+                (squadraSelezionata &&
+                  ruoloSelezionato.firstname == giocatore.role)
+              "
+            >
+              <tr class="bg-[#130B02]">
+                <td
+                  class="sticky left-0 top-0 py-2 px-4 text-base md:text-lg cursor-pointer hover:bg-[#E5CFB5] hover:text-[#E98A15]"
+                  [routerLink]="['/dett-giocatore-ind', giocatore.idPlayer]"
+                >
+                  {{ giocatore.firstname }}
+                  {{ giocatore.lastname }}
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </tbody>
+      </table>
     </div>
+
+    <!-- Tabella con scroll -->
+    <div class="w-full overflow-x-scroll hide-scrollbar">
+      <table class="min-w-[1000px] md:min-w-full">
+        <thead>
+          <tr class="bg-white/5 text-left">
+            <th colspan="2" class="py-2 px-4">
+              <p class="text-base md:text-lg">SQUADRA</p>
+            </th>
+            <th colspan="2" class="py-2 px-4">
+              <p class="text-base md:text-lg">RUOLO</p>
+            </th>
+            <th colspan="2" class="py-2 px-4">
+              <p class="text-base md:text-lg">ORIGINE</p>
+            </th>
+            <th colspan="1" class="py-2 px-4">
+              <p class="text-base md:text-lg">&nbsp;</p>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let giocatore of data2.players">
+            <ng-container
+              *ngIf="
+                (squadraSelezionata && !ruoloSelezionato) ||
+                (squadraSelezionata && ruoloSelezionato.name == giocatore.role)
+              "
+            >
+              <tr class="cursor-pointer">
+                <td
+                  colspan="2"
+                  [routerLink]="['/dett-giocatore-ind', giocatore.idPlayer]"
+                  class="py-2 px-4 text-base md:text-lg"
+                >
+                  {{ data2.name }}
+                </td>
+                <td colspan="2" class="py-2 px-4 text-base md:text-lg">
+                  {{ giocatore.role }}
+                </td>
+                <td colspan="2" class="py-2 px-4 text-base md:text-lg">
+                  {{ giocatore.country }}
+                </td>
+                <td colspan="1" class="py-2 px-4">
+                  <div
+                    *ngIf="!data2.logged"
+                    (click)="toggleFavourite(giocatore.idPlayer)"
+                    class="flex items-center justify-end h-full cursor-pointer"
+                  >
+                    <img
+                      src="/assets/star-outlined-svgrepo-com.svg"
+                      alt=""
+                      class="w-7"
+                    />
+                  </div>
+
+                  <div
+                    *ngIf="!giocatore.favourite && data2.logged"
+                    (click)="toggleFavourite(giocatore.idPlayer)"
+                    class="flex items-center justify-end h-full cursor-pointer"
+                  >
+                    <img
+                      *ngIf="!isFavourite"
+                      src="/assets/star-outlined-svgrepo-com.svg"
+                      alt=""
+                      class="w-7"
+                    />
+                    <img
+                      *ngIf="isFavourite"
+                      src="/assets/star-filled-svgrepo-com.svg"
+                      alt=""
+                      class="w-7"
+                    />
+                  </div>
+
+                  <div
+                    *ngIf="giocatore.favourite && data2.logged"
+                    (click)="toggleFavourite(giocatore.idPlayer)"
+                    class="flex items-center justify-end h-full cursor-pointer"
+                  >
+                    <img
+                      *ngIf="isFavourite"
+                      src="/assets/star-outlined-svgrepo-com.svg"
+                      alt=""
+                      class="w-7"
+                    />
+                    <img
+                      *ngIf="!isFavourite"
+                      src="/assets/star-filled-svgrepo-com.svg"
+                      alt=""
+                      class="w-7"
+                    />
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-
-
-
 
 <!-- <table class="min-w-full table-fixed">
             <thead>

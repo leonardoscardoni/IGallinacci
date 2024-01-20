@@ -34,6 +34,8 @@ export class ApiService {
     private PlayerFilter = `${'player/getPlayerFilteredByTeam?idTeam='}`;
     private dettaglioPartita = "game/getGameDetails?idGame=";
     private classifica = `${"team/getStandings?season="}`;
+    private favouriteTeam = 'favourite/team';
+    private favouritePlayer = 'favourite/player';
 
     constructor(private http: HttpClient) {}
 
@@ -56,7 +58,7 @@ export class ApiService {
         return this.http
             .post(`${this.baseURL}${this.homeUrl}`, {
                 token: localStorage.getItem("loginToken"),
-                date: "2024-01-18",
+                date: "2024-01-16",
             })
             .pipe(
                 map((response: any) => {
@@ -69,7 +71,26 @@ export class ApiService {
                 })
             );
     }
-
+    getFavouriteTeam(id:number) {
+        return this.http
+            .post(`${this.baseURL}${this.favouriteTeam}`,
+            {
+                token: localStorage.getItem("loginToken"),
+                idTeam:id,
+            }
+            )
+           
+    }
+    getFavouritePlayer(id:number) {
+        return this.http
+            .post(`${this.baseURL}${this.favouritePlayer}`,
+            {
+                token: localStorage.getItem("loginToken"),
+                idPlayer:id,
+            }
+            )
+           
+    }
     getDettaglioPartita(idPartita: string) {
         return this.http
             .post(`${this.baseURL}${this.dettaglioPartita}${idPartita}`, {
@@ -127,7 +148,7 @@ export class ApiService {
 
     getPlayerDetailInd(id: string) {
         return this.http
-            .post(`${this.baseURL}${this.playerIndipendente}${id}${"&season=2023"}`, {
+            .post(`${this.baseURL}${this.playerIndipendente}${id}${"&season=2022"}`, {
                 token: localStorage.getItem("loginToken"),
             })
             .pipe(

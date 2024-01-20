@@ -12,22 +12,22 @@
         </div>
         <div class="hidden lg:block h-24 w-20"></div>
         <div class="w-full flex justify-center">
-            <div *ngIf="!data?.favourite && data?.logged == true" class="border border-[#E5CFB5] py-1 md:px-3 px-2 rounded-full md:h-12 h-8 flex gap-2 items-center justify-center lg:absolute right-20 top-14 w-fit cursor-pointer">
-                <img src="/assets/star-outlined-svgrepo-com.svg" class="h-[70%]" alt="">
-                <p class="font-inter text-xs md:text-sm">Segui</p>
-
+            <div *ngIf="!data?.favourite && data?.logged == true" (click)="toggleFavourite(data?.idTeam)" class="border border-[#E5CFB5] py-1 md:px-3 px-2 rounded-full md:h-12 h-8 flex gap-2 items-center justify-center lg:absolute right-20 top-14 w-fit cursor-pointer">
+              <img *ngIf="!isFavourite" src="/assets/star-outlined-svgrepo-com.svg" class="h-[70%]" alt="">
+              <img *ngIf="isFavourite" src="/assets/star-filled-svgrepo-com.svg" class="h-[70%]" alt="">
+              <p *ngIf="!isFavourite" class="font-inter text-xs md:text-sm">Segui</p>
+              <p *ngIf="isFavourite" class="font-inter text-xs md:text-sm">Segui già</p>
             </div>
             <div *ngIf="!data?.favourite && data?.logged == false" routerLink="/login" class="border border-[#E5CFB5] py-1 md:px-3 px-2 rounded-full md:h-12 h-8 flex gap-2 items-center justify-center lg:absolute right-20 top-14 w-fit cursor-pointer">
-                <img src="/assets/star-outlined-svgrepo-com.svg" class="h-[70%]" alt="">
-                <p class="font-inter text-xs md:text-sm">Segui</p>
-
+              <img src="/assets/star-outlined-svgrepo-com.svg" class="h-[70%]" alt="">
+              <p class="font-inter text-xs md:text-sm">Segui</p>
             </div>
-            <div *ngIf="data?.favourite" class="border border-[#E5CFB5] py-1 md:px-3 px-2 rounded-full md:h-12 h-8 flex gap-2 items-center justify-center lg:absolute right-20 top-14 w-fit cursor-pointer">
-            
-                <img  src="/assets/star-filled-svgrepo-com.svg" class="h-[70%]" alt="">
-                <p class="font-inter text-xs md:text-sm">Segui già</p>
-
+            <div *ngIf="data?.favourite" (click)="toggleFavourite(data?.idTeam)" class="border border-[#E5CFB5] py-1 md:px-3 px-2 rounded-full md:h-12 h-8 flex gap-2 items-center justify-center lg:absolute right-20 top-14 w-fit cursor-pointer">
+                <img *ngIf="isFavourite" src="/assets/star-outlined-svgrepo-com.svg" class="h-[70%]" alt="">
+                <img *ngIf="!isFavourite" src="/assets/star-filled-svgrepo-com.svg" class="h-[70%]" alt="">
+                <p *ngIf="isFavourite" class="font-inter text-xs md:text-sm">Segui</p>
+                <p *ngIf="!isFavourite" class="font-inter text-xs md:text-sm">Segui già</p>
             </div>
-        </div>
+          </div>
     </div>
 </div>
