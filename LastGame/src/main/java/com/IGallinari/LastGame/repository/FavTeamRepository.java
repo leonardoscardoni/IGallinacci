@@ -4,6 +4,7 @@ import com.IGallinari.LastGame.entity.FavTeam;
 
 import com.IGallinari.LastGame.entity.Team;
 import com.IGallinari.LastGame.entity.User;
+import com.IGallinari.LastGame.entity.id_class.IdFavTeam;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface FavTeamRepository extends JpaRepository<FavTeam,Integer> {
+public interface FavTeamRepository extends JpaRepository<FavTeam, IdFavTeam> {
 
     FavTeam findByUserAndTeam(User user, Team team);
 

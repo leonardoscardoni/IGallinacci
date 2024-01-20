@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ArenaRepository extends JpaRepository<Arena,Integer> {
+public interface ArenaRepository extends JpaRepository<Arena, String> {
     @Override
     List<Arena> findAll();
 

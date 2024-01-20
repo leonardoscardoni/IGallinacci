@@ -1,6 +1,7 @@
 package com.IGallinari.LastGame.repository;
 
 import com.IGallinari.LastGame.entity.*;
+import com.IGallinari.LastGame.entity.id_class.IdStatsTeam;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface StatsTeamRepository extends JpaRepository<StatsTeam,Integer> {
+public interface StatsTeamRepository extends JpaRepository<StatsTeam, IdStatsTeam> {
 
     StatsTeam findByTeamAndSeason(Team team, int season);
     @Query(value = "SELECT st.points, st.totReb, st.assists, st.fgm,st.ftm,st.tpm  FROM statsteam st WHERE idTeam=:inputIdTeam AND season=:inputSeason", nativeQuery = true)
