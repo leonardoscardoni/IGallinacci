@@ -3,6 +3,7 @@ package com.IGallinari.LastGame.entity.id_class;
 import java.io.Serializable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+
 import lombok.Data;
 
 @Data
@@ -10,7 +11,7 @@ import lombok.Data;
 public class IdFavPlayer implements Serializable{
     
     @Column(name = "idUser")
-    private int teamId;
+    private int idUser;
 
     @Column(name = "idPlayer")
     private int playerId;

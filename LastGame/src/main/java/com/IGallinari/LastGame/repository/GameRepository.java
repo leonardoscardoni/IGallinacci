@@ -44,10 +44,12 @@ public interface GameRepository extends JpaRepository<Game,Integer> {
     @Query(value = "SELECT idHome AS TeamID FROM game WHERE date =:inputDate UNION SELECT idVisitor AS TeamID FROM game WHERE date =:inputDate; ", nativeQuery = true)
     List<Integer> findIdTeamFromDate(@Param("inputDate")LocalDate date);
 
-    @Query(value="SELECT * FROM game g WHERE (g.idVisitor=:inputIdTeam OR g.idHome=:inputIdTeam) AND g.status<3 ORDER BY g.date ASC LIMIT 1", nativeQuery = true)
+
+
+    @Query(value="SELECT * FROM game g WHERE (g.idVisitor=:inputIdTeam OR g.idHome=:inputIdTeam) AND g.status<3 ORDER BY g.date DESC LIMIT 1", nativeQuery = true)
     Game findNextGameByIdTeam(@Param("inputIdTeam") int idTeam);
 
-    @Query(value="SELECT * FROM game g WHERE (g.idVisitor=:inputIdTeam OR g.idHome=:inputIdTeam) AND g.status=3 ORDER BY g.date DESC LIMIT 1", nativeQuery = true)
+    @Query(value="SELECT * FROM game g WHERE (g.idVisitor=:inputIdTeam OR g.idHome=:inputIdTeam) AND g.status=3 ORDER BY g.date ASC LIMIT 1", nativeQuery = true)
     Game findPastGameByIdTeam(@Param("inputIdTeam") int idTeam);
 
     @Query(value="SELECT g.season FROM game g WHERE g.status=3 ORDER BY g.date DESC LIMIT 1", nativeQuery = true)

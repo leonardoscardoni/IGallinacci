@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 @EnableScheduling
 @SpringBootApplication
 public class LastGameApplication {
