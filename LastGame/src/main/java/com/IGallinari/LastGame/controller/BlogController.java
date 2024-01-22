@@ -7,6 +7,7 @@ import com.IGallinari.LastGame.payload.response.blog.BlogResponse;
 import com.IGallinari.LastGame.payload.response.blog.CreateBlogResponse;
 import com.IGallinari.LastGame.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,7 +21,10 @@ public class BlogController {
     @PostMapping("/create")
     public CreateBlogResponse createBlog(@RequestBody CreateBlogRequest createBlogRequest) {return this.service.saveBlog(createBlogRequest);}
 
-    @PostMapping("getBlog")
+    @PostMapping("/getBlog")
     public BlogResponse getBlog(@RequestBody TokenRequest tokenRequest, @RequestParam int idBlog) {return this.service.getBlog(tokenRequest,idBlog);}
+
+    @PostMapping("/getAllBlogs")
+    public ResponseEntity<?> getAllBlogs(@RequestBody TokenRequest tokenRequest) {return this.service.getAllBlogs(tokenRequest);}
 
 }

@@ -8,11 +8,13 @@ import com.IGallinari.LastGame.payload.request.TokenRequest;
 import com.IGallinari.LastGame.payload.request.blog.BlogRequest;
 import com.IGallinari.LastGame.payload.request.blog.CreateBlogRequest;
 import com.IGallinari.LastGame.payload.request.blog.paragraph.ViewParagraphRequest;
-import com.IGallinari.LastGame.payload.response.blog.BlogResponse;
-import com.IGallinari.LastGame.payload.response.blog.CreateBlogResponse;
+import com.IGallinari.LastGame.payload.response.blog.*;
 import com.IGallinari.LastGame.payload.response.blog.paragraph.ViewParagraphResponse;
+import com.IGallinari.LastGame.payload.response.blog.paragraph.tagPlayer.ViewTagPlayer;
+import com.IGallinari.LastGame.payload.response.blog.paragraph.tagTeam.ViewTagTeam;
 import com.IGallinari.LastGame.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -33,6 +35,14 @@ public class BlogService {
     private final TagPlayerRepository tagPlayerRepository;
 
     private final TagTeamRepository tagTeamRepository;
+
+    private final FavPlayerRepository favPlayerRepository;
+
+    private final FavTeamRepository favTeamRepository;
+
+    private final PlayerRepository playerRepository;
+
+    private final TeamRepository teamRepository;
 
     public CreateBlogResponse saveBlog(CreateBlogRequest createBlogRequest){
         String token = createBlogRequest.getToken();
@@ -115,10 +125,8 @@ public class BlogService {
                     )
             );
         }
-        List<Integer> tagPlayersList = tagPlayerRepository.findTagPlayerByIdBlog(idBlog);
-        int[] tagPlayersArray = tagPlayersList.stream().mapToInt(Integer::intValue).toArray();
-        List<Integer> tagTeamsList = tagTeamRepository.findTagTeamByIdBlog(idBlog);
-        int[] tagTeamsArray = tagTeamsList.stream().mapToInt(i -> i).toArray();
+        List<ViewTagPlayer> tagPlayerList = builTagPlayerList(idBlog);
+        List<ViewTagTeam> tagTeamsList = buildTagTeamList(idBlog);
         User user = userRepository.findById(jwtService.getIdUser(token));
         return new BlogResponse(
                 logged,
@@ -128,9 +136,98 @@ public class BlogService {
                 blog.getImg(),
                 blog.getDate(),
                 viewParagraphResponseList,
-                tagPlayersArray,
-                tagTeamsArray
+                tagPlayerList,
+                tagTeamsList
         );
+    }
+
+    public List<ViewTagPlayer> builTagPlayerList(int idBlog){
+        List<Integer> tagIdPlayersList = tagPlayerRepository.findTagPlayerByIdBlog(idBlog);
+        List<ViewTagPlayer> tagPlayerList = new ArrayList<>();
+        for (int idPlayer: tagIdPlayersList){
+            Player player = playerRepository.findById(idPlayer);
+            tagPlayerList.add(new ViewTagPlayer(
+                    player.getId(),
+                    player.getFirstname(),
+                    player.getLastname()
+            ));
+        }
+        return tagPlayerList;
+    }
+
+    public List<ViewTagTeam> buildTagTeamList(int idBlog){
+        List<Integer> tagIdTeamsList = tagTeamRepository.findTagTeamByIdBlog(idBlog);
+        List<ViewTagTeam> tagTeamsList = new ArrayList<>();
+        for (int idTeam: tagIdTeamsList){
+            Team team = teamRepository.findById(idTeam);
+            tagTeamsList.add(new ViewTagTeam(
+                    team.getId(),
+                    team.getName(),
+                    team.getNickname(),
+                    team.getCode(),
+                    team.getLogo()
+            ));
+        }
+        return tagTeamsList;
+    }
+
+    public ResponseEntity<?> getAllBlogs(TokenRequest tokenRequest){
+        String token = tokenRequest.getToken();
+        List<Blog> blogs = blogRepository.findAll();
+        boolean logged = jwtService.isTokenValid(token);
+        List<ViewBlog> viewBlogList = new ArrayList<>();
+        if(!logged){
+            for(Blog blog: blogs){
+                int idBlog = blog.getId();
+                List<ViewTagPlayer> tagPlayerList = builTagPlayerList(idBlog);
+                List<ViewTagTeam> tagTeamsList = buildTagTeamList(idBlog);
+                viewBlogList.add(new ViewBlog(
+                        blog.getId(),
+                        blog.getTitle(),
+                        blog.getSubtitle(),
+                        blog.getImg(),
+                        blog.getDate(),
+                        tagPlayerList,
+                        tagTeamsList
+                ));
+            }
+            return ResponseEntity.ok(new AllBlogUnLoggedResponse(false,viewBlogList));
+        }else{
+            List<ViewBlog> blogsAboutUserInterests = new ArrayList<>();
+            int idUser = jwtService.getIdUser(token);
+            for(Blog blog: blogs){
+                int idBlog = blog.getId();
+                List<Integer> tagIdPlayersList = tagPlayerRepository.findTagPlayerByIdBlog(idBlog);
+                List<Integer> tagIdTeamsList = tagTeamRepository.findTagTeamByIdBlog(idBlog);
+                List<Integer> favIdPlayers = favPlayerRepository.findFavPlayersByUser(idUser);
+                List<Integer> favIdTeams = favTeamRepository.findFavTeamsByUser(idUser);
+                List<ViewTagPlayer> tagPlayerList = builTagPlayerList(idBlog);
+                List<ViewTagTeam> tagTeamsList = buildTagTeamList(idBlog);
+                if(favIdPlayers.stream().anyMatch(tagIdPlayersList::contains) || favIdTeams.stream().anyMatch(tagIdTeamsList::contains)){
+                    blogsAboutUserInterests.add(new ViewBlog(
+                            blog.getId(),
+                            blog.getTitle(),
+                            blog.getSubtitle(),
+                            blog.getImg(),
+                            blog.getDate(),
+                            tagPlayerList,
+                            tagTeamsList
+                            )
+                    );
+                }else{
+                    viewBlogList.add(new ViewBlog(
+                            blog.getId(),
+                            blog.getTitle(),
+                            blog.getSubtitle(),
+                            blog.getImg(),
+                            blog.getDate(),
+                            tagPlayerList,
+                            tagTeamsList
+                    ));
+                }
+            }
+            return ResponseEntity.ok(new AllBlogLoggedResponse(true,blogsAboutUserInterests,viewBlogList));
+        }
     }
 
 }

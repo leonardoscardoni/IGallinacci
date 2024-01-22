@@ -31,7 +31,7 @@ public class UserService {
     private final JwtService  jwtService;
 
     private final UserRepository userRepository;
-    private final FavPlayerRepository favPlayersRepository;
+    private final FavPlayerRepository favPlayerRepository;
     private final FavTeamRepository favTeamRepository;
     private final PlayerRepository playerRepository;
     private final StatsPlayerRepository statsPlayerRepository;
@@ -99,8 +99,8 @@ public class UserService {
     public ProfileResponse buildLoggedProfile(User user) {
         List<ViewFavoritePlayerProfileResponse> favPlayers = new ArrayList<>();
         List<ViewFavoriteTeamProfileResponse> favTeams = new ArrayList<>();
-        List<Integer> idPlayers = favPlayersRepository.findFavPlayersByUser(user.getId());
-        List<Integer> IdTeams = favTeamRepository.findFavTeamsByUser(user.getId());
+        List<Integer> idPlayers = favPlayerRepository.findFavPlayersByUser(user.getId());
+        List<Integer> idTeams = favTeamRepository.findFavTeamsByUser(user.getId());
 
         for (int idPlayer: idPlayers
              ) {
@@ -122,8 +122,7 @@ public class UserService {
             ));
         }
 
-        for (int idTeam: IdTeams
-        ) {
+        for (int idTeam: idTeams) {
             Team team = teamRepository.findById(idTeam);
             favTeams.add(new ViewFavoriteTeamProfileResponse(
                     team.getId(),

@@ -1,6 +1,5 @@
 package com.IGallinari.LastGame.payload.response.blog;
 
-import com.IGallinari.LastGame.payload.response.blog.paragraph.ViewParagraphResponse;
 import com.IGallinari.LastGame.payload.response.blog.paragraph.tagPlayer.ViewTagPlayer;
 import com.IGallinari.LastGame.payload.response.blog.paragraph.tagTeam.ViewTagTeam;
 import lombok.AllArgsConstructor;
@@ -11,14 +10,12 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class BlogResponse {
-    private boolean logged;
-    private String emailAuthor;
+public class ViewBlog {
+    private int idBlog;
     private String title;
-    private String subTitle;
+    private String subtitle;
     private String img;
     private LocalDate date;
-    private List<ViewParagraphResponse> paragraphs;
     private List<ViewTagPlayer> tagPlayer;
     private List<ViewTagTeam> tagTeam;
 }
