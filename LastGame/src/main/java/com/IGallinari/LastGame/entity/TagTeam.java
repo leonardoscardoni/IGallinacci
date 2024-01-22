@@ -1,6 +1,7 @@
 package com.IGallinari.LastGame.entity;
 
 
+import com.IGallinari.LastGame.entity.id_class.IdTagTeam;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -9,7 +10,7 @@ import lombok.Data;
 public class TagTeam {
 
     @EmbeddedId
-    private com.IGallinari.LastGame.entity.id_class.idTagTeam idTagTeam;
+    private IdTagTeam idTagTeam;
 
     @ManyToOne
     @JoinColumn(name = "idBlog", insertable = false, updatable = false)

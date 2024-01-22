@@ -6,11 +6,11 @@ import lombok.Data;
 
 @Data
 @Embeddable
-public class idTagTeam implements Serializable{
+public class IdTagPlayer implements Serializable {
     
     @Column(name = "idBlog")
-    private int idblog;
+    private int idBlog;
 
-    @Column(name = "idTeam")
-    private int idTeam;
+    @Column(name = "idPlayer")
+    private int idPlayer;
 }
