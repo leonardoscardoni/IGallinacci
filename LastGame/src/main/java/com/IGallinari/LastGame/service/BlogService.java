@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -174,6 +175,7 @@ public class BlogService {
     public ResponseEntity<?> getAllBlogs(TokenRequest tokenRequest){
         String token = tokenRequest.getToken();
         List<Blog> blogs = blogRepository.findAll();
+        blogs.sort(Comparator.comparing(Blog::getDate).reversed());
         boolean logged = jwtService.isTokenValid(token);
         List<ViewBlog> viewBlogList = new ArrayList<>();
         if(!logged){
