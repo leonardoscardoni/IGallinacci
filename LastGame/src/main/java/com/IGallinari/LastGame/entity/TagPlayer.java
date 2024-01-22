@@ -1,5 +1,6 @@
 package com.IGallinari.LastGame.entity;
 
+import com.IGallinari.LastGame.entity.id_class.IdTagPlayer;
 import jakarta.persistence.*;
 import lombok.Data;
 @Entity
@@ -7,7 +8,7 @@ import lombok.Data;
 public class TagPlayer {
 
     @EmbeddedId
-    private com.IGallinari.LastGame.entity.id_class.idTagPlayer idTagPlayer;
+    private IdTagPlayer idTagPlayer;
 
 
     @ManyToOne

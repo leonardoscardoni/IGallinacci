@@ -275,7 +275,7 @@ CREATE TABLE `blog` (
   `idUser` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `subtitle` varchar(255) DEFAULT NULL,
-  `dateBlog` date NOT NULL,
+  `date` date NOT NULL,
   `img` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -285,7 +285,7 @@ CREATE TABLE `blog` (
 --
 CREATE TABLE `paragraph` (
   `idBlog` int(11) NOT NULL,
-  `index` int(11) NOT NULL,
+  `number` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -399,7 +399,7 @@ ALTER TABLE `blog`
 -- Indici per le tabelle `paragraph`
 --
 ALTER TABLE `paragraph`
-  ADD PRIMARY KEY (`idBlog`,`index`),
+  ADD PRIMARY KEY (`idBlog`,`number`),
   ADD KEY `fk_paragraph_blog` (`idBlog`);
 
 --

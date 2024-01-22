@@ -12,6 +12,6 @@ public class IdParagraph implements Serializable {
     @Column(name = "idBlog")
     private int idBlog;
 
-    @Column(name = "index")
-    private int index;
+    @Column(name = "number")
+    private int number;
 }
