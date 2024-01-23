@@ -72,7 +72,13 @@ public class TeamService {
         );
         return new TeamsResponse(logged, conferenceWest, conferenceEast);
     }
-
+    /**
+     * Builds a ViewDivision object containing a list of teams in a specific division.
+     *
+     * @param division The name of the division to retrieve teams from.
+     * @param idUser   The ID of the user (can be null for anonymous users).
+     * @return A ViewDivision object representing the teams in the specified division.
+     */
     private ViewDivision buildViewDivision(String division, Integer idUser){
         List<Team> teamsByDivision= teamRepository.findByDivision(division);
         List<ViewTeam> listViewTeams= new ArrayList<>();

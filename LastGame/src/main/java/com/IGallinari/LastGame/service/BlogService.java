@@ -153,7 +153,12 @@ public class BlogService {
                 tagTeamsList
         );
     }
-
+    /**
+     * Builds a list of tagged players for a given blog.
+     *
+     * @param idBlog The ID of the blog for which to retrieve tagged players.
+     * @return A list of tagged players.
+     */
     private List<ViewTagPlayer> builTagPlayerList(int idBlog){
         List<Integer> tagIdPlayersList = tagPlayerRepository.findTagPlayerByIdBlog(idBlog);
         List<ViewTagPlayer> tagPlayerList = new ArrayList<>();
@@ -167,7 +172,12 @@ public class BlogService {
         }
         return tagPlayerList;
     }
-
+    /**
+     * Builds a list of tagged teams for a given blog.
+     *
+     * @param idBlog The ID of the blog for which to retrieve tagged teams.
+     * @return A list of tagged teams.
+     */
     private List<ViewTagTeam> buildTagTeamList(int idBlog){
         List<Integer> tagIdTeamsList = tagTeamRepository.findTagTeamByIdBlog(idBlog);
         List<ViewTagTeam> tagTeamsList = new ArrayList<>();
@@ -183,7 +193,12 @@ public class BlogService {
         }
         return tagTeamsList;
     }
-
+    /**
+     * Retrieves a list of blogs, considering user interests and access permissions.
+     *
+     * @param tokenRequest Token request to validate user access.
+     * @return ResponseEntity containing a list of blogs.
+     */
     public ResponseEntity<?> getAllBlogs(TokenRequest tokenRequest){
         String token = tokenRequest.getToken();
         List<Blog> blogs = blogRepository.findAll();
