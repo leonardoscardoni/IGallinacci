@@ -6,13 +6,22 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
+/**
+ * Service class to handle the processing of team data received in JSON format.
+ * This class is responsible for parsing the JSON data, extracting relevant team information,
+ * and persisting it into the database using TeamRepository.
+ */
 @Service
 @AllArgsConstructor
 public class TeamsHandler implements Handler{
 
     private TeamRepository teamRepository;
-
+    /**
+     * Processes the JSON node containing team data.
+     * It parses and converts JSON data into Team entity objects and saves them to the database.
+     *
+     * @param jsonNode The JSON node containing the team data.
+     */
     @Override
     public void handle(JsonNode jsonNode) {
         ArrayNode teamsNode = (ArrayNode) jsonNode.get("response");

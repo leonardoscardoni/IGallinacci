@@ -15,6 +15,11 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Service class to handle the processing of game data received in JSON format.
+ * This class is responsible for parsing the JSON data, extracting relevant information,
+ * and persisting it into the database using various repositories.
+ */
 @Service
 @AllArgsConstructor
 public class GamesHandler implements Handler {
@@ -26,6 +31,13 @@ public class GamesHandler implements Handler {
     private GameRepository gameRepository;
 
     private StatsGameRepository statsGameRepository;
+
+    /**
+     * Processes the JSON node containing game data.
+     * It parses and converts JSON data into entity objects and saves them to the database.
+     *
+     * @param jsonNode The JSON node containing the game data.
+     */
 
     @Override
     public void handle(JsonNode jsonNode) {

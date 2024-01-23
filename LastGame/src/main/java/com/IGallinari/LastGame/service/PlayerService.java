@@ -27,7 +27,10 @@ import lombok.RequiredArgsConstructor;
 import com.IGallinari.LastGame.entity.*;
 import com.IGallinari.LastGame.repository.*;
 
-
+/**
+ * Service class for managing player-related operations.
+ * Includes functionalities such as building responses for player details, comparisons, and filters.
+ */
 @Service
 @RequiredArgsConstructor
 public class PlayerService {
@@ -48,7 +51,14 @@ public class PlayerService {
     private final FavTeamRepository favTeamRepository;
 
     private final JwtService jwtService;
-
+    /**
+     * Builds a response for player-team filter based on the given request.
+     *
+     * @param tokenRequest The request containing the user's token.
+     * @param idTeam The ID of the team to filter players.
+     * @param season The season for which to filter the players.
+     * @return A PlayerTeamFilterResponse with the filtered player information.
+     */
     public PlayerTeamFilterResponse buildPlayerTeamFilterResponse(TokenRequest tokenRequest,int idTeam, int season){
         String token = tokenRequest.getToken();
         boolean logged = jwtService.isTokenValid(token);
@@ -91,7 +101,14 @@ public class PlayerService {
             players
         );
     }
-
+    /**
+     * Builds a response with player details for a specific game.
+     *
+     * @param tokenRequest The request containing the user's token.
+     * @param idGame The ID of the game.
+     * @param idPlayer The ID of the player.
+     * @return A PlayerDetailsByGameResponse with the player's game details.
+     */
     public PlayerDetailsByGameResponse buildPlayerDetailsByGameResponse (TokenRequest tokenRequest,int idGame, int idPlayer){
         String token = tokenRequest.getToken();
         boolean logged = jwtService.isTokenValid(token);
@@ -180,6 +197,11 @@ public class PlayerService {
                 viewFoulsBallsBlocksPlayerDetailsByGame
         );
     }
+    /**
+     * Builds a response for player filter comparison.
+     *
+     * @return A PlayerFilterResponse containing team and role filter options.
+     */
         public PlayerFilterResponse buildCompareFilterResponse(){
             List<ViewTeamsPlayerFilter> allTeam = new ArrayList<>();
             List<Team> dataTeams = teamRepository.findAll();
@@ -197,7 +219,14 @@ public class PlayerService {
             PlayerFilterResponse playerFilterResponse = new PlayerFilterResponse(allTeam, allRoles);
             return  playerFilterResponse;
         }
-
+    /**
+     * Builds a response with player details for a specific season.
+     *
+     * @param tokenRequest The request containing the user's token.
+     * @param idPlayer     The ID of the player.
+     * @param season       The season for which to retrieve player details.
+     * @return A PlayerDetailsResponse with the player's details for the given season.
+     */
     public PlayerDetailsResponse buildDetailsPlayerIndependentByGameResponse(TokenRequest tokenRequest, int idPlayer, int season) {
         Player player = playerRepository.findById(idPlayer);
         List<Object[]> sumStatsPlayerAndAvgPointsArray = statsPlayerRepository.findSumStatsPlayerAndAvgPointsByIdPlayerAndSeason(idPlayer, season);
@@ -278,7 +307,15 @@ public class PlayerService {
                 viewPointsPlayerDetails
         );
     }
-
+    /**
+     * Builds a response for comparing two players.
+     *
+     * @param tokenRequest The request containing the user's token.
+     * @param idPlayer1    The ID of the first player.
+     * @param idPlayer2    The ID of the second player.
+     * @param season       The season for which to compare the players.
+     * @return A ResponseEntity with a ComparePlayersResponse if logged in, otherwise a NeedToBeLoggedResponse.
+     */
     public ResponseEntity<?> buildComparePlayersResponse(TokenRequest tokenRequest, int idPlayer1, int idPlayer2, int season){
         String token = tokenRequest.getToken();
         boolean logged = jwtService.isTokenValid(token);
