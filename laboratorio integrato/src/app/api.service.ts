@@ -176,7 +176,7 @@ export class ApiService {
 
     getPlayerDetailInd(id: string) {
         return this.http
-            .post(`${this.baseURL}${this.playerIndipendente}${id}${"&season=2022"}`, {
+            .post(`${this.baseURL}${this.playerIndipendente}${id}${"&season=2023"}`, {
                 token: localStorage.getItem("loginToken"),
             })
             .pipe(
@@ -199,6 +199,21 @@ export class ApiService {
             .post(`${this.baseURL}${this.PlayerFilter}${idTeam}${"&season=2023"}`, {
                 token: localStorage.getItem("loginToken"),
             })
+            .pipe(
+                map((response: any) => {
+                    return response as PlayerTeamFilteredType;
+                })
+            );
+    }
+
+    getConfrontoTeamApi(id1: string, id2: string) {
+        return this.http
+            .post(
+                `${this.baseURL}${this.confrontoTeam}${id1}${"&idTeam2="}${id2}${"&season=2023"}`,
+                {
+                    token: localStorage.getItem("loginToken"),
+                }
+            )
             .pipe(
                 map((response: any) => {
                     return response as PlayerTeamFilteredType;

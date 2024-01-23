@@ -1,6 +1,6 @@
 
 <app-header-confronto-dettaglio [bgImg]="bgImg" [nome1]="data.team1.name" [nome2]="data.team2.name" [logo1]="data.team1.logo" [logo2]="data.team2.logo"></app-header-confronto-dettaglio>
-<app-titolo-sezione [numero]="'01'" [titolo]="'Classifica'" [spiegazione]="'Lorem ipsum dolor sit amet consectetur. Velit urna vitae scelerisque nullam sed metus dictum pulvinar.'" [spanSpiegazione]="'Consectetur volutpat turpis nec congueuioiuiuiu.'"/>
+<app-titolo-sezione [numero]="'01'" [titolo]="'Classifica'" [spiegazione]="'Le squadre in testa alla classifica hanno maggiori possibilità di vincere il campionato, ma non è l`unico fattore da considerare'"/>
 <div>
 <div class="grid grid-cols-12 gap-4 mb-16 mt-4">
     <div class="col-start-3 md:col-start-5 col-span-4 md:col-span-3">
@@ -13,10 +13,10 @@
     </div>
 </div>
 
-<app-titolo-sezione [numero]="'02'" [titolo]="'Dati'" [spiegazione]="'Lorem ipsum dolor sit amet consectetur. Velit urna vitae scelerisque nullam sed metus dictum pulvinar.'" [spanSpiegazione]="'Consectetur volutpat turpis nec congue.'"/>
+<app-titolo-sezione [numero]="'02'" [titolo]="'Dati'" [spiegazione]="'Il confronto dei dati servono per comprendere il gioco e le sue dinamiche. Analizzando i dati di una squadra, è possibile individuare i suoi punti di forza e di debolezza, i suoi stili di gioco e le sue tendenze.'"/>
 
 <div class="container grid grid-cols-12 gap-4">
-    <div class="col-start-0 col-span-12 md:col-start-1 lg:col-start-2 md:col-span-12 lg:col-span-10">
+    <div class="col-start-0 col-span-12 md:col-start-1 lg:col-start-2 md:col-span-12 lg:col-span-10 px-20 md:px-5">
         <div class="flex justify-between flex-wrap flex-col md:flex-row">
             <ng-container *ngFor="let tipoDato of data.dataCompareTeamNba, let i = index">
                 <div class="w-full md:w-[30%] mt-3 ">
@@ -29,11 +29,12 @@
         </div>
    </div>
 </div>
-
-<app-titolo-sezione [numero]="'03'" [titolo]="'Ultimi 4 incontri'" [spiegazione]="'Il confronto degli ultimi 4 match della stagione è utile per capire come le squadre stanno performando e quali sono le loro probabilità di vittoria.'"/>
-<app-quattro-confronti class="mb-5" [tipologia]="'ultimi4Incontri'" [dataHome]="data.lastFourGamesTeam1" [dataVisitor]="data.lastFourGamesTeam2" [homeTeamLogo]="data.team1.logo" [visitorTeamLogo]="data.team2.logo" [homeTeamName]="data.lastFourHtHTeam1.code" [visitorTeamName]="data.lastFourHtHTeam2.code"/>
-
-<app-titolo-sezione [numero]="'04'" [titolo]="'Head to head'" [spiegazione]="'Gli head to head rappresentano i risultati delle partite giocate tra due squadre durante la stagione.'" [spanSpiegazione]="'Questi risultati sono considerati significativi in situazioni in cui le due squadre hanno lo stesso numero di punti in classifica.'"/>
-<app-quattro-confronti [tipologia]="'headToHead'" [dataHome]="data.lastFourHtHTeam1" [dataVisitor]="data.lastFourHtHTeam2" [homeTeamLogo]="data.team1.logo" [visitorTeamLogo]="data.team2.logo" [homeTeamName]="data.lastFourHtHTeam1.code" [visitorTeamName]="data.lastFourHtHTeam2.code"/>
+<section class="pb-20">
+    <app-titolo-sezione [numero]="'03'" [titolo]="'Ultimi 4 incontri'" [spiegazione]="'Il confronto degli ultimi 4 match della stagione è utile per capire come le squadre stanno performando e quali sono le loro probabilità di vittoria.'"/>
+    <app-quattro-confronti class="mb-5" [tipologia]="'ultimi4Incontri'" [dataHome]="data.lastFourGamesTeam1" [dataVisitor]="data.lastFourGamesTeam2" [homeTeamLogo]="data.team1.logo" [visitorTeamLogo]="data.team2.logo" [homeTeamName]="data.lastFourHtHTeam1.code" [visitorTeamName]="data.lastFourHtHTeam2.code"/>
+    
+    <app-titolo-sezione [numero]="'04'" [titolo]="'Head to head'" [spiegazione]="'Gli head to head rappresentano i risultati delle partite giocate tra due squadre durante la stagione.'" [spanSpiegazione]="'Questi risultati sono considerati significativi in situazioni in cui le due squadre hanno lo stesso numero di punti in classifica.'"/>
+    <app-quattro-confronti [tipologia]="'headToHead'" [dataHome]="data.lastFourHtHTeam1" [dataVisitor]="data.lastFourHtHTeam2" [homeTeamLogo]="data.team1.logo" [visitorTeamLogo]="data.team2.logo" [homeTeamName]="data.lastFourHtHTeam1.code" [visitorTeamName]="data.lastFourHtHTeam2.code"/>
+</section>
 
 

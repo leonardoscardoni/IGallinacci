@@ -29,6 +29,10 @@ export class ProfiloComponent {
         });
 
         this.nomeUtente = localStorage.getItem("name");
+
+        if (!localStorage.getItem("loginToken")) {
+            this.router.navigateByUrl("/home");
+        }
     }
 
     get slicedPlayers(): any[] {
@@ -66,8 +70,8 @@ export class ProfiloComponent {
         this.numeroSquadreDaVisualizzare = 3;
         console.log(this.slicedPlayers);
     }
-
     logout() {
         localStorage.clear();
+        window.location.reload();
     }
 }
