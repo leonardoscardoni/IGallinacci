@@ -12,10 +12,10 @@ INSERT INTO `user` (`id`, `email`, `password`, `name`, `role`) VALUES
 --
 
 INSERT INTO `blog` (`id`, `idUser`, `title`, `subtitle`, `date`, `img`) VALUES
-(1, 1, 'L\'Epica Storia del \'Last Shot\' di Michael Jordan', 'Come Michael Jordan ha cambiato la storia del basket con un solo tiro', '2024-01-19', 'https://imgresizer.eurosport.com/unsafe/1200x0/filters:format(jpeg)/origin-imgresizer.eurosport.com/2020/06/14/2832740-58419828-2560-1440.jpg'),
-(2, 1, 'Draymond Green torna in campo!', 'Come il suo ritorno può cambiare le sorti dei Warriors e della NBA', '2024-01-20', 'https://i.pinimg.com/564x/01/ed/ab/01edab4527fed40c0c902f7e67d817df.jpg'),
+(1, 1, 'L\'Epica Storia del \'Last Shot\' di Michael Jordan', 'Come Michael Jordan ha cambiato la storia del basket con un solo tiro', '2024-01-19', 'https://i.imgur.com/HrVbWac.jpg'),
+(2, 1, 'Draymond Green torna in campo!', 'Come il suo ritorno può cambiare le sorti dei Warriors e della NBA', '2024-01-20', 'https://i.imgur.com/0AhY20m.jpg'),
 (3, 2, 'La prima tripla doppia in NBA di Paolo Banchero', 'Il fenomeno italiano che fa impazzire la NBA: la sua prima tripla doppia contro i Nuggets', '2024-01-21', 'https://www.nbareligion.com/wp-content/uploads/2022/12/paolo_banchero-1.jpg.webp'),
-(4, 2, 'Jaime Jasquez Jr parteciperà allo Slam Dunk Contest', 'Il volo dell’ex UCLA che sfida le leggi della gravità, il suo debutto allo Slam Dunk Contest', '2024-01-22', 'https://s.yimg.com/ny/api/res/1.2/LKik5Rxh.XrxJUo5jRq9dQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTcwNTtoPTEwNTg7Y2Y9d2VicA--/https://media.zenfs.com/en/la_times_articles_853/861b1f85d04140f835e0c5d08f6c2694'),
+(4, 2, 'Jaime Jasquez Jr parteciperà allo Slam Dunk Contest', 'Il volo dell’ex UCLA che sfida le leggi della gravità, il suo debutto allo Slam Dunk Contest', '2024-01-22', 'https://i.imgur.com/MYu7dQ7.jpg'),
 (5, 1, 'L’infortunio di Haliburton', 'Haliburton out per due settimane, come cambia la situazione dei Pacers', '2024-01-23', 'https://www.nbapassion.com/wp-content/uploads/2024/01/haliburton-infortunio.webp');
 
 --
