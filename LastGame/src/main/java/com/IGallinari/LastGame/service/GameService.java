@@ -39,7 +39,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ * Service class for managing game-related operations.
+ * This includes building responses for various game views such as home, calendar, and game details.
+ */
 @Service
 @RequiredArgsConstructor
 public class GameService {
@@ -64,7 +67,13 @@ public class GameService {
     private final FavPlayerRepository favPlayerRepository;
 
     private final JwtService jwtService;
-
+    /**
+     * Builds and returns the home view response based on the given home request.
+     * The response varies depending on whether the user is logged in or not.
+     *
+     * @param homeRequest The request data for building the home view.
+     * @return A ResponseEntity containing the home view response.
+     */
     public ResponseEntity<?> buildHome(HomeRequest homeRequest){
         String token = homeRequest.getToken();
         LocalDate date = homeRequest.getDate();

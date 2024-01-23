@@ -2,7 +2,10 @@ package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
+/**
+ * Service class that manages different types of handlers.
+ * Based on the provided endpoint, it determines and returns the appropriate handler.
+ */
 @Service
 @RequiredArgsConstructor
 public class HandlerManager {
@@ -13,6 +16,14 @@ public class HandlerManager {
     private final StandingsHandler standingsHandler;
     private final TeamsHandler teamsHandler;
     private final TeamsStatisticsHandler teamsStatisticsHandler;
+
+    /**
+     * Retrieves the appropriate handler based on the given endpoint.
+     *
+     * @param endpoint The endpoint for which the handler is to be retrieved.
+     * @return The handler corresponding to the given endpoint.
+     * @throws RuntimeException if no handler is found for the given endpoint.
+     */
 
 
     public Handler getHandler(String endpoint) {

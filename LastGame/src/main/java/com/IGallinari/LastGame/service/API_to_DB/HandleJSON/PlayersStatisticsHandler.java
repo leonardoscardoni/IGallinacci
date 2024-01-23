@@ -9,7 +9,12 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import lombok.AllArgsConstructor;
 
 import org.springframework.stereotype.Service;
-
+/**
+ * Service class to handle the processing of player statistics data received in JSON format.
+ * This class is responsible for parsing the JSON data, extracting relevant player statistics information,
+ * and persisting or updating it into the database using PlayerRepository, PlayerTeamRepository,
+ * GameRepository, StatsPlayerRepository, and TeamRepository.
+ */
 @Service
 @AllArgsConstructor
 public class PlayersStatisticsHandler implements Handler{
@@ -22,7 +27,13 @@ public class PlayersStatisticsHandler implements Handler{
     private StatsPlayerRepository statsPlayerRepository;
 
     private TeamRepository teamRepository;
-
+    /**
+     * Processes the JSON node containing player statistics data.
+     * It parses and converts JSON data into Player, PlayerTeam, Game, Team, and StatsPlayer entity objects
+     * and saves or updates them to the database.
+     *
+     * @param jsonNode The JSON node containing the player statistics data.
+     */
     @Override
     public void handle(JsonNode jsonNode) {
         ArrayNode playersStatisticsNode = (ArrayNode) jsonNode.get("response");
