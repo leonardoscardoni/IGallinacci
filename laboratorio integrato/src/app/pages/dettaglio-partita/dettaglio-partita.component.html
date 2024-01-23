@@ -1,11 +1,3 @@
-<div class="fixed">
-    <div class="block sm:hidden">XS</div>
-    <div class="hidden sm:block md:hidden">SM</div>
-    <div class="hidden md:block lg:hidden">MD</div>
-    <div class="hidden md:hidden lg:block xl:hidden">LG</div>
-    <div class="hidden lg:hidden xl:block">XL</div>
-</div>
-
 <app-header-dettaglio-partita [data]="data.gameDetails"></app-header-dettaglio-partita>
 
 <app-titolo-sezione *ngIf="data.gameDetails.homeTeam.points" [numero]="'01'" [titolo]="'Quarters'" [spiegazione]="'I quarters di NBA sono i quarti di gioco di una partita di basket. Sono quattro, ciascuno di 12 minuti.'" [spanSpiegazione]="'La squadra con più punti alla fine dei quarters vince la partita.'"/>
