@@ -18,7 +18,11 @@ import { ProfiloComponent } from "./pages/profilo/profilo.component";
 import { DettaglioArticoloComponent } from "./pages/dettaglio-articolo/dettaglio-articolo.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { RegisterComponent } from "./pages/register/register.component";
-import { getDettaglioPartitaService } from "./_services/getDettaglioPartitaService.service";
+import { getDettaglioPartitaResolver } from "./_services/getDettaglioPartitaResolver.service";
+import { getElencoTeamResolver } from "./_services/getElencoTeamResolver.service";
+import { getTeamDetailResolver } from "./_services/getTeamDetailResolver.service";
+import { getClassificaResolver } from "./_services/getClassificaResolver.service";
+import { getPlayerDetailIndResolver } from "./_services/getPlayerDetailIndResolver.service";
 
 const routes: Routes = [
     { path: "login", component: LoginComponent },
@@ -29,16 +33,52 @@ const routes: Routes = [
         component: DettaglioPartitaComponent,
         resolve: {
             getDettaglioPartita: (route: ActivatedRouteSnapshot) => {
-                return inject(getDettaglioPartitaService).getDettaglioPartita(
+                return inject(getDettaglioPartitaResolver).getDettaglioPartita(
                     route.paramMap.get("idPartita")!
                 );
             },
         },
     },
+    {
+        path: "elenco-team",
+        component: ElencoTeamComponent,
+        resolve: {
+            getElencoTeam: (route: ActivatedRouteSnapshot) => {
+                return inject(getElencoTeamResolver).getElencoTeam;
+            },
+        },
+    },
+    {
+        path: "dettaglio-team/:id",
+        component: DettaglioTeamComponent,
+        resolve: {
+            getTeamDetail: (route: ActivatedRouteSnapshot) => {
+                return inject(getTeamDetailResolver).getTeamDetail(route.paramMap.get("id")!);
+            },
+        },
+    },
+    {
+        path: "classifica/:stagione",
+        component: ClassificaComponent,
+        resolve: {
+            getClassifica: (route: ActivatedRouteSnapshot) => {
+                return inject(getClassificaResolver).getClassifica(route.paramMap.get("stagione")!);
+            },
+        },
+    },
+    {
+        path: "dett-giocatore-ind/:id",
+        component: DettGiocatoreIndipendenteComponent,
+        resolve: {
+            getPlayerDetailInd: (route: ActivatedRouteSnapshot) => {
+                return inject(getPlayerDetailIndResolver).getPlayerDetailInd(
+                    route.paramMap.get("id")!
+                );
+            },
+        },
+    },
     { path: "calendario-partite", component: CalendarioPartiteComponent },
-    { path: "dettaglio-team/:id", component: DettaglioTeamComponent },
     { path: "dett-confronto-giocatori/:id1/:id2", component: DettConfrontoGiocatoriComponent },
-    { path: "dett-giocatore-ind/:id", component: DettGiocatoreIndipendenteComponent },
     { path: "elenco-giocatori", component: ElencoGiocatoriComponent },
     { path: "blog", component: ElencoArticoliComponent },
     { path: "scelta-confronto-team", component: SceltaConfrontoTeamComponent },
@@ -47,14 +87,9 @@ const routes: Routes = [
         component: DettaglioGiocatorePartitaComponent,
     },
     { path: "scelta-confronto-giocatori", component: SceltaConfrontoGiocatoriComponent },
-    { path: "elenco-team", component: ElencoTeamComponent },
     {
         path: "dettaglio-confronto-team/:id1/:id2",
         component: DettaglioConfrontoTeamComponent,
-    },
-    {
-        path: "classifica/:stagione",
-        component: ClassificaComponent,
     },
     {
         path: "profilo",

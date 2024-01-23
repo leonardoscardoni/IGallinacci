@@ -9,8 +9,7 @@ import { ApiService } from "src/app/api.service";
     styleUrls: ["./classifica.component.scss"],
 })
 export class ClassificaComponent {
-
-   data: ClassificaType = {} as ClassificaType;
+    data: ClassificaType = {} as ClassificaType;
 
     constructor(private route: ActivatedRoute, private apiService: ApiService) {}
     stagione: any;
@@ -19,12 +18,11 @@ export class ClassificaComponent {
         this.route.paramMap.subscribe((params) => {
             this.stagione = params.get("stagione");
             console.log("stagione:", this.stagione);
-            this.apiService.getClassifica(this.stagione).subscribe((data) => {
-                this.data = data;
-                console.log("qeust", data);
+
+            this.route.data.subscribe(({ getClassifica }) => {
+                this.data = getClassifica;
+                console.log(this.data);
             });
         });
     }
-
-
 }

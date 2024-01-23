@@ -5,7 +5,7 @@ import { ActivatedRoute } from "@angular/router";
 @Injectable({
     providedIn: "root",
 })
-export class getDettaglioPartitaService implements OnInit {
+export class getDettaglioPartitaResolver implements OnInit {
     constructor(private apiService: ApiService) {}
 
     ngOnInit(): void {}
