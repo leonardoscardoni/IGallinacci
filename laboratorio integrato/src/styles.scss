@@ -20,6 +20,10 @@ $nero:#130B02;
     font-family: 'inter-bold-italic';
     src: url('/assets/Inter/static/Inter-BoldItalic.woff2') format('woff');
 }
+@font-face {
+    font-family: 'inter-bold-italic';
+    src: url('/assets/Inter/static/Inter-') format('woff');
+}
 
 body , .linea{
     background-color: $nero;

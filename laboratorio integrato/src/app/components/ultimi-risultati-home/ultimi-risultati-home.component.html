@@ -13,8 +13,8 @@
         <!--     Carosello per ultimi risultati -->
         <ng-container *ngIf="title==='Ultimi risultati'">
   
-          <div *ngFor="let match of data.pastGames" class="carousel-item border border-[#E5CFB5] md:w-[19rem] md:h-[21rem] w-[12rem] h-[14rem] rounded-2xl p-3 flex-none cursor-pointer hover:bg-[#E5CFB5] hover:text-black">
-            <div class="w-[100%] h-full">
+          <div *ngFor="let match of data" class="carousel-item border border-[#E5CFB5] md:w-[19rem] md:h-[21rem] w-[12rem] h-[14rem] rounded-2xl p-3 flex-none cursor-pointer hover:bg-[#E5CFB5] hover:text-black">
+            <div class="w-[100%] h-full" routerLink="/dettaglio-partita/{{match.id}}">
               <div class="h-[50%] flex flex-col justify-center items-center align-bottom" [ngClass]="getBackgroundColor(match.homeTeam.points, match.visitorTeam.points)">
                 <div class="flex justify-around w-full gap-7 py-5">
                   <div class="w-8 h-8 bg-white rounded-full p-1 overflow-hidden"><img src={{match.homeTeam.logo}} class="w-full h-full object-contain" alt="">
@@ -42,14 +42,14 @@
         <!-- Carosello per risultati per te -->
         <ng-container *ngIf="title==='Per te'">
 
-          <div *ngIf="data.favTeamsNextGame.length == 0" class="font-inter">
+          <div *ngIf="data.length == 0" class="font-inter">
             Le tue squadre preferite non hanno giocato ultimamente!
           </div>
         
-          <div *ngFor="let match of data.favTeamsNextGame" class="carousel-item border border-[#E5CFB5] md:w-[19rem] md:h-[21rem] w-[12rem] h-[14rem] rounded-2xl p-3 flex-none cursor-pointer hover:bg-[#E5CFB5] hover:text-black">
+          <div *ngFor="let match of data" class="carousel-item border border-[#E5CFB5] md:w-[19rem] md:h-[21rem] w-[12rem] h-[14rem] rounded-2xl p-3 flex-none cursor-pointer hover:bg-[#E5CFB5] hover:text-black">
 
           
-            <div class="w-[100%] h-full">
+            <div class="w-[100%] h-full" routerLink="/dettaglio-partita/{{match.id}}">
               <div class="h-[50%] flex flex-col justify-center items-center align-bottom" [ngClass]="getBackgroundColor(match.homeTeam.points, match.visitorTeam.points)">
                 <div class="flex justify-around w-full gap-7 py-5">
                   <div class="w-8 h-8 bg-white rounded-full p-1 overflow-hidden"><img src={{match.homeTeam.logo}} class="w-full h-full object-contain" alt="">

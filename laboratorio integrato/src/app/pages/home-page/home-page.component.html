@@ -1,6 +1,6 @@
 <app-header></app-header>
-<app-ultimi-risultati-home [data]="data" [title]="'Per te'"></app-ultimi-risultati-home>
-<app-ultimi-risultati-home *ngIf="data.logged == true" [data]="data" [title]="'Ultimi risultati'"></app-ultimi-risultati-home>
+<app-ultimi-risultati-home *ngIf="data.logged == true" [data]="data.favTeamsPastGame" [title]="'Per te'"></app-ultimi-risultati-home>
+<app-ultimi-risultati-home [data]="data.pastGames" [title]="'Ultimi risultati'"></app-ultimi-risultati-home>
 
 
 <div *ngIf="data.logged == false"
@@ -22,7 +22,7 @@
 </div>
 
 <div *ngIf="data.logged == true"
-  class="bg-white/5 w-full min-h-[65vh] border-y flex flex-col items-center md:ps-6 ps-0 md:p-0 pb-5"
+  class="bg-white/5 w-full border-y flex flex-col items-center md:ps-6 ps-0 md:p-0 pb-5"
 >
   <h2 class="w-full text-[2.5rem] uppercase text-center font-extrabold py-8">
     Following
@@ -30,21 +30,36 @@
   <div class="flex flex-wrap w-[80%]">
     <div
       class="md:w-1/2 w-full h-auto flex md:justify-center md:px-5 py-3"
-      *ngFor="let c of b"
     >
+
+    <ng-container *ngFor="let squadra of data.westStandings">
       <div class="flex gap-3 md:w-2/3 w-full h-full">
         <div class="border rounded-full h-full w-12 p-1">
-          <img src="/assets/s-l1200.webp" class="w-full" alt="" />
+          <img [src]="squadra.logo" class="w-full" alt="" />
         </div>
         <div class="w-full text-xl capitalize flex items-center">
-          <h3>{{ c.name }}</h3>
+          <h3>{{ squadra.nickname }} <span class="font-inter font-light text-sm">[W]</span></h3>
         </div>
       </div>
-      <h3 class="leading-10">12</h3>
+      <h3 class="leading-10">{{squadra.rank}}</h3>
+    </ng-container>
+
+    <ng-container *ngFor="let squadra of data.eastStandings">
+      <div class="flex gap-3 md:w-2/3 w-full h-full">
+        <div class="border rounded-full h-full w-12 p-1">
+          <img [src]="squadra.logo" class="w-full" alt="" />
+        </div>
+        <div class="w-full text-xl capitalize flex items-center">
+          <h3>{{ squadra.nickname }} <span class="font-inter font-light">[E]</span></h3>
+        </div>
+      </div>
+      <h3 class="leading-10">{{squadra.rank}}</h3>
+    </ng-container>
+
     </div>
   </div>
   <button routerLink="/elenco-team"
-    class="border rounded-3xl px-5 py-[0.3rem] mt-10 border-amber-600 font-inter text-lg w-fit"
+    class="border rounded-3xl px-5 py-[0.3rem] mb-8 mt-10 border-amber-600 font-inter text-lg w-fit"
   >
     Modifica
   </button>
@@ -102,32 +117,21 @@
       class="carousel-content flex md:flex-row flex-col gap-4 overflow-x-scroll hide-scrollbar"
       #carouselContent
     >
+    <ng-container *ngFor="let articolo of data.blogs">
       <div
-        class="carousel-item border border-[#E5CFB5] w-full md:w-[42rem] md:h-[23rem] overflow-hidden object-cover rounded-2xl flex-none cursor-pointer relative"
+        class="carousel-item border border-[#E5CFB5] w-full md:w-[42rem] md:h-[23rem] overflow-hidden object-cover rounded-2xl flex-none cursor-pointer relative" routerLink="/blog/{{articolo.idBlog}}"
       >
-        <img src="/assets/Blog-1.jpg" class="h-full w-full" alt="" />
+        <div class="h-full w-full bg-center bg-no-repeat bg-cover" style="background-image: url('{{articolo.img}}')"></div>
         <h3 class="absolute z-50 bottom-8 left-8 md:text-4xl text-xl">
-          Kevin Durant Entra nella Storia NBA
+          {{articolo.title}}
         </h3>
         <h4
           class="absolute z-50 top-8 left-8 font-inter color-arancio md:text-xl text-xs"
         >
-          5 dic 2023
+          {{convertDate(articolo.date)}}
         </h4>
       </div>
-      <div
-        class="carousel-item border border-[#E5CFB5] md:w-[42rem] md:h-[23rem] overflow-hidden object-cover rounded-2xl flex-none cursor-pointer relative"
-      >
-        <img src="/assets/Blog-2.jpg" class="h-full w-full" alt="" />
-        <h3 class="absolute z-50 bottom-8 left-8 md:text-4xl text-lg">
-          Semifinale NBA Cup
-        </h3>
-        <h4
-          class="absolute z-50 top-8 left-8 font-inter color-arancio md:text-xl text-xs"
-        >
-          2 dic 2023
-        </h4>
-      </div>
+    </ng-container>
     </div>
   </div>
 </section>

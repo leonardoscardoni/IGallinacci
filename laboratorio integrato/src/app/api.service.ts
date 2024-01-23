@@ -61,7 +61,7 @@ export class ApiService {
         };
     }
 
-    getHomeApi() {
+    getHome() {
         return this.http
             .post(`${this.baseURL}${this.homeUrl}`, {
                 token: localStorage.getItem("loginToken"),

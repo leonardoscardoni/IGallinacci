@@ -2,18 +2,18 @@
     <p class="text-xs sm:text-base">
         <span class="font-semibold color-nero block sm:inline text-xs sm:text-base">{{data.header.date}} {{" "}}</span>
         <span *ngIf="data.homeTeam.points" class="hidden sm:inline color-nero text-xs sm:text-base">||</span>
-                {{data.header.nameArena}}, {{data.header.city}}
+                {{data.header.arena}}, {{data.header.city}}
     </p>
 </div>
 <div class="flex justify-between items-center w-full min-h-[10vh] p-4 border-y bg-white/5">
     <div class="w-[45%] flex justify-end items-center">
-        <img src="{{data.homeTeam.logo}}" class="inline-block w-[2rem] md:w-[3rem] mr-10" alt="Logo {{data.homeTeam.name}}">
-        <p class="inline-block align-middle xs:text-[1rem] sm:text-[1.5rem] md:text-[2.5rem] lg:text-[3rem] text-end">{{data.homeTeam.name.toUpperCase()}}</p>
+        <img src="{{data.homeTeam.logo}}" class="inline-block w-[2rem] md:w-[3rem] mr-10" alt="Logo {{data.homeTeam.nickname}}">
+        <p class="inline-block align-middle xs:text-[1rem] sm:text-[1.5rem] md:text-[2.5rem] lg:text-[3rem] text-end">{{data.homeTeam.nickname.toUpperCase()}}</p>
     </div>
     <p class="w-[10%] font-inter text-center font-extralight sm:text-xl md:text-3xl">vs</p>
     <div class="w-[45%] items-center">
-        <p class="inline-block align-middle xs:text-[1rem] sm:text-[1.5rem] md:text-[2.5rem] lg:text-[3rem]">{{data.visitorTeam.name.toUpperCase()}}</p>
-        <img src="{{data.visitorTeam.logo}}" class="inline-block w-[2rem] md:w-[3rem] ml-10" alt="Logo {{data.visitorTeam.name}}">
+        <p class="inline-block align-middle xs:text-[1rem] sm:text-[1.5rem] md:text-[2.5rem] lg:text-[3rem]">{{data.visitorTeam.nickname.toUpperCase()}}</p>
+        <img src="{{data.visitorTeam.logo}}" class="inline-block w-[2rem] md:w-[3rem] ml-10" alt="Logo {{data.visitorTeam.nickname}}">
     </div>
 </div>
 

@@ -30,11 +30,20 @@ import { getUserDetailResolver } from "./_services/getUserDetailResolver.service
 import { getPlayerMatchResolver } from "./_services/getPlayerMatchResolver.service";
 import { getAllBlogsResolver } from "./_services/getAllBlogsResolver.service";
 import { getBlogResolver } from "./_services/getBlogResolver.service";
+import { getHomeResolver } from "./_services/getHomeResolver.service";
 
 const routes: Routes = [
     { path: "login", component: LoginComponent },
     { path: "register", component: RegisterComponent },
-    { path: "home", component: HomePageComponent },
+    {
+        path: "home",
+        component: HomePageComponent,
+        resolve: {
+            getHome: (route: ActivatedRouteSnapshot) => {
+                return inject(getHomeResolver).getHome();
+            },
+        },
+    },
     {
         path: "dettaglio-partita/:idPartita",
         component: DettaglioPartitaComponent,

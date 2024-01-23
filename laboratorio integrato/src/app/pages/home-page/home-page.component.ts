@@ -1,6 +1,10 @@
 import { Component, ElementRef, ViewChild } from "@angular/core";
 import { ApiService } from "../../api.service";
 import { TypeHome } from "../../_models/homeApi.type";
+import { ActivatedRoute } from "@angular/router";
+import dayjs from "dayjs";
+import localizedFormat from "dayjs/plugin/localizedFormat"; // Importa il plugin per il formato localizzato
+import "dayjs/locale/it";
 
 @Component({
     selector: "app-home-page",
@@ -8,27 +12,6 @@ import { TypeHome } from "../../_models/homeApi.type";
     styleUrls: ["./home-page.component.scss"],
 })
 export class HomePageComponent {
-    b = [
-        {
-            name: "golden state warrior",
-        },
-        {
-            name: "los angeles lakers",
-        },
-        {
-            name: "miami heat",
-        },
-        {
-            name: "chicago bulls",
-        },
-        {
-            name: "Toronto Raptors",
-        },
-        {
-            name: "boston celtics",
-        },
-    ];
-
     @ViewChild("carouselContent") carouselContent!: ElementRef;
 
     scrollAmount = 450; // Regola la quantità di scorrimento
@@ -41,13 +24,20 @@ export class HomePageComponent {
             behavior: "smooth",
         });
     }
-    constructor(private apiService: ApiService) {}
+    constructor(private route: ActivatedRoute, private apiService: ApiService) {}
     data: TypeHome = {} as TypeHome;
 
     ngOnInit() {
-        this.apiService.getHomeApi().subscribe((data: TypeHome) => {
-            this.data = data;
-            console.log(this.data);
+        this.route.paramMap.subscribe((params) => {
+            this.route.data.subscribe(({ getHome }) => {
+                this.data = getHome;
+                console.log(this.data);
+            });
         });
+    }
+
+    convertDate(data: Date) {
+        const dateDayJs = dayjs(data).locale("it");
+        return dateDayJs.format("D MMMM");
     }
 }
