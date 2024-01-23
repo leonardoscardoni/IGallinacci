@@ -21,7 +21,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-
+/**
+ * Service class for managing blog-related operations.
+ * This includes creating and retrieving blogs, paragraphs, and tags for players and teams.
+ */
 @Service
 @RequiredArgsConstructor
 public class BlogService {
@@ -44,7 +47,12 @@ public class BlogService {
     private final PlayerRepository playerRepository;
 
     private final TeamRepository teamRepository;
-
+    /**
+     * Saves a blog based on the provided request data.
+     *
+     * @param createBlogRequest Request data for creating a blog.
+     * @return Response indicating success or failure of blog creation.
+     */
     public CreateBlogResponse saveBlog(CreateBlogRequest createBlogRequest){
         String token = createBlogRequest.getToken();
         if(jwtService.isTokenValid(token) && jwtService.getRole(token)==1) {
@@ -107,7 +115,13 @@ public class BlogService {
         }
         return new CreateBlogResponse(false,"The user does not have the necessary role to create a Blog");
     }
-
+    /**
+     * Retrieves a blog by its ID.
+     *
+     * @param tokenRequest Token request to validate user access.
+     * @param idBlog The ID of the blog to retrieve.
+     * @return The response containing blog details.
+     */
     public BlogResponse getBlog(TokenRequest tokenRequest, int idBlog){
         String token = tokenRequest.getToken();
         Blog blog = blogRepository.findBlogById(idBlog);

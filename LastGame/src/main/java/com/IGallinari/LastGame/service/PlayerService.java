@@ -27,7 +27,10 @@ import lombok.RequiredArgsConstructor;
 import com.IGallinari.LastGame.entity.*;
 import com.IGallinari.LastGame.repository.*;
 
-
+/**
+ * Service class for managing player-related operations.
+ * Includes functionalities such as building responses for player details, comparisons, and filters.
+ */
 @Service
 @RequiredArgsConstructor
 public class PlayerService {
@@ -48,7 +51,14 @@ public class PlayerService {
     private final FavTeamRepository favTeamRepository;
 
     private final JwtService jwtService;
-
+    /**
+     * Builds a response for player-team filter based on the given request.
+     *
+     * @param tokenRequest The request containing the user's token.
+     * @param idTeam The ID of the team to filter players.
+     * @param season The season for which to filter the players.
+     * @return A PlayerTeamFilterResponse with the filtered player information.
+     */
     public PlayerTeamFilterResponse buildPlayerTeamFilterResponse(TokenRequest tokenRequest,int idTeam, int season){
         String token = tokenRequest.getToken();
         boolean logged = jwtService.isTokenValid(token);
@@ -91,7 +101,14 @@ public class PlayerService {
             players
         );
     }
-
+    /**
+     * Builds a response with player details for a specific game.
+     *
+     * @param tokenRequest The request containing the user's token.
+     * @param idGame The ID of the game.
+     * @param idPlayer The ID of the player.
+     * @return A PlayerDetailsByGameResponse with the player's game details.
+     */
     public PlayerDetailsByGameResponse buildPlayerDetailsByGameResponse (TokenRequest tokenRequest,int idGame, int idPlayer){
         String token = tokenRequest.getToken();
         boolean logged = jwtService.isTokenValid(token);

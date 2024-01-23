@@ -11,7 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
+/**
+ * Class responsible for scheduling and executing daily API calls to gather
+ * various data related to games, players, teams, and standings.
+ */
 @AllArgsConstructor
 public class DailyEndpoint {
 
@@ -22,7 +25,12 @@ public class DailyEndpoint {
     private GameRepository gameRepository;
 
     private StatsGameRepository statsGameRepository;
-
+    /**
+     * Scheduled method to run every day at 5 AM.
+     * Initiates API calls for different data endpoints and manages the JSON response.
+     *
+     * @throws InterruptedException if the thread is interrupted while sleeping.
+     */
     @Scheduled(cron = "0 0 5 * * *") //every day at 05:00:00
     public void init() throws InterruptedException {
         LocalDate today=LocalDate.now();
