@@ -13,11 +13,6 @@ export class ElencoTeamComponent {
     data: ElencoTeamType = {} as ElencoTeamType;
 
     ngOnInit() {
-        this.apiService.getElencoTeam().subscribe((data: ElencoTeamType) => {
-            this.data = data;
-            console.log(this.data);
-        });
-
         this.route.paramMap.subscribe((params) => {
             this.route.data.subscribe(({ getElencoTeam }) => {
                 this.data = getElencoTeam;

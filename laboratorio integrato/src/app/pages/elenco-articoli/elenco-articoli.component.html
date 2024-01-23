@@ -1,14 +1,27 @@
-<div class="fixed">
+<!-- <div class="fixed">
     <div class="block sm:hidden">XS</div>
     <div class="hidden sm:block md:hidden">SM</div>
     <div class="hidden md:block lg:hidden">MD</div>
     <div class="hidden md:hidden lg:block xl:hidden">LG</div>
     <div class="hidden lg:hidden xl:block">XL</div>
+</div> -->
+
+<app-header-elenco-articoli [data]="data.blogs[0]"></app-header-elenco-articoli>
+
+<div *ngIf="data.blogsAboutYourInterests.length > 0" class="bg-white/5 w-full border-y my-10 md:ps-6 ps-0 md:p-0 pb-5">
+    <div class="container p-10">
+        <h2 class="color-arancio mb-5">TI POTREBBE INTERESSARE</h2>
+        <ng-container *ngFor="let articolo of data.blogsAboutYourInterests; index as i">
+            <app-articolo-elenco-articoli [data]="articolo"></app-articolo-elenco-articoli>
+            <hr class="my-7 opacity-20" *ngIf="data.blogsAboutYourInterests.length > i+1">
+        </ng-container>
+    </div>
 </div>
 
-<app-header-elenco-articoli [data]="a.ultimoArticolo"></app-header-elenco-articoli>
+
 <div class="container p-10">
-    <ng-container *ngFor="let articolo of a.articoli">
-        <app-articolo-elenco-articoli [data]="articolo"></app-articolo-elenco-articoli>
+    <ng-container *ngFor="let articolo of data.blogs; index as i">
+        <app-articolo-elenco-articoli [data]="articolo" *ngIf="i != 0"></app-articolo-elenco-articoli>
+        <hr class="my-7 opacity-20" *ngIf="data.blogs.length > i+1 && i != 0">
     </ng-container>
 </div>

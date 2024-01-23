@@ -1,4 +1,4 @@
-<div class="grid grid-cols-12 w-full md:h-[15rem] lg:h-[12rem] gap-4 cursor-pointer">
+<div class="grid grid-cols-12 w-full md:h-[15rem] lg:h-[12rem] gap-4 hover:cursor-pointer" routerLink="/blog/{{data.idBlog}}">
     <div class="col-start-1 col-end-13 md:col-start-1 md:col-end-4 font-inter color-arancio">
         {{date}}
     </div>
@@ -6,13 +6,16 @@
        
     </div>
     <div class="col-start-1 col-end-13 md:col-start-8 md:col-end-13 font-inter flex flex-wrap justify-between">
-        <p class="w-full mb-2 md:mb-0 text-lg md:text-xl lg:text-2xl font-bold">{{data.titolo}}</p>
+        <p class="w-full mb-2 md:mb-0 text-lg md:text-xl lg:text-2xl font-bold">{{data.title}}</p>
         <div>
-            <p class="text-sm font-light">{{data.sottotitolo}}</p>
-            <ng-container *ngFor="let tag of data.tags">
-                <p class="font-light text-xs inline">{{"#" + tag + " "}}</p>
+            <p class="text-sm font-light">{{data.subtitle}}</p>
+            <ng-container *ngFor="let tag of data.tagPlayer">
+                <p class="font-light text-xs inline">{{"#" + tag.lastname + " "}}</p>
+            </ng-container>
+            <ng-container *ngFor="let tag of data.tagTeam">
+                <p class="font-light text-xs inline">{{"#" + tag.nickname + " "}}</p>
             </ng-container>
         </div>
     </div>
 </div>
-<hr class="my-7 opacity-20">
+<!-- <hr class="my-7 opacity-20"> -->

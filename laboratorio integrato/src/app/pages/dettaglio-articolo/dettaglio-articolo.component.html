@@ -1,38 +1,37 @@
 <div class="container">
-    <p class="my-10 font-inter color-arancio">{{convertiData(a.header.data)}} || {{a.header.autore}}</p>
-    <h1 class="font-inter font-bold text-5xl mb-5">{{a.header.titolo}}</h1>
+    <p class="my-10 font-inter color-arancio">{{convertiData(data.date)}} || {{data.emailAuthor}}</p>
+    <h1 class="font-inter font-bold text-5xl mb-5">{{data.title}}</h1>
 
-    <p class="font-inter font-light">
-        La sua assenza ha pesato sui Warriors, ma il suo ritorno può cambiare le cose
+    <p class="font-inter font-light"> {{data.subTitle}}
     </p>
 </div>
 
-<div class="my-10 h-[30vh] w-screen bg-center bg-no-repeat bg-cover" style="background-image: url({{a.body.img}});"></div>
+<div class="my-10 h-[40vh] w-screen bg-center bg-no-repeat bg-cover" style="background-image: url({{data.img}});"></div>
 
 <!-- Inserire in caso di utente loggato -->
-<!-- <div class="container grid grid-cols-12">
-    <div class="col-start-2 col-end-11 font-inter" *ngFor="let paragrafo of a.body.paragrafi">
-        <p class="mt-7 mb-2 font-inter-bold-italic">{{paragrafo.titoloParagrafo}}</p>
-        <p>{{paragrafo.testoParagrafo}}</p>
-    </div>
-</div> -->
-
-<!-- Inserire in caso di utente non loggato -->
-<div class="container grid grid-cols-12">
-    <div class="col-start-2 col-end-11 font-inter">
-        <p class="mt-7 mb-2 font-inter-bold-italic">{{a.body.paragrafi[0].titoloParagrafo}}</p>
-        <p>{{a.body.paragrafi[0].testoParagrafo.slice(0, 200) + "..."}}</p>
+<div *ngIf="data.logged == true" class="container grid grid-cols-12 mb-20">
+    <div class="col-start-2 col-end-11 font-inter" *ngFor="let paragrafo of data.paragraphs">
+        <p class="mt-7 mb-2 font-inter-bold-italic">{{paragrafo.title}}</p>
+        <p>{{paragrafo.content}}</p>
     </div>
 </div>
 
 <!-- Inserire in caso di utente non loggato -->
-<div class="bg-white/5 w-full min-h-[30vh] border-y flex flex-col items-center mt-20 py-8">
+<div *ngIf="data.logged == false" class="container grid grid-cols-12">
+    <div class="col-start-2 col-end-11 font-inter">
+        <p class="mt-7 mb-2 font-inter-bold-italic">{{data.paragraphs[0].title}}</p>
+        <p>{{data.paragraphs[0].content.slice(0, 200) + "..."}}</p>
+    </div>
+</div>
+
+<!-- Inserire in caso di utente non loggato -->
+<div *ngIf="data.logged == false" class="bg-white/5 w-full min-h-[30vh] border-y flex flex-col items-center mt-20 py-8">
     <h2 class="w-full mb-8 text-[2.5rem] uppercase text-center font-extrabold">VUOI CONTINUARE A LEGGERE?</h2>
         <button [routerLink]="['/login']" class="mb-4 inline-block text-white bg-[#e98a15] hover:bg-[#A86310] font-medium rounded-lg text-sm px-4 py-2 text-center font-inter">Accedi</button>
         <p class="font-inter text-center">Effettua il login per rimanere aggiornato su tutte le novità!</p>
 </div>
 
-<div class="container my-20">
+<!-- <div class="container my-20">
     <p class="mb-7 font-extrabold text-[1.5rem] md:text-[2rem] color-arancio">LEGGI ANCHE</p>
     <div class="flex flex-wrap sm:flex-nowrap gap-4">
         <ng-container *ngFor="let articolo of a.leggiAnche">
@@ -46,4 +45,4 @@
             </div>
         </ng-container>
     </div>
-</div>
+</div> -->

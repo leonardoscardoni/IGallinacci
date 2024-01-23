@@ -11,6 +11,6 @@ export class getUserDetailResolver implements OnInit {
     ngOnInit(): void {}
 
     getUserDetail() {
-        return this.apiService.getUserDetail;
+        return this.apiService.getUserDetail();
     }
 }

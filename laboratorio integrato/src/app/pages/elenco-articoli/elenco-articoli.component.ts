@@ -1,4 +1,7 @@
 import { Component, Input } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { AllBlogsType } from "src/app/_models/allBlogs.type";
+import { ApiService } from "src/app/api.service";
 
 @Component({
     selector: "app-elenco-articoli",
@@ -6,7 +9,7 @@ import { Component, Input } from "@angular/core";
     styleUrls: ["./elenco-articoli.component.scss"],
 })
 export class ElencoArticoliComponent {
-    a = {
+    /*     a = {
         ultimoArticolo: {
             titolo: "Jaime Jaquez Jr. parteciperà allo Slam Dunk Contest.",
             sottotitolo:
@@ -38,5 +41,19 @@ export class ElencoArticoliComponent {
                 tags: ["tag1", "tag2"],
             },
         ],
-    };
+    }; */
+
+    constructor(private route: ActivatedRoute, private apiService: ApiService) {}
+    data: AllBlogsType = {} as AllBlogsType;
+
+    ngOnInit() {
+        this.route.paramMap.subscribe((params) => {
+            this.route.data.subscribe(({ getAllBlogs }) => {
+                this.data = getAllBlogs;
+                console.log(this.data);
+            });
+        });
+
+        console.log(this.data);
+    }
 }

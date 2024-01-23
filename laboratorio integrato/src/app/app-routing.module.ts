@@ -28,6 +28,8 @@ import { getConfrontoPlayerResolver } from "./_services/getConfrontoPlayerResolv
 import { getCalendarResolver } from "./_services/getCalendarResolver.service";
 import { getUserDetailResolver } from "./_services/getUserDetailResolver.service";
 import { getPlayerMatchResolver } from "./_services/getPlayerMatchResolver.service";
+import { getAllBlogsResolver } from "./_services/getAllBlogsResolver.service";
+import { getBlogResolver } from "./_services/getBlogResolver.service";
 
 const routes: Routes = [
     { path: "login", component: LoginComponent },
@@ -49,7 +51,7 @@ const routes: Routes = [
         component: ElencoTeamComponent,
         resolve: {
             getElencoTeam: (route: ActivatedRouteSnapshot) => {
-                return inject(getElencoTeamResolver).getElencoTeam;
+                return inject(getElencoTeamResolver).getElencoTeam();
             },
         },
     },
@@ -111,7 +113,7 @@ const routes: Routes = [
         component: ProfiloComponent,
         resolve: {
             getUserDetail: (route: ActivatedRouteSnapshot) => {
-                return inject(getUserDetailResolver).getUserDetail;
+                return inject(getUserDetailResolver).getUserDetail();
             },
         },
     },
@@ -128,17 +130,30 @@ const routes: Routes = [
         },
     },
     {
+        path: "blog",
+        component: ElencoArticoliComponent,
+        resolve: {
+            getAllBlogs: (route: ActivatedRouteSnapshot) => {
+                return inject(getAllBlogsResolver).getAllBlogs();
+            },
+        },
+    },
+    {
+        path: "blog/:id",
+        component: DettaglioArticoloComponent,
+        resolve: {
+            getBlog: (route: ActivatedRouteSnapshot) => {
+                return inject(getBlogResolver).getBlog(route.paramMap.get("id")!);
+            },
+        },
+    },
+    {
         path: "calendario-partite",
         component: CalendarioPartiteComponent,
     },
     { path: "elenco-giocatori", component: ElencoGiocatoriComponent },
-    { path: "blog", component: ElencoArticoliComponent },
     { path: "scelta-confronto-team", component: SceltaConfrontoTeamComponent },
     { path: "scelta-confronto-giocatori", component: SceltaConfrontoGiocatoriComponent },
-    {
-        path: "dettaglio-articolo",
-        component: DettaglioArticoloComponent,
-    },
     { path: "", redirectTo: "home", pathMatch: "full" },
 ];
 

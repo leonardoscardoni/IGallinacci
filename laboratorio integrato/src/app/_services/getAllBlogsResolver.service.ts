@@ -5,12 +5,12 @@ import { ActivatedRoute } from "@angular/router";
 @Injectable({
     providedIn: "root",
 })
-export class getElencoTeamResolver implements OnInit {
+export class getAllBlogsResolver implements OnInit {
     constructor(private apiService: ApiService) {}
 
     ngOnInit(): void {}
 
-    getElencoTeam() {
-        return this.apiService.getElencoTeam();
+    getAllBlogs() {
+        return this.apiService.getAllBlogs();
     }
 }

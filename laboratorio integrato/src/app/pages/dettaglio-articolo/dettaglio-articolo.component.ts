@@ -2,6 +2,9 @@ import { Component } from "@angular/core";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat"; // Importa il plugin per il formato localizzato
 import "dayjs/locale/it"; // Importa la lingua italiana
+import { ActivatedRoute } from "@angular/router";
+import { ApiService } from "src/app/api.service";
+import { BlogType } from "src/app/_models/blog.type";
 
 @Component({
     selector: "app-dettaglio-articolo",
@@ -9,7 +12,7 @@ import "dayjs/locale/it"; // Importa la lingua italiana
     styleUrls: ["./dettaglio-articolo.component.scss"],
 })
 export class DettaglioArticoloComponent {
-    a = {
+    /*     a = {
         idArticolo: 1,
         header: {
             titolo: "Draymond Green torna in campo",
@@ -56,7 +59,24 @@ export class DettaglioArticoloComponent {
                 tags: ["tag1", "tag2"],
             },
         ],
-    };
+    }; */
+
+    data: BlogType = {} as BlogType;
+
+    constructor(private route: ActivatedRoute, private apiService: ApiService) {}
+    id: any;
+
+    ngOnInit() {
+        this.route.paramMap.subscribe((params) => {
+            this.id = params.get("id");
+            console.log("id:", this.id);
+
+            this.route.data.subscribe(({ getBlog }) => {
+                this.data = getBlog;
+                console.log(this.data);
+            });
+        });
+    }
 
     convertiData(data: string) {
         return dayjs(data).locale("it").format("D MMM, YYYY");

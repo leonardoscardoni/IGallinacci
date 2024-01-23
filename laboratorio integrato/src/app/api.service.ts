@@ -16,6 +16,8 @@ import { ConfrontoPlayerType } from "./_models/confrotoPlayerApi.type";
 import { ClassificaType } from "./_models/classificaApi.type";
 import { HomeRequestType } from "./_models/postCalls.type";
 import { ProfileType } from "./_models/profile.type";
+import { AllBlogsType } from "./_models/allBlogs.type";
+import { BlogType } from "./_models/blog.type";
 
 @Injectable({
     providedIn: "root",
@@ -39,6 +41,8 @@ export class ApiService {
     private favouriteTeam = "favourite/team";
     private favouritePlayer = "favourite/player";
     private userDetail = `user/getUserProfile`;
+    private allBlogs = `blog/getAllBlogs`;
+    private blog = `blog/getBlog?idBlog=`;
 
     constructor(private http: HttpClient) {}
 
@@ -110,6 +114,30 @@ export class ApiService {
             );
     }
 
+    getAllBlogs() {
+        return this.http
+            .post(`${this.baseURL}${this.allBlogs}`, {
+                token: localStorage.getItem("loginToken"),
+            })
+            .pipe(
+                map((response: any) => {
+                    return response as AllBlogsType;
+                })
+            );
+    }
+
+    getBlog(id: string) {
+        return this.http
+            .post(`${this.baseURL}${this.blog}${id}`, {
+                token: localStorage.getItem("loginToken"),
+            })
+            .pipe(
+                map((response: any) => {
+                    return response as BlogType;
+                })
+            );
+    }
+
     getTeamDetail(id: string) {
         return this.http
             .post(`${this.baseURL}${this.team}${id}${"&season=2023"}`, {
@@ -168,7 +196,7 @@ export class ApiService {
 
     getPlayerFilter(idTeam: number) {
         return this.http
-            .post(`${this.baseURL}${this.PlayerFilter}${idTeam}${"&season=2022"}`, {
+            .post(`${this.baseURL}${this.PlayerFilter}${idTeam}${"&season=2023"}`, {
                 token: localStorage.getItem("loginToken"),
             })
             .pipe(
@@ -181,7 +209,7 @@ export class ApiService {
     getConfrontoTeam(id1: string, id2: string) {
         return this.http
             .post(
-                `${this.baseURL}${this.confrontoTeam}${id1}${"&idTeam2="}${id2}${"&season=2022"}`,
+                `${this.baseURL}${this.confrontoTeam}${id1}${"&idTeam2="}${id2}${"&season=2023"}`,
                 {
                     token: localStorage.getItem("loginToken"),
                 }
@@ -198,7 +226,7 @@ export class ApiService {
             .post(
                 `${this.baseURL}${
                     this.confrontoPlayer
-                }${id1}${"&idPlayer2="}${id2}${"&season=2022"}`,
+                }${id1}${"&idPlayer2="}${id2}${"&season=2023"}`,
                 {
                     token: localStorage.getItem("loginToken"),
                 }
