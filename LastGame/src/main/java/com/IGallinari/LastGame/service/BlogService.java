@@ -156,7 +156,7 @@ public class BlogService {
         );
     }
 
-    public List<ViewTagPlayer> builTagPlayerList(int idBlog){
+    private List<ViewTagPlayer> builTagPlayerList(int idBlog){
         List<Integer> tagIdPlayersList = tagPlayerRepository.findTagPlayerByIdBlog(idBlog);
         List<ViewTagPlayer> tagPlayerList = new ArrayList<>();
         for (int idPlayer: tagIdPlayersList){
@@ -170,7 +170,7 @@ public class BlogService {
         return tagPlayerList;
     }
 
-    public List<ViewTagTeam> buildTagTeamList(int idBlog){
+    private List<ViewTagTeam> buildTagTeamList(int idBlog){
         List<Integer> tagIdTeamsList = tagTeamRepository.findTagTeamByIdBlog(idBlog);
         List<ViewTagTeam> tagTeamsList = new ArrayList<>();
         for (int idTeam: tagIdTeamsList){

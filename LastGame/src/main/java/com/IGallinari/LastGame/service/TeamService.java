@@ -73,7 +73,7 @@ public class TeamService {
         return new TeamsResponse(logged, conferenceWest, conferenceEast);
     }
 
-    public ViewDivision buildViewDivision(String division, Integer idUser){
+    private ViewDivision buildViewDivision(String division, Integer idUser){
         List<Team> teamsByDivision= teamRepository.findByDivision(division);
         List<ViewTeam> listViewTeams= new ArrayList<>();
         for (Team team: teamsByDivision){
@@ -212,7 +212,7 @@ public class TeamService {
      * @param date The date up to which last games are to be considered.
      * @return A list of ViewLastGame objects representing the last games.
      */
-    public List<ViewLastGame> buildListViewLastGame(Team team, LocalDate date){
+    private List<ViewLastGame> buildListViewLastGame(Team team, LocalDate date){
         List<ViewLastGame> lastGames = new ArrayList<>();
         List<Game> games= gameRepository.findLastFourGameByTeam(team.getId(),date);
         Team otherTeam = new Team();
@@ -247,7 +247,7 @@ public class TeamService {
      * @param date        The date up to which head-to-head statistics are to be considered.
      * @return A list of HeadToHead objects representing head-to-head statistics.
      */
-    public List<HeadToHead> builListHeadToHead(Team teamHome, Team teamVisitor, LocalDate date){
+    private List<HeadToHead> builListHeadToHead(Team teamHome, Team teamVisitor, LocalDate date){
         List<HeadToHead> listHeadToHead = new ArrayList<>();
         List<Game> games = gameRepository.findLastFourHtH(teamHome.getId(),teamVisitor.getId(),date);
         for (Game game : games){
@@ -402,7 +402,6 @@ public class TeamService {
                     )
             );
         }
-
         for (Team team : westTeams) {
             StatsTeam statsTeam = statsTeamRepository.findByTeamAndSeason(team, season);
             Float avgPointsPerGame = statsGameRepository.findPointsPerGame(team.getId(), season);

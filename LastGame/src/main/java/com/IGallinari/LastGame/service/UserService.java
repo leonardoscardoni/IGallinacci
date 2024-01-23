@@ -121,7 +121,7 @@ public class UserService {
      *
      * @return A NeedToBeLoggedResponse indicating the user needs to log in.
      */
-    public NeedToBeLoggedResponse needToBeLogged(){
+    private NeedToBeLoggedResponse needToBeLogged(){
         return new NeedToBeLoggedResponse();
     }
     /**
