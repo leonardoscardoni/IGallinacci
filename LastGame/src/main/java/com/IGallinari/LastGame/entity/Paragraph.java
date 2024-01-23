@@ -16,8 +16,8 @@ public class Paragraph {
     @JoinColumn(name="idBlog", insertable = false, updatable=false)
     private Blog blog;
 
-    @Column(name="index", insertable = false, updatable=false)
-    private int index;
+    @Column(name="number", insertable = false, updatable=false)
+    private int number;
     
     private String title;
 

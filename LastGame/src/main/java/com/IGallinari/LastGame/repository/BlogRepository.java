@@ -12,6 +12,9 @@ import java.util.List;
 public interface BlogRepository extends JpaRepository<Blog,Integer> {
 
     Blog findBlogById(int id);
-    @Query(value = "SELECT * FROM blog b ORDER BY b.date LIMIT 4;", nativeQuery = true)
+    @Query(value = "SELECT * FROM blog b ORDER BY b.date DESC LIMIT 4;", nativeQuery = true)
     List<Blog> findLastFourBlogs();
+
+    List<Blog> findAll();
+
 }
