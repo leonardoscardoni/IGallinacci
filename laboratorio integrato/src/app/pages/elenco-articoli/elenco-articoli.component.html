@@ -8,7 +8,7 @@
 
 <app-header-elenco-articoli [data]="data.blogs[0]"></app-header-elenco-articoli>
 
-<div *ngIf="data.blogsAboutYourInterests.length > 0" class="bg-white/5 w-full border-y my-10 md:ps-6 ps-0 md:p-0 pb-5">
+<div *ngIf="data.logged == true && data.blogsAboutYourInterests.length > 0" class="bg-white/5 w-full border-y my-10 md:ps-6 ps-0 md:p-0 pb-5">
     <div class="container p-10">
         <h2 class="color-arancio mb-5">TI POTREBBE INTERESSARE</h2>
         <ng-container *ngFor="let articolo of data.blogsAboutYourInterests; index as i">
