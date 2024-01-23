@@ -6,10 +6,10 @@ import lombok.Data;
 
 @Data
 @Embeddable
-public class idTagPlayer implements Serializable {
+public class IdTagPlayer implements Serializable {
     
     @Column(name = "idBlog")
-    private int idblog;
+    private int idBlog;
 
     @Column(name = "idPlayer")
     private int idPlayer;
