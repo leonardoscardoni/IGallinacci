@@ -26,7 +26,9 @@ public class DailyEndpoint {
     private StatsGameRepository statsGameRepository;
     /**
      * Scheduled method to run every day at 5 AM.
-     * Initiates API calls for different data endpoints and manages the JSON response.
+     * This method initiates API calls for different data endpoints and manages the JSON response.
+     *
+     * Note: The method is scheduled to execute at 5 AM daily based on the provided cron expression.
      *
      * @throws InterruptedException if the thread is interrupted while sleeping.
      */

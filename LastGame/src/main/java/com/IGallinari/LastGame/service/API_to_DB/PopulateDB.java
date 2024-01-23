@@ -38,13 +38,17 @@ public class PopulateDB {
 
     /**
      * Initializes the database population process.
-     * It checks various conditions and makes API calls to populate the database with
-     * team, game, player, and statistics data.
+     * This method is responsible for checking various conditions and making API calls
+     * to populate the database with team, game, player, and statistics data.
      *
-     * @throws JsonProcessingException if there is an error in processing JSON responses.
+     * Note: This method is intended to be executed during application startup.
+     * Uncomment the {@code @PostConstruct} annotation to enable the automatic execution
+     * of this method after the bean has been constructed.
+     *
+     * @throws InterruptedException   if the execution is interrupted during the process.
      */
     //@PostConstruct
-    public void init() throws JsonProcessingException {
+    public void init() throws InterruptedException {
         int totCall=0;
         int call=0;
         Map<String, String> params;
@@ -57,10 +61,11 @@ public class PopulateDB {
                 String response = apiCaller.callApi("teams", params);//1 chiamata
                 call+=1;
                 redirectJSON.manageJSON(response);
-                TimeUnit.MINUTES.sleep(1);
-            } catch (InterruptedException e) {
+
+            } catch (Exception e) {
                 e.printStackTrace();
             }
+            TimeUnit.SECONDS.sleep(7);
         }else {
             System.out.println("All teams have already been added");
         }
@@ -82,10 +87,10 @@ public class PopulateDB {
                     String response = apiCaller.callApi("games", params);//2 chiamate
                     call+=1;
                     redirectJSON.manageJSON(response);
-                    TimeUnit.MINUTES.sleep(1);
-                } catch (InterruptedException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
+                TimeUnit.SECONDS.sleep(7);
             }
         }else {
             System.out.println("All games have already been added");
@@ -110,10 +115,10 @@ public class PopulateDB {
                         String response = apiCaller.callApi("players", params);//120 chiamate
                         call+=1;
                         redirectJSON.manageJSON(response);
-                        TimeUnit.MINUTES.sleep(1);
-                    } catch (InterruptedException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    TimeUnit.SECONDS.sleep(7);
                 }
             }
         }
@@ -137,10 +142,10 @@ public class PopulateDB {
                         String response = apiCaller.callApi("players/statistics", params);//120 chiamate
                         call+=1;
                         redirectJSON.manageJSON(response);
-                        TimeUnit.MINUTES.sleep(1);
-                    } catch (InterruptedException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    TimeUnit.SECONDS.sleep(7);
                 }
             } else {
                 System.out.println("All player statistics, of the season: "+season+", have already been added");
@@ -163,10 +168,10 @@ public class PopulateDB {
                         String response = apiCaller.callApi("teams/statistics", params);//120 chiamate
                         call+=1;
                         redirectJSON.manageJSON(response);
-                        TimeUnit.MINUTES.sleep(1);
-                    } catch (InterruptedException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    TimeUnit.SECONDS.sleep(7);
                 }
             }else {
                 System.out.println("All team statistics, of the season: "+season+", have already been added");
@@ -188,10 +193,10 @@ public class PopulateDB {
                     String response = apiCaller.callApi("standings", params);//2 chiamate
                     call+=1;
                     redirectJSON.manageJSON(response);
-                    TimeUnit.MINUTES.sleep(1);
-                } catch (InterruptedException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
+                TimeUnit.SECONDS.sleep(7);
             }
         }else {
             System.out.println("All standings have already been added");
@@ -208,10 +213,10 @@ public class PopulateDB {
                     String response = apiCaller.callApi("games/statistics", params);
                     call+=1;
                     redirectJSON.manageJSON(response);
-                    TimeUnit.MINUTES.sleep(1);
-                } catch (InterruptedException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
+                TimeUnit.SECONDS.sleep(7);
             }
         }
         else {
