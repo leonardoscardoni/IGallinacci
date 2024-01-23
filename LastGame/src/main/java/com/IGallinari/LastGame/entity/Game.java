@@ -1,14 +1,10 @@
 package com.IGallinari.LastGame.entity;
 
-import java.sql.Time;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
-
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  * Represents an NBA game.

@@ -5,7 +5,6 @@ import com.IGallinari.LastGame.entity.id_class.IdParagraph;
 import com.IGallinari.LastGame.entity.id_class.IdTagPlayer;
 import com.IGallinari.LastGame.entity.id_class.IdTagTeam;
 import com.IGallinari.LastGame.payload.request.TokenRequest;
-import com.IGallinari.LastGame.payload.request.blog.BlogRequest;
 import com.IGallinari.LastGame.payload.request.blog.CreateBlogRequest;
 import com.IGallinari.LastGame.payload.request.blog.paragraph.ViewParagraphRequest;
 import com.IGallinari.LastGame.payload.response.blog.*;
@@ -18,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 /**

@@ -1,7 +1,6 @@
 package com.IGallinari.LastGame.controller;
 
 import com.IGallinari.LastGame.payload.request.TokenRequest;
-import com.IGallinari.LastGame.payload.request.blog.BlogRequest;
 import com.IGallinari.LastGame.payload.request.blog.CreateBlogRequest;
 import com.IGallinari.LastGame.payload.response.blog.BlogResponse;
 import com.IGallinari.LastGame.payload.response.blog.CreateBlogResponse;

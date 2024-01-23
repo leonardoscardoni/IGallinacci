@@ -7,11 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.IGallinari.LastGame.repository.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;

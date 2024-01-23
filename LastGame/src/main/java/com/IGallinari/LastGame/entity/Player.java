@@ -2,7 +2,6 @@ package com.IGallinari.LastGame.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.Column;
 import lombok.Data;
 
 import java.time.LocalDate;
