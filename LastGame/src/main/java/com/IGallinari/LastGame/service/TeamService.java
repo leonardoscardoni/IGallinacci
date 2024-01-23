@@ -120,6 +120,7 @@ public class TeamService {
             List<Float[]> avgStats = statsPlayerRepository.findAvgStatsByIdPlayer(player.getId());
             players.add(
                     new ViewPlayerTeamDetails(
+                            player.getId(),
                             player.getFirstname(),
                             player.getLastname(),
                             player.getJersey(),
