@@ -39,7 +39,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ * Service class for managing game-related operations.
+ * This includes building responses for various game views such as home, calendar, and game details.
+ */
 @Service
 @RequiredArgsConstructor
 public class GameService {
@@ -64,7 +67,13 @@ public class GameService {
     private final FavPlayerRepository favPlayerRepository;
 
     private final JwtService jwtService;
-
+    /**
+     * Builds and returns the home view response based on the given home request.
+     * The response varies depending on whether the user is logged in or not.
+     *
+     * @param homeRequest The request data for building the home view.
+     * @return A ResponseEntity containing the home view response.
+     */
     public ResponseEntity<?> buildHome(HomeRequest homeRequest){
         String token = homeRequest.getToken();
         LocalDate date = homeRequest.getDate();
@@ -77,7 +86,7 @@ public class GameService {
         }
     }
 
-    public HomeLoggedResponse buildHomeLogged(User user,LocalDate date){
+    private HomeLoggedResponse buildHomeLogged(User user,LocalDate date){
         LocalDate pastDate = date.minusDays(1);
         List<Game> pastGames = gameRepository.findGameByDate(pastDate);
         List<Game> nextGames = gameRepository.findGameByDate(date);
@@ -121,7 +130,7 @@ public class GameService {
         return new HomeLoggedResponse(true,viewPastGames, viewFavPastGame,viewNextGames,viewFavNextGame,eastStandings,westStandings,viewBlogHomes);
     }
 
-    public HomeUnLoggedResponse buildHomeUnLogged(LocalDate date){
+    private HomeUnLoggedResponse buildHomeUnLogged(LocalDate date){
         LocalDate pastDate = date.minusDays(1);
         List<Game> pastGames = gameRepository.findGameByDate(pastDate);
         List<Game> nextGames = gameRepository.findGameByDate(date);
@@ -131,7 +140,7 @@ public class GameService {
         return new HomeUnLoggedResponse(false,viewPastGames, viewNextGames,viewBlogHomes);
     }
 
-    public List<ViewBlogHome> buildBlogHome(){
+    private List<ViewBlogHome> buildBlogHome(){
         List<Blog> lastFourBlogs = blogRepository.findLastFourBlogs();
         List<ViewBlogHome> viewBlogHomes = new ArrayList<>();
         for(Blog blog: lastFourBlogs){
@@ -148,7 +157,7 @@ public class GameService {
         return viewBlogHomes;
     }
 
-    public List<ViewPastGame> buildPastGame(List<Game> games){
+    private List<ViewPastGame> buildPastGame(List<Game> games){
         List<ViewPastGame> viewPastGames = new ArrayList<>();
         for(Game game: games){
             Team teamHome=game.getHomeTeam();
@@ -176,7 +185,7 @@ public class GameService {
         return viewPastGames;
     }
 
-    public List<ViewNextGame> buildNextGame(List<Game> games){
+    private List<ViewNextGame> buildNextGame(List<Game> games){
         List<ViewNextGame> viewNextGames = new ArrayList<>();
         for(Game game: games){
             Team teamHome=game.getHomeTeam();
@@ -202,7 +211,6 @@ public class GameService {
     }
 
     public CalendarResponse buildCalendar(LocalDate inputDate){
-
         List<Game> gamesByDate = gameRepository.findGameByDate(inputDate);
         List<ViewGameCalendar> viewGameCalendars = new ArrayList<>();
         for(Game game: gamesByDate){
@@ -242,7 +250,7 @@ public class GameService {
             return ResponseEntity.ok(buildPastGame(idUser,game));
         }
     }
-    public static Integer[] convertStringToArray(String numbers) {
+    private static Integer[] convertStringToArray(String numbers) {
         return Arrays.stream(numbers.split(","))
                 .map(String::trim)
                 .map(Integer::valueOf)
@@ -455,7 +463,7 @@ public class GameService {
         );
         return new NextGameResponse(logged,false,viewGameDetailsNextGame, viewLastFourGamesNextGameHome, viewLastFourGamesNextGameVisitor, lastFourHtHGameDetailsHome, lastFourHtHGameDetailsVisitor);
     }
-    public List<HeadToHead> builListHeadToHead(Team teamHome, Team teamVisitor,LocalDate gameDate){
+    private List<HeadToHead> builListHeadToHead(Team teamHome, Team teamVisitor,LocalDate gameDate){
         List<HeadToHead> listHeadToHeadGameDetails = new ArrayList<>();
         List<Game> games = gameRepository.findLastFourHtH(teamHome.getId(),teamVisitor.getId(),gameDate);
         for (Game game : games){
@@ -479,7 +487,7 @@ public class GameService {
         return listHeadToHeadGameDetails;
     }
 
-    public List<ViewLastGame> buildListViewLastGame(Team team,LocalDate gameDate){
+    private List<ViewLastGame> buildListViewLastGame(Team team,LocalDate gameDate){
         List<ViewLastGame> lastGames = new ArrayList<>();
         List<Game> games= gameRepository.findLastFourGameByTeam(team.getId(),gameDate);
         Team otherTeam = new Team();

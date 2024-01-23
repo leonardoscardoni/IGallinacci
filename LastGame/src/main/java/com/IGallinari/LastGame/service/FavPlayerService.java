@@ -13,7 +13,10 @@ import com.IGallinari.LastGame.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
+/**
+ * Service class for managing favorite player functionalities.
+ * Includes operations such as adding or removing a player from a user's favorites.
+ */
 @Service
 @RequiredArgsConstructor
 public class FavPlayerService {
@@ -22,7 +25,13 @@ public class FavPlayerService {
     private final PlayerRepository playerRepository;
     private final UserRepository userRepository;
 
-
+    /**
+     * Builds and returns the favorite player response based on the given request.
+     * This method checks if a player is a favorite for a user and adds/removes accordingly.
+     *
+     * @param favPlayerRequest The request containing the user's token and the player's ID.
+     * @return A ResponseEntity containing the favorite player response.
+     */
     public ResponseEntity<?> buildFavPlayerResponse (FavPlayerRequest favPlayerRequest){
         String token = favPlayerRequest.getToken();
         boolean logged= jwtService.isTokenValid(token);

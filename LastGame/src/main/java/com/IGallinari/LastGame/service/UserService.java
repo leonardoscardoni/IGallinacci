@@ -23,7 +23,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
-
+/**
+ * This service class provides methods for user authentication, registration,
+ * and profile management, including favorite players and teams.
+ */
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -36,13 +39,23 @@ public class UserService {
     private final PlayerRepository playerRepository;
     private final StatsPlayerRepository statsPlayerRepository;
     private final TeamRepository teamRepository;
-
+    /**
+     * Checks if the provided email address is valid.
+     *
+     * @param email The email address to validate.
+     * @return True if the email is valid; otherwise, false.
+     */
     private boolean emailIsValid(String email) {
         String EMAIL_REGEX = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
         Pattern pattern = Pattern.compile(EMAIL_REGEX);
         return pattern.matcher(email.trim()).matches();
     }
-
+    /**
+     * Handles user login by verifying credentials and generating a JWT token.
+     *
+     * @param loginRequest The login request containing email and password.
+     * @return A LoginResponse with the result of the login attempt.
+     */
     public LoginResponse login(LoginRequest loginRequest) {
         if(!emailIsValid(loginRequest.getEmail())) {
             return new LoginResponse(false, "Email not valid", null, null, null);
@@ -61,7 +74,12 @@ public class UserService {
             return new LoginResponse(false, "Email not found", null, null, null);
         }
     }
-
+    /**
+     * Handles user registration by creating a new user account.
+     *
+     * @param signinRequest The registration request containing user details.
+     * @return A SigninResponse with the result of the registration attempt.
+     */
     public SigninResponse signin(SigninRequest signinRequest) {
         if(!emailIsValid(signinRequest.getEmail())) {
             return new SigninResponse(false, "Email not valid");
@@ -82,7 +100,12 @@ public class UserService {
             return new SigninResponse(false, "Email already exists");
         }
     }
-
+    /**
+     * Builds the user profile response including favorite players and teams.
+     *
+     * @param tokenRequest The token request containing the user's authentication token.
+     * @return A ResponseEntity containing the user's profile information.
+     */
     public ResponseEntity<?> buildProfile(TokenRequest tokenRequest){
         String token = tokenRequest.getToken();
         if(jwtService.isTokenValid(token)){
@@ -93,9 +116,20 @@ public class UserService {
             return ResponseEntity.ok(needToBeLogged());
         }
     }
-    public NeedToBeLoggedResponse needToBeLogged(){
+    /**
+     * Generates a response indicating the need for the user to log in.
+     *
+     * @return A NeedToBeLoggedResponse indicating the user needs to log in.
+     */
+    private NeedToBeLoggedResponse needToBeLogged(){
         return new NeedToBeLoggedResponse();
     }
+    /**
+     * Builds the profile response for a logged-in user, including favorite players and teams.
+     *
+     * @param user The logged-in user for whom the profile is built.
+     * @return A ProfileResponse containing user profile information.
+     */
     public ProfileResponse buildLoggedProfile(User user) {
         List<ViewFavoritePlayerProfileResponse> favPlayers = new ArrayList<>();
         List<ViewFavoriteTeamProfileResponse> favTeams = new ArrayList<>();

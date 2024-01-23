@@ -12,7 +12,11 @@ import lombok.AllArgsConstructor;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * Class responsible for populating the database with data from an external API.
+ * This class contains methods to call different API endpoints and process the responses
+ * to store in the database.
+ */
 //@Component
 @AllArgsConstructor
 public class PopulateDB {
@@ -32,7 +36,13 @@ public class PopulateDB {
 
     private PlayerTeamRepository playerTeamRepository;
 
-
+    /**
+     * Initializes the database population process.
+     * It checks various conditions and makes API calls to populate the database with
+     * team, game, player, and statistics data.
+     *
+     * @throws JsonProcessingException if there is an error in processing JSON responses.
+     */
     //@PostConstruct
     public void init() throws JsonProcessingException {
         int totCall=0;

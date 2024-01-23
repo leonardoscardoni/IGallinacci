@@ -23,7 +23,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-
+/**
+ * This service class provides methods to retrieve information about NBA teams,
+ * including team details, standings, last games, head-to-head statistics, and team comparisons.
+ */
 @Service
 @RequiredArgsConstructor
 public class TeamService {
@@ -43,11 +46,13 @@ public class TeamService {
     private final FavTeamRepository favTeamRepository;
 
     private final JwtService jwtService;
-
-    public Team getTeamById(int inputId){
-        return teamRepository.findById(inputId);
-    }
-
+    /**
+     * Builds a response containing information about NBA teams, including
+     * their conferences, divisions, and whether they are marked as favorites by a user.
+     *
+     * @param tokenRequest The token request containing the user's authentication token.
+     * @return A TeamsResponse object with team information.
+     */
     public TeamsResponse buildTeams(TokenRequest tokenRequest){
         String token = tokenRequest.getToken();
         boolean logged= jwtService.isTokenValid(token);
@@ -68,7 +73,7 @@ public class TeamService {
         return new TeamsResponse(logged, conferenceWest, conferenceEast);
     }
 
-    public ViewDivision buildViewDivision(String division, Integer idUser){
+    private ViewDivision buildViewDivision(String division, Integer idUser){
         List<Team> teamsByDivision= teamRepository.findByDivision(division);
         List<ViewTeam> listViewTeams= new ArrayList<>();
         for (Team team: teamsByDivision){
@@ -85,7 +90,15 @@ public class TeamService {
         }
         return new ViewDivision(listViewTeams);
     }
-
+    /**
+     * Builds a response containing detailed information about an NBA team, including
+     * its statistics, players, and recent performance.
+     *
+     * @param tokenRequest The token request containing the user's authentication token.
+     * @param idTeam       The unique identifier of the team.
+     * @param season       The season for which team details are requested.
+     * @return A TeamDetailsResponse object with team details.
+     */
     public TeamDetailsResponse buildTeamDetailsResponse(TokenRequest tokenRequest, int idTeam, int season){
         String token = tokenRequest.getToken();
         boolean logged= jwtService.isTokenValid(token);
@@ -192,7 +205,14 @@ public class TeamService {
         );
         return teamDetailsResponse;
     }
-    public List<ViewLastGame> buildListViewLastGame(Team team, LocalDate date){
+    /**
+     * Builds a list of the last games played by a team.
+     *
+     * @param team The NBA team for which last games are to be retrieved.
+     * @param date The date up to which last games are to be considered.
+     * @return A list of ViewLastGame objects representing the last games.
+     */
+    private List<ViewLastGame> buildListViewLastGame(Team team, LocalDate date){
         List<ViewLastGame> lastGames = new ArrayList<>();
         List<Game> games= gameRepository.findLastFourGameByTeam(team.getId(),date);
         Team otherTeam = new Team();
@@ -219,7 +239,15 @@ public class TeamService {
         }
         return lastGames;
     }
-    public List<HeadToHead> builListHeadToHead(Team teamHome, Team teamVisitor, LocalDate date){
+    /**
+     * Builds a list of head-to-head statistics between two NBA teams.
+     *
+     * @param teamHome    The home team in head-to-head matches.
+     * @param teamVisitor The visiting team in head-to-head matches.
+     * @param date        The date up to which head-to-head statistics are to be considered.
+     * @return A list of HeadToHead objects representing head-to-head statistics.
+     */
+    private List<HeadToHead> builListHeadToHead(Team teamHome, Team teamVisitor, LocalDate date){
         List<HeadToHead> listHeadToHead = new ArrayList<>();
         List<Game> games = gameRepository.findLastFourHtH(teamHome.getId(),teamVisitor.getId(),date);
         for (Game game : games){
@@ -242,7 +270,16 @@ public class TeamService {
         }
         return listHeadToHead;
     }
-
+    /**
+     * Builds a response containing a comparison of two NBA teams, including
+     * team statistics, last games, and head-to-head performance.
+     *
+     * @param tokenRequest The token request containing the user's authentication token.
+     * @param idTeam1      The unique identifier of the first team.
+     * @param idTeam2      The unique identifier of the second team.
+     * @param season       The season for which the comparison is requested.
+     * @return A CompareTeamsResponse object with team comparison details.
+     */
     public ResponseEntity<?> buildCompareTeamResponse(TokenRequest tokenRequest, int idTeam1, int idTeam2, int season){
         String token = tokenRequest.getToken();
         boolean logged= jwtService.isTokenValid(token);
@@ -323,7 +360,14 @@ public class TeamService {
         );
         return ResponseEntity.ok(CompareTeamsResponse);
     }
-
+    /**
+     * Builds a response containing NBA team standings for a specific season,
+     * including information about wins, losses, and statistical averages.
+     *
+     * @param tokenRequest The token request containing the user's authentication token.
+     * @param season       The season for which standings are requested.
+     * @return A StandingsResponse object with team standings.
+     */
     public StandingsResponse buildStandingsResponse(TokenRequest tokenRequest, int season) {
         List<ViewTeamStanding> eastTeamsRanking = new ArrayList<>();
         List<ViewTeamStanding> westTeamsRanking = new ArrayList<>();
@@ -358,7 +402,6 @@ public class TeamService {
                     )
             );
         }
-
         for (Team team : westTeams) {
             StatsTeam statsTeam = statsTeamRepository.findByTeamAndSeason(team, season);
             Float avgPointsPerGame = statsGameRepository.findPointsPerGame(team.getId(), season);
