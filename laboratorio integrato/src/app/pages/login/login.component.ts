@@ -53,16 +53,16 @@ export class LoginComponent {
             */
             .subscribe((res: any) => {
                 if (res.success) {
-                    console.log("entraaaa");
-                    alert("login ok");
                     console.log(res);
                     /* In questo modo ti salvi nel local storage il token che hai nel response body e lo chiami loginToken.
                     Per vedere il loginToken salvato vado in ispeziona, application, localstorage, localhost*/
                     localStorage.setItem("loginToken", res.token);
                     localStorage.setItem("name", res.name);
                     localStorage.setItem("scadenzaToken", res.expireDate);
+
                     /* Ti porta alla route home */
                     this.router.navigateByUrl("/home");
+
                 } else {
                     if (res.message == "Email not found") {
                         this.router.navigateByUrl("/register");

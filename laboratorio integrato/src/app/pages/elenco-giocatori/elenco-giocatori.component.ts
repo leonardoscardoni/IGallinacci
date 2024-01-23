@@ -26,13 +26,11 @@ data3:any
     }
     data2: PlayerTeamFilteredType = {} as PlayerTeamFilteredType
     PlayerFilter(idTeam:number) {
-      console.log(this.ruoloSelezionato)
-      
       this.apiService.getPlayerFilter(idTeam).subscribe((data) => {
         this.data2 = data;
         console.log(this.data2)
-        
       });
+      console.log(this.ruoloSelezionato)
     }
     
 

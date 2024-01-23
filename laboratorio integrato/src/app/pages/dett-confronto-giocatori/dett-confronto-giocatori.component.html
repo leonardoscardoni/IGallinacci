@@ -29,9 +29,9 @@
             </ng-container>
         </div>
     </div>
-    
-    <app-titolo-sezione [numero]="'01'" [titolo]="'Ruolo'" [spiegazione]="'Lorem ipsum dolor sit amet consectetur. Velit urna vitae scelerisque nullam sed metus dictum pulvinar.'" [spanSpiegazione]="'Consectetur volutpat turpis nec congue.'"/>
-    
+    </section>
+    <app-titolo-sezione [numero]="'01'" [titolo]="'Ruolo'" [spiegazione]="'L`utilità di ciascun ruolo consente agli allenatori di formare strategie vincenti, sfruttando al meglio le abilità specifiche di ogni giocatore e creando un equilibrio ideale per raggiungere gli obiettivi della squadra.'"/>
+    <section>
     <div>
         <div class="grid grid-cols-12 gap-4">
             <ng-container *ngFor="let giocatore of data.comparisonPlayers; index as i">
@@ -58,11 +58,11 @@
     </div>
 </section>
     
-    <section class="md:px-20 px-6 pb-20">
-        <app-titolo-sezione [numero]="'02'" [titolo]="'Dati'" [spiegazione]="'Lorem ipsum dolor sit amet consectetur. Velit urna vitae scelerisque nullam sed metus dictum pulvinar.'" [spanSpiegazione]="'Consectetur volutpat turpis nec congue.'"/>
+<app-titolo-sezione [numero]="'02'" [titolo]="'Dati'" [spiegazione]="'Confrontare i dati statistici tra giocatori è essenziale per comprendere le prestazioni dei giocatori e delle squadre. '"/>
+    <section class="pb-20">
     
         <div class="container grid grid-cols-12 gap-4">
-            <div class="col-start-0 col-span-12 md:col-start-1 lg:col-start-2 md:col-span-12 lg:col-span-10">
+            <div class="col-start-0 col-span-12 md:col-start-1 lg:col-start-2 md:col-span-12 lg:col-span-10 px-20 md:px-5">
                 <div class="flex justify-between flex-wrap flex-col md:flex-row">
                     <ng-container *ngFor="let tipoDato of data.dataPlayers, let i = index">
                         <div class="w-full md:w-[30%] mt-3 ">
