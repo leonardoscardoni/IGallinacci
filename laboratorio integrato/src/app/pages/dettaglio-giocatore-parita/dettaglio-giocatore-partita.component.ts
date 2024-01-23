@@ -26,9 +26,9 @@ export class DettaglioGiocatorePartitaComponent {
             this.idPlayer = params.get("idPlayer");
             console.log("idPlayer:", this.idPlayer);
 
-            this.apiService.getPlayerMatchApi(this.idGame, this.idPlayer).subscribe((data) => {
-                this.data = data;
-                console.log("qeust", data);
+            this.route.data.subscribe(({ getPlayerMatch }) => {
+                this.data = getPlayerMatch;
+                console.log(this.data);
             });
         });
 

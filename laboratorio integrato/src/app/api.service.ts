@@ -178,7 +178,7 @@ export class ApiService {
             );
     }
 
-    getConfrontoTeamApi(id1: string, id2: string) {
+    getConfrontoTeam(id1: string, id2: string) {
         return this.http
             .post(
                 `${this.baseURL}${this.confrontoTeam}${id1}${"&idTeam2="}${id2}${"&season=2022"}`,
@@ -192,7 +192,8 @@ export class ApiService {
                 })
             );
     }
-    getConfrontoPlayerApi(id1: string, id2: string) {
+
+    getConfrontoPlayer(id1: string, id2: string) {
         return this.http
             .post(
                 `${this.baseURL}${
@@ -209,7 +210,7 @@ export class ApiService {
             );
     }
 
-    getCalendarApi(data: string) {
+    getCalendar(data: string) {
         return this.http.get(`${this.baseURL}${this.calendar}${data}`).pipe(
             map((response: any) => {
                 return response as CalendarType;
@@ -217,7 +218,7 @@ export class ApiService {
         );
     }
 
-    getPlayerMatchApi(idGame: string, idPlayer: string) {
+    getPlayerMatch(idGame: string, idPlayer: string) {
         return this.http
             .post(`${this.baseURL}${this.playerMatch}${idGame}&idPlayer=${idPlayer}`, {
                 token: localStorage.getItem("loginToken"),

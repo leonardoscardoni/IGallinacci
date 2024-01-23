@@ -23,7 +23,11 @@ import { getElencoTeamResolver } from "./_services/getElencoTeamResolver.service
 import { getTeamDetailResolver } from "./_services/getTeamDetailResolver.service";
 import { getClassificaResolver } from "./_services/getClassificaResolver.service";
 import { getPlayerDetailIndResolver } from "./_services/getPlayerDetailIndResolver.service";
-
+import { getConfrontoTeamResolver } from "./_services/getConfrontoTeamResolver.service";
+import { getConfrontoPlayerResolver } from "./_services/getConfrontoPlayerResolver.service";
+import { getCalendarResolver } from "./_services/getCalendarResolver.service";
+import { getUserDetailResolver } from "./_services/getUserDetailResolver.service";
+import { getPlayerMatchResolver } from "./_services/getPlayerMatchResolver.service";
 
 const routes: Routes = [
     { path: "login", component: LoginComponent },
@@ -78,24 +82,59 @@ const routes: Routes = [
             },
         },
     },
-    { path: "calendario-partite", component: CalendarioPartiteComponent },
-    { path: "dett-confronto-giocatori/:id1/:id2", component: DettConfrontoGiocatoriComponent },
-    { path: "elenco-giocatori", component: ElencoGiocatoriComponent },
-    { path: "blog", component: ElencoArticoliComponent },
-    { path: "scelta-confronto-team", component: SceltaConfrontoTeamComponent },
-    {
-        path: "dett-giocatore-partita/:idGame/:idPlayer",
-        component: DettaglioGiocatorePartitaComponent,
-    },
-    { path: "scelta-confronto-giocatori", component: SceltaConfrontoGiocatoriComponent },
     {
         path: "dettaglio-confronto-team/:id1/:id2",
         component: DettaglioConfrontoTeamComponent,
+        resolve: {
+            getConfrontoTeam: (route: ActivatedRouteSnapshot) => {
+                return inject(getConfrontoTeamResolver).getConfrontoTeam(
+                    route.paramMap.get("id1")!,
+                    route.paramMap.get("id2")!
+                );
+            },
+        },
+    },
+    {
+        path: "dett-confronto-giocatori/:id1/:id2",
+        component: DettConfrontoGiocatoriComponent,
+        resolve: {
+            getConfrontoPlayer: (route: ActivatedRouteSnapshot) => {
+                return inject(getConfrontoPlayerResolver).getConfrontoPlayer(
+                    route.paramMap.get("id1")!,
+                    route.paramMap.get("id2")!
+                );
+            },
+        },
     },
     {
         path: "profilo",
         component: ProfiloComponent,
+        resolve: {
+            getUserDetail: (route: ActivatedRouteSnapshot) => {
+                return inject(getUserDetailResolver).getUserDetail;
+            },
+        },
     },
+    {
+        path: "dett-giocatore-partita/:idGame/:idPlayer",
+        component: DettaglioGiocatorePartitaComponent,
+        resolve: {
+            getPlayerMatch: (route: ActivatedRouteSnapshot) => {
+                return inject(getPlayerMatchResolver).getPlayerMatch(
+                    route.paramMap.get("idGame")!,
+                    route.paramMap.get("idPlayer")!
+                );
+            },
+        },
+    },
+    {
+        path: "calendario-partite",
+        component: CalendarioPartiteComponent,
+    },
+    { path: "elenco-giocatori", component: ElencoGiocatoriComponent },
+    { path: "blog", component: ElencoArticoliComponent },
+    { path: "scelta-confronto-team", component: SceltaConfrontoTeamComponent },
+    { path: "scelta-confronto-giocatori", component: SceltaConfrontoGiocatoriComponent },
     {
         path: "dettaglio-articolo",
         component: DettaglioArticoloComponent,

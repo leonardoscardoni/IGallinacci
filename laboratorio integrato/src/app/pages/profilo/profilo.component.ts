@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { ApiService } from "../../api.service";
 import { ProfileType } from "src/app/_models/profile.type";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
     selector: "app-profilo",
@@ -9,24 +9,26 @@ import { Router } from "@angular/router";
     styleUrls: ["./profilo.component.scss"],
 })
 export class ProfiloComponent {
-    constructor(private apiService: ApiService, private router: Router) {}
+    constructor(
+        private route: ActivatedRoute,
+        private apiService: ApiService,
+        private router: Router
+    ) {}
 
     data: ProfileType = {} as ProfileType;
     numeroGiocatoriDaVisualizzare = 3;
     numeroSquadreDaVisualizzare = 3;
     nomeUtente: string | null = "";
 
-
-
     ngOnInit() {
-        this.apiService.getUserDetail().subscribe((data: ProfileType) => {
-            this.data = data;
-            console.log(this.data);
+        this.route.paramMap.subscribe((params) => {
+            this.route.data.subscribe(({ getUserDetail }) => {
+                this.data = getUserDetail;
+                console.log(this.data);
+            });
         });
 
         this.nomeUtente = localStorage.getItem("name");
-
-       
     }
 
     get slicedPlayers(): any[] {
@@ -65,7 +67,7 @@ export class ProfiloComponent {
         console.log(this.slicedPlayers);
     }
 
-    logout(){
-        localStorage.clear()
+    logout() {
+        localStorage.clear();
     }
 }
