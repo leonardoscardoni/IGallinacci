@@ -27,13 +27,18 @@ public class DailyEndpoint {
     public void init() throws InterruptedException {
         LocalDate today=LocalDate.now();
         System.out.println("Starting daily call");
-        Integer season = gameRepository.findCurrentSeason();
+        int season;
+        if(today.getMonth().getValue()<=7){
+            season = today.getYear();
+        }else{
+            season = today.getYear()-1;
+        }
         Map<String, String> params;
         int totCall=0;
         int call=0;
         params = Map.ofEntries(
                 Map.entry("league", "standard"),
-                Map.entry("season", season.toString()));
+                Map.entry("season", Integer.toString(season)));
         try {
             String response = apiCaller.callApi("games", params);
             call+=1;
@@ -47,7 +52,7 @@ public class DailyEndpoint {
         TimeUnit.SECONDS.sleep(7);
         params = Map.ofEntries(
                 Map.entry("league", "standard"),
-                Map.entry("season", season.toString()));
+                Map.entry("season", Integer.toString(season)));
         try {
             String response = apiCaller.callApi("standings", params);//2 chiamate
             call+=1;
@@ -68,7 +73,7 @@ public class DailyEndpoint {
                     if(!idTeamAlreadyUpdate.contains(idTeam)) {
                         System.out.println("idTeam: " + idTeam);
                         params = Map.ofEntries(
-                                Map.entry("season", season.toString()),
+                                Map.entry("season", Integer.toString(season)),
                                 Map.entry("team", idTeam.toString()));
                         try {
                             String response = apiCaller.callApi("players", params);//120 chiamate
@@ -87,7 +92,7 @@ public class DailyEndpoint {
                         }
                         TimeUnit.SECONDS.sleep(7);
                         params = Map.ofEntries(
-                                Map.entry("season", season.toString()),
+                                Map.entry("season", Integer.toString(season)),
                                 Map.entry("id", idTeam.toString()));
                         try {
                             String response = apiCaller.callApi("teams/statistics", params);//120 chiamate
