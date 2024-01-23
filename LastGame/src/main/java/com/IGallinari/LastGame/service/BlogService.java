@@ -140,7 +140,7 @@ public class BlogService {
         }
         List<ViewTagPlayer> tagPlayerList = builTagPlayerList(idBlog);
         List<ViewTagTeam> tagTeamsList = buildTagTeamList(idBlog);
-        User user = userRepository.findById(jwtService.getIdUser(token));
+        User user = blog.getUser();
         return new BlogResponse(
                 logged,
                 user.getEmail(),
