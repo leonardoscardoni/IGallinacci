@@ -2,10 +2,9 @@ package com.IGallinari.LastGame.service.API_to_DB;
 
 import com.IGallinari.LastGame.repository.GameRepository;
 import com.IGallinari.LastGame.repository.StatsGameRepository;
-import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

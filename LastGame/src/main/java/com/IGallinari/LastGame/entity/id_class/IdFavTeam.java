@@ -3,7 +3,6 @@ package com.IGallinari.LastGame.entity.id_class;
 import java.io.Serializable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**

@@ -7,10 +7,8 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
+
 @Service
 public class ApiCaller {
     private static final String RAPIDAPI_HOST = "v2.nba.api-sports.io";

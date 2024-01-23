@@ -1,11 +1,8 @@
 package com.IGallinari.LastGame.service.API_to_DB.HandleJSON;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public interface Handler {
     void handle(JsonNode jsonNode);
