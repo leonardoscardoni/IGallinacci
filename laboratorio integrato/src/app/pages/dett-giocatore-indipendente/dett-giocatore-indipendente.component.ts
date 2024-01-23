@@ -11,15 +11,27 @@ import { ApiService } from "src/app/api.service";
 export class DettGiocatoreIndipendenteComponent {
     constructor(private route: ActivatedRoute, private apiService: ApiService) {}
     data: PlayerDetailIndType = {} as PlayerDetailIndType;
+    data2: any = {} as any;
+    isFavourite!: boolean;
     id: any;
+
     ngOnInit() {
         this.route.paramMap.subscribe((params) => {
             this.id = params.get("id");
-
             this.route.data.subscribe(({ getPlayerDetailInd }) => {
                 this.data = getPlayerDetailInd;
                 console.log(this.data);
+                console.log("qeust", this.data);
             });
         });
+    }
+
+    toggleFavourite(id: any) {
+        this.apiService.getFavouritePlayer(id).subscribe((data) => {
+            this.data2 = data;
+            console.log(this.data);
+            console.log(id);
+        });
+        this.isFavourite = !this.isFavourite;
     }
 }

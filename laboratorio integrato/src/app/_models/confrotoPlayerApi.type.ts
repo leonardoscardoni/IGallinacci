@@ -6,7 +6,8 @@ export interface ConfrontoPlayerType {
 }
 
 export interface ComparisonPlayer {
-    name:        string;
+    firstname:   string;
+    lastname:    string;
     age:         number;
     country:     string;
     weight:      number;
@@ -25,7 +26,9 @@ export interface DataPlayer {
 }
 
 export interface Player {
-    idPlayer: number;
-    name:     string;
-    logo:     string;
+    favourite: boolean;
+    idPlayer:  number;
+    firstname: string;
+    lastname:  string;
+    logo:      string;
 }

@@ -27,6 +27,7 @@ public class PlayerController {
     @PostMapping("/getPlayerDetailsByGame")
     public PlayerDetailsByGameResponse getPlayerDetailsByGame (@RequestBody TokenRequest tokenRequest,@RequestParam int idGame, @RequestParam int idPlayer){return this.service.buildPlayerDetailsByGameResponse(tokenRequest,idGame, idPlayer);}
 
+
     @RequestMapping("/getTeamRolesPlayerFilter")
     public PlayerFilterResponse getTeamRolesPlayerFilter(){return this.service.buildCompareFilterResponse();}
 

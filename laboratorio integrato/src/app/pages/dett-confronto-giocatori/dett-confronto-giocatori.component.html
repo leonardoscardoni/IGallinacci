@@ -6,14 +6,15 @@
     <div class="hidden lg:hidden xl:block">XL</div>
 </div> -->
 
-<app-header-confronto-dettaglio [bgImg]="a.bgImg" [nome1]="data.player1.name" [nome2]="data.player2.name" [logo1]="data.player1.logo" [logo2]="data.player2.logo"></app-header-confronto-dettaglio>
+<app-header-confronto-dettaglio [bgImg]="a.bgImg" [nome1]="data.player1.firstname" [cognome1]="data.player1.lastname" [nome2]="data.player2.firstname" [cognome2]="data.player2.lastname" [logo1]="data.player1.logo" [logo2]="data.player2.logo"></app-header-confronto-dettaglio>
 
 <section class="md:p-20 p-6">
     <div>
         <div class="flex justify-center sm:justify-between w-full flex-wrap">
             <ng-container *ngFor="let giocatore of data.comparisonPlayers; index as i">
                 <app-bio-giocatore
-                    [nomeGiocatore]="giocatore.name"
+                    [nomeGiocatore]="giocatore.firstname"
+                    [cognomeGiocatore]="giocatore.lastname"
                     [eta]="giocatore.age"
                     [peso]="giocatore.weight"
                     [stato]="giocatore.country"
@@ -49,8 +50,8 @@
                   }"
                   class="border border-[#E5CFB5] rounded-2xl p-3 text-center hover:bg-[#E5CFB5] hover:text-black"
                 >
-                    <p class="text-base md:text-lg">{{giocatore.name.toUpperCase()}}</p>
-                    <p class="font-inter text-2lg md:text-3xl font-black">{{giocatore.role.toUpperCase()}}</p>
+                    <p class="text-base md:text-lg uppercase">{{giocatore.firstname}} {{giocatore.lastname}}</p>
+                    <p class="font-inter text-2lg md:text-3xl font-black uppercase">{{giocatore.role}}</p>
                 </div>
             </ng-container>
         </div>
@@ -66,7 +67,11 @@
                     <ng-container *ngFor="let tipoDato of data.dataPlayers, let i = index">
                         <div class="w-full md:w-[30%] mt-3 ">
                             
-                            <app-card-confronto-dati [titoloCard]="titoli[i]" [nomeSquadra1]="data.player1.name" [nomeSquadra2]="data.player2.name" [logoSquadra1]="data.player2.logo" [logoSquadra2]="data.player1.logo" [datoSquadra1]="tipoDato.dataPlayer1"
+                            <app-card-confronto-dati [titoloCard]="titoli[i]" [nomeSquadra1]="data.player1.firstname"
+                            [cognome1]="data.player1.lastname" 
+                            [nomeSquadra2]="data.player2.firstname"
+                            [cognome2]="data.player2.lastname"  
+                            [logoSquadra1]="data.player2.logo" [logoSquadra2]="data.player1.logo" [datoSquadra1]="tipoDato.dataPlayer1"
                             [datoSquadra2]="tipoDato.dataPlayer2"/>
                             
                         </div>

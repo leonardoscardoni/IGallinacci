@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { PlayerTeamFilteredType } from 'src/app/_models/PlayerTeamFilteredApi.type';
 import { PlayerMatchType } from 'src/app/_models/playerMatchApi.type';
@@ -14,12 +15,14 @@ export class SelezioneConfrontoGiocatoriComponent {
   searchInput: string = '';
 
   isModalOpen = false;
-  selectedTeam1: { nome: string; immagine: string; id:number } = {
+  selectedTeam1: { nome: string;cognome: string; immagine: string; id:number } = {
     nome: '', immagine: '',
+    cognome:'',
     id: 0
   };
-  selectedTeam2: { nome: string; immagine: string; id:number } = {
+  selectedTeam2: { nome: string;cognome: string; immagine: string; id:number } = {
     nome: '', immagine: '',
+    cognome:'',
     id: 0
   };
   selectedPlus: string | null = null;
@@ -31,7 +34,7 @@ export class SelezioneConfrontoGiocatoriComponent {
     this.isModalOpen = true;
   }
 
-  selectTeam(team: { nome: string; immagine: string ; id:number}) {
+  selectTeam(team: { nome: string; immagine: string ; id:number; cognome: string;}) {
     if (this.selectedPlus === 'plus1') {
       this.selectedTeam1 = team;
     } else if (this.selectedPlus === 'plus2') {
@@ -52,7 +55,7 @@ export class SelezioneConfrontoGiocatoriComponent {
   resetSearchInput(): void {
     this.searchInput = '';
   }
-  constructor(private router: Router,private apiService: ApiService) {}
+  constructor(private http: HttpClient,private router: Router,private apiService: ApiService) {}
 
   goToConfrontoTeam() {
     // Verifica che ci siano squadre selezionate
@@ -64,44 +67,7 @@ export class SelezioneConfrontoGiocatoriComponent {
       console.error('Seleziona entrambe le squadre prima di procedere.');
     }
   }
-  a = {
-    squadre: ["squadrettina", "squadrona"],
-    ruoli: ["attaccante", "difensore"],
-    giocatori: [
-        {
-            logoSquadra: "/assets/s-l1200.webp",
-            nomeGiocatore: "Clara Cosentino",
-            nomeSquadra: "squadrettina",
-            ruolo: "attaccante",
-            provenienza: "italia",
-            preferiti: false,
-        },
-        {
-            logoSquadra: "/assets/s-l1200.webp",
-            nomeGiocatore: "Lisa Bertinotti",
-            nomeSquadra: "squadrona",
-            ruolo: "portiere",
-            provenienza: "italia",
-            preferiti: false,
-        },
-        {
-            logoSquadra: "/assets/s-l1200.webp",
-            nomeGiocatore: "Lisa aaaaaaaaaa",
-            nomeSquadra: "squadrona",
-            ruolo: "difensore",
-            provenienza: "italia",
-            preferiti: false,
-        },
-        {
-            logoSquadra: "/assets/s-l1200.webp",
-            nomeGiocatore: "Lisa Bertinotti",
-            nomeSquadra: "squadrona",
-            ruolo: "portiere",
-            provenienza: "italia",
-            preferiti: false,
-        },
-    ],
-};
+
 
 squadraSelezionata: any;
 ruoloSelezionato: any;
@@ -122,4 +88,74 @@ data2: PlayerTeamFilteredType = {} as PlayerTeamFilteredType
 
       });
     }
+    isModal2Open = false;
+
+  openModal2() {
+    this.isModal2Open = true;
+  }
+
+  closeModal2() {
+    this.isModal2Open = false;
+  }
+
+
+  loginObj: any = {
+    email: "",
+    password: "",
+};
+mostraPassword: boolean = false;
+
+@ViewChild("passwordInput", { static: true }) passwordInput!: ElementRef;
+toggleMostraPassword(): void {
+    this.mostraPassword = !this.mostraPassword;
+
+    // Aggiorna il tipo dell'input a seconda dello stato
+    const inputElement = this.passwordInput.nativeElement as HTMLInputElement;
+    inputElement.type = this.mostraPassword ? "text" : "password";
+}
+
+
+
+onLogin() {
+    this.http
+        /* this.loginObj contiene i dati inseriti dall'utente nel form e infatti sono i dati che vengono inviati in post a quell url */
+        .post("http://localhost:8090/user/login", this.loginObj)
+        /* Il response body è questo in caso di pw sbagliata
+        {
+            "message": "UserName or Password is Wrong",
+            "result": false,
+            "data": null
+        }
+        Invece questo in caso di pw corretta
+        {
+            "message": "Login Success",
+            "result": true,
+            "data": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDQ0OTY2MTAsImlzcyI6IlRlc3QuY29tIiwiYXVkIjoiVGVzdC5jb20ifQ.hcL2zJQCr9BEvqYRj4Gxu1KIyA3PuNsVyasZmFlHMao"
+            }
+        }
+        Con questa api, per avere result true bisogna mettere
+        {
+            "EmailId": "chetan@gmail.com",
+            "Password": "admin"
+        }
+        */
+        .subscribe((res: any) => {
+            if (res.success) {
+                console.log("entraaaa");
+                console.log(res);
+                /* In questo modo ti salvi nel local storage il token che hai nel response body e lo chiami loginToken.
+                Per vedere il loginToken salvato vado in ispeziona, application, localstorage, localhost*/
+                localStorage.setItem("loginToken", res.token);
+                localStorage.setItem("name", res.name);
+                localStorage.setItem("scadenzaToken", res.expireDate);
+                /* Ti porta alla route home */
+                this.goToConfrontoTeam()
+            } else {
+                if (res.message == "Email not found") {
+                    this.router.navigateByUrl("/register");
+                }
+            }
+        });
+}
 }

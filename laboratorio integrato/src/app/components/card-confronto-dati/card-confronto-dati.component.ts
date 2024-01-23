@@ -8,6 +8,8 @@ import { Component, OnInit, Input } from "@angular/core";
 export class CardConfrontoDatiComponent implements OnInit {
     @Input() titoloCard!: string;
     @Input() nomeSquadra1!: string;
+    @Input() cognome1!: string;
+    @Input() cognome2!: string;
     @Input() nomeSquadra2!: string;
     @Input() logoSquadra1!: string;
     @Input() logoSquadra2!: string;

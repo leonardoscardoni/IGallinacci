@@ -24,6 +24,7 @@ import { getTeamDetailResolver } from "./_services/getTeamDetailResolver.service
 import { getClassificaResolver } from "./_services/getClassificaResolver.service";
 import { getPlayerDetailIndResolver } from "./_services/getPlayerDetailIndResolver.service";
 
+
 const routes: Routes = [
     { path: "login", component: LoginComponent },
     { path: "register", component: RegisterComponent },

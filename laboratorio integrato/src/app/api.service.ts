@@ -27,14 +27,17 @@ export class ApiService {
     private divisione = "team/getTeams";
     private calendar = "game/getCalendar?date=";
     private team = `${"team/getTeamsDetails?idTeam="}`;
-    private confrontoTeam = `${"team/getCompareTeam?idTeam1="}`;
-    private confrontoPlayer = `${"player/getPlayerCompare?idPlayer1="}`;
+    private confrontoTeam = `${"team/getCompareTeams?idTeam1="}`;
+    private confrontoPlayer = `${"player/getComparePlayer?idPlayer1="}`;
     private playerMatch = "player/getPlayerDetailsByGame?idGame=";
     private TeamRolesPlayerFilter = "player/getTeamRolesPlayerFilter";
     private playerIndipendente = `${"player/getPlayerDetails?idPlayer="}`;
     private PlayerFilter = `${"player/getPlayerFilteredByTeam?idTeam="}`;
     private dettaglioPartita = "game/getGameDetails?idGame=";
+
     private classifica = `${"team/getStandings?season="}`;
+    private favouriteTeam = "favourite/team";
+    private favouritePlayer = "favourite/player";
     private userDetail = `user/getUserProfile`;
 
     constructor(private http: HttpClient) {}
@@ -58,7 +61,7 @@ export class ApiService {
         return this.http
             .post(`${this.baseURL}${this.homeUrl}`, {
                 token: localStorage.getItem("loginToken"),
-                date: "2024-01-18",
+                date: "2024-01-16",
             })
             .pipe(
                 map((response: any) => {
@@ -71,7 +74,18 @@ export class ApiService {
                 })
             );
     }
-
+    getFavouriteTeam(id: number) {
+        return this.http.post(`${this.baseURL}${this.favouriteTeam}`, {
+            token: localStorage.getItem("loginToken"),
+            idTeam: id,
+        });
+    }
+    getFavouritePlayer(id: number) {
+        return this.http.post(`${this.baseURL}${this.favouritePlayer}`, {
+            token: localStorage.getItem("loginToken"),
+            idPlayer: id,
+        });
+    }
     getDettaglioPartita(idPartita: string) {
         return this.http
             .post(`${this.baseURL}${this.dettaglioPartita}${idPartita}`, {
@@ -121,16 +135,22 @@ export class ApiService {
     }
 
     getDivisionApi() {
-        return this.http.get(`${this.baseURL}${this.divisione}`).pipe(
-            map((response: any) => {
-                return response as TeamType;
+        return this.http
+            .post(`${this.baseURL}${this.divisione}`, {
+                token: localStorage.getItem("loginToken"),
             })
-        );
+            .pipe(
+                map((response: any) => {
+                    return response as TeamType;
+                })
+            );
     }
 
     getPlayerDetailInd(id: string) {
         return this.http
-            .get(`${this.baseURL}${this.playerIndipendente}${id}${"&season=2023"}`)
+            .post(`${this.baseURL}${this.playerIndipendente}${id}${"&season=2022"}`, {
+                token: localStorage.getItem("loginToken"),
+            })
             .pipe(
                 map((response: any) => {
                     return response as PlayerDetailIndType;
@@ -147,16 +167,25 @@ export class ApiService {
     }
 
     getPlayerFilter(idTeam: number) {
-        return this.http.get(`${this.baseURL}${this.PlayerFilter}${idTeam}${"&season=2022"}`).pipe(
-            map((response: any) => {
-                return response as PlayerTeamFilteredType;
+        return this.http
+            .post(`${this.baseURL}${this.PlayerFilter}${idTeam}${"&season=2022"}`, {
+                token: localStorage.getItem("loginToken"),
             })
-        );
+            .pipe(
+                map((response: any) => {
+                    return response as PlayerTeamFilteredType;
+                })
+            );
     }
 
     getConfrontoTeamApi(id1: string, id2: string) {
         return this.http
-            .get(`${this.baseURL}${this.confrontoTeam}${id1}${"&idTeam2="}${id2}${"&season=2022"}`)
+            .post(
+                `${this.baseURL}${this.confrontoTeam}${id1}${"&idTeam2="}${id2}${"&season=2022"}`,
+                {
+                    token: localStorage.getItem("loginToken"),
+                }
+            )
             .pipe(
                 map((response: any) => {
                     return response as ConfrontoTeamType;
@@ -165,10 +194,13 @@ export class ApiService {
     }
     getConfrontoPlayerApi(id1: string, id2: string) {
         return this.http
-            .get(
+            .post(
                 `${this.baseURL}${
                     this.confrontoPlayer
-                }${id1}${"&idPlayer2="}${id2}${"&season=2022"}`
+                }${id1}${"&idPlayer2="}${id2}${"&season=2022"}`,
+                {
+                    token: localStorage.getItem("loginToken"),
+                }
             )
             .pipe(
                 map((response: any) => {
@@ -187,7 +219,9 @@ export class ApiService {
 
     getPlayerMatchApi(idGame: string, idPlayer: string) {
         return this.http
-            .get(`${this.baseURL}${this.playerMatch}${idGame}&idPlayer=${idPlayer}`)
+            .post(`${this.baseURL}${this.playerMatch}${idGame}&idPlayer=${idPlayer}`, {
+                token: localStorage.getItem("loginToken"),
+            })
             .pipe(
                 map((response: any) => {
                     return response as PlayerMatchType;

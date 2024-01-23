@@ -16,69 +16,7 @@ export class ProfiloComponent {
     numeroSquadreDaVisualizzare = 3;
     nomeUtente: string | null = "";
 
-    a = {
-        nicknameUtente: "Clara",
-        giocatoriPreferiti: [
-            {
-                firstname: "Clara",
-                lastname: "Cosentino",
-                numeroMaglia: 3,
-                position: "attaccante",
-                pointsForGame: 34,
-                assist: 23,
-                rebounds: 3,
-                steals: 2,
-            },
-            {
-                firstname: "Armando",
-                lastname: "Maradona",
-                numeroMaglia: 34,
-                position: "attaccante",
-                pointsForGame: 34,
-                assist: 23,
-                rebounds: 3,
-                steals: 2,
-            },
-            {
-                firstname: "Flavio",
-                lastname: "Gazzelle",
-                numeroMaglia: 34,
-                position: "attaccante",
-                pointsForGame: 34,
-                assist: 23,
-                rebounds: 3,
-                steals: 2,
-            },
-            {
-                firstname: "Cosa",
-                lastname: "Scrivo",
-                numeroMaglia: 34,
-                position: "attaccante",
-                pointsForGame: 34,
-                assist: 23,
-                rebounds: 3,
-                steals: 2,
-            },
-        ],
-        squadrePreferite: [
-            {
-                logo: "/assets/s-l1200.webp",
-                nickname: "Che due palle",
-            },
-            {
-                logo: "/assets/s-l1200.webp",
-                nickname: "Due coglioni",
-            },
-            {
-                logo: "/assets/s-l1200.webp",
-                nickname: "NBA DI MERA",
-            },
-            {
-                logo: "/assets/s-l1200.webp",
-                nickname: "Che due palle",
-            },
-        ],
-    };
+
 
     ngOnInit() {
         this.apiService.getUserDetail().subscribe((data: ProfileType) => {
@@ -88,21 +26,19 @@ export class ProfiloComponent {
 
         this.nomeUtente = localStorage.getItem("name");
 
-        if (!this.data.idUser) {
-            this.router.navigateByUrl("/login");
-        }
+       
     }
 
     get slicedPlayers(): any[] {
-        if (this.a && this.a.giocatoriPreferiti.length > 0) {
-            return this.a.giocatoriPreferiti.slice(0, this.numeroGiocatoriDaVisualizzare);
+        if (this.data && this.data.favPlayers.length > 0) {
+            return this.data.favPlayers.slice(0, this.numeroGiocatoriDaVisualizzare);
         } else {
             return [];
         }
     }
 
     mostraAltriGiocatori() {
-        this.numeroGiocatoriDaVisualizzare = this.a.giocatoriPreferiti.length;
+        this.numeroGiocatoriDaVisualizzare = this.data.favPlayers.length;
         console.log(this.slicedPlayers);
     }
 
@@ -112,20 +48,24 @@ export class ProfiloComponent {
     }
 
     get slicedTeams(): any[] {
-        if (this.a && this.a.squadrePreferite.length > 0) {
-            return this.a.squadrePreferite.slice(0, this.numeroSquadreDaVisualizzare);
+        if (this.data && this.data.favTeam.length > 0) {
+            return this.data.favTeam.slice(0, this.numeroSquadreDaVisualizzare);
         } else {
             return [];
         }
     }
 
     mostraAltreSquadre() {
-        this.numeroSquadreDaVisualizzare = this.a.squadrePreferite.length;
+        this.numeroSquadreDaVisualizzare = this.data.favTeam.length;
         console.log(this.slicedPlayers);
     }
 
     nascondiSquadre() {
         this.numeroSquadreDaVisualizzare = 3;
         console.log(this.slicedPlayers);
+    }
+
+    logout(){
+        localStorage.clear()
     }
 }
