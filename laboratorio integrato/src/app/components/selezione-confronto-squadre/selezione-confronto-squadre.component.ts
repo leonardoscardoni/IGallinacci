@@ -118,8 +118,6 @@ onLogin() {
         */
         .subscribe((res: any) => {
             if (res.success) {
-                console.log("entraaaa");
-                alert("login ok");
                 console.log(res);
                 /* In questo modo ti salvi nel local storage il token che hai nel response body e lo chiami loginToken.
                 Per vedere il loginToken salvato vado in ispeziona, application, localstorage, localhost*/

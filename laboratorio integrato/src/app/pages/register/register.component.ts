@@ -69,11 +69,10 @@ export class RegisterComponent {
         */
             .subscribe((res: any) => {
                 if (res.success) {
-                    alert("register ok");
                     /* In questo modo ti salvi nel local storage il token che hai nel response body e lo chiami loginToken.
                 Per vedere il loginToken salvato vado in ispeziona, application, localstorage, localhost*/
                     /* Ti porta alla route home */
-                    this.router.navigateByUrl("/home");
+                    this.router.navigateByUrl("/login");
                 } else {
                     if (res.message == "Email already exists") {
                         this.router.navigateByUrl("/login");
