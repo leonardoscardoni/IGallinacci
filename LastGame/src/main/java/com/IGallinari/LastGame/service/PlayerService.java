@@ -222,8 +222,9 @@ public class PlayerService {
                 Float.parseFloat(sumStatsPlayerAndAvgPointsArray.get(0)[18].toString()),
                 Integer.parseInt(sumStatsPlayerAndAvgPointsArray.get(0)[17].toString())
         );
+        Integer age = Period.between(player.getDateOfBirth(), LocalDate.now()).getYears();
         ViewPlayerBioPlayerDetails viewPlayerBioPlayerDetails = new ViewPlayerBioPlayerDetails(
-                player.getDateOfBirth(),
+                age,
                 player.getCountry(),
                 player.getWeight(),
                 player.getHeight(),

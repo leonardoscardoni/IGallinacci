@@ -34,12 +34,16 @@ import com.IGallinari.LastGame.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
+/**
+ * Service class for managing game-related operations.
+ * This includes building responses for various game views such as home, calendar, and game details.
+ */
 @Service
 @RequiredArgsConstructor
 public class GameService {
@@ -112,6 +116,12 @@ public class GameService {
                 );
             }
         }
+        favPastGame = new ArrayList<>(favPastGame.stream()
+                .collect(Collectors.toMap(Game::getId, game -> game, (existing, replacement) -> existing))
+                .values());
+        favNextGame = new ArrayList<>(favNextGame.stream()
+                .collect(Collectors.toMap(Game::getId, game -> game, (existing, replacement) -> existing))
+                .values());
         List<ViewPastGame> viewPastGames = buildPastGame(pastGames);
         List<ViewPastGame> viewFavPastGame = buildPastGame(favPastGame);
         List<ViewNextGame> viewNextGames = buildNextGame(nextGames);
