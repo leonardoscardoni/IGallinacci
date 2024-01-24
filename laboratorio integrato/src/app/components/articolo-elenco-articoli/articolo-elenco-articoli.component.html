@@ -1,6 +1,6 @@
 <div class="grid grid-cols-12 w-full md:h-[15rem] lg:h-[12rem] gap-4 hover:cursor-pointer" routerLink="/blog/{{data.idBlog}}">
     <div class="col-start-1 col-end-13 md:col-start-1 md:col-end-4 font-inter color-arancio">
-        {{date}}
+        {{convertDate(data.date)}}
     </div>
     <div class="col-start-1 col-end-13 md:col-start-4 md:col-end-8 h-[10rem] md:h-[15rem] lg:h-[12rem] bg-center bg-no-repeat bg-cover" style="background-image: url('{{data.img}}')">
        

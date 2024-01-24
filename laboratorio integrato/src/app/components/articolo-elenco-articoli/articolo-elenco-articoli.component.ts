@@ -13,13 +13,10 @@ export class ArticoloElencoArticoliComponent {
 
     date = "";
 
-    ngOnInit() {
-        this.convertDate();
-        console.log(this.data);
-    }
+    ngOnInit() {}
 
-    convertDate() {
-        const dateDayJs = dayjs(this.data.data).locale("it");
-        this.date = dateDayJs.format("D MMMM");
+    convertDate(date: string) {
+        const dateDayJs = dayjs(date).locale("it");
+        return dateDayJs.format("D MMMM");
     }
 }
