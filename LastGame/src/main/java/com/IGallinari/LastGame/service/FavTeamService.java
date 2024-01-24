@@ -13,7 +13,10 @@ import com.IGallinari.LastGame.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
+/**
+ * Service class for managing favorite team functionalities.
+ * This includes operations such as adding or removing a team from a user's favorites.
+ */
 @Service
 @RequiredArgsConstructor
 public class FavTeamService {
@@ -25,7 +28,13 @@ public class FavTeamService {
     private final TeamRepository teamRepository;
 
     private final JwtService jwtService;
-
+    /**
+     * Builds and returns the favorite team response based on the given request.
+     * This method checks if a team is a favorite for a user and adds/removes it accordingly.
+     *
+     * @param favTeamRequest The request containing the user's token and the team's ID.
+     * @return A ResponseEntity containing the favorite team response.
+     */
     public ResponseEntity<?> buildFavTeamResponse(FavTeamRequest favTeamRequest){
         String token = favTeamRequest.getToken();
         boolean logged= jwtService.isTokenValid(token);
