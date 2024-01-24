@@ -1,6 +1,5 @@
 package com.IGallinari.LastGame.entity;
 
-import com.IGallinari.LastGame.entity.id_class.IdTagTeam;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,7 +17,7 @@ public class TagTeam {
      * The composite primary key for the tagging association.
      */
     @EmbeddedId
-    private IdTagTeam idTagTeam;
+    private com.IGallinari.LastGame.entity.id_class.idTagTeam idTagTeam;
 
     /**
      * The Blog post associated with the team tag.

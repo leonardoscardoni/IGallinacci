@@ -1,6 +1,5 @@
 package com.IGallinari.LastGame.entity;
 
-import com.IGallinari.LastGame.entity.id_class.IdTagPlayer;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,7 +17,7 @@ public class TagPlayer {
      * The composite primary key for the tagging association.
      */
     @EmbeddedId
-    private IdTagPlayer idTagPlayer;
+    private com.IGallinari.LastGame.entity.id_class.idTagPlayer idTagPlayer;
 
     /**
      * The Blog post associated with the player tag.

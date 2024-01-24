@@ -1,12 +1,12 @@
-<div class="container">
+<div class="md:px-20 px-6 over">
     <p class="my-10 font-inter color-arancio">{{convertiData(data.date)}} || {{data.emailAuthor}}</p>
-    <h1 class="font-inter font-bold text-5xl mb-5">{{data.title}}</h1>
+    <h1 class="font-inter font-bold text-4xl mb-5">{{data.title}}</h1>
 
     <p class="font-inter font-light"> {{data.subTitle}}
     </p>
 </div>
 
-<div class="my-10 h-[40vh] w-screen bg-center bg-no-repeat bg-cover" style="background-image: url({{data.img}});"></div>
+<div class="my-10 h-96 w-full bg-center bg-no-repeat bg-cover" style="background-image: url({{data.img}});"></div>
 
 <!-- Inserire in caso di utente loggato -->
 <div *ngIf="data.logged == true" class="container grid grid-cols-12 mb-20">

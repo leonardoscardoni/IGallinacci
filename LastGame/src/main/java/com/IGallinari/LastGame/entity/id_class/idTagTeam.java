@@ -12,7 +12,7 @@ import lombok.Data;
  */
 @Data
 @Embeddable
-public class IdTagTeam implements Serializable {
+public class idTagTeam implements Serializable {
 
     /**
      * The blog identifier associated with the team tag.

@@ -1,6 +1,6 @@
 <app-header></app-header>
 <app-ultimi-risultati-home *ngIf="data.logged == true" [data]="data.favTeamsPastGame" [title]="'Per te'"></app-ultimi-risultati-home>
-<app-ultimi-risultati-home [data]="data.pastGames" [title]="'Ultimi risultati'"></app-ultimi-risultati-home>
+<app-ultimi-risultati-home  [data]="data.pastGames" [title]="'Ultimi risultati'"></app-ultimi-risultati-home>
 
 
 <div *ngIf="data.logged == false"
@@ -29,20 +29,21 @@
   </h2>
   <div class="flex flex-wrap w-[80%]">
     <div
-      class="md:w-1/2 w-full h-auto flex md:justify-center md:px-5 py-3"
+      class="md:w-1/2 w-full h-auto flex flex-col md:justify-center md:px-5 py-3 gap-5"
     >
 
     <ng-container *ngFor="let squadra of data.westStandings">
       <div class="flex gap-3 md:w-2/3 w-full h-full">
-        <div class="border rounded-full h-full w-12 p-1">
-          <img [src]="squadra.logo" class="w-full" alt="" />
+        <div class="bg-bianco rounded-full h-full w-12 p-2">
+          <img [src]="squadra.logo" class="w-full aspect-square" alt="" />
         </div>
         <div class="w-full text-xl capitalize flex items-center">
           <h3>{{ squadra.nickname }} <span class="font-inter font-light text-sm">[W]</span></h3>
         </div>
+        <h3 class="leading-10">{{squadra.rank}}</h3>
       </div>
-      <h3 class="leading-10">{{squadra.rank}}</h3>
     </ng-container>
+ 
 
     <ng-container *ngFor="let squadra of data.eastStandings">
       <div class="flex gap-3 md:w-2/3 w-full h-full">
@@ -55,8 +56,8 @@
       </div>
       <h3 class="leading-10">{{squadra.rank}}</h3>
     </ng-container>
-
-    </div>
+</div>
+   
   </div>
   <button routerLink="/elenco-team"
     class="border rounded-3xl px-5 py-[0.3rem] mb-8 mt-10 border-amber-600 font-inter text-lg w-fit"
