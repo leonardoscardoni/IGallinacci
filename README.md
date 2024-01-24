@@ -15,7 +15,7 @@ Prima di avviare il progetto **LastShot**, è importante assicurarsi di avere tu
 Se non sei sicuro di avere tutti i requisiti installati segui questi passaggi:
 
 1. _Controlla se hai Node.js installato:_
-    - Apri il tuo terminale o prompt dei comandi e digita:\*\*\*\*
+    - Apri il tuo terminale o prompt dei comandi e digita:
         ```bash
         node -v
         ```
@@ -90,3 +90,7 @@ Se non sei sicuro di avere tutti i requisiti installati segui questi passaggi:
         ```bash
         npm start
         ```
+
+# Gestione aggiornamento database
+
+Il dump del database risale al 22 gennaio 2024 quindi le partite non sono aggiornate alla data odierna. Questo poichè il progetto verrà eseguito totalmente in locale.

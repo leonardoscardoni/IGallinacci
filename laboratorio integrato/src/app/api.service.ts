@@ -60,9 +60,9 @@ export class ApiService {
             .post(`${this.baseURL}${this.homeUrl}`, {
                 token: localStorage.getItem("loginToken"),
                 /* Data attuale in formato YYYY MM DD.
-                Al backend viene passata però la data del 21 genn perchè il dump del database si ferma a quella data
+                Al backend viene passata però la data del 22 genn perchè il dump del database si ferma a quella data
                 date: dayjs(new Date()).format("YYYY-MM-DD"), */
-                date: "2024-01-21",
+                date: "2024-01-22",
             })
             .pipe(
                 map((response: any) => {
