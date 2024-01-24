@@ -1,7 +1,7 @@
 package com.IGallinari.LastGame.repository;
 
 import com.IGallinari.LastGame.entity.TagPlayer;
-import com.IGallinari.LastGame.entity.id_class.idTagPlayer;
+import com.IGallinari.LastGame.entity.id_class.IdTagPlayer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,7 +15,7 @@ import java.util.List;
  *
  */
 @Repository
-public interface TagPlayerRepository extends JpaRepository<TagPlayer, idTagPlayer> {
+public interface TagPlayerRepository extends JpaRepository<TagPlayer, IdTagPlayer> {
 
     /**
      * Retrieves a list of player IDs associated with a specific blog.

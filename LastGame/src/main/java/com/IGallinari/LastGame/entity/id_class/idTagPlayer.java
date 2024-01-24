@@ -12,7 +12,7 @@ import lombok.Data;
  */
 @Data
 @Embeddable
-public class idTagPlayer implements Serializable {
+public class IdTagPlayer implements Serializable {
 
     /**
      * The blog identifier associated with the player tag.

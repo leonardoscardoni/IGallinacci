@@ -2,7 +2,7 @@ package com.IGallinari.LastGame.service;
 
 import com.IGallinari.LastGame.entity.*;
 import com.IGallinari.LastGame.entity.id_class.IdParagraph;
-import com.IGallinari.LastGame.entity.id_class.idTagPlayer;
+import com.IGallinari.LastGame.entity.id_class.IdTagPlayer;
 import com.IGallinari.LastGame.entity.id_class.idTagTeam;
 import com.IGallinari.LastGame.payload.request.TokenRequest;
 import com.IGallinari.LastGame.payload.request.blog.CreateBlogRequest;
@@ -87,7 +87,7 @@ public class BlogService {
                 int[] tagPlayers = createBlogRequest.getTagPlayer();
                 for (int idPlayer: tagPlayers){
                     TagPlayer tagPlayer = new TagPlayer();
-                    idTagPlayer idTagPlayer = new idTagPlayer();
+                    IdTagPlayer idTagPlayer = new IdTagPlayer();
                     idTagPlayer.setIdBlog(blog.getId());
                     idTagPlayer.setIdPlayer(idPlayer);
                     tagPlayer.setIdTagPlayer(idTagPlayer);

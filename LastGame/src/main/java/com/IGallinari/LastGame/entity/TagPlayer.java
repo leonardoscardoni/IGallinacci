@@ -17,7 +17,7 @@ public class TagPlayer {
      * The composite primary key for the tagging association.
      */
     @EmbeddedId
-    private com.IGallinari.LastGame.entity.id_class.idTagPlayer idTagPlayer;
+    private com.IGallinari.LastGame.entity.id_class.IdTagPlayer idTagPlayer;
 
     /**
      * The Blog post associated with the player tag.
