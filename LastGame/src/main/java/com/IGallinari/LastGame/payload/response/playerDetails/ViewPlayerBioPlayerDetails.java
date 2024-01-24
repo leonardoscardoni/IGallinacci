@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 public class ViewPlayerBioPlayerDetails {
-    private LocalDate age;
+    private Integer age;
     private String country;
     private Float weight;
     private Float height;
