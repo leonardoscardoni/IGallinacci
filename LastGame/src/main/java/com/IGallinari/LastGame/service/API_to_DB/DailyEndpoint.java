@@ -33,7 +33,7 @@ public class DailyEndpoint {
      * @throws InterruptedException if the thread is interrupted while sleeping.
      */
     @Scheduled(cron = "0 0 5 * * *") //every day at 05:00:00
-    public void init() throws InterruptedException {
+    public void makeDailyCall() throws InterruptedException {
         LocalDate today=LocalDate.now();
         System.out.println("Starting daily call");
         int season;
