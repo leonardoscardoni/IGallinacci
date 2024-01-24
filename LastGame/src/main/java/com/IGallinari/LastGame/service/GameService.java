@@ -92,7 +92,7 @@ public class GameService {
             favNextGame.add(gameRepository.findNextGameByIdTeam(idTeam));
             Team team = teamRepository.findById((int)idTeam);
             StatsTeam  statsTeam = statsTeamRepository.findByTeamAndSeason(team,season);
-            if(team.getDivision().equals("East")){
+            if(team.getConference().equals("East")){
                 eastStandings.add(
                         new ViewTeamStandingHome(
                                 team.getId(),
