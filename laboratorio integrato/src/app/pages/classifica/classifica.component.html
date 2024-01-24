@@ -14,12 +14,11 @@
                 <th class="font-light p-2 border-x md:border-none">VITTORIE OSPITI</th>
                 <th class="font-light p-2 border-x md:border-none">MPP</th>
                 <th class="font-light p-2 border-x md:border-none">MPSP</th>
-                <th class="font-light p-2 border-x md:border-none">STR</th>
             </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let squadra of data.eastTeams" class="h-14 bg-nero hover:bg-[#E5CFB5] hover:text-black cursor-pointer"routerLink="/dettaglio-team/{{squadra.idTeam}}">
-                    <td class="sticky left-0 h-fit border-r sm:border-none " >
+                <tr *ngFor="let squadra of data.eastTeams" class="h-14 bg-nero cursor-pointer"routerLink="/dettaglio-team/{{squadra.idTeam}}">
+                    <td class="sticky left-0 h-fit border-r bg-nero sm:border-none " >
                         <div class="flex justify-between">
                             <p class="inline w-1/12 mr-4">{{squadra.rank}}</p>
                             <img [src]="squadra.logo" alt="" class="w-7 inline mr-4">
@@ -32,7 +31,6 @@
                     <td class=" p-2 pe-20">{{ squadra.winAway }}</td>
                     <td class=" p-2 pe-20">{{ squadra.averagePointsByGame }}</td>
                     <td class=" p-2 pe-20">{{ squadra.averagePointsConcededByGame }}</td>
-                    <td class=" p-2 pe-20">{{ squadra.consecutiveWinsOrLosses }}</td>
                 </tr>
             </tbody>
         </table>
@@ -52,12 +50,11 @@
                 <th class="font-light p-2 border-x md:border-none">VITTORIE OSPITI</th>
                 <th class="font-light p-2 border-x md:border-none">MPP</th>
                 <th class="font-light p-2 border-x md:border-none">MPSP</th>
-                <th class="font-light p-2 border-x md:border-none">STR</th>
             </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let squadra of data.westTeams" class="h-14 bg-nero hover:bg-[#E5CFB5] hover:text-black cursor-pointer"routerLink="/dettaglio-team/{{squadra.idTeam}}">
-                    <td class="sticky left-0 h-fit border-r sm:border-none " >
+                <tr *ngFor="let squadra of data.westTeams" class="h-14 bg-nero cursor-pointer"routerLink="/dettaglio-team/{{squadra.idTeam}}">
+                    <td class="sticky left-0 h-fit border-r bg-nero sm:border-none " >
                         <div class="flex justify-between">
                             <p class="inline w-1/12 mr-4">{{squadra.rank}}</p>
                             <img [src]="squadra.logo" alt="" class="w-7 inline mr-4">
@@ -70,7 +67,6 @@
                     <td class=" p-2 pe-20">{{ squadra.winAway }}</td>
                     <td class=" p-2 pe-20">{{ squadra.averagePointsByGame }}</td>
                     <td class=" p-2 pe-20">{{ squadra.averagePointsConcededByGame }}</td>
-                    <td class=" p-2 pe-20">{{ squadra.consecutiveWinsOrLosses }}</td>
                 </tr>
             </tbody>
         </table>
