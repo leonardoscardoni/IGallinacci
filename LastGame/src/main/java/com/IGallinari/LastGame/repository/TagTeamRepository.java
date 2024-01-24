@@ -2,7 +2,7 @@ package com.IGallinari.LastGame.repository;
 
 
 import com.IGallinari.LastGame.entity.TagTeam;
-import com.IGallinari.LastGame.entity.id_class.idTagTeam;
+import com.IGallinari.LastGame.entity.id_class.IdTagTeam;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,7 +16,7 @@ import java.util.List;
  *
  */
 @Repository
-public interface TagTeamRepository extends JpaRepository<TagTeam, idTagTeam> {
+public interface TagTeamRepository extends JpaRepository<TagTeam, IdTagTeam> {
 
     /**
      * Retrieves a list of team IDs associated with a specific blog.

@@ -3,9 +3,9 @@
 --
 
 INSERT INTO `user` (`id`, `email`, `password`, `name`, `role`) VALUES
-(1, 'andrea.aquilino@edu.itspiemonte.it', '$2a$10$xBfkdyHZCDQPyq78tiR/ou4q2ppdTUuCc98qqegLnUxU6yHB.KAEq', 'andrea', 1), # oJ]4L91#2{dG
-(2, 'ilaria.gigliarano@edu.itspiemonte.it', '$2a$10$vKImuUnXqXUFG9EFx1089.plsHDbOUi7I8pITQ.AvO5vitZBfc.Um', 'ilaria', 1), # 7Wu[8o34-WlB
-(3, 'leo.scardoni@gmail.com', '$2a$10$s.FIiryacnn2saw6fu/Sie.JLuSUbtcZVjtY8XVxAlsx590q1kp8S', 'leonardo', 0); # X]286q<,KdLW
+(1, 'andrea.aquilino@edu.itspiemonte.it', '$2a$10$xBfkdyHZCDQPyq78tiR/ou4q2ppdTUuCc98qqegLnUxU6yHB.KAEq', 'andrea', 1), 
+(2, 'ilaria.gigliarano@edu.itspiemonte.it', '$2a$10$vKImuUnXqXUFG9EFx1089.plsHDbOUi7I8pITQ.AvO5vitZBfc.Um', 'ilaria', 1),
+(3, 'leo.scardoni@gmail.com', '$2a$10$s.FIiryacnn2saw6fu/Sie.JLuSUbtcZVjtY8XVxAlsx590q1kp8S', 'leonardo', 0);
 
 --
 -- Dump dei dati per la tabella `blog`

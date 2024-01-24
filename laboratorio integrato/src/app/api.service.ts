@@ -18,6 +18,9 @@ import { HomeRequestType } from "./_models/postCalls.type";
 import { ProfileType } from "./_models/profile.type";
 import { AllBlogsType } from "./_models/allBlogs.type";
 import { BlogType } from "./_models/blog.type";
+import dayjs from "dayjs";
+import localizedFormat from "dayjs/plugin/localizedFormat"; // Importa il plugin per il formato localizzato
+import "dayjs/locale/it";
 
 @Injectable({
     providedIn: "root",
@@ -50,22 +53,16 @@ export class ApiService {
     todayDate: string = "";
     HomeRequest: HomeRequestType = {} as HomeRequestType;
 
-    ngOnInit() {
-        console.log("entra nell onit di api service");
-        this.token = localStorage.getItem("loginToken");
-        this.todayDate = "2024-01-19";
-
-        this.HomeRequest = {
-            token: this.token || null,
-            date: this.todayDate,
-        };
-    }
+    ngOnInit() {}
 
     getHome() {
         return this.http
             .post(`${this.baseURL}${this.homeUrl}`, {
                 token: localStorage.getItem("loginToken"),
-                date: "2024-01-16",
+                /* Data attuale in formato YYYY MM DD.
+                Al backend viene passata però la data del 21 genn perchè il dump del database si ferma a quella data
+                date: dayjs(new Date()).format("YYYY-MM-DD"), */
+                date: "2024-01-21",
             })
             .pipe(
                 map((response: any) => {
