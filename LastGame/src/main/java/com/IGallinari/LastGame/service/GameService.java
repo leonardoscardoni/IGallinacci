@@ -381,28 +381,29 @@ public class GameService {
             List<Integer[]> arrayPlayerTotReb = statsPlayerRepository.findBestPlayerTotRebByIdGameAndIdTeam(game.getId(), team.getId());
             List<Integer[]> arrayPlayerAssist = statsPlayerRepository.findBestPlayerAssistByIdGameAndIdTeam(game.getId(), team.getId());
 
-            Player playerPoints = playerRepository.findById(arrayPlayerPoints.get(0)[0].intValue());
-            Player playerTotReb = playerRepository.findById(arrayPlayerTotReb.get(0)[0].intValue());
-            Player playerAssist = playerRepository.findById(arrayPlayerAssist.get(0)[0].intValue());
-
             List<ViewBestPlayerPastGame> bestPlayerPastGameList;
             if (team.equals(homeTeam)) {
                 bestPlayerPastGameList = homeBestPlayerPastGameList;
             } else {
                 bestPlayerPastGameList = visitorBestPlayerPastGameList;
             }
+            if(!arrayPlayerAssist.isEmpty() || !arrayPlayerPoints.isEmpty() || !arrayPlayerTotReb.isEmpty()) {
+                Player playerPoints = playerRepository.findById(arrayPlayerPoints.get(0)[0].intValue());
+                Player playerTotReb = playerRepository.findById(arrayPlayerTotReb.get(0)[0].intValue());
+                Player playerAssist = playerRepository.findById(arrayPlayerAssist.get(0)[0].intValue());
 
-            for (int i = 0; i < typeBestPlayerList.size(); i++) {
-                bestPlayerPastGameList.add(
-                        new ViewBestPlayerPastGame(
-                                i == 0 ? playerPoints.getId() : (i == 1 ? playerTotReb.getId() : playerAssist.getId()),
-                                i == 0 ? playerPoints.getFirstname() : (i == 1 ? playerTotReb.getFirstname() : playerAssist.getFirstname()),
-                                i == 0 ? playerPoints.getLastname() : (i == 1 ? playerTotReb.getLastname() : playerAssist.getLastname()),
-                                i == 0 ? playerPoints.getJersey() : (i == 1 ? playerTotReb.getJersey() : playerAssist.getJersey()),
-                                i == 0 ? arrayPlayerPoints.get(0)[1] : (i == 1 ? arrayPlayerTotReb.get(0)[1] : arrayPlayerAssist.get(0)[1]),
-                                typeBestPlayerList.get(i)
-                        )
-                );
+                for (int i = 0; i < typeBestPlayerList.size(); i++) {
+                    bestPlayerPastGameList.add(
+                            new ViewBestPlayerPastGame(
+                                    i == 0 ? playerPoints.getId() : (i == 1 ? playerTotReb.getId() : playerAssist.getId()),
+                                    i == 0 ? playerPoints.getFirstname() : (i == 1 ? playerTotReb.getFirstname() : playerAssist.getFirstname()),
+                                    i == 0 ? playerPoints.getLastname() : (i == 1 ? playerTotReb.getLastname() : playerAssist.getLastname()),
+                                    i == 0 ? playerPoints.getJersey() : (i == 1 ? playerTotReb.getJersey() : playerAssist.getJersey()),
+                                    i == 0 ? arrayPlayerPoints.get(0)[1] : (i == 1 ? arrayPlayerTotReb.get(0)[1] : arrayPlayerAssist.get(0)[1]),
+                                    typeBestPlayerList.get(i)
+                            )
+                    );
+                }
             }
         }
         ViewBestPlayersPerTeamPastGame bestPlayersPerTeamPastGame = new ViewBestPlayersPerTeamPastGame(homeBestPlayerPastGameList,visitorBestPlayerPastGameList);
