@@ -93,6 +93,6 @@ Se non sei sicuro di avere tutti i requisiti installati segui questi passaggi:
 
 # Gestione aggiornamento database
 
-Il database si aggiorna tramite un il metodo makeDailyCall() del file [DailyEndpoint.java](/LastGame/src/main/java/com/IGallinari/LastGame/service/API_to_DB/DailyEndpoint.java) che è "Scheduled" e si esegue tutti i giorni alle 5 del mattino (orario in cui tutte le partite nba sono finite).
+Il database si aggiorna tramite un il metodo makeDailyCall() del file [DailyEndpoint.java](/LastGame/src/main/java/com/IGallinari/LastGame/service/API_to_DB/DailyEndpoint.java) che è "Scheduled" e si esegue tutti i giorni alle 5 del mattino (orario in cui tutte le partite nba sono finite). Basta solamente inserire la propria "API key" di api-sports.io nel file [ApiCaller](/LastGame/src/main/java/com/IGallinari/LastGame/service/API_to_DB/ApiCaller.java) all'interno della variabile  globale **RAPIDAPI_KEY**.
 
 Il dump del database risale al 22 gennaio 2024 quindi le partite non sono aggiornate alla data odierna. Questo poichè il progetto verrà eseguito totalmente in locale.
